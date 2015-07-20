@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>newslynx: own your analytics &mdash; newslynx 0.1.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="newslynx 0.1.1 documentation" href="#"/>
+        <link rel="next" title="Installation Guide" href="install.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="#" class="icon icon-home"> newslynx
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#additional-dependencies">Additional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">NewsLynx API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#authentication"><strong>Authentication</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#api-keys">API Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#organizations">Organizations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#status-codes"><strong>Status Codes</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#successes">Successes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#namespacing"><strong>Namespacing</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#endpoints"><strong>Endpoints</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#user"><strong>User</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#user-json">User JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-login"><strong>POST</strong> <code class="docutils literal"><span class="pre">/login</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-me"><strong>GET</strong> <code class="docutils literal"><span class="pre">/me</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-me"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/me</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-me"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/me</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#endpoints-orgs"><strong>Organizations</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#organization-json">Organization JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-orgs"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-orgs"><strong>POST</strong> <code class="docutils literal"><span class="pre">/orgs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-orgs-org-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-orgs-org-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-orgs-org-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-orgs-org-id-users"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-orgs-org-id-users"><strong>POST</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-orgs-org-id-users-user-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users/:user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-orgs-org-id-users-user-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users/:user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-orgs-org-id-users-user-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users/:user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#settings"><strong>Settings</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#setting-json">Setting JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings-name"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-settings-name"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-settings-name"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#authorizations"><strong>Authorizations</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#authorization-json">Authorization JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-google-analytics"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/google-analytics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-google-analytics-grant"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/google-analytics/grant</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-google-analytics-revoke"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/google-analytics/revoke</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-twitter"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/twitter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-twitter-grant"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/twitter/grant</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-twitter-revoke"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/twitter/revoke</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-facebook"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/facebook</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-facebook-grant"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/facebook/grant</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-auths-facebook-revoke"><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/facebook/revoke</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tags"><strong>Tags</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#tag-json">Tag JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-tags"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-tags"><strong>POST</strong> <code class="docutils literal"><span class="pre">/tags</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-tag-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-tags-tag-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-categories"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/categories</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-levels"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/levels</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#souschefs"><strong>SousChefs</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#sous-chef-json">Sous Chef JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-sous-chefs"><strong>GET</strong> <code class="docutils literal"><span class="pre">/sous-chefs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-sous-chefs"><strong>POST</strong> <code class="docutils literal"><span class="pre">/sous-chefs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-sous-chefs-sous-chef-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/sous-chefs/:sous_chef_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-sous-chefs-sous-chef-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/sous-chefs/:sous_chef_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#recipes"><strong>Recipes</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#recipe-json">Recipe JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-recipes"><strong>POST</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-recipes-recipe-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#metrics"><strong>Metrics</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#metric-json">Metric JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-metrics"><strong>GET</strong> <code class="docutils literal"><span class="pre">/metrics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-metrics-metric-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/metrics/:metric_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-metrics-metric-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/metrics/:metric_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-metrics-metric-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/metrics/:metric_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#authors"><strong>Authors</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#author-json">Author JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-authors"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-authors-author-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-authors-author-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-authors-author-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-authors-author-id-content-content-item-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/authors/:author_id/content/:content_item_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-authors-author-id-content-content-item-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id/content/:content_item_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-authors-from-author-id-merge-to-author-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/authors/:from_author_id/merge/:to_author_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#events"><strong>Events</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#event-json">Event JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-events"><strong>GET</strong> <code class="docutils literal"><span class="pre">/events</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-events"><strong>POST</strong> <code class="docutils literal"><span class="pre">/events</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-events-event-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/events/:event_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-events-event-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/events/:event_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-events-event-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/events/:event_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-events-event-id-tags-tag-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/events/:event_id/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-events-event-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/events/:event_id/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-events-event-id-content-content-item-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/events/:event_id/content/:content_item_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-events-event-id-content-content-item-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/events/:event_id/content/:content_item_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#content-items"><strong>Content Items</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#content-item-json">Content Item JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-content"><strong>POST</strong> <code class="docutils literal"><span class="pre">/content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-content-content-item-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-content-content-item-id-tag-tag-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tag/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#compression"><strong>Compression</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#subject-tag">Subject Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag">Impact Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-category">Impact Tag Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-level">Impact Tag Level</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">newslynx</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li><strong>newslynx</strong>: own your analytics</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="newslynx-own-your-analytics">
+<h1><strong>newslynx</strong>: own your analytics<a class="headerlink" href="#newslynx-own-your-analytics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#additional-dependencies">Additional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">NewsLynx API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#authentication"><strong>Authentication</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#api-keys">API Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#organizations">Organizations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#status-codes"><strong>Status Codes</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#successes">Successes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#namespacing"><strong>Namespacing</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#endpoints"><strong>Endpoints</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#user"><strong>User</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#endpoints-orgs"><strong>Organizations</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#settings"><strong>Settings</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#authorizations"><strong>Authorizations</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tags"><strong>Tags</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#souschefs"><strong>SousChefs</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#recipes"><strong>Recipes</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#metrics"><strong>Metrics</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#authors"><strong>Authors</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#events"><strong>Events</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#content-items"><strong>Content Items</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#compression"><strong>Compression</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#subject-tag">Subject Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag">Impact Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-category">Impact Tag Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-level">Impact Tag Level</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Brian Abelson.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
