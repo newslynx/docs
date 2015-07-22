@@ -3,6 +3,9 @@
 Installation Guide
 ==================
 
+NewsLynx API
+------------
+
 The easiest way is to install ``newslynx`` is from the `Python Package Index <https://pypi.python.org/pypi/newslynx/>`_ using ``pip`` or ``easy_install``:
 
 .. code-block:: bash
@@ -17,6 +20,24 @@ To install it manually simply download the repository from Github:
    $ cd newslynx
    $ python setup.py install
 
-Additional Dependencies
------------------------
-``newslynx`` also depends on `Postgres <http://www.postgresql.org/>`_ and `Redis <http://www.redis.io>`_.
+Additional API Dependencies
+---------------------------
+
+``newslynx`` also depends on `Postgres <http://www.postgresql.org/>`_ and `Redis <http://www.redis.io>`_. If you're on Mac OS X, the easiest way to run Postgres is with the `Postgres.app <http://www.http://postgresapp.com/.org/>`_. TKTK MORE INFORMATION ON INSTALLING POSTGRES AND THE NECESSARY EXTENSIONS IF NOT USING THE APP.
+
+If you have `Homebrew <http://www.brew.sh/>`_ you can install redis with the following:
+
+.. code-block:: bash
+
+   $ brew install redis
+
+NewsLynx App
+------------
+
+Download the git repository and install dependencies:
+
+.. code-block:: bash
+
+   $ git clone https://github.com/newslynx/newslynx-app && cd newslynx-app
+   $ npm install
+

@@ -73,7 +73,9 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Installation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#additional-dependencies">Additional Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-api">NewsLynx API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-api-dependencies">Additional API Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-app">NewsLynx App</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
@@ -262,6 +264,8 @@
             
   <div class="section" id="installation-guide">
 <span id="installation"></span><h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="newslynx-api">
+<h2>NewsLynx API<a class="headerlink" href="#newslynx-api" title="Permalink to this headline">¶</a></h2>
 <p>The easiest way is to install <code class="docutils literal"><span class="pre">newslynx</span></code> is from the <a class="reference external" href="https://pypi.python.org/pypi/newslynx/">Python Package Index</a> using <code class="docutils literal"><span class="pre">pip</span></code> or <code class="docutils literal"><span class="pre">easy_install</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install newslynx
 </pre></div>
@@ -272,9 +276,22 @@
 <span class="nv">$ </span>python setup.py install
 </pre></div>
 </div>
-<div class="section" id="additional-dependencies">
-<h2>Additional Dependencies<a class="headerlink" href="#additional-dependencies" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">newslynx</span></code> also depends on <a class="reference external" href="http://www.postgresql.org/">Postgres</a> and <a class="reference external" href="http://www.redis.io">Redis</a>.</p>
+</div>
+<div class="section" id="additional-api-dependencies">
+<h2>Additional API Dependencies<a class="headerlink" href="#additional-api-dependencies" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">newslynx</span></code> also depends on <a class="reference external" href="http://www.postgresql.org/">Postgres</a> and <a class="reference external" href="http://www.redis.io">Redis</a>. If you&#8217;re on Mac OS X, the easiest way to run Postgres is with the <a class="reference external" href="http://www.http://postgresapp.com/.org/">Postgres.app</a>. TKTK MORE INFORMATION ON INSTALLING POSTGRES AND THE NECESSARY EXTENSIONS IF NOT USING THE APP.</p>
+<p>If you have <a class="reference external" href="http://www.brew.sh/">Homebrew</a> you can install redis with the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew install redis
+</pre></div>
+</div>
+</div>
+<div class="section" id="newslynx-app">
+<h2>NewsLynx App<a class="headerlink" href="#newslynx-app" title="Permalink to this headline">¶</a></h2>
+<p>Download the git repository and install dependencies:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/newslynx/newslynx-app <span class="o">&amp;&amp;</span> <span class="nb">cd </span>newslynx-app
+<span class="nv">$ </span>npm install
+</pre></div>
+</div>
 </div>
 </div>
 
