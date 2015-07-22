@@ -12,6 +12,7 @@
 
 NewsLynx is a research project from the Tow Center for Digital Journalism at Columbia University by Brian Abelson & Michael Keller. 
 
+**This documentation is being finalized and will be released end of July 2015.**
 
 Read our `white paper <http://towcenter.org/wp-content/uploads/2015/06/Tow_Center_NewsLynx_Full_Report.pdf>`_ (PDF, released June 2015) or the `Executive Summary <http://towcenter.org/research/the-newslynx-impact-tracker-produced-these-key-ideas/>`_ if you're in a hurry. If you want more, you can read our project update posts that look at `the problem of scraping the whole internet <http://towcenter.org/hyper-compensation-ted-nelson-and-the-impact-of-journalism/>`_, why `taxonomies are like Jorge Luis Borges <http://towcenter.org/tow-fellows-brian-abelson-and-michael-keller-to-study-the-impact-of-journalism/>`_ or read `a walkthrough of our initial prototype <http://towcenter.org/the-newslynx-tool-for-impact-tracking-a-walkthrough/>`_. 
 
