@@ -106,9 +106,9 @@ html_theme_path = ['_themes']
 #html_theme_options = {}
 
 # Custom sidebar templates, maps document names to template names.
-html_sidebars = {
-    'index': ['sidebarlogo.html', 'sourcelink.html', 'searchbox.html']
-}
+# html_sidebars = {
+#     'index': ['sidebarlogo.html', 'sourcelink.html', 'searchbox.html']
+# }
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []

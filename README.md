@@ -1,7 +1,7 @@
 NewsLynx Docs
 =============
 
-> Documentation for the NewsLynx project. View at <http://newslynx.readthedocs.org
+> Documentation for the NewsLynx project. View at <http://newslynx.readthedocs.org>
 
 ## How to generate
 
