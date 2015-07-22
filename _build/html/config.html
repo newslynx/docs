@@ -73,10 +73,17 @@
           
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#additional-dependencies">Additional Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-api">NewsLynx API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#additional-api-dependencies">Additional API Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-api">NewsLynx API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-newslynx-app">Running NewsLynx App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-app-start-up-commands">Other App start up commands</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">NewsLynx API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#authentication"><strong>Authentication</strong></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#api-keys">API Keys</a></li>
@@ -262,7 +269,47 @@
             
   <div class="section" id="configuration">
 <span id="config"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
-<p>Here&#8217;s how to configure NewsLynx</p>
+<div class="section" id="newslynx-api">
+<h2>NewsLynx API<a class="headerlink" href="#newslynx-api" title="Permalink to this headline">¶</a></h2>
+<p>TKTK ABOUT CONFIG.YAML</p>
+</div>
+<div class="section" id="running-newslynx-app">
+<h2>Running NewsLynx App<a class="headerlink" href="#running-newslynx-app" title="Permalink to this headline">¶</a></h2>
+<p>To start the server, in the <code class="docutils literal"><span class="pre">newslynx-app</span></code> folder, run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm start
+</pre></div>
+</div>
+<p>This compiles your CSS and JS and runs the server with <a class="reference external" href="https://github.com/foreverjs/forever">Forever</a>.</p>
+<p>When you see the following, it&#8217;s done and you can visit <a class="reference external" href="http://localhost:3000">http://localhost:3000</a>.</p>
+<p><strong>Note</strong>: If you are running this in production, you want to run it in behind https and tell the app you are doing so one of two ways:</p>
+<ol class="arabic simple">
+<li>Run it with the environment variable <code class="docutils literal"><span class="pre">NEWSLYNX_ENV=https</span></code></li>
+<li>Set <code class="docutils literal"><span class="pre">newslynx_app_https:</span> <span class="pre">true</span></code> in your <code class="docutils literal"><span class="pre">~/.newslynx/config.yaml</span></code> file</li>
+</ol>
+<p>This will make sure your cookies are set securely.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#####################################</span>
+<span class="c"># HTTP listening on 0.0.0.0:3000... #</span>
+<span class="c">#####################################</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-app-start-up-commands">
+<h2>Other App start up commands<a class="headerlink" href="#other-app-start-up-commands" title="Permalink to this headline">¶</a></h2>
+<p>Alternate commands are in <a class="reference external" href="https://github.com/newslynx/newslynx-app/blob/master/package.json">package.json</a> under <a class="reference external" href="https://github.com/newslynx/newslynx-app/blob/master/package.json#L5">&#8220;scripts&#8221;</a>. These are for <strong>developing locally.</strong></p>
+<p>If you want to modify files and have the CSS and JS re-compiled automatically and the server restarted if necessary, do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run dev
+</pre></div>
+</div>
+<p>If you just want to watch the CSS and JS and re-compile when on change, do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run watch-files
+</pre></div>
+</div>
+<p>If you just want to watch the Express server and restart when its files change (templates, server js files), do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run watch-server
+</pre></div>
+</div>
+<p>These last two commands are best run in tandem in two separate shell windows. <cite>npm run dev</cite> does them both in one window for convenience.</p>
+</div>
 </div>
 
 
