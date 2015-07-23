@@ -3,10 +3,12 @@
 Configuration
 =============
 
-NewsLynx API
+NewsLynx Core
 ------------
 
-TKTK ABOUT CONFIG.YAML
+``newslynx`` requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  ``~/.newslynx``.  In this directory there should at least be one file named ``config.yaml``. 
+
+
 
 
 Running NewsLynx App
