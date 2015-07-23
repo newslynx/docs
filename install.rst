@@ -42,7 +42,6 @@ Finally, install ``redis`` via Homebrew
 
 For the next steps, refer to the  :ref:`config` docs.
 
-**NOTE**: Newslynx is incapable of running on Windows.
 
 NewsLynx App
 ------------

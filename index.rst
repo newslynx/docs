@@ -64,8 +64,16 @@ Contents
 
    install
    config
+   getting-started
+   sous-chefs 
+   metrics
+   recipes
+   taxonomy 
+   content-items
+   events
    api
    app
    cli
-   taxonomy
+   writing-sous-chefs
+   
 
