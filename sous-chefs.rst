@@ -98,5 +98,6 @@ Sous Chefs which create metrics must also specify the schema of the metrics they
 Examples 
 ++++++++++++++
 
-The best way to understand how Sous Chef's work is to look at the Source Code for the built-in modules `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py>`_.  You can see an example of a custom Sous Chef module `here <https://github.com/newslynx/newslynx.sc>`_.
+The best way to understand how Sous Chef's work is to look at the Source Code for the built-in modules `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py>`_.  You can see an example of a custom Sous Chef module `here <https://github.com/newslynx/newslynx.sc>`_. If you're interested in writing your own Sous Chefs, please refer to the :ref:`writing-sous-chefs` docs.
+
 
