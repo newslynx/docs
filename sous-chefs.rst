@@ -11,7 +11,7 @@ NewsLynx is powered by Sous Chefs. Sous Chefs are small python scripts that can 
 
 
 Writing Sous Chefs
-====================
+++++++++++++++++++++
 
 All Sous Chefs must inherit from the core ``newslynx.sc.SousChef`` class.  You can see the source code for this class `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py>`_.  Every Sous Chef can define the following methods:
 
@@ -23,7 +23,7 @@ All Sous Chefs must inherit from the core ``newslynx.sc.SousChef`` class.  You c
 You can see examples of our internal Sous Chefs `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py>`_.
 
 Configuring Sous Chefs
-========================
++++++++++++++++++++++++
 
 All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follow a `JSON schema <http://jsonschema.org/>`_ which is defined `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/models/sous_chef.yaml>`_. Every Sous Chef consists of the following configurations:
 
@@ -44,7 +44,7 @@ All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follo
 * ``metrics``: OPTIONAL: The metrics this Sous Chef creates (expalined below).
 
 Sous Chef Options
-===================
+++++++++++++++++++++
 
 Sous Chefs can specify as many options as they require.  These options can be passed into the Sous Chef to change it's behavior.  At their core, :ref:`recipes` are simply a populated list of these options. Each options follows the schema sepecified below:
 
@@ -89,13 +89,14 @@ Sous Chefs can specify as many options as they require.  These options can be pa
     - ``link``: A link for more details about this option.
     - ``description``: A description of this option to display on form hover.
 
-.. _sous-chefs-creates:
+Sous Chef Metrics
+++++++++++++++++++++
 
-Creates
-~~~~~~~~~
+Sous Chefs which create metrics must also specify the schema of the metrics they create. This schema is specified in the :ref:`<metrics` docs.
 
 
-.. _sous-chefs-runners:
+Examples 
+++++++++++++++
 
-Runners
-~~~~~~~~
+The best way to understand how Sous Chef's work is to look at the Source Code for the built-in modules `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py>`_.  You can see an example of a custom Sous Chef module `here <https://github.com/newslynx/newslynx.sc>`_.
+
