@@ -28,7 +28,9 @@ Configuring Sous Chefs
 All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follow a `JSON schema <http://jsonschema.org/>`_ which is defined `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/models/sous_chef.yaml>`_. Every Sous Chef consists of the following configurations:
 
 * ``name``: The display name of the Sous Chef.
-* ``
+* ``slug``: A unique slug for the Sous Chef. This can double as it's ID.  Must only contain letters and ``-``. In ``regex``, this means: ``'^[a-z][a-z\-]+[a-z]$'``.
+* ``description``: A description of what this SousChef does.
+* ``runs``: The ``python`` import path for the SousChef.
 
 
 

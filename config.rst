@@ -93,6 +93,13 @@ If you want to initialize NewsLynx with the default Tags and Recipes the App exp
 	$ newslynx init --app-defaults
 
 
+Starting the API.
+++++++++++++++++++++++++
+
+Once you've 
+
+
+
 Running NewsLynx App
 ---------------------
 

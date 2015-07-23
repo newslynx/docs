@@ -492,7 +492,7 @@ Via ``python``
 
 Create an organization. This will also add the requesting user to that organization.
 
-**NOTE**: 
+**NOTE** 
     - Requires admin/super user privileges.
     - Will simultaneously create all built-in SousChefs, Metrics, default Recipes and 
       Tags for this organization.  Check out the :ref:`config` docs for more details.
@@ -561,7 +561,7 @@ Via ``python``
 
 Fetch an organization object.
 
-**NOTE**: 
+**NOTE** 
     - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
@@ -619,7 +619,7 @@ Via ``python``
 
 Change an organization's ``name``, ``slug`` and/or ``timezone``.
 
-**NOTE**: 
+**NOTE** 
     - Requires admin privileges.
     - You can pass in either an organization's ``id`` or it's (current) ``slug`` to this endpoint.
 
@@ -690,7 +690,7 @@ Via ``python``
 
 Delete an organization and all of it's associated collections.
 
-**NOTE**: 
+**NOTE** 
     - Requires admin privileges.
     - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
@@ -748,7 +748,7 @@ Via ``python``
 
 Fetch all users associated with an organization.
 
-**NOTE**: 
+**NOTE** 
     - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
@@ -803,7 +803,7 @@ Via ``python``
 
 Create a new user under an organization.
 
-**NOTE**: 
+**NOTE** 
     - Requires admin privileges.
     - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
@@ -878,7 +878,7 @@ Via ``python``
 
 Fetch a user that belongs to a given organization.
 
-**NOTE**: 
+**NOTE** 
     - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
@@ -1595,7 +1595,7 @@ Via ``newslynx``
     
     $ newslynx api auths grant service=google-analytics
 
-**NOTE**: Will open up a browser to the specified url and run you through the authorization process.
+**NOTE** Will open up a browser to the specified url and run you through the authorization process.
 
 Via ``python``
 
@@ -1606,7 +1606,7 @@ Via ``python``
     api = API()
     api.auths.grant("google-analytics")
 
-**NOTE**: Will open up a browser to the specified url and run you through the authorization process.
+**NOTE** Will open up a browser to the specified url and run you through the authorization process.
 
 
 .. _endpoints-auth-google-analytics-revoke:
@@ -1764,7 +1764,7 @@ Via ``newslynx``
     
     $ newslynx api auths grant service=twitter
 
-**NOTE**: Will open up a browser to the specified url and run you through the authorization process.
+**NOTE** Will open up a browser to the specified url and run you through the authorization process.
 
 Via ``python``
 
@@ -1775,7 +1775,7 @@ Via ``python``
     api = API()
     api.auths.grant("twitter")
 
-**NOTE**: Will open up a browser to the specified url and run you through the authorization process.
+**NOTE** Will open up a browser to the specified url and run you through the authorization process.
 
 
 .. _endpoints-auth-twitter-revoke:
@@ -1933,7 +1933,7 @@ Via ``newslynx``
     $ newslynx api auths grant service=facebook
 
 
-**NOTE**: Will open up a browser to the specified url and run you through the authorization process.
+**NOTE** Will open up a browser to the specified url and run you through the authorization process.
 
 Via ``python``
 
@@ -1945,7 +1945,7 @@ Via ``python``
     api.auths.grant("facebook")
 
 
-**NOTE**: Will open up a browser to the specified url and run you through the authorization process.
+**NOTE** Will open up a browser to the specified url and run you through the authorization process.
 
 
 .. _endpoints-auth-facebook-revoke:
@@ -3754,7 +3754,7 @@ All methods, unless otherwise specified, will return one or many Metric objects 
     ]
   }
 
-**NOTE**: All Author ``name``s are stored in ALL CAPS to help prevent duplication.
+**NOTE** All Author ``name``s are stored in ALL CAPS to help prevent duplication.
 
 .. _endpoints-authors-list:
 
