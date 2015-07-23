@@ -62,7 +62,8 @@ For example, ``~/.newslynx/defaults/tags.yaml`` specifies a list of tags to appl
 	  color: '#6699cc'
 	  type: impact 
 
-If you would like to use the defaults for the Application, make sure to use the ``--app-defaults`` flag which you run ``newslynx init`` (see more details on this below.)
+If you would like to use the defaults for the Application, make sure to 
+use the ``--app-defaults`` flag when you run ``newslynx init`` (more details on this below).
 
 
 **Intialization**
