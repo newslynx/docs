@@ -30,16 +30,64 @@ All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follo
 * ``name``: The display name of the Sous Chef.
 * ``slug``: A unique slug for the Sous Chef. This can double as it's ID.  Must only contain letters and ``-``. In ``regex``, this means: ``'^[a-z][a-z\-]+[a-z]$'``.
 * ``description``: A description of what this SousChef does.
-* ``runs``: The ``python`` import path for the SousChef.
+* ``runs``: The ``python`` import   path for the SousChef. For instance, if you built a ``python`` module named `my_sous_chef`, this might take the value of ``my_sous_chef.SousChef``.  The class at the end of the import path must inherit from the core ``newslynx.sc.SousChef`` class.  You can see the source code for this class `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py>`_. You can see an example of one of these modules `here <https://github.com/newslynx/newslynx.sc>`_.
+* ``creates``: What type of collection does this Sous Chef create? Can be one of:
+    - ``events``
+    - ``content``
+    - ``tags``
+    - ``metrics``
+    - ``report``
+    - ``external``
+    - ``internal``
+* ``option_order``: OPTIONAL: The order in which ``options`` (explained below) are rendered. This parameter should take a list of ``option`` names. This parameter primarily exists to the aid in the dynamic rendering of Sous Chef options (explained below).
+* ``options``: The Options this Sous Chef takes (explained below).
+* ``metrics``: OPTIONAL: The metrics this Sous Chef creates (expalined below).
+
+Sous Chef Options
+===================
+
+Sous Chefs can specify as many options as they require.  These options can be passed into the Sous Chef to change it's behavior.  At their core, :ref:`recipes` are simply a populated list of these options. Each options follows the schema sepecified below:
 
 
+* ``input_type``: What type of input form should this option render?
+    - This options enables ``newslynx-app`` to dynamically render forms to populate SousChef options.
+    - This option can accept the following values:
+        * ``search``: Render a search form to aid in populating the option's value. In practice, this is used to add items to an option which can be searched for via the API.
+        * ``radio``: Render a radio form .
+        * ``select``: Render a drop-down form.
+        * ``checkbox``: Render a checkbox form.
+        * ``checkbox-single``: Render a single-checkbox. This would be used, for example, in the case that you want an non-required option to take a ``default`` value of ``true`` while enabling a user to override this default with a value of ``false``. 
+        * ``number``: Render a numeric form.
+        * ``datepicker``: Render a form which enables a user to select a date.
+        * ``text``: Render an open-ended text form.
+        * ``paragraph``: Render an open-ended text form with more room to fill in details. Primarily for use with ``description`` fields.
 
+* ``input_options``: If the ``input_type`` is ``radio``, ``select``, ``checkbox``, or ``checkbox-single``, a list of possible options to populate the form.
+    - This parameter enables ``newslynx-app`` to dynamically render dropdowns, checkbox, or radio options.
 
+* ``value_types``: What value types does this option accept?
+    - This parameter enables ``newslynx-core`` to exhaustively validate options before executing Sous Chefs.
+    - This option can accept the following values:
+        * ``datetime``
+        * ``crontab``
+        * ``json``
+        * ``regex``
+        * ``boolean``
+        * ``numeric``
+        * ``string``
+        * ``nulltype``
+        * ``url``
+        * ``email``
+        * ``searchstring``
 
-
-
-
-
+* ``accepts_list``: Does this option accept a list of values?  Defaults to ``false``.
+* ``default``: What is the default value for this options? Defaults to ``null``.
+* ``required``: Is this option required for the Sous Chef to properly run? Defaults to ``false``.
+* ``help``: Parameters to help Users properly fill out options. ``help`` is a dictionary of the following values:
+    
+    - ``placeholder``: The placeholder/example text for this option.
+    - ``link``: A link for more details about this option.
+    - ``description``: A description of this option to display on form hover.
 
 .. _sous-chefs-creates:
 
