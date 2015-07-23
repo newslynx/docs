@@ -96,8 +96,37 @@ If you want to initialize NewsLynx with the default Tags and Recipes the App exp
 Starting the API.
 ++++++++++++++++++++++++
 
-Once you've 
+Once you've configured NewsLynx, you can start a debug server with the following command:
 
+... code-block:: bash
+	
+	$ newslynx debug 
+
+If you'd like to start a multi-theaded production server (some Sous Chefs may not work without this), run this command inside the root directory of ``newslynx-core``:
+
+... code-block:: bash
+	
+	$ bin/run 
+
+To start the task queue, run this command inside the root directory of ``newslynx-core``:
+
+... code-block:: bash
+	
+	$ bin/start_workers
+
+To stop the task queue, run this command inside the root directory of ``newslynx-core``:
+
+... code-block:: bash
+	
+	$ bin/stop_workers
+
+To start the Recipe scheduler, run this command:
+
+... code-block:: bash
+	
+	$ newslynx cron 
+
+For next step, refer to our :ref:`getting-started` docs.
 
 
 Running NewsLynx App
