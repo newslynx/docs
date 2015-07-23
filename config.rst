@@ -8,7 +8,8 @@ NewsLynx Core
 
 NewsLynx requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  ``~/.newslynx``.  In this directory there should at least be one file named ``config.yaml``. This file can also be JSON. If you would like to configure another location for this file, set the environment variable ``NEWSLYNX_CONFIG_FILE``.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: ``NEWSLYNX_{SETTING_NAME}``, however you will still need to have a ``config.yaml`` file.
 
-**Required Settings**
+Required Settings
++++++++++++++++++++
 
 ``config.yaml`` contains all the information we need to run NewsLynx.  As you'll see below, the App also utilizes this file for it's configurations.
 
@@ -22,7 +23,8 @@ In this file, we require, at, minimum, the following fields:
 * ``super_user_org``: OPTIONAL: The Super User's Organization. The name of the organization to create on initialization. Will default to ``admin``.
 * ``super_user_org_timezone``: OPTIONAL: The timezone for the above organization. Will default to ``UTC``.
 
-**API Credentials**
+API credentials
++++++++++++++++++++
 
 This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:
 
@@ -40,7 +42,8 @@ This file is also where you configure your credentials for Google Analytics, Twi
 
 There are many, many more configurations you can set. You can see the defaults for all of these in the `source code <https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py>`_.
 
-**Organizational Defaults**
+Organizational defaults
+++++++++++++++++++++++++
 
 In addition to these settings, you can also configure a list of default Tags and Recipes to create for every new Organization. This is useful for creating applications on top of the API which onboard new Organizations and Users without too much hassle.
 
@@ -66,7 +69,8 @@ If you would like to use the defaults for the Application, make sure to
 use the ``--app-defaults`` flag when you run ``newslynx init`` (more details on this below).
 
 
-**Intialization**
+Intialization
+++++++++++++++++++++++++
 
 Once you have setup you configurations, you can initialize NewsLynx by running the following command:
 
