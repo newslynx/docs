@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration &mdash; newslynx 0.1.1 documentation</title>
+  <title>Configuration &mdash; newslynx 1.0.0 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
 
   
-    <link rel="top" title="newslynx 0.1.1 documentation" href="index.html"/>
-        <link rel="next" title="NewsLynx API" href="api.html"/>
+    <link rel="top" title="newslynx 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Getting Started" href="getting-started.html"/>
         <link rel="prev" title="Installation Guide" href="install.html"/> 
 
   
@@ -81,11 +81,38 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#newslynx-core">NewsLynx Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-core">NewsLynx Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-settings">Required Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-credentials">API credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#organizational-defaults">Organizational defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intialization">Intialization</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#running-newslynx-app">Running NewsLynx App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#creates">Creates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#runners">Runners</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#subject-tag">Subject Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag">Impact Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-category">Impact Tag Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-level">Impact Tag Level</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content-items.html">Content Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">NewsLynx API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#authentication"><strong>Authentication</strong></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#api-keys">API Keys</a></li>
@@ -151,6 +178,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-tag-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-tags-tag-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-tags-from-tag-id-merge-to-tag-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/tags/:from_tag_id/merge/:to_tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-categories"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/categories</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-levels"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/levels</span></code></a></li>
 </ul>
@@ -167,7 +195,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#recipe-json">Recipe JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#post-recipes"><strong>POST</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-recipes-recipe-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
 </ul>
 </li>
@@ -182,6 +210,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#authors"><strong>Authors</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#author-json">Author JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-authors"><strong>POST</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors-author-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-authors-author-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-authors-author-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
@@ -221,17 +250,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="app.html">NewsLynx App Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#subject-tag">Subject Tag</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag">Impact Tag</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-category">Impact Tag Category</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-level">Impact Tag Level</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="writing-sous-chefs.html">Writing your own Sous Chefs</a></li>
 </ul>
 
           
@@ -273,7 +292,76 @@
 <span id="config"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="newslynx-core">
 <h2>NewsLynx Core<a class="headerlink" href="#newslynx-core" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">newslynx</span></code> requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  <code class="docutils literal"><span class="pre">~/.newslynx</span></code>.  In this directory there should at least be one file named <code class="docutils literal"><span class="pre">config.yaml</span></code>.</p>
+<p>NewsLynx requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  <code class="docutils literal"><span class="pre">~/.newslynx</span></code>.  In this directory there should at least be one file named <code class="docutils literal"><span class="pre">config.yaml</span></code>. This file can also be JSON. If you would like to configure another location for this file, set the environment variable <code class="docutils literal"><span class="pre">NEWSLYNX_CONFIG_FILE</span></code>.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: <code class="docutils literal"><span class="pre">NEWSLYNX_{SETTING_NAME}</span></code>, however you will still need to have a <code class="docutils literal"><span class="pre">config.yaml</span></code> file.</p>
+<div class="section" id="required-settings">
+<h3>Required Settings<a class="headerlink" href="#required-settings" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">config.yaml</span></code> contains all the information we need to run NewsLynx.  As you&#8217;ll see below, the App also utilizes this file for it&#8217;s configurations.</p>
+<p>In this file, we require, at, minimum, the following fields:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">sqlalchemy_database_uri</span></code>:  This tells us where to create NewsLynx&#8217;s Postgres database. You can read more about how these work in the <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_1_0/core/engines.html">SQL Alchemy Docs</a>.</li>
+<li><code class="docutils literal"><span class="pre">super_user</span></code>: The name of the Super User for this NewsLynx install. / org settings.</li>
+<li><code class="docutils literal"><span class="pre">super_user_email</span></code>: The Super User&#8217;s email (what you use to login with).</li>
+<li><code class="docutils literal"><span class="pre">super_user_password</span></code>: The Super User&#8217;s login password. This password will enable login to all other user profiles.</li>
+<li><code class="docutils literal"><span class="pre">super_user_apikey</span></code>: The Super User&#8217;s <code class="docutils literal"><span class="pre">apikey</span></code>.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.</li>
+<li><code class="docutils literal"><span class="pre">super_user_org</span></code>: OPTIONAL: The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>: OPTIONAL: The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="api-credentials">
+<h3>API credentials<a class="headerlink" href="#api-credentials" title="Permalink to this headline">¶</a></h3>
+<p>This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">twitter_api_key</span></code>: See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application on Twitter and configure these credentials.</li>
+<li><code class="docutils literal"><span class="pre">twitter_api_secret</span></code>: See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
+<li><code class="docutils literal"><span class="pre">google_analytics_client_id</span></code>: See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
+<li><code class="docutils literal"><span class="pre">google_analytics_client_secret</span></code>: See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application  with Google Analytics and configure these credentials.</li>
+<li><code class="docutils literal"><span class="pre">facebook_app_id</span></code>: See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
+<li><code class="docutils literal"><span class="pre">facebook_app_secret</span></code>: See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
+<li><code class="docutils literal"><span class="pre">reddit_user_agent</span></code>: A reddit-friendly User Agent.</li>
+<li><code class="docutils literal"><span class="pre">embedly_api_key</span></code>: An API key for using <a class="reference external" href="http://embed.ly/">Embedly</a> for content extraction. If not provided, we fall back on internal methods.</li>
+</ul>
+<p>There are many, many more configurations you can set. You can see the defaults for all of these in the <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py">source code</a>.</p>
+</div>
+<div class="section" id="organizational-defaults">
+<h3>Organizational defaults<a class="headerlink" href="#organizational-defaults" title="Permalink to this headline">¶</a></h3>
+<p>In addition to these settings, you can also configure a list of default Tags and Recipes to create for every new Organization. This is useful for creating applications on top of the API which onboard new Organizations and Users without too much hassle.</p>
+<p>These files live, by default, in <code class="docutils literal"><span class="pre">~/.newslynx/defaults</span></code>.  Each file should have the name of the items it contains and consist of a list of objects:</p>
+<p>For example, <code class="docutils literal"><span class="pre">~/.newslynx/defaults/tags.yaml</span></code> specifies a list of tags to apply to every new organization.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Politics</span>
+  <span class="l-Scalar-Plain">slug</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">politics</span>
+  <span class="l-Scalar-Plain">color</span><span class="p-Indicator">:</span> <span class="s">&#39;#a6cee3&#39;</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">subject</span>
+
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Reprint / pickup</span>
+  <span class="l-Scalar-Plain">slug</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">reprint-pickup</span>
+  <span class="l-Scalar-Plain">category</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">citation</span>
+  <span class="l-Scalar-Plain">level</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">media</span>
+  <span class="l-Scalar-Plain">color</span><span class="p-Indicator">:</span> <span class="s">&#39;#6699cc&#39;</span>
+  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">impact</span>
+</pre></div>
+</div>
+<p>If you would like to use the defaults for the Application, make sure to
+use the <code class="docutils literal"><span class="pre">--app-defaults</span></code> flag when you run <code class="docutils literal"><span class="pre">newslynx</span> <span class="pre">init</span></code> (more details on this below).</p>
+</div>
+<div class="section" id="intialization">
+<h3>Intialization<a class="headerlink" href="#intialization" title="Permalink to this headline">¶</a></h3>
+<p>Once you have setup you configurations, you can initialize NewsLynx by running the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx init
+</pre></div>
+</div>
+<p>This command will perform the following tasks:</p>
+<ol class="arabic simple">
+<li>Initialize the Postgres database specified with <code class="docutils literal"><span class="pre">sqlalchemy_database_uri</span></code>.</li>
+<li>Initialize the Super User and Organizaiton.</li>
+<li>Add all built-in SousChefs to this Organization.</li>
+<li>Install all default Tags (described above)</li>
+<li>Install all default Sous Chefs (described above)</li>
+</ol>
+<p>If you want to initialize NewsLynx with the default Tags and Recipes the App expects, add the <code class="docutils literal"><span class="pre">--app-defaults</span></code> flag.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx init --app-defaults
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="running-newslynx-app">
 <h2>Running NewsLynx App<a class="headerlink" href="#running-newslynx-app" title="Permalink to this headline">¶</a></h2>
@@ -321,7 +409,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api.html" class="btn btn-neutral float-right" title="NewsLynx API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="install.html" class="btn btn-neutral" title="Installation Guide" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -354,7 +442,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.1',
+            VERSION:'1.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

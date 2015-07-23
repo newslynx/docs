@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Metrics &mdash; newslynx 0.1.1 documentation</title>
+  <title>Metrics &mdash; newslynx 1.0.0 documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="newslynx 0.1.1 documentation" href="index.html"/> 
+    <link rel="top" title="newslynx 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Recipes" href="recipes.html"/>
+        <link rel="prev" title="Sous Chefs" href="sous-chefs.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -69,7 +71,7 @@
         
           
           
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-core">NewsLynx Core</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="install.html#additional-api-dependencies">Additional API Dependencies</a></li>
@@ -79,11 +81,38 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-core">NewsLynx Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-core">NewsLynx Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#creates">Creates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#runners">Runners</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#subject-tag">Subject Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag">Impact Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-category">Impact Tag Category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-level">Impact Tag Level</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content-items.html">Content Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">NewsLynx API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#authentication"><strong>Authentication</strong></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#api-keys">API Keys</a></li>
@@ -149,6 +178,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-tag-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-tags-tag-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-tags-from-tag-id-merge-to-tag-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/tags/:from_tag_id/merge/:to_tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-categories"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/categories</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-levels"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/levels</span></code></a></li>
 </ul>
@@ -165,7 +195,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#recipe-json">Recipe JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#post-recipes"><strong>POST</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-recipes-recipe-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
 </ul>
 </li>
@@ -180,6 +210,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#authors"><strong>Authors</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#author-json">Author JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-authors"><strong>POST</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors-author-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-authors-author-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-authors-author-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
@@ -219,17 +250,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="app.html">NewsLynx App Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#subject-tag">Subject Tag</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag">Impact Tag</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-category">Impact Tag Category</a></li>
-<li class="toctree-l3"><a class="reference internal" href="taxonomy.html#impact-tag-level">Impact Tag Level</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="writing-sous-chefs.html">Writing your own Sous Chefs</a></li>
 </ul>
 
           
@@ -276,6 +297,15 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="recipes.html" class="btn btn-neutral float-right" title="Recipes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sous-chefs.html" class="btn btn-neutral" title="Sous Chefs" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -302,7 +332,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.1',
+            VERSION:'1.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
