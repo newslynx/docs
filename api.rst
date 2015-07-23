@@ -4,7 +4,7 @@
 NewsLynx API
 ============
 
-All of **NewsLynx**'s functionality is exposed through a `RESTful <http://en.wikipedia.org/wiki/Representational_state_transfer>`_ API.  This API is mirrored through a built-in command line interface – ``newslynx`` (or if you prefer to be 1337, ```nlx``) – and ``python`` client – ``newslynx.client.API`` –  as well.  The following guide will walk you through all of the the API's functionalities with accompanying examples for ``python``, the ``cli``, and ``CuRL``.
+All of **NewsLynx**'s functionality is exposed through a `RESTful <http://en.wikipedia.org/wiki/Representational_state_transfer>`_ API.  This API is mirrored through a built-in command line interface – ``newslynx`` (or if you prefer to be 1337, ``nlx``) – and ``python`` client – ``newslynx.client.API`` –  as well.  The following guide will walk you through all of the the API's functionalities with accompanying examples for ``python``, the ``newslynx``, and ``CuRL``.
 
 **Authentication**
 ------------------
@@ -179,18 +179,21 @@ A :ref:`endpoints-user-json` object.
 Example
 *******
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl --data "email=merlynne@newslynx.org&password=a-secure-password" \
+    $ curl --data "email=merlynne@newslynx.org&password=a-secure-password" \
     http://localhost:5000/api/v1/login
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api me login email=merlynne@newslynx.org password=a-secure-password
+    $ newslynx api me login email=merlynne@newslynx.org password=a-secure-password
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -223,17 +226,20 @@ A :ref:`endpoints-user-json` object.
 Example
 *******
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api me get email=merlynne@newslynx.org password=a-secure-password
+    $ newslynx api me get email=merlynne@newslynx.org password=a-secure-password
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -285,18 +291,21 @@ Examples
 
 Change your ``name`` and ``email``.
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X PUT -d email=merlynne2@newslynx.org -d name="Meryl Jones" \
+    $ curl -X PUT -d email=merlynne2@newslynx.org -d name="Meryl Jones" \
     http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api me update email=merlynne2@newslynx.org name="Meryl Jones"
+    $ newslynx api me update email=merlynne2@newslynx.org name="Meryl Jones"
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -306,18 +315,21 @@ Via ``newslynx.client``:
 
 Change your ``password``.
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X PUT -d old_password="a-secure-p4ssw0rd" -d new_password="a-more-secure-p4ssw0rd" \
+    $ curl -X PUT -d old_password="a-secure-p4ssw0rd" -d new_password="a-more-secure-p4ssw0rd" \
     http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api me update old_password="a-secure-p4ssw0rd" new_password="a-more-secure-p4ssw0rd"
+    $ newslynx api me update old_password="a-secure-p4ssw0rd" new_password="a-more-secure-p4ssw0rd"
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -330,17 +342,20 @@ Via ``newslynx.client``:
 
 Refresh your ``apikey``
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X PUT http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY\&refresh_apikey=true
+    $ curl -X PUT http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY\&refresh_apikey=true
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api me update --refresh_apikey
+    $ newslynx api me update --refresh_apikey
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -371,22 +386,25 @@ Params
 Returns
 *******
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/me\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api me delete
+    $ newslynx api me delete
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -447,16 +465,19 @@ Example
 *******
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/orgs\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/orgs\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs list
+    $ newslynx api orgs list
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -512,17 +533,20 @@ Example
 *******
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl --data "name=ProPalpatine&timezone=UTC&slug=pro-palpatine" \
+    $ curl --data "name=ProPalpatine&timezone=UTC&slug=pro-palpatine" \
     http://localhost:5000/api/v1/orgs\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs create name=ProPalpatine timezone=UTC slug=pro-palpatine
+    $ newslynx api orgs create name=ProPalpatine timezone=UTC slug=pro-palpatine
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -564,20 +588,23 @@ Example
 *******
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/orgs/pro-palpatine\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/orgs/pro-palpatine\?apikey=$NEWSLYNX_APIKEY
 
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs get id=pro-palpatine
+    $ newslynx api orgs get id=pro-palpatine
 
 ** NOTE **: While you can still pass either a ``slug`` or ``id`` to this method, the keyword 
 must always be ``id``. This applies here and in all similar instances.
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -632,17 +659,20 @@ Example
 *******
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X PUT -d name=ProPalpatine2 -d name=pro-palpatine-2 -d timezone=US/Western \
+    $ curl -X PUT -d name=ProPalpatine2 -d name=pro-palpatine-2 -d timezone=US/Western \
     http://localhost:5000/api/v1/orgs/1\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs update id=1 name=ProPalpatine2 timezone=US/Western slug=pro-palpatine-2
+    $ newslynx api orgs update id=1 name=ProPalpatine2 timezone=US/Western slug=pro-palpatine-2
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -693,14 +723,16 @@ Example
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/orgs/1\?apikey=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/orgs/1\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs delete id=1
+    $ newslynx api orgs delete id=1
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -743,17 +775,20 @@ A list of :ref:`endpoints-user-json` object.
 Example
 *******
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/orgs/1/users\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/orgs/1/users\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs list-users id=1
+    $ newslynx api orgs list-users id=1
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -810,26 +845,29 @@ Example
 *******
 
 via ``CuRL``
+
 .. code-block:: bash
     
-    curl --data "name=Brian Abelson&email=b@nytimes.cat&password=l0l4k4t&admin=false" \
+    $ curl --data "name=Brian Abelson&email=b@nytimes.cat&password=l0l4k4t&admin=false" \
     http://localhost:5000/api/v1/orgs/1/users\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs create-user id=1 \ 
+    $ newslynx api orgs create-user id=1 \ 
       name='Brian Abelson' email='b@nytimes.cat'\
-      password=l0l4k4t admin=false
+      password='l0l4k4t' admin=false
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
 
     api = API()
     api.orgs.create_user(1,
-        name='Brian Abelson', email='b@nytimes.cat',
+        name='Brian Abelson', email=b@nytimes.cat,
         password=l0l4k4t, admin=false)
 
 
@@ -869,16 +907,19 @@ Example
 *******
 
 via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/orgs/1/users/b@nytimes.cat\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/orgs/1/users/b@nytimes.cat\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs get-user id=1 user_id=b@nytimes.cat
+    $ newslynx api orgs get-user id=1 user_id=b@nytimes.cat
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -926,16 +967,19 @@ Example
 *******
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X PUT http://localhost:5000/api/v1/orgs/1/users/m@nytimes.cat\?apikey=$NEWSLYNX_APIKEY
+    $ curl -X PUT http://localhost:5000/api/v1/orgs/1/users/m@nytimes.cat\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs add-user id=1 user_id=b@nytimes.cat
+    $ newslynx api orgs add-user id=1 user_id=b@nytimes.cat
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -977,23 +1021,26 @@ Params
 Returns
 *******
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 
 Example
 *******
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/orgs/1/users/m@nytimes.cat\?apikey=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/orgs/1/users/m@nytimes.cat\?apikey=$NEWSLYNX_APIKEY
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api orgs remove-user id=1 user_id=b@nytimes.cat
+    $ newslynx api orgs remove-user id=1 user_id=b@nytimes.cat
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1069,17 +1116,20 @@ A list of :ref:`endpoints-settings-json` objects.
 Example
 *******
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api settings list
+    $ newslynx api settings list
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1129,17 +1179,20 @@ Examples
 Create a simple setting.
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl --data "name=icon&value=http://example.com/mylogo.png" \
+    $ curl --data "name=icon&value=http://example.com/mylogo.png" \
     http://localhost:5000/api/v1/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api settings create name=icon value=http://example.com/mylogo.png
+    $ newslynx api settings create name=icon value=http://example.com/mylogo.png
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1150,17 +1203,20 @@ Via ``newslynx.client``:
 Create a ``json`` setting.
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl --data "name=short_urls&value=[\"prplt.in\"]&json_value=true" \
+    $ curl --data "name=short_urls&value=[\"prplt.in\"]&json_value=true" \
     http://localhost:5000/api/v1/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api settings create name=short_urls value='["prplt.in"]' json_value=true
+    $ newslynx api settings create name=short_urls value='["prplt.in"]' json_value=true
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1204,17 +1260,20 @@ A :ref:`endpoints-settings-json` object.
 Example
 ********
 
-Via ``CuRL``:
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api settings get id=short_urls
+    $ newslynx api settings get id=short_urls
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1267,17 +1326,20 @@ Examples
 Update a setting.
 
 Via ``CuRL``
+
 .. code-block:: bash
 
-    curl -X PUT -d "value=[\"zzzz.in\"]" -d "json_value=true" \
+    $ curl -X PUT -d "value=[\"zzzz.in\"]" -d "json_value=true" \
     http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api settings update id=short_urls value='["zzzz.in"]' json_value=true
+    $ newslynx api settings update id=short_urls value='["zzzz.in"]' json_value=true
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1312,7 +1374,7 @@ Params
 Returns
 *******
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 
 Example
@@ -1320,14 +1382,16 @@ Example
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X DELETE http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api settings delete id=short_urls
+    $ newslynx api settings delete id=short_urls
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1399,16 +1463,19 @@ Example
 ********
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/auths\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/auths\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api auths list
+    $ newslynx api auths list
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1451,16 +1518,19 @@ Example
 ********
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/auths/google-analytics\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/auths/google-analytics\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api auths get service=google-analytics
+    $ newslynx api auths get service=google-analytics
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1514,18 +1584,21 @@ Example
 ********
 
 Via ``CuRL``
-.. code-block:: bash
-    
-    curl http://localhost:5000/api/v1/auths/google-analytics/grant\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
 .. code-block:: bash
     
-    newslynx api auths grant service=google-analytics
+    $ curl http://localhost:5000/api/v1/auths/google-analytics/grant\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api auths grant service=google-analytics
 
 **NOTE**: Will open up a browser to the specified url and run you through the authorization process.
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1559,22 +1632,25 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/auths/google-analytics/revoke\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/auths/google-analytics/revoke\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api auths revoke service=google-analytics
+    $ newslynx api auths revoke service=google-analytics
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1616,19 +1692,20 @@ Example
 
 Via ``CuRL``
 
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/auths/twitter\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/auths/twitter\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 
 Via ``newslynx``
 
 .. code-block:: bash
     
-    newslynx api auths get service=twitter
+    $ newslynx api auths get service=twitter
 
 
-Via ``newslynx.client``
+Via ``python``
 
 .. code-block:: python
 
@@ -1676,18 +1753,21 @@ Example
 ********
 
 Via ``CuRL``
-.. code-block:: bash
-    
-    curl http://localhost:5000/api/v1/auths/twitter/grant\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
 .. code-block:: bash
     
-    newslynx api auths grant service=twitter
+    $ curl http://localhost:5000/api/v1/auths/twitter/grant\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api auths grant service=twitter
 
 **NOTE**: Will open up a browser to the specified url and run you through the authorization process.
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1721,22 +1801,26 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
 Via ``CuRL``
+
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/auths/twitter/revoke\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/auths/twitter/revoke\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api auths revoke service=twitter
+    $ newslynx api auths revoke service=twitter
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1779,16 +1863,20 @@ Example
 ********
 
 Via ``CuRL``
+
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/auths/facebook\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/auths/facebook\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api auths get service=facebook
+    $ newslynx api auths get service=facebook
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -1833,24 +1921,29 @@ Example
 ********
 
 Via ``CuRL``
-.. code-block:: bash
-    
-    curl http://localhost:5000/api/v1/auths/facebook/grant\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
 .. code-block:: bash
     
-    newslynx api auths grant service=facebook
+    $ curl http://localhost:5000/api/v1/auths/facebook/grant\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api auths grant service=facebook
+
 
 **NOTE**: Will open up a browser to the specified url and run you through the authorization process.
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
 
     api = API()
     api.auths.grant("facebook")
+
 
 **NOTE**: Will open up a browser to the specified url and run you through the authorization process.
 
@@ -1879,22 +1972,25 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
 Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/auths/facebook/revoke\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/auths/facebook/revoke\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+Via ``newslynx``
+
 .. code-block:: bash
     
-    newslynx api auths revoke service=facebook
+    $ newslynx api auths revoke service=facebook
 
-Via ``newslynx.client``:
+Via ``python``
+
 .. code-block:: python
 
     from newslynx.client import API 
@@ -2035,10 +2131,26 @@ Returns
 Example
 ********
 
+Via ``CuRL``
+
+.. code-block:: bash
+
+    $ curl http://localhost:5000/api/v1/tags\?sort=-name\&type=subject\&apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/tags\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ newslynx api tags list sort=-name type=subject 
 
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.list(sort='-name', type='subject')
 
 .. _endpoints-tags-create:
 
@@ -2080,17 +2192,51 @@ Example
 
 Create a subject tag.
 
-.. code-block:: bash
-    
-    curl --data "name=foo&type=subject&color=#fc0" \
-    http://localhost:5000/api/v1/tags\?apikey=$NEWSLYNX_APIKEY\&org=1
-
-Create a impact tag.
+Via ``CuRL``
 
 .. code-block:: bash
-    
-    curl --data "name=bar&type=subject&color=#0cf&level=media&category=change" \
+
+    $ curl --data "name=foo&type=subject&color=#fc0" \
     http://localhost:5000/api/v1/tags\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags create name=foo type=subject color=#fc0
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.create(name='foo', type='subject' color='#fc0')
+
+Create an impact tag.
+
+Via ``CuRL``
+
+.. code-block:: bash
+
+    $ curl --data "name=bar&type=impact&color=#0cf&category=change&level=institution" \
+    http://localhost:5000/api/v1/tags\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags create name=bar type=impact color=#0cf category=change level=institution
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.create(name='bar', type='impact' color='#0cf', category='change', level='institution')
 
 .. _endpoints-tags-get:
 
@@ -2127,10 +2273,28 @@ A :ref:`endpoints-tags-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/tags/21\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/tags/1\?apikey=$NEWSLYNX_APIKEY\&org=1
 
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags get id=1
+
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.get(1)
 
 .. _endpoints-tags-update:
 
@@ -2172,10 +2336,29 @@ An updated :ref:`endpoints-tags-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X PUT -d "color=#fc0aaa" \
-    http://localhost:5000/api/v1/tags/21\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X PUT -d "color=#fc0aaa" \
+      http://localhost:5000/api/v1/tags/21\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags update id=1 color=#fc0aaa
+
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.update(1, color='#fc0aaa')
 
 
 .. _endpoints-tags-delete:
@@ -2205,14 +2388,94 @@ Params
 Returns
 *******
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/tags/21\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X DELETE http://localhost:5000/api/v1/tags/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags delete id=1
+
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.delete(1)
+
+
+.. _endpoints-tags-merge:
+
+**PUT** ``/tags/:from_tag_id/merge/:to_tag_id``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Merges two tags of the same type. This endpoing will delete the ``from_tag_id`` and 
+re-associate, depending on the type, all of it's Events or Content Items with the ``to_tag_id``.
+
+**NOTE**
+  - This endpoint can accept either a tag ``id`` or ``slug``.
+
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``localize``       | Return dates in the org's      | false            | false          |
+|                    | specified timezone. If `false` |                  |                |
+|                    | dates will be returned in UTC. |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+*******
+
+An updated :ref:`endpoints-tags-json` object for the ``to_tag_id``.
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl -X PUT http://localhost:5000/api/v1/tags/1/merge/2\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags merge from_id=1 to_id_2
+
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.merge(1, 2)
 
 
 .. _endpoints-tags-categories:
@@ -2230,9 +2493,28 @@ A list of every :ref:`taxonomy-tag-cat`.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/tags/categories
+    $ curl http://localhost:5000/api/v1/tags/categories
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags categories
+
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.categories()
 
 .. _endpoints-tags-levels:
 
@@ -2250,9 +2532,29 @@ A list of every :ref:`taxonomy-tag-level`.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/tags/levels
+    $ curl http://localhost:5000/api/v1/tags/levels
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api tags levels
+
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.tags.levels()
+
 
 .. _endpoints-sous-chefs:
 
@@ -2273,15 +2575,17 @@ All methods, unless otherwise specified, will return one or many sous chef objec
     {
       "id": 3,
       "name": "Event from twitter user.",
-      "slug": "event-twitter-user",
+      "slug": "twitter-user-to-event",
       "description": "Extracts events from a twitter user's timeline.",
       "runs": "newslynx.sc.events.twitter.User",
       "creates": "events",
       "is_command": false,
+      "option_order": ["name", "slug", "decription", "screen_name", ...],
       "options": {
         "screen_name": {
           "required": true,
-          "type": "text",
+          "input_type": "text",
+          "value_types": ["string"],
           "help": {
             "placeholder": "cspan"
           }
@@ -2310,12 +2614,10 @@ If a SousChef creates :ref:`Metrics <metrics>`, It should also explicitly declar
     "metrics": {
       "facebook_comments": {
         "display_name": "Facebook Comments",
-        "level": "all",
-        "cumulative": true,
-        "aggregation": "sum",
-        "faceted": false,
-        "timeseries": true
-      }
+        "type": "cumulative",
+        "content_levels": ["timeseries", "summary", "comparison"],
+        "org_levels": ["timeseries", "summary", "comparison"]
+      },
       ...
     }
   }
@@ -2353,6 +2655,12 @@ Params
 |                    |  See :ref:`sous-chefs-creates` |                  |                |
 |                    |                                |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
+| ``sous_chefs``     | A comma-separated list of sous-| null             |                |
+|                    | chefs to return.               |                  | false          |
+|                    | Each element can be prefaced by|                  |                |
+|                    | with **-** or **!**            |                  |                |
+|                    | to exclude it.                 |                  |                |
++--------------------+--------------------------------+------------------+----------------+
 
 Returns
 *******
@@ -2380,15 +2688,53 @@ Example
 
 Fetch all SousChefs:
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/sous-chefs\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/sous-chefs\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api sous-chefs list
+
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.sous_chefs.list()
+
 
 Fetch all SousChefs that create ``events``:
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/sous-chefs\?apikey=$NEWSLYNX_APIKEY\&org=1\&creates=event
+    $ curl http://localhost:5000/api/v1/sous-chefs\?apikey=$NEWSLYNX_APIKEY\&org=1\&creates=events
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api sous-chefs list creates=events
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API 
+
+    api = API()
+    api.sous_chefs.list(creates='events')
+
 
 .. _endpoints-sous-chefs-create:
 
@@ -2428,32 +2774,76 @@ A newly-created :ref:`endpoints-sous-chefs-json` object.
 Example
 ********
 
-Create a file like this and save it as ``sous-chef.json``:
+Create a file like this and save it as ``sous-chef.json``
 
 .. code-block:: javascript
 
     {
-        "slug": "event-twitter-user-2", 
-        "name": "Event from twitter user 2.",
+        "slug": "event-twitter-user-z", 
+        "name": "Event from twitter user 2",
         "runs": "newslynx.sc.events.twitter.User", 
         "description": "Extracts events from a twitter user's timeline.", 
-        "creates": "event", 
+        "creates": "events", 
         "options": {
-            "screen_name": {"required": true, 
-            "type": "text", 
-            "help": {"placeholder": "cspan"}} 
+            "screen_name": {
+              "required": true, 
+              "input_type": "text", 
+              "value_types": ["string"],
+              "help": {
+                "placeholder": "cspan"
+              }
+            } 
         }
-    } 
+    }
 
-Now run this command:
+
+Alternatively, you can create a ``yaml`` file called ``sous-chef.yaml`` for use with ``newslynx`` or ``python``:
+
+.. code-block:: yaml
+
+    slug: twitter-user-to-event-b 
+    name: Event from twitter user 2
+    runs: newslynx.sc.events.twitter.User 
+    description: "Extracts events from a twitter user's timeline."
+    creates: events 
+    options:
+        screen_name:
+          required: true
+          input_type: text 
+          value_types:
+            - string
+          help:
+            placeholder: cspan
+
+
+Via ``CuRL``
 
 .. code-block:: bash
     
-  curl -X POST \
-       -H 'Content-Type:application/json' \
-       --data-binary @sous-chef.json \
-       http://localhost:5000/api/v1/sous-chefs\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X POST \
+         -H 'Content-Type:application/json' \
+         --data-binary @sous-chef.json \
+         http://localhost:5000/api/v1/sous-chefs\?apikey=$NEWSLYNX_APIKEY\&org=1
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api sous-chefs create --data=sous-chef.yaml
+
+Via ``python``
+
+.. code-block:: python
+    
+    import json 
+
+    from newslynx.client import API
+  
+
+    sc = json.load(open('sous-chef.json'))
+
+    api = API()
+    api.sous_chefs.create(**sc)
 
 
 .. _endpoints-sous-chefs-get:
@@ -2492,15 +2882,29 @@ A :ref:`endpoints-sous-chefs-json` object.
 Example
 ********
 
-Fetch a SousChef
+Via ``CuRL``
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/sous-chefs/event-twitter-user\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X PUT -d http://localhost:5000/api/v1/sous-chefs/twitter-user-to-event\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api sous-chefs get id=twitter-user-to-event
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.sous_chefs.get('twitter-user-to-event')
 
 
 .. _endpoints-sous-chefs-update:
-
 
 **PUT** ``/sous-chefs/:sous_chef_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2530,8 +2934,8 @@ Params
 Body
 *******
 
-A complete :ref:`endpoints-sous-chefs-json` object. Since a ``sous-chef`` can only run properly if all of it's options
-are properly validated, the API does not allow partial updates for now. TK: Allow for partial updates while sanitizing input.
+A complete or parial :ref:`endpoints-sous-chefs-json` object.
+
 
 Returns
 *******
@@ -2542,31 +2946,50 @@ A newly-updated :ref:`endpoints-sous-chefs-json` object.
 Example
 ********
 
-Create a file like this and save it as ``sous-chef.json``:
+Add another option to a Sous Chef:
 
-.. code-block:: javascript
-
-    {
-        "slug": "event-twitter-thing", 
-        "name": "Event from twitter user",
-        "runs": "newslynx.sc.events.twitter.User", 
-        "description": "Extracts events from a twitter user's timeline.", 
-        "creates": "thing", 
-        "options": {
-            "screen_name": {"required": false, 
-            "type": "text", 
-            "help": {"placeholder": "cspan"}} 
-        }
-    } 
-
-Now run this command:
+Via ``CuRL``
 
 .. code-block:: bash
     
-  curl -X PUT \
-       -H 'Content-Type:application/json' \
-       --data-binary @sous-chef.json \
-       http://localhost:5000/api/v1/sous-chefs/event-twitter-user\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X PUT screen_name='newslynx' http://localhost:5000/api/v1/sous-chefs/twitter-user-to-event\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api sous-chefs update id=twitter-user-to-event \
+      -d '{
+            "options":{
+              "must_link":{
+                "input_type":"radio",
+                "input_options":["true", "false"],
+                "value_types": ["boolean"],
+                "default": false
+              }
+            }
+          }'
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+
+    opt = {
+            "options":{
+              "must_link":{
+                "input_type":"radio",
+                "input_options":["true", "false"],
+                "value_types": ["boolean"],
+                "default": False
+              }
+            }
+          }
+
+    api.sous_chefs.update('twitter-user-to-event', **opt)
 
 
 .. _endpoints-recipes:
@@ -2586,22 +3009,27 @@ All methods, unless otherwise specified, will return one or many Recipe objects 
 .. code-block:: javascript
 
     {
-      "scheduled": false,
-      "status": "uninitialized",
-      "updated": "2015-05-14T19:58:07.853583-04:00",
-      "description": null,
-      "last_job": {},
-      "id": 1,
-      "sous_chef": "article-rss-feed",
-      "name": "Ingest Articles from an RSS Feed.",
-      "created": "2015-05-14T19:58:07.853557-04:00",
-      "interval": 1800,
+      "status": "stable",
+      "updated": "2015-07-22T23:26:08.476376+00:00",
+      "sous_chef": "rss-feed-to-article",
+      "name": "Ingest Articles from an RSS Feed",
+      "created": "2015-07-22T23:18:24.721358+00:00",
+      "traceback": null,
       "org_id": 1,
-      "slug": "article-rss-feed-k8wyx",
+      "last_run": "2015-07-22T23:26:08.473112+00:00",
       "options": {
-        "feed_url": null
-        ...
-      }
+        "feed_url": "http://wisconsinwatch.org/feed/"
+      },
+      "time_of_day": "12:00 AM",
+      "last_job": {
+        "max_date_last_run": "2015-07-14T16:04:14+00:00"
+      },
+      "schedule_by": "unscheduled",
+      "id": 1,
+      "minutes": 30,
+      "slug": "rss-feed-to-article",
+      "crontab": "*/30 * * * *",
+      "description": "Extracts articles from an RSS Feed."
     }
 
 
@@ -2640,13 +3068,15 @@ Params
 |                    | descending                     |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``recipes``        | A comma-separated list of      | null             |                |
-|                    | recipes to query by.           |                  | false          |
+|                    | recipe ids or slugs to         |                  |                |
+|                    | query by.                      |                  | false          |
 |                    | Each element can be prefaced by|                  |                |
 |                    | with **-** or **!**            |                  |                |
 |                    | to exclude it.                 |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``sous_chefs``     | A comma-separated list of sous-| null             |                |
-|                    | chefs that recipes belong to.  |                  | false          |
+|                    | chefs slugs that recipes belong|                  |                | 
+|                    |  to.                           |                  | false          |
 |                    | Each element can be prefaced by|                  |                |
 |                    | with **-** or **!**            |                  |                |
 |                    | to exclude it.                 |                  |                |
@@ -2660,20 +3090,23 @@ Returns
     {
       "facets": {
         "creates": {
-          "thing": 2,
-          "event": 2
-        },
-        "sous_chefs": {
-          "event-facebook-page": 1,
-          "event-twitter-list": 1,
-          "article-rss-feed": 1,
-          "event-twitter-thing": 1
+          "metrics": 7,
+          "content": 1,
+          "internal": 2,
+          "events": 7
         },
         "statuses": {
-          "uninitialized": 4
+          "uninitialized": 2,
+          "stable": 15
+        },
+        "sous_chefs": {
+          "twitter-user-to-org-timeseries": 1,
+          "google-analytics-to-content-timeseries": 1,
+          ...
         },
         "schedules": {
-          "unscheduled": 4
+          "scheduled": 1,
+          "unscheduled": 16
         }
       },
       "recipes": [
@@ -2687,16 +3120,49 @@ Example
 
 Fetch all Recipes:
 
-.. code-block:: bash
-    
-    curl http://localhost:5000/api/v1/recipes\?apikey=$NEWSLYNX_APIKEY\&org=1
-
-Fetch all Recipes that are not instances of ``article-rss-feed`` SousChefs:
+Via ``CuRL``
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/recipes\?apikey=$NEWSLYNX_APIKEY\&org=1\&sous_chefs=-article-rss-feed
+    $ curl http://localhost:5000/api/v1/recipes\?apikey=$NEWSLYNX_APIKEY\&org=1
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api recipes list
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.recipes.list()
+
+Fetch all Recipes that are not instances of ``rss-feed-to-article`` SousChefs:
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/recipes\?apikey=$NEWSLYNX_APIKEY\&org=1\&sous_chefs=-rss-feed-to-article
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api recipes list sous_chefs=-rss-feed-to-article
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.recipes.list(sous_chefs="-rss-feed-to-article")
 
 .. _endpoints-recipes-create:
 
@@ -2704,6 +3170,14 @@ Fetch all Recipes that are not instances of ``article-rss-feed`` SousChefs:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create a Recipe.
+
+**NOTE**
+- Since SousChef options are explicitly declared, you do not need to nest Recipes options under 
+  an ``options`` key in the body of this request. However, if you do, the API will still handle 
+  them properly.
+- While you may explicitly add a ``name``, ``slug``, and ``description`` for a Recipe, if missing,
+  will inherit these fields from it's associated SousChef. In the case of ``slug``, a short random hash
+  will be added to ensure uniqueness.
 
 Params
 ******
@@ -2730,7 +3204,7 @@ Params
 Body
 *******
 
-A valid :ref:`endpoints-recipes-json` object.
+A partial or complete :ref:`endpoints-recipes-json` object **with all required SousChef options filled out**. Optionally include the ``sous_chef`` if not provided as a query string.
 
 Returns
 *******
@@ -2741,14 +3215,14 @@ A newly-created :ref:`endpoints-recipes-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 Create a file like this and save it as ``recipe.json``:
 
 .. code-block:: javascript
 
     {
-      "sous_chef": "article-rss-feed",
-      "name": "Ingest Articles from an RSS Feed.",
-      "slug": "article-rss-feed-k8w2",
+      "sous_chef": "rss-feed-to-article",
       "options": {
         "feed_url": "http://nytimes.cat/feed.xml"
       }
@@ -2759,16 +3233,35 @@ Now run this command:
 
 .. code-block:: bash
     
-  curl -X POST \
+  $ curl -X POST \
        -H 'Content-Type:application/json' \
        --data-binary @recipe.json \
        http://localhost:5000/api/v1/recipes\?apikey=$NEWSLYNX_APIKEY\&org=1
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api recipes create \
+      sous_chef=rss-feed-to-article \
+      feed_url=http://nytimes.cat/feed.xml
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.recipes.create(
+      sous_chef="rss-feed-to-article",
+      feed_url="http://nytimes.cat/feed.xml"
+    )
 
 
 .. _endpoints-recipes-get:
 
-**GET** ``/recipes/:recipe-id``
+**GET** ``/recipes/:recipe_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fetch an individual Recipe.
@@ -2796,49 +3289,32 @@ Params
 Returns
 *******
 
-The Events search endpoint will always return helpful pagination information. Including
-
-* ``first`` - The first page of the response.
-* ``last`` - The last page of the response.
-* ``next`` - The next page of the response (unless the last page is returned)
-* ``prev`` - The previous page of the response (unless the first page is returned)
-* ``page`` - The current page.
-* ``per_page`` - The number of results per page.
-
-It will also always return the ``total`` number of results for all pages.
-
-.. code-block:: javascript
-
-    {
-      "pagination": {
-        "last": "http://localhost:5000/api/v1/events?org=1&apikey=key&page=5&provenance=recipe",
-        "total_pages": 5,
-        "next": "http://localhost:5000/api/v1/events?status=approved&org=1&apikey=key&page=2&provenance=recipe",
-        "per_page": 25,
-        "page": 1,
-        "first": "http://localhost:5000/api/v1/events?status=approved&org=1&apikey=key&page=1&provenance=recipe"
-      },
-      "total": 104,
-      "facets": {
-        "categories": {
-          ...
-        },
-        ...
-      }
-      "events": [
-        ...
-      ]
-    }
-
+A :ref:`endpoints-recipes-json` object.
 
 Example
 ********
 
-Fetch a Recipe
+Via ``CuRL``
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/recipes/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/recipes/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api recipes get id=1
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.recipes.get(1)
+
 
 .. _endpoints-recipes-update:
 
@@ -2875,8 +3351,7 @@ Params
 Body
 *******
 
-A complete :ref:`endpoints-recipes-json` object. Since a Recipe can only run properly if all of it's options
-are properly validated, the API does not allow partial updates for now. TK: Allow for partial updates while sanitizing input.
+A complete or partial :ref:`endpoints-recipes-json` object.
 
 Returns
 *******
@@ -2887,28 +3362,28 @@ A newly-updated :ref:`endpoints-recipes-json` object.
 Example
 ********
 
-Create a file like this and save it as ``recipe.json``:
-
-.. code-block:: javascript
-
-    {
-      "sous_chef": "article-rss-feed",
-      "name": "Ingest Articles from an RSS Feed.",
-      "slug": "article-rss-feed-k8w2",
-      "options": {
-        "feed_url": "http://nytimes.cat/rss.xml"
-      }
-    }
-
-
-Now run this command:
+Via ``CuRL``
 
 .. code-block:: bash
     
-  curl -X PUT \
-       -H 'Content-Type:application/json' \
-       --data-binary @recipe.json \
+  $ curl -X PUT \
+       -d "feed_url=http://newslynx.org/feed.xml" \
        http://localhost:5000/api/v1/recipes/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api recipes update id=1 feed_url=http://newslynx.org/feed.xml
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.recipes.update(1, feed_url="http://newslynx.org/feed.xml")
 
 
 .. _endpoints-metrics:
@@ -2916,7 +3391,7 @@ Now run this command:
 **Metrics**
 ++++++++++++++++++
 
-The **Metrics** API enables the creation, querying, faceting, updating, and deleting of Metrics. Refer to the :ref:`Metrics docs <events>` for more details on what these are.
+The **Metrics** API enables the creation, querying, faceting, updating, and deleting of Metrics. Refer to the :ref:`Metrics docs <metrics>` for more details on what these are.
 
 **NOTE**
 - Metrics are exclusively created by :ref:`Recipes <recipes>`.  Their settings are specified by :ref:`Sous Chefs <sous-chefs>`.
@@ -2931,20 +3406,24 @@ All methods, unless otherwise specified, will return one or many Metric objects 
 .. code-block:: javascript
 
     {
-      "updated": "2015-06-19T02:22:56.547445+00:00",
-      "cumulative": true,
+      "updated": "2015-07-22T23:43:39.752646+00:00",
+      "display_name": "Tablet Pageviews",
+      "name": "ga_pageviews_tablet",
+      "created": "2015-07-22T23:43:39.752631+00:00",
+      "agg": "sum",
+      "org_levels": [
+        "summary"
+      ],
+      "org_id": 1,
       "faceted": false,
-      "aggregation": "sum",
-      "recipe_id": 9,
-      "timeseries": true,
-      "id": 25,
-      "display_name": "Facebook Page Likes",
-      "name": "twitter_followers",
-      "created": "2015-06-19T02:22:56.547429+00:00",
-      "level": "org",
-      "org_id" 1,
+      "content_levels": [
+        "summary",
+        "comparison"
+      ],
+      "recipe_id": 10,
+      "type": "count",
+      "id": 20
     }
-
 
 .. _endpoints-metrics-list:
 
@@ -2969,43 +3448,38 @@ Params
 |                    | specified timezone. If `false` |                  |                |
 |                    | dates will be returned in UTC. |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-|``levels``          | A comma-separated list of      | null             | false          |
-|                    | ``levels`` to filter           |                  |                |
+|``content_levels``  | A comma-separated list of      | null             | false          |
+|                    | ``content_levels`` to filter   |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
-|                    | it. Choose from `all`,         |                  |                |
-|                    | `content_item` or `org`        |                  |                |
+|                    | it.                            |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-|``aggregations``    | A comma-separated list of      | null             | false          |
-|                    | ``aggregations`` to filter     |                  |                |
+|``org_levels``      | A comma-separated list of      | null             | false          |
+|                    | ``org_levels`` to filter       |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
-|                    | it. Choose from `min`, `max`   |                  |                |
-|                    | `avg`, `median`,  or `sum`     |                  |                |
+|                    | it.                            |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 |``recipes``         | A comma-separated list of      | null             | false          |
-|                    | ``recipes`` to filter          |                  |                |
+|                    | Recipe ``id``s or ``slug``s    |                  |                |
+|                    |             to filter          |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 |``sous_chefs``      | A comma-separated list of      | null             | false          |
-|                    | ``sous_chef_ids`` to filter    |                  |                |
+|                    | Sous Chef ``slug``s to filter  |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |
-+--------------------+--------------------------------+------------------+----------------+
-| ``cumulative``     | ``true`` / ``false``. Filter   | null             | false          |
-|                    | metrics by whether or not they |                  |                |
-|                    | are cumulative when collected. |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``faceted``        | ``true`` / ``false``. Filter   | null             | false          |
 |                    | metrics by whether or not they |                  |                |
 |                    | have facets.                   |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-| ``timeseries``     | ``true`` / ``false``. Filter   | null             | false          |
+| ``computed``       | ``true`` / ``false``. Filter   | null             | false          |
 |                    | metrics by whether or not they |                  |                |
-|                    | are collected as a timeseries. |                  |                |
+|                    | are computed.                  |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 
 
@@ -3016,31 +3490,29 @@ Returns
 
     {
       "facets": {
+        "computed": 3,
+        "org_levels": {
+          "timeseries": 16,
+          "summary": 31
+        },
+        "faceted": 2,
+        "content_levels": {
+          "comparison": 31,
+          "timeseries": 16,
+          "summary": 33
+        },
         "recipes": {
-          "google-analytics-to-content-timeseries": 3,
-          "twitter-user-to-org-timeseries": 1,
-          "facebook-page-to-org-timeseries": 1,
-          "share-counts-to-content-timeseries": 8,
-          "content-metric-summary": 12
+          "internal-refresh-content-summary-metrics-0d5a13": 12,
+          "google-analytics-to-content-timeseries-2ecafa": 7,
+          "google-analytics-to-content-device-summaries-295220": 3,
+          "google-analytics-to-content-domain-facets-0e0e8a": 2,
+          "share-counts-to-content-timeseries-f36b30": 9
         },
-        "cumulative": {
-          "false": 12,
-          "true": 13
-        },
-        "faceted": {
-          "false": 25
-        },
-        "aggregations": {
-          "sum": 25
-        },
-        "levels": {
-          "org": 2,
-          "all": 23
-        },
-        "timeseries": {
-          "false": 12,
-          "true": 13
-        },
+        "types": {
+          "count": 21,
+          "cumulative": 9,
+          "computed": 3
+        }
       },
       "metrics": [
         ...
@@ -3052,11 +3524,26 @@ Returns
 Example
 ********
 
-Fetch all metrics with an `aggregation` of `sum`.
+Via ``CuRL``
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/metrics\?apikey=$NEWSLYNX_APIKEY\&org=1&aggregations=sum
+  $ curl http://localhost:5000/api/v1/metrics\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api metrics list
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.metrics.list()
 
 
 .. _endpoints-metrics-get:
@@ -3091,12 +3578,30 @@ Returns
 
 An :ref:`endpoint-metrics-json` object.
 
+
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/metrics/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+  $ curl http://localhost:5000/api/v1/metrics/ga_pageviews\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api metrics get id=ga_pageviews
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.metrics.get('ga_pageviews')
 
 
 .. _endpoints-metrics-update:
@@ -3140,11 +3645,27 @@ A newly updates :ref:`endpoint-metrics-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-     curl -X PUT -d 'display_name=Google Analytics Entrances' \
+     $ curl -X PUT -d 'display_name=Google Analytics Entrances' \
      http://localhost:5000/api/v1/metrics/ga_entrances\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api metrics update id=ga_entrances display_name='Google Analytics Entrances'
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.metrics.get('ga_entrances', display_name='Google Analytics Entrances')
 
 .. _endpoints-metrics-delete:
 
@@ -3156,7 +3677,6 @@ Delete a metric.
 **NOTE**
   - You can pass in a metric's ``name`` or ``id`` to this endpoint.
   - This endpoint will delete all instances of metric from Timeseries and Summary tables.
-  - This endpoint will not effect previously created Reports.
   - If you want to re-create a metric, you'll need to re-create the recipe 
     which originally created it.
 
@@ -3177,15 +3697,33 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-     curl -X DELETE -d \
+     $ curl -X DELETE -d \
      http://localhost:5000/api/v1/metrics/ga_entrances\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api metrics delete id=ga_entrances
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.metrics.delete('ga_entrances')
 
 
 .. _endpoints-authors:
@@ -3193,8 +3731,7 @@ Example
 **Authors**
 ++++++++++++++++++
 
-The **Authors** API enables the creation, update, and deletion of Authors. It also enables programmatic access to creation and modification of associations between authors and content items. 
-
+The **Authors** API enables the creation, update, and deletion of Authors. It also enables programmatic access to the creation and modification of associations between authors and content items. 
 
 .. _endpoints-authors-json:
 
@@ -3207,7 +3744,7 @@ All methods, unless otherwise specified, will return one or many Metric objects 
 
   {
     "updated": "2015-06-20T18:15:12.459411+00:00",
-    "name": "Merlynne Jones",
+    "name": "MERLYNNE JONES",
     "created": "2015-06-20T18:15:12.459397+00:00",
     "org_id": 1,
     "img_url": "http://newslynx.org/merlynne-selfie.jpeg",
@@ -3216,6 +3753,8 @@ All methods, unless otherwise specified, will return one or many Metric objects 
       ...
     ]
   }
+
+**NOTE**: All Author ``name``s are stored in ALL CAPS to help prevent duplication.
 
 .. _endpoints-authors-list:
 
@@ -3254,14 +3793,89 @@ Returns
 A list of :ref:`endpoint-authors-json` objects.
 
 
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/authors\?q=merlynne&apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors list q=merlynne
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.list(q=merlynne)
+
+
+.. _endpoints-authors-create:
+
+**POST** ``/authors``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Create an Author.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``localize``       | Return dates in the org's      | false            | false          |
+|                    | specified timezone. If `false` |                  |                |
+|                    | dates will be returned in UTC. |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Body
+********
+
+An :ref:`endpoint-authors-json` object with, at the very minimum, a unique ``name``.
+
+Returns
+********
+
+A newly-created :ref:`endpoint-authors-json` object.
 
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/authors\?q=merlynne&apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X POST --data="name=DARTH" \
+      http://localhost:5000/api/v1/authors\?apikey=$NEWSLYNX_APIKEY\&org=1
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors create name=DARTH
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.create(name='DARTH')
 
 .. _endpoints-authors-get:
 
@@ -3299,9 +3913,26 @@ An :ref:`endpoint-authors-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/authors/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/authors/1\?&apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors get id=1
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.get(1)
 
 
 .. _endpoints-authors-update:
@@ -3336,15 +3967,32 @@ An partial or complete :ref:`endpoint-authors-json` object.
 Returns
 ********
 
-A newly updates :ref:`endpoint-authors-json` object.
+A newly updated :ref:`endpoint-authors-json` object.
 
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-     curl -X DELETE \
-     http://localhost:5000/api/v1/authors/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X PUT -d "name=ANNAKIN" \
+      http://localhost:5000/api/v1/authors/DARTH\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors update id=DARTH name=ANNAKIN
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.updeate('DARTH', name='ANNAKIN')
 
 
 .. _endpoints-authors-delete:
@@ -3371,15 +4019,31 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-     curl -X DELETE \
-     http://localhost:5000/api/v1/authors/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/authors/1\&apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors delete id=1
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.delete(1)
 
 
 .. _endpoints-authors-add-content-item:
@@ -3414,15 +4078,32 @@ Params
 Returns
 ********
 
-A newly updated :ref:`endpoint-authors-json` object with new content item included.
+A newly updated :ref:`endpoint-authors-json` object with the newly-associated content item included.
 
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-     curl -X PUT \
-     http://localhost:5000/api/v1/authors/1/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+     $ curl -X PUT \
+     http://localhost:5000/api/v1/authors/1/merge/2\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors merge from_id=1 to_id=2
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.merge(1, 2)
 
 
 **DELETE** ``/authors/:author_id/content/:content_item_id``
@@ -3447,15 +4128,30 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
 .. code-block:: bash
     
-     curl -X DELETE \
-     http://localhost:5000/api/v1/authors/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+     $ curl -X DELETE \
+     http://localhost:5000/api/v1/authors/1/content/2\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors remove-content-item id=1 content_item_id=2
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.remove_content_item(1, 2)
 
 
 **PUT** ``/authors/:from_author_id/merge/:to_author_id``
@@ -3485,10 +4181,27 @@ A newly updated :ref:`endpoint-authors-json` object for the `to_author` with con
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-     curl -X PUT \
+     $ curl -X PUT \
      http://localhost:5000/api/v1/authors/2/merge/3\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api authors remove-content-item id=1 content_item_id=2
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.authors.remove_content_item(1, 2)
 
 
 .. _endpoints-events:
@@ -3725,25 +4438,25 @@ List ``approved`` events by most recently created.
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&status\=approved&sort=-created
+    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&status\=approved&sort=-created
 
 Search events created manually.
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&provenance\=manual&q=foobar
+    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&provenance\=manual&q=foobar
 
 List events that only have certain tags and have *not* been created by certain recipes.
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipes=-1\&tag_ids=1,2,3
+    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipes=-1\&tag_ids=1,2,3
 
 List events that link to certain ``content_items`` and include the Event body in the response:
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&content_item_ids=1,-2,3,-4\&incl_body=yes
+    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&content_item_ids=1,-2,3,-4\&incl_body=yes
 
 Facet events by tag levels:
 
@@ -3751,7 +4464,7 @@ Facet events by tag levels:
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&per_page=1&facets=levels
+    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&per_page=1&facets=levels
 
 Search Events and only return ``id`` and ``title``:
 
@@ -3759,7 +4472,7 @@ Search Events and only return ``id`` and ``title``:
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&q=foobar&fields=id,title&per_page=100&search=title
+    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&q=foobar&fields=id,title&per_page=100&search=title
 
 .. _endpoints-events-create:
 
@@ -3833,7 +4546,7 @@ Create a ``pending`` event with a ``provenance`` of ``manual``
 
 .. code-block:: bash
     
-    curl --data "title=Something Happened" \
+    $ curl --data "title=Something Happened" \
       http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 
@@ -3841,14 +4554,14 @@ Create a ``pending`` event with a ``provenance`` of ``recipe``
 
 .. code-block:: bash
     
-    curl --data "title=Something Happened&recipe_id=1&source_id=dlakjdalfds" \
+    $ curl --data "title=Something Happened&recipe_id=1&source_id=dlakjdalfds" \
       http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Create a ``pending`` event with a ``provenance`` of ``recipe`` and a ``meta`` field 
 
 .. code-block:: bash
     
-  curl --data "title=Something Happened&recipe_id=1&source_id=dlakjdalfds&some_field=foo" \
+  $ curl --data "title=Something Happened&recipe_id=1&source_id=dlakjdalfds&some_field=foo" \
   http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 
@@ -3875,7 +4588,7 @@ Now run this command:
 
 .. code-block:: bash
     
-  curl -X POST \
+  $ curl -X POST \
        -H 'Content-Type:application/json' \
        --data-binary @event.json \
        http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
@@ -3916,7 +4629,7 @@ Example
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/events/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/events/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 .. _endpoints-events-update:
 
@@ -3957,7 +4670,7 @@ Update an event's ``description``.
 
 .. code-block:: bash
     
-  curl -X PUT -d "description=This is what happened" \
+  $ curl -X PUT -d "description=This is what happened" \
   http://localhost:5000/api/v1/events/1\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Approve an event by associating it with specific ``content_item_ids`` and ``tag_ids`` and 
@@ -3977,7 +4690,7 @@ Now run this command:
 
 .. code-block:: bash
     
-  curl -X PUT \
+  $ curl -X PUT \
        -H 'Content-Type:application/json' \
        --data-binary @event.json \
        http://localhost:5000/api/v1/events/1\?apikey=$NEWSLYNX_APIKEY\&org=1
@@ -4009,7 +4722,7 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Examples
 ********
@@ -4018,13 +4731,13 @@ Set an Event's ``status`` to ``deleted``
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/events/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/events/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 Permanently delete an Event.
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/events/1\?org\=1\&force\=true\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/events/1\?org\=1\&force\=true\&apikey\=$NEWSLYNX_APIKEY
 
 .. _endpoints-events-add-tag:
 
@@ -4063,7 +4776,7 @@ Example
 
 .. code-block:: bash
     
-    curl -X PUT http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X PUT http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 .. _endpoints-events-remove-tag:
 
@@ -4102,7 +4815,7 @@ Example
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/events/2/tags/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/events/2/tags/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 
 .. _endpoints-events-add-content-item:
@@ -4142,7 +4855,7 @@ Example
 
 .. code-block:: bash
     
-    curl -X PUT http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X PUT http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 .. _endpoints-events-remove-content-item:
 
@@ -4181,7 +4894,7 @@ Example
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 
 .. _endpoints-content-items:
@@ -4442,25 +5155,25 @@ List content items or type ``article`` by most recently created.
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&type\=article&sort=-created
+    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&type\=article&sort=-created
 
 Search content items created manually.
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&provenance\=manual&q=foobar
+    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&provenance\=manual&q=foobar
 
 List content items that only have certain subject tags and have *not* been created by certain recipes.
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipes=-1\&subject_tag_ids=1,2,3
+    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipes=-1\&subject_tag_ids=1,2,3
 
 Sort content items by their number of Twitter Shares.
 
 .. code-block:: bash
 
-  curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&sort=-metrics.twitter_shares
+  $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&sort=-metrics.twitter_shares
 
 Facet content items by the tag levels of associated events:
 
@@ -4468,7 +5181,7 @@ Facet content items by the tag levels of associated events:
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&per_page=1&facets=levels
+    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&per_page=1&facets=levels
 
 Search Content Items and only return ``id`` and ``title``:
 
@@ -4476,7 +5189,7 @@ Search Content Items and only return ``id`` and ``title``:
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&q=foobar&fields=id,title&per_page=100&search=title
+    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&q=foobar&fields=id,title&per_page=100&search=title
 
 .. _endpoints-content-items-create:
 
@@ -4539,7 +5252,7 @@ Run article extraction on a url to create a content item.
 
 .. code-block:: bash
     
-    curl --data "url=https://projects.propublica.org/killing-the-colorado/story/wasting-water-out-west-use-it-or-lose-it&type=article" \
+    $ curl --data "url=https://projects.propublica.org/killing-the-colorado/story/wasting-water-out-west-use-it-or-lose-it&type=article" \
       http://localhost:5000/api/v1/content\?apikey=$NEWSLYNX_APIKEY\&org=1\&extract=true
 
 .. _endpoints-content-items-get:
@@ -4576,7 +5289,7 @@ Example
 
 .. code-block:: bash
     
-    curl http://localhost:5000/api/v1/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 .. _endpoints-content-items-update:
 
@@ -4617,7 +5330,7 @@ Update a content item's ``description``.
 
 .. code-block:: bash
     
-  curl -X PUT -d "description=This is what this story was about in a gist" \
+  $ curl -X PUT -d "description=This is what this story was about in a gist" \
   http://localhost:5000/api/v1/content/1\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 
@@ -4644,14 +5357,14 @@ Params
 Returns
 ********
 
-``STATUS_CODE`` - ``204``
+Status: ``204``
 
 Example
 ********
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/content/1\?org\=1\&force\=true\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/content/1\?org\=1\&force\=true\&apikey\=$NEWSLYNX_APIKEY
 
 .. _endpoints-content-items-add-tag:
 
@@ -4687,7 +5400,7 @@ Example
 
 .. code-block:: bash
     
-    curl -X PUT http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X PUT http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 .. _endpoints-content-items-remove-tag:
 
@@ -4724,7 +5437,7 @@ Example
 
 .. code-block:: bash
     
-    curl -X DELETE http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
 .. _compression:
 

@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; newslynx 0.1.2 documentation</title>
+  <title>Index &mdash; newslynx 0.1.1 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="newslynx 0.1.2 documentation" href="index.html"/> 
+    <link rel="top" title="newslynx 0.1.1 documentation" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -72,13 +72,15 @@
           
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-api">NewsLynx API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#additional-api-dependencies">Additional API Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-core">NewsLynx Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#additional-api-dependencies">Additional API Dependencies</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-api">NewsLynx API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-core">NewsLynx Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
@@ -122,9 +124,9 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#setting-json">Setting JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#post-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings-name"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-settings-name"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#delete-settings-name"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#authorizations"><strong>Authorizations</strong></a><ul>
@@ -148,6 +150,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-tag-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-tags-tag-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-tags-from-tag-id-merge-to-tag-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/tags/:from_tag_id/merge/:to_tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-categories"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/categories</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-levels"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/levels</span></code></a></li>
 </ul>
@@ -164,7 +167,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#recipe-json">Recipe JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#post-recipes"><strong>POST</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-recipes-recipe-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
 </ul>
 </li>
@@ -179,6 +182,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#authors"><strong>Authors</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#author-json">Author JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-authors"><strong>POST</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors-author-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-authors-author-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-authors-author-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
@@ -301,7 +305,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.2',
+            VERSION:'0.1.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

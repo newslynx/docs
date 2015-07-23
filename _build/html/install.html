@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation Guide &mdash; newslynx 0.1.2 documentation</title>
+  <title>Installation Guide &mdash; newslynx 0.1.1 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 0.1.2 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 0.1.1 documentation" href="index.html"/>
         <link rel="next" title="Configuration" href="config.html"/>
         <link rel="prev" title="NewsLynx: own your analytics" href="index.html"/> 
 
@@ -73,13 +73,15 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Installation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#newslynx-api">NewsLynx API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#additional-api-dependencies">Additional API Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-core">NewsLynx Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#additional-api-dependencies">Additional API Dependencies</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#newslynx-app">NewsLynx App</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-api">NewsLynx API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-core">NewsLynx Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
@@ -123,9 +125,9 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#setting-json">Setting JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#post-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings-name"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-settings-name"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#delete-settings-name"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#authorizations"><strong>Authorizations</strong></a><ul>
@@ -149,6 +151,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-tag-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-tags-tag-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/tags/:tag_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-tags-from-tag-id-merge-to-tag-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/tags/:from_tag_id/merge/:to_tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-categories"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/categories</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-tags-levels"><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/levels</span></code></a></li>
 </ul>
@@ -165,7 +168,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#recipe-json">Recipe JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#post-recipes"><strong>POST</strong> <code class="docutils literal"><span class="pre">/recipes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-recipes-recipe-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-recipes-recipe-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/recipes/:recipe-id</span></code></a></li>
 </ul>
 </li>
@@ -180,6 +183,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#authors"><strong>Authors</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#author-json">Author JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-authors"><strong>POST</strong> <code class="docutils literal"><span class="pre">/authors</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-authors-author-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-authors-author-id"><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-authors-author-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code></a></li>
@@ -269,24 +273,32 @@
             
   <div class="section" id="installation-guide">
 <span id="installation"></span><h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="newslynx-api">
-<h2>NewsLynx API<a class="headerlink" href="#newslynx-api" title="Permalink to this headline">¶</a></h2>
-<p>The easiest way is to install <code class="docutils literal"><span class="pre">newslynx</span></code> is from the <a class="reference external" href="https://pypi.python.org/pypi/newslynx/">Python Package Index</a> using <code class="docutils literal"><span class="pre">pip</span></code> or <code class="docutils literal"><span class="pre">easy_install</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install newslynx
-</pre></div>
-</div>
+<p>The following installation guide is oriented towards people interested in running NewsLynx locally on a Mac OS X computer.
+For all other applications, please refer to our <a class="reference external" href="http://www.github.org/newslynx/authomation">automation docs</a>. At this time, NewsLynx is incapable of running on Windows.</p>
+<div class="section" id="newslynx-core">
+<h2>NewsLynx Core<a class="headerlink" href="#newslynx-core" title="Permalink to this headline">¶</a></h2>
+<p>Download the git repository and install dependencies:</p>
 <p>To install it manually simply download the repository from Github:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git clone git://github.com/newslynx/newslynx.git <span class="o">&amp;&amp;</span> <span class="nb">cd </span>newslynx
 <span class="nv">$ </span>python setup.py install
 </pre></div>
 </div>
-</div>
 <div class="section" id="additional-api-dependencies">
-<h2>Additional API Dependencies<a class="headerlink" href="#additional-api-dependencies" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">newslynx</span></code> also depends on <a class="reference external" href="http://www.postgresql.org/">Postgres</a> and <a class="reference external" href="http://www.redis.io">Redis</a>. If you&#8217;re on Mac OS X, the easiest way to run Postgres is with the <a class="reference external" href="http://www.http://postgresapp.com/.org/">Postgres.app</a>. TKTK MORE INFORMATION ON INSTALLING POSTGRES AND THE NECESSARY EXTENSIONS IF NOT USING THE APP.</p>
-<p>If you have <a class="reference external" href="http://www.brew.sh/">Homebrew</a> you can install redis with the following:</p>
+<h3>Additional API Dependencies<a class="headerlink" href="#additional-api-dependencies" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">newslynx</span></code> also depends on <a class="reference external" href="http://www.postgresql.org/">Postgres</a> and <a class="reference external" href="http://www.redis.io">Redis</a>. If you&#8217;re on Mac OS X, the easiest way to run Postgres is with the <a class="reference external" href="http://www.http://postgresapp.com/.org/">Postgres.app</a>. However, if you prefer the <a class="reference external" href="http://www.brew.sh/">Homebrew</a> distribution, make sure to install it with plpythonu.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew install postgresql --build-from-source --with-python
+</pre></div>
+</div>
+<p>If you already have the Hombrew version installed, run this command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew renstall postgresql --build-from-source --with-python
+</pre></div>
+</div>
+<p>Finally, install <code class="docutils literal"><span class="pre">redis</span></code> via Homebrew</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew install redis
 </pre></div>
+</div>
+<p>For the next steps, refer to the  <a class="reference internal" href="config.html#config"><span>Configuration</span></a> docs.</p>
+<p><strong>NOTE</strong>: Newslynx is incapable of running on Windows.</p>
 </div>
 </div>
 <div class="section" id="newslynx-app">
@@ -338,7 +350,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.2',
+            VERSION:'0.1.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

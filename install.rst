@@ -4,7 +4,7 @@ Installation Guide
 ==================
 
 The following installation guide is oriented towards people interested in running NewsLynx locally on a Mac OS X computer.
-For all other applications, please refer to our `automation docs <http://www.github.org/newslynx/authomation>`_.
+For all other applications, please refer to our `automation docs <http://www.github.org/newslynx/authomation>`_. At this time, NewsLynx is incapable of running on Windows.
 
 NewsLynx Core
 ------------
@@ -41,6 +41,8 @@ Finally, install ``redis`` via Homebrew
    $ brew install redis
 
 For the next steps, refer to the  :ref:`config` docs.
+
+**NOTE**: Newslynx is incapable of running on Windows.
 
 NewsLynx App
 ------------
