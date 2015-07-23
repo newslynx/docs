@@ -5654,6 +5654,20 @@ Example
     
     $ curl -X DELETE http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
+.. _endpoints-bulk:
+
+**Bulk Creation**
+++++++++++++++++++
+
+The **Bulk Creation API** API enables efficient upsert of new Metrics, Content Items, and Events.  This endpoint is designed to help SousChefs effectively bring data into NewsLynx. All methods are executed within a Task queue and return references to the :ref: `endpoints-jobs` API.
+
+.. _endpoints-jobs:
+
+**Jobs**
+++++++++++++++++++
+
+The **Jobs** API enables the monitoring of processes executed in the Task Queue.
+
 .. _compression:
 
 **Compression**
