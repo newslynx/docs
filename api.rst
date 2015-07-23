@@ -483,7 +483,7 @@ Via ``python``
     from newslynx.client import API 
 
     api = API()
-    api.me.delete()
+    api.orgs.list()
 
 .. _endpoints-orgs-create:
 

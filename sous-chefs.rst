@@ -25,7 +25,10 @@ You can see examples of our internal Sous Chefs `here <https://github.com/newsly
 Configuring Sous Chefs
 ========================
 
-All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follow a `JSON schema <http://jsonschema.org/>`_ which is defined `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/models/sous_chef.yaml>`_.
+All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follow a `JSON schema <http://jsonschema.org/>`_ which is defined `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/models/sous_chef.yaml>`_. Every Sous Chef consists of the following configurations:
+
+* ``name``: The display name of the Sous Chef.
+* ``
 
 
 
