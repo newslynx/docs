@@ -1615,22 +1615,28 @@ Example
 ********
 
 Via ``CuRL``
+
 .. code-block:: bash
     
     curl http://localhost:5000/api/v1/auths/twitter\?apikey=$NEWSLYNX_APIKEY\&org=1
 
-Via ``newslynx``:
+
+Via ``newslynx``
+
 .. code-block:: bash
     
     newslynx api auths get service=twitter
 
-Via ``newslynx.client``:
+
+Via ``newslynx.client``
+
 .. code-block:: python
 
     from newslynx.client import API 
 
     api = API()
     api.auths.get("twitter")
+
 
 .. _endpoints-auth-twitter-grant:
 
