@@ -3992,7 +3992,7 @@ Via ``python``
     from newslynx.client import API
 
     api = API()
-    api.authors.updeate('DARTH', name='ANNAKIN')
+    api.authors.update('DARTH', name='ANNAKIN')
 
 
 .. _endpoints-authors-delete:
@@ -4367,13 +4367,13 @@ Params
 |                    | it.                            |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 |``recipe_ids``      | A comma-separated list of      | null             | false          |
-|                    | ``recipe_ids`` to filter       |                  |                |
+|                    | Recipe ``id``s to filter      |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-|``sous_chef_ids``   | A comma-separated list of      | null             | false          |
-|                    | ``sous_chef_ids`` to filter    |                  |                |
+|``sous_chefs``      | A comma-separated list of      | null             | false          |
+|                    |Sous Chef ``slugs`` to filter   |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |
@@ -4399,12 +4399,13 @@ Returns
 
 The Events search endpoint will always return helpful pagination information. Including
 
-* ``first`` - The first page of the response.
-* ``last`` - The last page of the response.
-* ``next`` - The next page of the response (unless the last page is returned)
-* ``prev`` - The previous page of the response (unless the first page is returned)
-* ``page`` - The current page.
+* ``first`` - The first page of the response as a URL.
+* ``last`` - The last page of the response as a URL.
+* ``next`` - The next page of the response (unless the last page is returned) as a URL.
+* ``prev`` - The previous page of the response (unless the first page is returned) as a URL.
+* ``page`` - The current page number.
 * ``per_page`` - The number of results per page.
+* ``total`` - The total number of pages returned.
 
 It will also always return the ``total`` number of results for all pages.
 
@@ -4436,27 +4437,99 @@ Examples
 
 List ``approved`` events by most recently created.
 
+Via ``CuRL``
+
 .. code-block:: bash
     
     $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&status\=approved&sort=-created
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events search status=approved sort=-created
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.events.search(status='approved', sort='-created')
+
+
 Search events created manually.
+
+Via ``CuRL``
 
 .. code-block:: bash
     
     $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&provenance\=manual&q=foobar
 
-List events that only have certain tags and have *not* been created by certain recipes.
+
+Via ``newslynx``
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipes=-1\&tag_ids=1,2,3
+    $ newslynx api events search q=foobar provenance=manual 
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.events.search(q='foobar', provenance='manual')
+
+
+List events that only have certain tags and have *not* been created by certain recipes.
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipe_ids=-1\&tag_ids=1,2,3
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events search recipe_ids='-1' tag_ids='1,2,3'
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.events.search(recipe_ids='-1' tag_ids='1,2,3')
+
 
 List events that link to certain ``content_items`` and include the Event body in the response:
+
+Via ``CuRL``
 
 .. code-block:: bash
     
     $ curl http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&content_item_ids=1,-2,3,-4\&incl_body=yes
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events search recipe_ids='-1' tag_ids='1,2,3'
+
+Via ``python``
+
+.. code-block:: python
+
+    from newslynx.client import API
+
+    api = API()
+    api.events.search(recipe_ids='-1' tag_ids='1,2,3')
 
 Facet events by tag levels:
 
@@ -4501,6 +4574,10 @@ Params
 |                    | contains links to one or more  |                  |                |
 |                    | Content Items.                 |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
+| ``recipe_id``      | The recipe that retrieved this | false            | false          |
+|                    | Event. If missing, we assume   |                  |                |
+|                    | the event is manually created  |                  |                |
++--------------------+--------------------------------+------------------+----------------+
 
 Body
 *******
@@ -4511,20 +4588,14 @@ A :ref:`endpoint-events-json` object, but the only required field is ``title``. 
 * ``content_item_ids`` - An array of content items to associate with this event.
 * ``links`` - An array of links you'd like to include when checking for matching Content Items
 
-*Links*
-
-While you can explicitly set ``content_item_ids`` and ``links``, this method will also parse out
-all urls from the Event's ``body``, ``title``, and ``description`` and attempt to reconcile these
-with your organization's Content Items. Through this process, all short_urls will be unshortened and links will be canonicalized according to NewsLynx's standards.  In practice this means that Recipes that create Events don't need to worry too much about extracting links as this process will be handled by this method.
-
 *Source IDs*
 
 If you're creating an event that's associated with a ``recipe_id``, it's also imperative that you pass in a ``source_id``. We use this field to ensure that no duplicate events are created and also 
-to make sure that Events that have been previously ``deleted`` are not re-created by a recipe which polls a data source. If you include a ``recipe_id`` in the post of the body, the ``source_id`` you pass in will be prefixed by the slug of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.
+to make sure that Events that have been previously ``deleted`` are not re-created by a recipe which is continuously polling a data source. If you include a ``recipe_id`` as a query string, the ``source_id`` you pass in will be prefixed by the ``slug`` of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.
 
 *Dates*
 
-If you wish to specify a ``created`` for an event, just pass it in as `ISO 8601`_ date string. If you include a UTC-Offset, it will be properly convered to UTC. Otherwise it will be assumed to be UTC. If you don't pass in a ``created`` field, it will be set as the time the Event was created.
+If you wish to specify a ``created`` for an event, just pass it in as `ISO 8601`_ date string. If you include a UTC-Offset, it will be properly convered to UTC. Otherwise it will be assumed to be UTC. If you don't pass in a ``created`` field, it will be set as the time the Event was ingested.
 
 *Provenance*
 
@@ -4542,30 +4613,6 @@ A newly-created :ref:`endpoint-events-json` object. If you specify ``must_link=t
 Examples
 ********
 
-Create a ``pending`` event with a ``provenance`` of ``manual`` 
-
-.. code-block:: bash
-    
-    $ curl --data "title=Something Happened" \
-      http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
-
-
-Create a ``pending`` event with a ``provenance`` of ``recipe`` 
-
-.. code-block:: bash
-    
-    $ curl --data "title=Something Happened&recipe_id=1&source_id=dlakjdalfds" \
-      http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
-
-Create a ``pending`` event with a ``provenance`` of ``recipe`` and a ``meta`` field 
-
-.. code-block:: bash
-    
-  $ curl --data "title=Something Happened&recipe_id=1&source_id=dlakjdalfds&some_field=foo" \
-  http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
-
-
-
 Create an ``approved`` event associated with specific ``content_item_ids`` and ``tag_ids`` 
 
 First, create a file like this and save it as ``event.json``
@@ -4574,7 +4621,6 @@ First, create a file like this and save it as ``event.json``
 
     {
       "source_id": "fdslakfjdaslkfjasdlkaf",
-      "recipe_id": 1,
       "title": "Something else happened.",
       "description": "This was crazy!",
       "body": "<p> This is the transcript of what happened</p>",
@@ -4584,16 +4630,33 @@ First, create a file like this and save it as ``event.json``
     }
 
 
-Now run this command:
+Via ``CuRL``
+
+.. code-block:: bash
+
+    $ curl -X POST \
+         -H 'Content-Type:application/json' \
+         --data-binary @event.json \
+        http://localhost:5000/api/v1/events\?org\=1\&apikey\=$NEWSLYNX_APIKEY?recipe_id=1
+
+Via ``newslynx``
 
 .. code-block:: bash
     
-  $ curl -X POST \
-       -H 'Content-Type:application/json' \
-       --data-binary @event.json \
-       http://localhost:5000/api/v1/events\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ newslynx api events create --data=event.json recipe_id=1
 
-The ``status`` returned should be ``approved``.
+Via ``python``
+
+.. code-block:: python
+    
+    import json
+
+    from newslynx.client import API
+
+    api = API()
+    event = json.load(open('event.json'))
+    api.events.create(**event)
+
 
 .. _endpoints-events-get:
 
@@ -4627,9 +4690,27 @@ An :ref:`endpoint-events-json` object with the ``body`` included.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
     $ curl http://localhost:5000/api/v1/events/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events get id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.get(1)
+
 
 .. _endpoints-events-update:
 
@@ -4666,12 +4747,29 @@ An updated :ref:`endpoint-events-json` object.
 Examples
 ********
 
-Update an event's ``description``.
+Update an event's ``description``
+
+Via ``CuRL``
 
 .. code-block:: bash
     
   $ curl -X PUT -d "description=This is what happened" \
   http://localhost:5000/api/v1/events/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events update id=1 description='This is what happened'
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.update(1, description='This is what happened')
 
 Approve an event by associating it with specific ``content_item_ids`` and ``tag_ids`` and 
 setting it's status as ``approved``.
@@ -4686,7 +4784,7 @@ First, create a file like this and save it as ``event.json``
       "status": "approved"
     }
 
-Now run this command:
+Via ``CuRL``
 
 .. code-block:: bash
     
@@ -4694,6 +4792,24 @@ Now run this command:
        -H 'Content-Type:application/json' \
        --data-binary @event.json \
        http://localhost:5000/api/v1/events/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events update id=1 --data=event.json
+
+Via ``python``
+
+.. code-block:: python
+    
+    import json
+
+    from newslynx.client import API
+
+    api = API()
+    event = json.load(open('event.json'))
+    api.events.update(1, **event)
 
 .. _endpoints-events-delete:
 
@@ -4729,22 +4845,56 @@ Examples
 
 Set an Event's ``status`` to ``deleted``
 
+Via ``CuRL``
+
 .. code-block:: bash
     
     $ curl -X DELETE http://localhost:5000/api/v1/events/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events delete id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.delete(1)
+
 Permanently delete an Event.
+
+Via ``CuRL``
 
 .. code-block:: bash
     
     $ curl -X DELETE http://localhost:5000/api/v1/events/1\?org\=1\&force\=true\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events delete id=1 force=true
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.delete(1, force=True)
 
 .. _endpoints-events-add-tag:
 
 **PUT** ``/events/:event_id/tags/:tag_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Add a tag to an event.
+Add a Tag to an Event.
 
 **NOTE**
   - Events must first be "approved" before adding additional Tags.
@@ -4774,19 +4924,36 @@ An updated :ref:`endpoint-events-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    $ curl -X PUT http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X PUT http://localhost:5000/api/v1/events/2/tag/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events add-tag id=2 tag_id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.add_tag(2, 1)
 
 .. _endpoints-events-remove-tag:
 
 **DELETE** ``/events/:event_id/tags/:tag_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Remove an associated Content Item from an Event.
+Remove an associated Tag from an Event.
 
 **NOTE**
-  - Events must first be "approved" before removing Tags.
+  - Events must first be "approved" before removing Tags
 
 Params
 ******
@@ -4813,10 +4980,26 @@ An updated :ref:`endpoint-events-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    $ curl -X DELETE http://localhost:5000/api/v1/events/2/tags/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/events/2/tag/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events remove-tag id=2 tag_id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.remove_tag(2, 1)
 
 .. _endpoints-events-add-content-item:
 
@@ -4853,9 +5036,26 @@ An updated :ref:`endpoint-events-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
     $ curl -X PUT http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events add-content-item id=2 content_item_id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.add_content_item(2, 1)
 
 .. _endpoints-events-remove-content-item:
 
@@ -4892,10 +5092,26 @@ An updated :ref:`endpoint-events-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
     $ curl -X DELETE http://localhost:5000/api/v1/events/2/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api events remove-content-item id=2 content_item_id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.events.remove_content_item(2, 1)
 
 .. _endpoints-content-items:
 
@@ -5088,7 +5304,7 @@ Params
 |                    | it.                            |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 |``sous_chefs``      | A comma-separated list of      | null             | false          |
-|                    | ``sous_chef`` slugs to filter  |                  |                |
+|                    | Sous Chef slugs to filter      |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |
@@ -5116,14 +5332,13 @@ Returns
 
 The Content Items search endpoint will always return helpful pagination information. Including
 
-* ``first`` - The first page of the response.
-* ``last`` - The last page of the response.
-* ``next`` - The next page of the response (unless the last page is returned)
-* ``prev`` - The previous page of the response (unless the first page is returned)
-* ``page`` - The current page.
+* ``first`` - The first page of the response as a URL.
+* ``last`` - The last page of the response as a URL.
+* ``next`` - The next page of the response (unless the last page is returned) as a URL.
+* ``prev`` - The previous page of the response (unless the first page is returned) as a URL.
+* ``page`` - The current page number.
 * ``per_page`` - The number of results per page.
-
-It will also always return the ``total`` number of results for all pages.
+* ``total`` - The total number of pages returned.
 
 .. code-block:: javascript
 

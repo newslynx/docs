@@ -273,7 +273,7 @@
             
   <div class="section" id="newslynx-api">
 <span id="api"></span><h1>NewsLynx API<a class="headerlink" href="#newslynx-api" title="Permalink to this headline">¶</a></h1>
-<p>All of <strong>NewsLynx</strong>&#8216;s functionality is exposed through a <a class="reference external" href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> API.  This API is mirrored through a built-in command line interface – <code class="docutils literal"><span class="pre">newslynx</span></code> (or if you prefer to be 1337, <code class="docutils literal"><span class="pre">`nlx</span></code>) – and <code class="docutils literal"><span class="pre">python</span></code> client – <code class="docutils literal"><span class="pre">newslynx.client.API</span></code> –  as well.  The following guide will walk you through all of the the API&#8217;s functionalities with accompanying examples for <code class="docutils literal"><span class="pre">python</span></code>, the <code class="docutils literal"><span class="pre">cli</span></code>, and <code class="docutils literal"><span class="pre">CuRL</span></code>.</p>
+<p>All of <strong>NewsLynx</strong>&#8216;s functionality is exposed through a <a class="reference external" href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> API.  This API is mirrored through a built-in command line interface – <code class="docutils literal"><span class="pre">newslynx</span></code> (or if you prefer to be 1337, <code class="docutils literal"><span class="pre">nlx</span></code>) – and <code class="docutils literal"><span class="pre">python</span></code> client – <code class="docutils literal"><span class="pre">newslynx.client.API</span></code> –  as well.  The following guide will walk you through all of the the API&#8217;s functionalities with accompanying examples for <code class="docutils literal"><span class="pre">python</span></code>, the <code class="docutils literal"><span class="pre">newslynx</span></code>, and <code class="docutils literal"><span class="pre">CuRL</span></code>.</p>
 <div class="section" id="authentication">
 <h2><strong>Authentication</strong><a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="api-keys">
@@ -4379,7 +4379,7 @@ http://localhost:5000/api/v1/metrics/ga_entrances<span class="se">\?</span>org<s
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">&#39;ga_entrances&#39;</span><span class="p">,</span> <span class="n">display_name</span><span class="o">=</span><span class="s">&#39;Google Analytics Entrances&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">&#39;ga_entrances&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4471,14 +4471,14 @@ the authors.</td>
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors list
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors list <span class="nv">q</span><span class="o">=</span>merlynne
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">merlynne</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4527,17 +4527,17 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id171">
 <h5>Body<a class="headerlink" href="#id171" title="Permalink to this headline">¶</a></h5>
-<p>An <a class="reference internal" href="#endpoint-metrics-json"><span>Metric JSON</span></a> object with, at the very minimum, a unique <code class="docutils literal"><span class="pre">name</span></code>.</p>
+<p>An <span class="xref std std-ref">endpoint-authors-json</span> object with, at the very minimum, a unique <code class="docutils literal"><span class="pre">name</span></code>.</p>
 </div>
 <div class="section" id="id172">
 <h5>Returns<a class="headerlink" href="#id172" title="Permalink to this headline">¶</a></h5>
-<p>A newly-created <a class="reference internal" href="#endpoint-metrics-json"><span>Metric JSON</span></a> object.</p>
+<p>A newly-created <span class="xref std std-ref">endpoint-authors-json</span> object.</p>
 </div>
 <div class="section" id="id173">
 <h5>Example<a class="headerlink" href="#id173" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X POST --data<span class="o">=</span><span class="s2">&quot;name=DARTH&quot;</span> <span class="se">\</span>
-  http://localhost:5000/api/v1/authors<span class="se">\?</span><span class="nv">q</span><span class="o">=</span>merlynne<span class="p">&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+  http://localhost:5000/api/v1/authors<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
@@ -4609,7 +4609,7 @@ the author.</td>
 <div class="section" id="id176">
 <h5>Example<a class="headerlink" href="#id176" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/authors/1<span class="se">\?</span><span class="nv">q</span><span class="o">=</span>merlynne<span class="p">&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/authors/1<span class="se">\?</span><span class="p">&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
@@ -4678,19 +4678,19 @@ dates will be returned in UTC.</td>
 <div class="section" id="id180">
 <h5>Example<a class="headerlink" href="#id180" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;name=annakin&quot;</span> <span class="se">\</span>
-  http://localhost:5000/api/v1/authors/DARTH<span class="se">\?</span><span class="nv">q</span><span class="o">=</span>merlynne<span class="p">&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;name=ANNAKIN&quot;</span> <span class="se">\</span>
+  http://localhost:5000/api/v1/authors/DARTH<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors update <span class="nv">id</span><span class="o">=</span>DARTH <span class="nv">name</span><span class="o">=</span>annakin
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors update <span class="nv">id</span><span class="o">=</span>DARTH <span class="nv">name</span><span class="o">=</span>ANNAKIN
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">updeate</span><span class="p">(</span><span class="s">&#39;DARTH&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;annakin&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s">&#39;DARTH&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;ANNAKIN&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4736,8 +4736,19 @@ wish to access.</td>
 </div>
 <div class="section" id="id183">
 <h5>Example<a class="headerlink" href="#id183" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE <span class="se">\</span>
-http://localhost:5000/api/v1/authors/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/authors/1<span class="se">\&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors delete <span class="nv">id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4790,12 +4801,24 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id185">
 <h5>Returns<a class="headerlink" href="#id185" title="Permalink to this headline">¶</a></h5>
-<p>A newly updated <span class="xref std std-ref">endpoint-authors-json</span> object with new content item included.</p>
+<p>A newly updated <span class="xref std std-ref">endpoint-authors-json</span> object with the newly-associated content item included.</p>
 </div>
 <div class="section" id="id186">
 <h5>Example<a class="headerlink" href="#id186" title="Permalink to this headline">¶</a></h5>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT <span class="se">\</span>
-http://localhost:5000/api/v1/authors/1/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+http://localhost:5000/api/v1/authors/1/merge/2<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors merge <span class="nv">from_id</span><span class="o">=</span><span class="m">1</span> <span class="nv">to_id</span><span class="o">=</span>2
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4842,7 +4865,18 @@ wish to access.</td>
 <div class="section" id="id189">
 <h5>Example<a class="headerlink" href="#id189" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE <span class="se">\</span>
-http://localhost:5000/api/v1/authors/2/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+http://localhost:5000/api/v1/authors/1/content/2<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors remove-content-item <span class="nv">id</span><span class="o">=</span><span class="m">1</span> <span class="nv">content_item_id</span><span class="o">=</span>2
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">remove_content_item</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4888,8 +4922,20 @@ wish to access.</td>
 </div>
 <div class="section" id="id192">
 <h5>Example<a class="headerlink" href="#id192" title="Permalink to this headline">¶</a></h5>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT <span class="se">\</span>
 http://localhost:5000/api/v1/authors/2/merge/3<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api authors remove-content-item <span class="nv">id</span><span class="o">=</span><span class="m">1</span> <span class="nv">content_item_id</span><span class="o">=</span>2
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">authors</span><span class="o">.</span><span class="n">remove_content_item</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4944,237 +4990,18 @@ http://localhost:5000/api/v1/authors/2/merge/3<span class="se">\?</span>org<span
 <p>Search and filter all events and return helpful faceted counts.</p>
 <div class="section" id="id193">
 <h5>Params<a class="headerlink" href="#id193" title="Permalink to this headline">¶</a></h5>
-<table border="1" class="docutils">
-<colgroup>
-<col width="23%" />
-<col width="37%" />
-<col width="21%" />
-<col width="19%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Parameter</th>
-<th class="head">Description</th>
-<th class="head">Default</th>
-<th class="head">Required</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">apikey</span></code></td>
-<td>Your <code class="docutils literal"><span class="pre">apikey</span></code></td>
-<td>null</td>
-<td>true</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">org</span></code></td>
-<td>The organization&#8217;s
-<code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code> you
-wish to access.</td>
-<td>null</td>
-<td>true</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">localize</span></code></td>
-<td>Return dates in the org&#8217;s
-specified timezone. If <cite>false</cite>
-dates will be returned in UTC.</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">q</span></code></td>
-<td>A search query. Will search on
-<code class="docutils literal"><span class="pre">body</span></code>, <code class="docutils literal"><span class="pre">title</span></code>,
-<code class="docutils literal"><span class="pre">description</span></code>, and
-<code class="docutils literal"><span class="pre">meta</span></code>. Please refer to the
-<a class="reference external" href="http://www.postgresql.org/docs/9.1/static/textsearch-tables.html#TEXTSEARCH-TABLES-SEARCH">Postgres Search docs</a> for
-details on query syntax.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">search</span></code></td>
-<td>The field to search on. Either:
-<code class="docutils literal"><span class="pre">body</span></code>, <code class="docutils literal"><span class="pre">title</span></code>,
-<code class="docutils literal"><span class="pre">description</span></code>,
-<code class="docutils literal"><span class="pre">meta</span></code>, or <code class="docutils literal"><span class="pre">all</span></code>.</td>
-<td><code class="docutils literal"><span class="pre">all</span></code></td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">fields</span></code></td>
-<td>A comma-separated list of
-fields to include in the
-response.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">incl_body</span></code></td>
-<td>Whether or not to include the
-body of the content item in
-the response.</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">incl_img</span></code></td>
-<td>Whether or not to include the
-img_url and thumbnail in the
-response.</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">created_after</span></code></td>
-<td>An ISO-8601 date to filter
-results by.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">created_before</span></code></td>
-<td>An ISO-8601 date to filter
-results by.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">updated_after</span></code></td>
-<td>An ISO-8601 date to filter
-results by.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">updated_before</span></code></td>
-<td>An ISO-8601 date to filter
-results by.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">sort</span></code></td>
-<td>Sort results by an event field.
-preface with <strong>-</strong> to sort
-descending. When submitting a
-search query, use <code class="docutils literal"><span class="pre">relevance</span></code>
-to sort by match rank.</td>
-<td>-created.</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code></td>
-<td>A status to filter results by.
-Choose from <code class="docutils literal"><span class="pre">pending</span></code>,
-<code class="docutils literal"><span class="pre">approved</span></code>, <code class="docutils literal"><span class="pre">deleted</span></code> or
-<code class="docutils literal"><span class="pre">all</span></code>.</td>
-<td><code class="docutils literal"><span class="pre">all</span></code></td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">provenance</span></code></td>
-<td>A provenance to filter
-results by. Choose from
-<code class="docutils literal"><span class="pre">manual</span></code> or <code class="docutils literal"><span class="pre">recipe</span></code>.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ids</span></code></td>
-<td>A comma-separated list of
-event <code class="docutils literal"><span class="pre">ids</span></code> to filter
-results by. Preface any element
-with <strong>!</strong> or <strong>-</strong> to exclude
-it.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">sort_ids</span></code></td>
-<td>Whether or not use order of the
-above <code class="docutils literal"><span class="pre">ids</span></code> to sort the
-results by. Will override
-arguments passed to <code class="docutils literal"><span class="pre">sort</span></code>.</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tag_ids</span></code></td>
-<td>A comma-separated list of
-<code class="docutils literal"><span class="pre">tag_ids</span></code> to filter results
-results by. Preface any element
-with <strong>!</strong> or <strong>-</strong> to exclude
-it.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">levels</span></code></td>
-<td>A comma-separated list of Tag
-<code class="docutils literal"><span class="pre">levels</span></code> to filter
-results by. Preface any element
-with <strong>!</strong> or <strong>-</strong> to exclude
-it.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">categories</span></code></td>
-<td>A comma-separated list of Tag
-<code class="docutils literal"><span class="pre">categories</span></code> to filter
-results by. Preface any element
-with <strong>!</strong> or <strong>-</strong> to exclude
-it.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">content_item_ids</span></code></td>
-<td>A comma-separated list of
-<code class="docutils literal"><span class="pre">content_item_ids</span></code> to filter
-results by. Preface any element
-with <strong>!</strong> or <strong>-</strong> to exclude
-it.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">recipe_ids</span></code></td>
-<td>A comma-separated list of
-<code class="docutils literal"><span class="pre">recipe_ids</span></code> to filter
-results by. Preface any element
-with <strong>!</strong> or <strong>-</strong> to exclude
-it.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">sous_chef_ids</span></code></td>
-<td>A comma-separated list of
-<code class="docutils literal"><span class="pre">sous_chef_ids</span></code> to filter
-results by. Preface any element
-with <strong>!</strong> or <strong>-</strong> to exclude
-it.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facets</span></code></td>
-<td>A comma-separated list of
-faceted counts to include
-in the response. Choose from
-<code class="docutils literal"><span class="pre">tags</span></code>, <code class="docutils literal"><span class="pre">content_items</span></code>,
-<code class="docutils literal"><span class="pre">levels</span></code>,  <code class="docutils literal"><span class="pre">categories</span></code>,
-<code class="docutils literal"><span class="pre">sous_chefs</span></code>, <code class="docutils literal"><span class="pre">recipes</span></code>,
-<code class="docutils literal"><span class="pre">statuses</span></code>, <code class="docutils literal"><span class="pre">provenances</span></code>,
-or <code class="docutils literal"><span class="pre">all</span></code>.</td>
-<td>null</td>
-<td>false</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">page</span></code></td>
-<td>The page number of the results.</td>
-<td>1</td>
-<td>false</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">per_page</span></code></td>
-<td><dl class="first last docutils">
-<dt>The number of results to return</dt>
-<dd>per page. Max is 100.</dd>
-</dl>
-</td>
-<td>25</td>
-<td>false</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="section" id="id194">
 <h5>Returns<a class="headerlink" href="#id194" title="Permalink to this headline">¶</a></h5>
 <p>The Events search endpoint will always return helpful pagination information. Including</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">first</span></code> - The first page of the response.</li>
-<li><code class="docutils literal"><span class="pre">last</span></code> - The last page of the response.</li>
-<li><code class="docutils literal"><span class="pre">next</span></code> - The next page of the response (unless the last page is returned)</li>
-<li><code class="docutils literal"><span class="pre">prev</span></code> - The previous page of the response (unless the first page is returned)</li>
-<li><code class="docutils literal"><span class="pre">page</span></code> - The current page.</li>
+<li><code class="docutils literal"><span class="pre">first</span></code> - The first page of the response as a URL.</li>
+<li><code class="docutils literal"><span class="pre">last</span></code> - The last page of the response as a URL.</li>
+<li><code class="docutils literal"><span class="pre">next</span></code> - The next page of the response (unless the last page is returned) as a URL.</li>
+<li><code class="docutils literal"><span class="pre">prev</span></code> - The previous page of the response (unless the first page is returned) as a URL.</li>
+<li><code class="docutils literal"><span class="pre">page</span></code> - The current page number.</li>
 <li><code class="docutils literal"><span class="pre">per_page</span></code> - The number of results per page.</li>
+<li><code class="docutils literal"><span class="pre">total</span></code> - The total number of pages returned.</li>
 </ul>
 <p>It will also always return the <code class="docutils literal"><span class="pre">total</span></code> number of results for all pages.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
@@ -5203,19 +5030,67 @@ or <code class="docutils literal"><span class="pre">all</span></code>.</td>
 <div class="section" id="id195">
 <h5>Examples<a class="headerlink" href="#id195" title="Permalink to this headline">¶</a></h5>
 <p>List <code class="docutils literal"><span class="pre">approved</span></code> events by most recently created.</p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span>status<span class="se">\=</span>approved<span class="p">&amp;</span><span class="nv">sort</span><span class="o">=</span>-created
 </pre></div>
 </div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events search <span class="nv">status</span><span class="o">=</span>approved <span class="nv">sort</span><span class="o">=</span>-created
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s">&#39;approved&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s">&#39;-created&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Search events created manually.</p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span>provenance<span class="se">\=</span>manual<span class="p">&amp;</span><span class="nv">q</span><span class="o">=</span>foobar
 </pre></div>
 </div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events search <span class="nv">q</span><span class="o">=</span>foobar <span class="nv">provenance</span><span class="o">=</span>manual
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s">&#39;foobar&#39;</span><span class="p">,</span> <span class="n">provenance</span><span class="o">=</span><span class="s">&#39;manual&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>List events that only have certain tags and have <em>not</em> been created by certain recipes.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">recipes</span><span class="o">=</span>-1<span class="se">\&amp;</span><span class="nv">tag_ids</span><span class="o">=</span>1,2,3
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">recipe_ids</span><span class="o">=</span>-1<span class="se">\&amp;</span><span class="nv">tag_ids</span><span class="o">=</span>1,2,3
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events search <span class="nv">recipe_ids</span><span class="o">=</span><span class="s1">&#39;-1&#39;</span> <span class="nv">tag_ids</span><span class="o">=</span><span class="s1">&#39;1,2,3&#39;</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">recipe_ids</span><span class="o">=</span><span class="s">&#39;-1&#39;</span> <span class="n">tag_ids</span><span class="o">=</span><span class="s">&#39;1,2,3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>List events that link to certain <code class="docutils literal"><span class="pre">content_items</span></code> and include the Event body in the response:</p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">content_item_ids</span><span class="o">=</span>1,-2,3,-4<span class="se">\&amp;</span><span class="nv">incl_body</span><span class="o">=</span>yes
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events search <span class="nv">recipe_ids</span><span class="o">=</span><span class="s1">&#39;-1&#39;</span> <span class="nv">tag_ids</span><span class="o">=</span><span class="s1">&#39;1,2,3&#39;</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">recipe_ids</span><span class="o">=</span><span class="s">&#39;-1&#39;</span> <span class="n">tag_ids</span><span class="o">=</span><span class="s">&#39;1,2,3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Facet events by tag levels:</p>
@@ -5276,6 +5151,13 @@ Content Items.</td>
 <td>false</td>
 <td>false</td>
 </tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">recipe_id</span></code></td>
+<td>The recipe that retrieved this
+Event. If missing, we assume
+the event is manually created</td>
+<td>false</td>
+<td>false</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5287,15 +5169,11 @@ Content Items.</td>
 <li><code class="docutils literal"><span class="pre">content_item_ids</span></code> - An array of content items to associate with this event.</li>
 <li><code class="docutils literal"><span class="pre">links</span></code> - An array of links you&#8217;d like to include when checking for matching Content Items</li>
 </ul>
-<p><em>Links</em></p>
-<p>While you can explicitly set <code class="docutils literal"><span class="pre">content_item_ids</span></code> and <code class="docutils literal"><span class="pre">links</span></code>, this method will also parse out
-all urls from the Event&#8217;s <code class="docutils literal"><span class="pre">body</span></code>, <code class="docutils literal"><span class="pre">title</span></code>, and <code class="docutils literal"><span class="pre">description</span></code> and attempt to reconcile these
-with your organization&#8217;s Content Items. Through this process, all short_urls will be unshortened and links will be canonicalized according to NewsLynx&#8217;s standards.  In practice this means that Recipes that create Events don&#8217;t need to worry too much about extracting links as this process will be handled by this method.</p>
 <p><em>Source IDs</em></p>
 <p>If you&#8217;re creating an event that&#8217;s associated with a <code class="docutils literal"><span class="pre">recipe_id</span></code>, it&#8217;s also imperative that you pass in a <code class="docutils literal"><span class="pre">source_id</span></code>. We use this field to ensure that no duplicate events are created and also
-to make sure that Events that have been previously <code class="docutils literal"><span class="pre">deleted</span></code> are not re-created by a recipe which polls a data source. If you include a <code class="docutils literal"><span class="pre">recipe_id</span></code> in the post of the body, the <code class="docutils literal"><span class="pre">source_id</span></code> you pass in will be prefixed by the slug of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.</p>
+to make sure that Events that have been previously <code class="docutils literal"><span class="pre">deleted</span></code> are not re-created by a recipe which is continuously polling a data source. If you include a <code class="docutils literal"><span class="pre">recipe_id</span></code> as a query string, the <code class="docutils literal"><span class="pre">source_id</span></code> you pass in will be prefixed by the <code class="docutils literal"><span class="pre">slug</span></code> of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.</p>
 <p><em>Dates</em></p>
-<p>If you wish to specify a <code class="docutils literal"><span class="pre">created</span></code> for an event, just pass it in as <a class="reference external" href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a> date string. If you include a UTC-Offset, it will be properly convered to UTC. Otherwise it will be assumed to be UTC. If you don&#8217;t pass in a <code class="docutils literal"><span class="pre">created</span></code> field, it will be set as the time the Event was created.</p>
+<p>If you wish to specify a <code class="docutils literal"><span class="pre">created</span></code> for an event, just pass it in as <a class="reference external" href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a> date string. If you include a UTC-Offset, it will be properly convered to UTC. Otherwise it will be assumed to be UTC. If you don&#8217;t pass in a <code class="docutils literal"><span class="pre">created</span></code> field, it will be set as the time the Event was ingested.</p>
 <p><em>Provenance</em></p>
 <p>Events created by recipes (AKA: Events that pass a <code class="docutils literal"><span class="pre">recipe_id</span></code> to the method) will be assigned a <code class="docutils literal"><span class="pre">provenance</span></code> of <code class="docutils literal"><span class="pre">recipe</span></code>. All other events are assumed to have been created manually and will be assigned a <code class="docutils literal"><span class="pre">provenance</span></code> of <code class="docutils literal"><span class="pre">manual</span></code></p>
 <p><em>Meta Fields</em></p>
@@ -5307,26 +5185,10 @@ to make sure that Events that have been previously <code class="docutils literal
 </div>
 <div class="section" id="id199">
 <h5>Examples<a class="headerlink" href="#id199" title="Permalink to this headline">¶</a></h5>
-<p>Create a <code class="docutils literal"><span class="pre">pending</span></code> event with a <code class="docutils literal"><span class="pre">provenance</span></code> of <code class="docutils literal"><span class="pre">manual</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;title=Something Happened&quot;</span> <span class="se">\</span>
-  http://localhost:5000/api/v1/events<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
-</pre></div>
-</div>
-<p>Create a <code class="docutils literal"><span class="pre">pending</span></code> event with a <code class="docutils literal"><span class="pre">provenance</span></code> of <code class="docutils literal"><span class="pre">recipe</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;title=Something Happened&amp;recipe_id=1&amp;source_id=dlakjdalfds&quot;</span> <span class="se">\</span>
-  http://localhost:5000/api/v1/events<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
-</pre></div>
-</div>
-<p>Create a <code class="docutils literal"><span class="pre">pending</span></code> event with a <code class="docutils literal"><span class="pre">provenance</span></code> of <code class="docutils literal"><span class="pre">recipe</span></code> and a <code class="docutils literal"><span class="pre">meta</span></code> field</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;title=Something Happened&amp;recipe_id=1&amp;source_id=dlakjdalfds&amp;some_field=foo&quot;</span> <span class="se">\</span>
-http://localhost:5000/api/v1/events<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
-</pre></div>
-</div>
 <p>Create an <code class="docutils literal"><span class="pre">approved</span></code> event associated with specific <code class="docutils literal"><span class="pre">content_item_ids</span></code> and <code class="docutils literal"><span class="pre">tag_ids</span></code></p>
 <p>First, create a file like this and save it as <code class="docutils literal"><span class="pre">event.json</span></code></p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;source_id&quot;</span><span class="o">:</span> <span class="s2">&quot;fdslakfjdaslkfjasdlkaf&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;recipe_id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Something else happened.&quot;</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;This was crazy!&quot;</span><span class="p">,</span>
   <span class="s2">&quot;body&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;p&gt; This is the transcript of what happened&lt;/p&gt;&quot;</span><span class="p">,</span>
@@ -5336,14 +5198,27 @@ http://localhost:5000/api/v1/events<span class="se">\?</span><span class="nv">ap
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Now run this command:</p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X POST <span class="se">\</span>
      -H <span class="s1">&#39;Content-Type:application/json&#39;</span> <span class="se">\</span>
      --data-binary @event.json <span class="se">\</span>
-     http://localhost:5000/api/v1/events<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+    http://localhost:5000/api/v1/events<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>?recipe_id<span class="o">=</span>1
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">status</span></code> returned should be <code class="docutils literal"><span class="pre">approved</span></code>.</p>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events create --data<span class="o">=</span>event.json <span class="nv">recipe_id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;event.json&#39;</span><span class="p">))</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="get-events-event-id">
@@ -5394,7 +5269,19 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id202">
 <h5>Example<a class="headerlink" href="#id202" title="Permalink to this headline">¶</a></h5>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events get <span class="nv">id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5454,9 +5341,21 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id205">
 <h5>Examples<a class="headerlink" href="#id205" title="Permalink to this headline">¶</a></h5>
-<p>Update an event&#8217;s <code class="docutils literal"><span class="pre">description</span></code>.</p>
+<p>Update an event&#8217;s <code class="docutils literal"><span class="pre">description</span></code></p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;description=This is what happened&quot;</span> <span class="se">\</span>
 http://localhost:5000/api/v1/events/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events update <span class="nv">id</span><span class="o">=</span><span class="m">1</span> <span class="nv">description</span><span class="o">=</span><span class="s1">&#39;This is what happened&#39;</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s">&#39;This is what happened&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Approve an event by associating it with specific <code class="docutils literal"><span class="pre">content_item_ids</span></code> and <code class="docutils literal"><span class="pre">tag_ids</span></code> and
@@ -5469,11 +5368,25 @@ setting it&#8217;s status as <code class="docutils literal"><span class="pre">ap
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Now run this command:</p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT <span class="se">\</span>
      -H <span class="s1">&#39;Content-Type:application/json&#39;</span> <span class="se">\</span>
      --data-binary @event.json <span class="se">\</span>
      http://localhost:5000/api/v1/events/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events update <span class="nv">id</span><span class="o">=</span><span class="m">1</span> --data<span class="o">=</span>event.json
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;event.json&#39;</span><span class="p">))</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">event</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5527,18 +5440,42 @@ wish to access.</td>
 <div class="section" id="id208">
 <h5>Examples<a class="headerlink" href="#id208" title="Permalink to this headline">¶</a></h5>
 <p>Set an Event&#8217;s <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">deleted</span></code></p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
 </div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events delete <span class="nv">id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Permanently delete an Event.</p>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>force<span class="se">\=</span><span class="nb">true</span><span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events delete <span class="nv">id</span><span class="o">=</span><span class="m">1</span> <span class="nv">force</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="put-events-event-id-tags-tag-id">
 <span id="endpoints-events-add-tag"></span><h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/events/:event_id/tags/:tag_id</span></code><a class="headerlink" href="#put-events-event-id-tags-tag-id" title="Permalink to this headline">¶</a></h4>
-<p>Add a tag to an event.</p>
+<p>Add a Tag to an Event.</p>
 <dl class="docutils">
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
@@ -5591,18 +5528,30 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id211">
 <h5>Example<a class="headerlink" href="#id211" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/events/2/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/events/2/tag/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events add-tag <span class="nv">id</span><span class="o">=</span><span class="m">2</span> <span class="nv">tag_id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">add_tag</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="delete-events-event-id-tags-tag-id">
 <span id="endpoints-events-remove-tag"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/events/:event_id/tags/:tag_id</span></code><a class="headerlink" href="#delete-events-event-id-tags-tag-id" title="Permalink to this headline">¶</a></h4>
-<p>Remove an associated Content Item from an Event.</p>
+<p>Remove an associated Tag from an Event.</p>
 <dl class="docutils">
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
-<li>Events must first be &#8220;approved&#8221; before removing Tags.</li>
+<li>Events must first be &#8220;approved&#8221; before removing Tags</li>
 </ul>
 </dd>
 </dl>
@@ -5651,7 +5600,19 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id214">
 <h5>Example<a class="headerlink" href="#id214" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/2/tags/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/2/tag/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events remove-tag <span class="nv">id</span><span class="o">=</span><span class="m">2</span> <span class="nv">tag_id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">remove_tag</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5711,7 +5672,19 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id217">
 <h5>Example<a class="headerlink" href="#id217" title="Permalink to this headline">¶</a></h5>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/events/2/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events add-content-item <span class="nv">id</span><span class="o">=</span><span class="m">2</span> <span class="nv">content_item_id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">add_content_item</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5771,7 +5744,19 @@ dates will be returned in UTC.</td>
 </div>
 <div class="section" id="id220">
 <h5>Example<a class="headerlink" href="#id220" title="Permalink to this headline">¶</a></h5>
+<p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/2/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api events remove-content-item <span class="nv">id</span><span class="o">=</span><span class="m">2</span> <span class="nv">content_item_id</span><span class="o">=</span>1
+</pre></div>
+</div>
+<p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">remove_content_item</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6049,7 +6034,7 @@ it.</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">sous_chefs</span></code></td>
 <td>A comma-separated list of
-<code class="docutils literal"><span class="pre">sous_chef</span></code> slugs to filter
+Sous Chef slugs to filter
 results by. Preface any element
 with <strong>!</strong> or <strong>-</strong> to exclude
 it.</td>
@@ -6091,14 +6076,14 @@ in the response. Choose from
 <h5>Returns<a class="headerlink" href="#id224" title="Permalink to this headline">¶</a></h5>
 <p>The Content Items search endpoint will always return helpful pagination information. Including</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">first</span></code> - The first page of the response.</li>
-<li><code class="docutils literal"><span class="pre">last</span></code> - The last page of the response.</li>
-<li><code class="docutils literal"><span class="pre">next</span></code> - The next page of the response (unless the last page is returned)</li>
-<li><code class="docutils literal"><span class="pre">prev</span></code> - The previous page of the response (unless the first page is returned)</li>
-<li><code class="docutils literal"><span class="pre">page</span></code> - The current page.</li>
+<li><code class="docutils literal"><span class="pre">first</span></code> - The first page of the response as a URL.</li>
+<li><code class="docutils literal"><span class="pre">last</span></code> - The last page of the response as a URL.</li>
+<li><code class="docutils literal"><span class="pre">next</span></code> - The next page of the response (unless the last page is returned) as a URL.</li>
+<li><code class="docutils literal"><span class="pre">prev</span></code> - The previous page of the response (unless the first page is returned) as a URL.</li>
+<li><code class="docutils literal"><span class="pre">page</span></code> - The current page number.</li>
 <li><code class="docutils literal"><span class="pre">per_page</span></code> - The number of results per page.</li>
+<li><code class="docutils literal"><span class="pre">total</span></code> - The total number of pages returned.</li>
 </ul>
-<p>It will also always return the <code class="docutils literal"><span class="pre">total</span></code> number of results for all pages.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;pagination&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;last&quot;</span><span class="o">:</span> <span class="s2">&quot;http://localhost:5000/api/v1/events?org=1&amp;apikey=key&amp;page=5&amp;provenance=recipe&quot;</span><span class="p">,</span>
