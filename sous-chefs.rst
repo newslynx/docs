@@ -148,10 +148,11 @@ Sous Chefs can specify as many options as they require.  These options can be pa
     - ``description``
         - A description of this option to display on form hover.
 
-Defaults
+Default Options
 ++++++++++++++++++++
 
 All Sous Chefs come with the following default options. These exist for aiding in the creation and scheduling of :ref:`recipes`.
+For more information on how these options affect when a Sous Chef is executed, refer to the :ref:`recipes-scheduling` docs.
 
 .. code-block:: yaml
 
