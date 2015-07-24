@@ -157,11 +157,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#settings"><strong>Settings</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#setting-json">Setting JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#post-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#delete-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-level-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-level-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-level-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-level-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-level-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#authorizations"><strong>Authorizations</strong></a><ul>
@@ -458,7 +458,7 @@
 <dt><code class="docutils literal"><span class="pre">metrics</span></code></dt>
 <dd><ul class="first last simple">
 <li>The Metrics this Sous Chef creates.</li>
-<li><em>Optional</em> (unless the Sous Chef creates <span class="xref std std-ref">&lt;metrics&gt;</span>).</li>
+<li><em>Optional</em> (unless the Sous Chef creates <a class="reference internal" href="metrics.html#metrics"><span>Metrics</span></a>).</li>
 </ul>
 </dd>
 </dl>
@@ -890,7 +890,7 @@
 </div>
 <div class="section" id="configuring-metrics">
 <h2>Configuring Metrics<a class="headerlink" href="#configuring-metrics" title="Permalink to this headline">¶</a></h2>
-<p>Sous Chefs which create metrics must also specify the schema of the metrics they create. This schema is specified in the <span class="xref std std-ref">&lt;metrics&gt;</span> docs.</p>
+<p>Sous Chefs which create metrics must also specify the schema of the metrics they create. This schema is specified in the <a class="reference internal" href="metrics.html#metrics"><span>Metrics</span></a> docs.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>

@@ -98,6 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#defaults">Defaults</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search">Search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-metrics">Configuring Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#examples">Examples</a></li>
@@ -156,11 +157,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#settings"><strong>Settings</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#setting-json">Setting JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#get-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#post-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#get-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#put-patch-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#delete-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-level-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-level-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-level-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-patch-level-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-level-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#authorizations"><strong>Authorizations</strong></a><ul>
@@ -1430,13 +1431,19 @@ affiliations.</td>
 </div>
 <div class="section" id="settings">
 <span id="endpoints-settings"></span><h3><strong>Settings</strong><a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>Settings</strong> API enables the creation / updating / deleting of arbitrary settings associated with an organization. The settings collection is key/value store which can grow with the complexity of the application.</p>
+<p>The <strong>Settings</strong> API enables the creation / updating / deleting of arbitrary settings associated with an organization or user. The settings collection is key/value store which can grow with the complexity of the application.</p>
+<p>** NOTE ** : Settings can be nested under the <a class="reference internal" href="#endpoints-orgs"><span>Organizations</span></a> and <span class="xref std std-ref">endpoints-users</span> collections.  To route a setting to it&#8217;s proper collection, just place its <code class="docutils literal"><span class="pre">level</span></code> in the url. These are the current collections which can have settings:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/orgs/settings</span></code>  Handles organization-level settings.</li>
+<li><code class="docutils literal"><span class="pre">/me/settings</span></code> Handles settings for the authenticated user.</li>
+</ul>
 <div class="section" id="setting-json">
 <span id="endpoints-settings-json"></span><h4>Setting JSON<a class="headerlink" href="#setting-json" title="Permalink to this headline">¶</a></h4>
 <p>All methods, unless otherwise specified, will return one or many setting objects of the following <code class="docutils literal"><span class="pre">json</span></code> schema:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;logo_image&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;orgs&quot;</span><span class="p">,</span>
     <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;http://example.com/mylogo.png&quot;</span><span class="p">,</span>
     <span class="s2">&quot;json_value&quot;</span><span class="o">:</span> <span class="kc">false</span>
 <span class="p">}</span>
@@ -1446,15 +1453,16 @@ affiliations.</td>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;short_domains&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;orgs&quot;</span><span class="p">,</span>
     <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;prplp.tn&quot;</span><span class="p">,</span> <span class="s2">&quot;3mpi.re&quot;</span><span class="p">],</span>
     <span class="s2">&quot;json_value&quot;</span><span class="o">:</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="get-settings">
-<span id="endpoints-settings-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings</span></code><a class="headerlink" href="#get-settings" title="Permalink to this headline">¶</a></h4>
-<p>Get a list of an organization&#8217;s settings.</p>
+<div class="section" id="get-level-settings">
+<span id="endpoints-settings-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code><a class="headerlink" href="#get-level-settings" title="Permalink to this headline">¶</a></h4>
+<p>Get a list of an user / organziation settings.</p>
 <div class="section" id="id47">
 <h5>Params<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
@@ -1501,7 +1509,7 @@ dates will be returned in UTC.</td>
 <div class="section" id="id49">
 <h5>Example<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/settings<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/settings<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
@@ -1517,8 +1525,8 @@ dates will be returned in UTC.</td>
 </div>
 </div>
 </div>
-<div class="section" id="post-settings">
-<span id="endpoints-settings-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/settings</span></code><a class="headerlink" href="#post-settings" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="post-level-settings">
+<span id="endpoints-settings-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code><a class="headerlink" href="#post-level-settings" title="Permalink to this headline">¶</a></h4>
 <p>Add a setting to an organization.</p>
 <div class="section" id="id50">
 <h5>Params<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h5>
@@ -1572,7 +1580,7 @@ dates will be returned in UTC.</td>
 <p>Create a simple setting.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;name=icon&amp;value=http://example.com/mylogo.png&quot;</span> <span class="se">\</span>
-http://localhost:5000/api/v1/settings<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+http://localhost:5000/api/v1/orgs/settings<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
@@ -1589,7 +1597,7 @@ http://localhost:5000/api/v1/settings<span class="se">\?</span><span class="nv">
 <p>Create a <code class="docutils literal"><span class="pre">json</span></code> setting.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;name=short_urls&amp;value=[\&quot;prplt.in\&quot;]&amp;json_value=true&quot;</span> <span class="se">\</span>
-http://localhost:5000/api/v1/settings<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+http://localhost:5000/api/v1/orgs/settings<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
@@ -1605,8 +1613,8 @@ http://localhost:5000/api/v1/settings<span class="se">\?</span><span class="nv">
 </div>
 </div>
 </div>
-<div class="section" id="get-settings-setting-id">
-<span id="endpoints-settings-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code><a class="headerlink" href="#get-settings-setting-id" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="get-level-settings-setting-id">
+<span id="endpoints-settings-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code><a class="headerlink" href="#get-level-settings-setting-id" title="Permalink to this headline">¶</a></h4>
 <p>Get an organization&#8217;s setting by it&#8217;s name.</p>
 <dl class="docutils">
 <dt><strong>NOTE</strong>:</dt>
@@ -1661,7 +1669,7 @@ dates will be returned in UTC.</td>
 <div class="section" id="id56">
 <h5>Example<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
@@ -1677,8 +1685,8 @@ dates will be returned in UTC.</td>
 </div>
 </div>
 </div>
-<div class="section" id="put-patch-settings-setting-id">
-<span id="endpoints-settings-update"></span><h4><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code><a class="headerlink" href="#put-patch-settings-setting-id" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="put-patch-level-settings-setting-id">
+<span id="endpoints-settings-update"></span><h4><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code><a class="headerlink" href="#put-patch-level-settings-setting-id" title="Permalink to this headline">¶</a></h4>
 <p>Update a setting for an organization.</p>
 <dl class="docutils">
 <dt><strong>NOTE</strong>:</dt>
@@ -1739,7 +1747,7 @@ dates will be returned in UTC.</td>
 <p>Update a setting.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;value=[\&quot;zzzz.in\&quot;]&quot;</span> -d <span class="s2">&quot;json_value=true&quot;</span> <span class="se">\</span>
-http://localhost:5000/api/v1/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+http://localhost:5000/api/v1/orgs/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
@@ -1755,8 +1763,8 @@ http://localhost:5000/api/v1/settings/short_urls<span class="se">\?</span><span 
 </div>
 </div>
 </div>
-<div class="section" id="delete-settings-setting-id">
-<span id="endpoints-settings-delete"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code><a class="headerlink" href="#delete-settings-setting-id" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="delete-level-settings-setting-id">
+<span id="endpoints-settings-delete"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code><a class="headerlink" href="#delete-level-settings-setting-id" title="Permalink to this headline">¶</a></h4>
 <p>Delete an organization&#8217;s setting by it&#8217;s name.</p>
 <dl class="docutils">
 <dt><strong>NOTE</strong>:</dt>
@@ -1803,7 +1811,7 @@ wish to access.</td>
 </div>
 <div class="section" id="id63">
 <h5>Example<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/orgs/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>

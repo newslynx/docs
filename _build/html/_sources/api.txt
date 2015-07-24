@@ -1053,7 +1053,12 @@ Via ``python``
 **Settings**
 ++++++++++++++++++
 
-The **Settings** API enables the creation / updating / deleting of arbitrary settings associated with an organization. The settings collection is key/value store which can grow with the complexity of the application. 
+The **Settings** API enables the creation / updating / deleting of arbitrary settings associated with an organization or user. The settings collection is key/value store which can grow with the complexity of the application. 
+
+** NOTE ** : Settings can be nested under the :ref:`endpoints-orgs` and :ref:`endpoints-users` collections.  To route a setting to it's proper collection, just place its ``level`` in the url. These are the current collections which can have settings:
+
+* ``/orgs/settings``  Handles organization-level settings.
+* ``/me/settings`` Handles settings for the authenticated user.
 
 
 .. _endpoints-settings-json:
@@ -1068,6 +1073,7 @@ All methods, unless otherwise specified, will return one or many setting objects
     {
         "id": 1,
         "name": "logo_image",
+        "level": "orgs",
         "value": "http://example.com/mylogo.png",
         "json_value": false
     }
@@ -1079,16 +1085,17 @@ If a setting has been declared as having a ``json_value``, it will be parsed as 
     {
         "id": 1,
         "name": "short_domains",
+        "level": "orgs",
         "value": ["prplp.tn", "3mpi.re"],
         "json_value": true
     }
 
 .. _endpoints-settings-list:
 
-**GET** ``/settings``
+**GET** ``/:level/settings``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Get a list of an organization's settings.
+Get a list of an user / organziation settings.
 
 Params
 ******
@@ -1120,7 +1127,7 @@ Via ``CuRL``
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/orgs/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Via ``newslynx``
 
@@ -1140,7 +1147,7 @@ Via ``python``
 
 .. _endpoints-settings-create:
 
-**POST** ``/settings``
+**POST** ``/:level/settings``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Add a setting to an organization.
@@ -1183,7 +1190,7 @@ Via ``CuRL``
 .. code-block:: bash
     
     $ curl --data "name=icon&value=http://example.com/mylogo.png" \
-    http://localhost:5000/api/v1/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
+    http://localhost:5000/api/v1/orgs/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Via ``newslynx``
 
@@ -1207,7 +1214,7 @@ Via ``CuRL``
 .. code-block:: bash
     
     $ curl --data "name=short_urls&value=[\"prplt.in\"]&json_value=true" \
-    http://localhost:5000/api/v1/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
+    http://localhost:5000/api/v1/orgs/settings\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Via ``newslynx``
 
@@ -1226,7 +1233,7 @@ Via ``python``
 
 .. _endpoints-settings-get:
 
-**GET** ``/settings/:setting_id``
+**GET** ``/:level/settings/:setting_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Get an organization's setting by it's name.
@@ -1264,7 +1271,7 @@ Via ``CuRL``
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl http://localhost:5000/api/v1/orgs/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Via ``newslynx``
 
@@ -1284,7 +1291,7 @@ Via ``python``
 
 .. _endpoints-settings-update:
 
-**PUT** | **PATCH** ``/settings/:setting_id``
+**PUT** | **PATCH** ``/:level/settings/:setting_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Update a setting for an organization.
@@ -1330,7 +1337,7 @@ Via ``CuRL``
 .. code-block:: bash
 
     $ curl -X PUT -d "value=[\"zzzz.in\"]" -d "json_value=true" \
-    http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
+    http://localhost:5000/api/v1/orgs/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Via ``newslynx``
 
@@ -1349,7 +1356,7 @@ Via ``python``
 
 .. _endpoints-settings-delete:
 
-**DELETE** ``/settings/:setting_id``
+**DELETE** ``/:level/settings/:setting_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Delete an organization's setting by it's name.
@@ -1382,7 +1389,7 @@ Example
 
 .. code-block:: bash
     
-    $ curl -X DELETE http://localhost:5000/api/v1/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
+    $ curl -X DELETE http://localhost:5000/api/v1/orgs/settings/short_urls\?apikey=$NEWSLYNX_APIKEY\&org=1
 
 Via ``newslynx``
 
@@ -3732,6 +3739,7 @@ Via ``python``
 ++++++++++++++++++
 
 The **Authors** API enables the creation, update, and deletion of Authors. It also enables programmatic access to the creation and modification of associations between authors and content items. 
+
 
 .. _endpoints-authors-json:
 

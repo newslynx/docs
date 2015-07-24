@@ -71,7 +71,7 @@ All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follo
     - *Optional* (if this Sous Chef's behavior should not be modified).
 * ``metrics``
     - The Metrics this Sous Chef creates.
-    - *Optional* (unless the Sous Chef creates :ref:`<metrics>`).
+    - *Optional* (unless the Sous Chef creates :ref:`metrics`).
 
 Options
 ++++++++++++++++++++
@@ -267,7 +267,7 @@ As mentioned above, Sous Chefs can accept options with a value type of ``searchs
 Configuring Metrics
 ++++++++++++++++++++
 
-Sous Chefs which create metrics must also specify the schema of the metrics they create. This schema is specified in the :ref:`<metrics>` docs.
+Sous Chefs which create metrics must also specify the schema of the metrics they create. This schema is specified in the :ref:`metrics` docs.
 
 Examples 
 ++++++++++++++
