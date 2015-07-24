@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NewsLynx API &mdash; newslynx 1.0.0 documentation</title>
+  <title>NewsLynx API &mdash; newslynx 1.0.1 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.0 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0.1 documentation" href="index.html"/>
         <link rel="next" title="NewsLynx App Architecture" href="app.html"/>
         <link rel="prev" title="Events" href="events.html"/> 
 
@@ -86,6 +86,7 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
@@ -94,11 +95,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#creates">Creates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#runners">Runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-metrics">Configuring Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html#schema">Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
@@ -243,6 +249,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#bulk-creation"><strong>Bulk Creation</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jobs"><strong>Jobs</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#compression"><strong>Compression</strong></a></li>
@@ -290,7 +298,7 @@
             
   <div class="section" id="newslynx-api">
 <span id="api"></span><h1>NewsLynx API<a class="headerlink" href="#newslynx-api" title="Permalink to this headline">¶</a></h1>
-<p>All of <strong>NewsLynx</strong>&#8216;s functionality is exposed through a <a class="reference external" href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> API.  This API is mirrored through a built-in command line interface – <code class="docutils literal"><span class="pre">newslynx</span></code> (or if you prefer to be 1337, <code class="docutils literal"><span class="pre">nlx</span></code>) – and <code class="docutils literal"><span class="pre">python</span></code> client – <code class="docutils literal"><span class="pre">newslynx.client.API</span></code> –  as well.  The following guide will walk you through all of the the API&#8217;s functionalities with accompanying examples for <code class="docutils literal"><span class="pre">python</span></code>, the <code class="docutils literal"><span class="pre">newslynx</span></code>, and <code class="docutils literal"><span class="pre">CuRL</span></code>.</p>
+<p>All of <strong>NewsLynx</strong>&#8216;s functionality is exposed through a <a class="reference external" href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> API.  This API is mirrored through a built-in command line interface – <code class="docutils literal"><span class="pre">newslynx</span></code> (or if you prefer to be 1337, <code class="docutils literal"><span class="pre">nlx</span></code>) – and <code class="docutils literal"><span class="pre">python</span></code> client – <code class="docutils literal"><span class="pre">newslynx.client.API</span></code> –  as well.  The following guide will walk you through all of the the API&#8217;s functionalities with accompanying examples for <code class="docutils literal"><span class="pre">python</span></code>, <code class="docutils literal"><span class="pre">newslynx</span></code>, and <code class="docutils literal"><span class="pre">CuRL</span></code>.</p>
 <div class="section" id="authentication">
 <h2><strong>Authentication</strong><a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="api-keys">
@@ -751,7 +759,7 @@ http://localhost:5000/api/v1/me<span class="se">\?</span><span class="nv">apikey
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">me</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orgs</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -760,7 +768,7 @@ http://localhost:5000/api/v1/me<span class="se">\?</span><span class="nv">apikey
 <span id="endpoints-orgs-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/orgs</span></code><a class="headerlink" href="#post-orgs" title="Permalink to this headline">¶</a></h4>
 <p>Create an organization. This will also add the requesting user to that organization.</p>
 <dl class="docutils">
-<dt><strong>NOTE</strong>:</dt>
+<dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>Requires admin/super user privileges.</li>
 <li>Will simultaneously create all built-in SousChefs, Metrics, default Recipes and
@@ -840,7 +848,7 @@ http://localhost:5000/api/v1/orgs<span class="se">\?</span><span class="nv">apik
 <span id="endpoints-orgs-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id</span></code><a class="headerlink" href="#get-orgs-org-id" title="Permalink to this headline">¶</a></h4>
 <p>Fetch an organization object.</p>
 <dl class="docutils">
-<dt><strong>NOTE</strong>:</dt>
+<dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 </ul>
@@ -909,7 +917,7 @@ must always be <code class="docutils literal"><span class="pre">id</span></code>
 <span id="endpoints-orgs-update"></span><h4><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id</span></code><a class="headerlink" href="#put-patch-orgs-org-id" title="Permalink to this headline">¶</a></h4>
 <p>Change an organization&#8217;s <code class="docutils literal"><span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">slug</span></code> and/or <code class="docutils literal"><span class="pre">timezone</span></code>.</p>
 <dl class="docutils">
-<dt><strong>NOTE</strong>:</dt>
+<dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
 <li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s (current) <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
@@ -991,7 +999,7 @@ http://localhost:5000/api/v1/orgs/1<span class="se">\?</span><span class="nv">ap
 <span id="endpoints-orgs-delete"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id</span></code><a class="headerlink" href="#delete-orgs-org-id" title="Permalink to this headline">¶</a></h4>
 <p>Delete an organization and all of it&#8217;s associated collections.</p>
 <dl class="docutils">
-<dt><strong>NOTE</strong>:</dt>
+<dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
 <li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
@@ -1063,7 +1071,7 @@ in UTC.</td>
 <span id="endpoints-orgs-users-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users</span></code><a class="headerlink" href="#get-orgs-org-id-users" title="Permalink to this headline">¶</a></h4>
 <p>Fetch all users associated with an organization.</p>
 <dl class="docutils">
-<dt><strong>NOTE</strong>:</dt>
+<dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 </ul>
@@ -1130,7 +1138,7 @@ in UTC.</td>
 <span id="endpoints-orgs-users-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users</span></code><a class="headerlink" href="#post-orgs-org-id-users" title="Permalink to this headline">¶</a></h4>
 <p>Create a new user under an organization.</p>
 <dl class="docutils">
-<dt><strong>NOTE</strong>:</dt>
+<dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
 <li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
@@ -1214,7 +1222,7 @@ http://localhost:5000/api/v1/orgs/1/users<span class="se">\?</span><span class="
 <span id="endpoints-orgs-users-get-user"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users/:user_id</span></code><a class="headerlink" href="#get-orgs-org-id-users-user-id" title="Permalink to this headline">¶</a></h4>
 <p>Fetch a user that belongs to a given organization.</p>
 <dl class="docutils">
-<dt><strong>NOTE</strong>:</dt>
+<dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 <li>You can pass in either an user&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or his/her <code class="docutils literal"><span class="pre">email</span></code> to this endpoint.</li>
@@ -2033,7 +2041,7 @@ location with the added query string parameter <code class="docutils literal"><s
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api auths grant <span class="nv">service</span><span class="o">=</span>google-analytics
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: Will open up a browser to the specified url and run you through the authorization process.</p>
+<p><strong>NOTE</strong> Will open up a browser to the specified url and run you through the authorization process.</p>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
@@ -2041,7 +2049,7 @@ location with the added query string parameter <code class="docutils literal"><s
 <span class="n">api</span><span class="o">.</span><span class="n">auths</span><span class="o">.</span><span class="n">grant</span><span class="p">(</span><span class="s">&quot;google-analytics&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: Will open up a browser to the specified url and run you through the authorization process.</p>
+<p><strong>NOTE</strong> Will open up a browser to the specified url and run you through the authorization process.</p>
 </div>
 </div>
 <div class="section" id="get-auths-google-analytics-revoke">
@@ -2231,7 +2239,7 @@ location with the added query string parameter <code class="docutils literal"><s
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api auths grant <span class="nv">service</span><span class="o">=</span>twitter
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: Will open up a browser to the specified url and run you through the authorization process.</p>
+<p><strong>NOTE</strong> Will open up a browser to the specified url and run you through the authorization process.</p>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
@@ -2239,7 +2247,7 @@ location with the added query string parameter <code class="docutils literal"><s
 <span class="n">api</span><span class="o">.</span><span class="n">auths</span><span class="o">.</span><span class="n">grant</span><span class="p">(</span><span class="s">&quot;twitter&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: Will open up a browser to the specified url and run you through the authorization process.</p>
+<p><strong>NOTE</strong> Will open up a browser to the specified url and run you through the authorization process.</p>
 </div>
 </div>
 <div class="section" id="get-auths-twitter-revoke">
@@ -2429,7 +2437,7 @@ location with the added query string parameter <code class="docutils literal"><s
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api auths grant <span class="nv">service</span><span class="o">=</span>facebook
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: Will open up a browser to the specified url and run you through the authorization process.</p>
+<p><strong>NOTE</strong> Will open up a browser to the specified url and run you through the authorization process.</p>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
@@ -2437,7 +2445,7 @@ location with the added query string parameter <code class="docutils literal"><s
 <span class="n">api</span><span class="o">.</span><span class="n">auths</span><span class="o">.</span><span class="n">grant</span><span class="p">(</span><span class="s">&quot;facebook&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: Will open up a browser to the specified url and run you through the authorization process.</p>
+<p><strong>NOTE</strong> Will open up a browser to the specified url and run you through the authorization process.</p>
 </div>
 </div>
 <div class="section" id="get-auths-facebook-revoke">
@@ -3190,7 +3198,7 @@ dates will be returned in UTC.</td>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">is_command</span></code></td>
 <td>Whether this is runs a
 non-python script
-See <a class="reference internal" href="sous-chefs.html#sous-chefs-runners"><span>Runners</span></a></td>
+See <span class="xref std std-ref">sous-chefs-runners</span></td>
 <td>null</td>
 <td>false</td>
 </tr>
@@ -3198,7 +3206,7 @@ See <a class="reference internal" href="sous-chefs.html#sous-chefs-runners"><spa
 <td><dl class="first last docutils">
 <dt>The collection this SousChef</dt>
 <dd>creates.
-See <a class="reference internal" href="sous-chefs.html#sous-chefs-creates"><span>Creates</span></a></dd>
+See <span class="xref std std-ref">sous-chefs-creates</span></dd>
 </dl>
 </td>
 <td>all</td>
@@ -4421,7 +4429,7 @@ http://localhost:5000/api/v1/metrics/ga_entrances<span class="se">\?</span>org<s
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: All Author <a href="#id165"><span class="problematic" id="id166">``</span></a>name``s are stored in ALL CAPS to help prevent duplication.</p>
+<p><strong>NOTE</strong> All Author <a href="#id165"><span class="problematic" id="id166">``</span></a>name``s are stored in ALL CAPS to help prevent duplication.</p>
 </div>
 <div class="section" id="get-authors">
 <span id="endpoints-authors-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors</span></code><a class="headerlink" href="#get-authors" title="Permalink to this headline">¶</a></h4>
@@ -6501,6 +6509,14 @@ dates will be returned in UTC.</td>
 </div>
 </div>
 </div>
+<div class="section" id="bulk-creation">
+<span id="endpoints-bulk"></span><h3><strong>Bulk Creation</strong><a class="headerlink" href="#bulk-creation" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Bulk Creation API</strong> API enables efficient upsert of new Metrics, Content Items, and Events.  This endpoint is designed to help SousChefs effectively bring data into NewsLynx. All methods are executed within a Task queue and return references to the :ref: <cite>endpoints-jobs</cite> API.</p>
+</div>
+<div class="section" id="jobs">
+<span id="endpoints-jobs"></span><h3><strong>Jobs</strong><a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Jobs</strong> API enables the monitoring of processes executed in the Task Queue.</p>
+</div>
 </div>
 <div class="section" id="compression">
 <span id="id247"></span><h2><strong>Compression</strong><a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h2>
@@ -6547,7 +6563,7 @@ dates will be returned in UTC.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0',
+            VERSION:'1.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

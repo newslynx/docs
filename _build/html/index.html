@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NewsLynx: own your analytics &mdash; newslynx 1.0.0 documentation</title>
+  <title>NewsLynx: own your analytics &mdash; newslynx 1.0.1 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.0 documentation" href="#"/>
+    <link rel="top" title="newslynx 1.0.1 documentation" href="#"/>
         <link rel="next" title="Installation Guide" href="install.html"/> 
 
   
@@ -85,6 +85,7 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
@@ -93,11 +94,17 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#creates">Creates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#runners">Runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-metrics">Configuring Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html#schema">Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
@@ -242,6 +249,8 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#bulk-creation"><strong>Bulk Creation</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#jobs"><strong>Jobs</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#compression"><strong>Compression</strong></a></li>
@@ -291,7 +300,6 @@
 <div class="section" id="newslynx-own-your-analytics">
 <h1><strong>NewsLynx</strong>: own your analytics<a class="headerlink" href="#newslynx-own-your-analytics" title="Permalink to this headline">¶</a></h1>
 <p>NewsLynx is a research project from the Tow Center for Digital Journalism at Columbia University by Brian Abelson &amp; Michael Keller.</p>
-<p><strong>This documentation is being finalized and will be released end of July 2015.</strong></p>
 <p>Read our <a class="reference external" href="http://towcenter.org/wp-content/uploads/2015/06/Tow_Center_NewsLynx_Full_Report.pdf">white paper</a> (PDF, released June 2015) or the <a class="reference external" href="http://towcenter.org/research/the-newslynx-impact-tracker-produced-these-key-ideas/">Executive Summary</a> if you&#8217;re in a hurry. If you want more, you can read our project update posts that look at <a class="reference external" href="http://towcenter.org/hyper-compensation-ted-nelson-and-the-impact-of-journalism/">the problem of scraping the whole internet</a>, why <a class="reference external" href="http://towcenter.org/tow-fellows-brian-abelson-and-michael-keller-to-study-the-impact-of-journalism/">taxonomies are like Jorge Luis Borges</a> or read <a class="reference external" href="http://towcenter.org/the-newslynx-tool-for-impact-tracking-a-walkthrough/">a walkthrough of our initial prototype</a>.</p>
 <p>All of our code is open source and <a class="reference external" href="http://github.com/newslynx">on GitHub</a>. Please read license information before using or <a class="reference external" href="mailto:contact&#37;&#52;&#48;newslynx&#46;org">contact us</a> if you have questions. Happy Lynxing!</p>
 <div style="clear:both;"></div>
@@ -346,6 +354,7 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
@@ -354,11 +363,17 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#creates">Creates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#runners">Runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-metrics">Configuring Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html#schema">Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
@@ -397,6 +412,8 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#authors"><strong>Authors</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#events"><strong>Events</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#content-items"><strong>Content Items</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#bulk-creation"><strong>Bulk Creation</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#jobs"><strong>Jobs</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#compression"><strong>Compression</strong></a></li>
@@ -447,7 +464,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0',
+            VERSION:'1.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

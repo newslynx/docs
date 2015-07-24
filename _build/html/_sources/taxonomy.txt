@@ -3,6 +3,7 @@
 Taxonomy
 =============
 
+Documentation in progress...
 
 .. _taxonomy-tags:
 

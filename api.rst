@@ -4,7 +4,7 @@
 NewsLynx API
 ============
 
-All of **NewsLynx**'s functionality is exposed through a `RESTful <http://en.wikipedia.org/wiki/Representational_state_transfer>`_ API.  This API is mirrored through a built-in command line interface – ``newslynx`` (or if you prefer to be 1337, ``nlx``) – and ``python`` client – ``newslynx.client.API`` –  as well.  The following guide will walk you through all of the the API's functionalities with accompanying examples for ``python``, the ``newslynx``, and ``CuRL``.
+All of **NewsLynx**'s functionality is exposed through a `RESTful <http://en.wikipedia.org/wiki/Representational_state_transfer>`_ API.  This API is mirrored through a built-in command line interface – ``newslynx`` (or if you prefer to be 1337, ``nlx``) – and ``python`` client – ``newslynx.client.API`` –  as well.  The following guide will walk you through all of the the API's functionalities with accompanying examples for ``python``, ``newslynx``, and ``CuRL``.
 
 **Authentication**
 ------------------

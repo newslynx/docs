@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Metrics &mdash; newslynx 1.0.0 documentation</title>
+  <title>Metrics &mdash; newslynx 1.0.1 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.0 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0.1 documentation" href="index.html"/>
         <link rel="next" title="Recipes" href="recipes.html"/>
         <link rel="prev" title="Sous Chefs" href="sous-chefs.html"/> 
 
@@ -86,6 +86,7 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
@@ -94,11 +95,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#creates">Creates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#runners">Runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-metrics">Configuring Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#schema">Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
@@ -243,6 +249,8 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#bulk-creation"><strong>Bulk Creation</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#jobs"><strong>Jobs</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#compression"><strong>Compression</strong></a></li>
@@ -290,7 +298,31 @@
             
   <div class="section" id="metrics">
 <span id="id1"></span><h1>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h1>
-<p>Metrics are ...</p>
+<p>In our <a class="reference external" href="http://towcenter.org/wp-content/uploads/2015/06/Tow_Center_NewsLynx_Full_Report.pdf">white paper</a> (PDF, released June 2015), which had originally been focused on impact measurement, we were surprised to learn how important quantitative metrics were. More importantly, we came to understand how newsrooms were getting their numbers from a nearly infinite range of sources. Many newsrooms like <a class="reference external" href="https://github.com/nprapps/carebot">NPR</a> have even developed metrics that best reflect their unique understanding of their audience. A principal challenge in building NewsLynx was determining how best to collect, store, analayze, and present metrics in a way that allowed Newsrooms to focus on the metrics that mattered most to them.</p>
+<p>The system we devised adheres to the following standards:</p>
+<ol class="arabic simple">
+<li>While NewsLynx is an analytics platform, it is not a service for tracking events on sites.  NewsLynx exists in between analytics providers and their audiences as a tool which enables the curation and customization of metrics.</li>
+<li>For the reasons above, <strong>we do not store timeseries data more granular than hour</strong>. While this is configurable by setting <code class="docutils literal"><span class="pre">metrics_min_date_unit</span></code> and <code class="docutils literal"><span class="pre">metrics_min_date_value</span></code> in your <code class="docutils literal"><span class="pre">config.yaml</span></code>, its change is not encouraged.</li>
+<li>Metrics should be stored in the their rawest state but should be automatically summarized and compared.  The process from ingestion =&gt; summary =&gt; comparison should be both invisible to the user and effortlessly undone.</li>
+<li>While we should make no assumptions about the data source a user prefers, we should not have to constantly compromise the above standards to accomodate a particular data source.  With that in mind, we should have a schema for Metrics which, while rigid, is flexible enough to hadle 90% of use cases.  In the cases which this schema does not proove adequate, we should consider whether this particular use case is general enough before modifying the schema.</li>
+</ol>
+</div>
+<div class="section" id="schema">
+<h1>Schema<a class="headerlink" href="#schema" title="Permalink to this headline">¶</a></h1>
+<p>As described in the <span class="xref std std-ref">&lt;sous_chefs&gt;</span> docs, Metrics are exclusively defined by Sous Chefs. All Sous Chefs that create metrics must have the following section in their configuration:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l-Scalar-Plain">metrics</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">ga_pageviews</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">display_name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Pageviews</span>
+        <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">count</span>
+        <span class="l-Scalar-Plain">content_levels</span><span class="p-Indicator">:</span>
+            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">timeseries</span>
+            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">summary</span>
+            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">comparison</span>
+        <span class="l-Scalar-Plain">org_levels</span><span class="p-Indicator">:</span>
+            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">timeseries</span>
+            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">summary</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -332,7 +364,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0',
+            VERSION:'1.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

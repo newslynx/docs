@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sous Chefs &mdash; newslynx 1.0.0 documentation</title>
+  <title>Sous Chefs &mdash; newslynx 1.0.1 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.0 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0.1 documentation" href="index.html"/>
         <link rel="next" title="Metrics" href="metrics.html"/>
         <link rel="prev" title="Getting Started" href="getting-started.html"/> 
 
@@ -86,6 +86,7 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
@@ -94,11 +95,17 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Sous Chefs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#creates">Creates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#runners">Runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-sous-chefs">Writing Sous Chefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-metrics">Configuring Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html#schema">Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
@@ -243,6 +250,8 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#bulk-creation"><strong>Bulk Creation</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#jobs"><strong>Jobs</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#compression"><strong>Compression</strong></a></li>
@@ -290,11 +299,602 @@
             
   <div class="section" id="sous-chefs">
 <span id="id1"></span><h1>Sous Chefs<a class="headerlink" href="#sous-chefs" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="creates">
-<span id="sous-chefs-creates"></span><h2>Creates<a class="headerlink" href="#creates" title="Permalink to this headline">¶</a></h2>
+<p>NewsLynx is powered by Sous Chefs. Sous Chefs are small <code class="docutils literal"><span class="pre">python</span></code> scripts that can do almost anything to modify NewsLynx&#8217;s data via the API. We implemented NewsLynx this way for the following reasons:</p>
+<ol class="arabic simple">
+<li>Different Organizations value different Metrics and different Events. Locking all Organizations into a single framework ultimately inhibits them.  By making NewsLynx fully modular, we can account for many different potential use cases.</li>
+<li>Social networks and analytic providers come in and out of fashion. The landscape of online media is constantly in flux. While we might assume that most every media organization has a Google Analytics account and a Facebook page, this may not be the case next year.  By not assuming the primacy of any particular data source, Sous Chefs allows NewsLynx to grow and adapt to shfiting conditions.</li>
+<li>Certain Organizations may have internal CMS&#8217;s or Analytics tools which they have created internally.  Sous Chefs enables these organizations to import these sources into NewsLynx.</li>
+</ol>
+<div class="section" id="writing-sous-chefs">
+<h2>Writing Sous Chefs<a class="headerlink" href="#writing-sous-chefs" title="Permalink to this headline">¶</a></h2>
+<p>All Sous Chefs must inherit from the core <code class="docutils literal"><span class="pre">newslynx.sc.SousChef</span></code> class.  You can see the source code for this class <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py">here</a>.  Every Sous Chef can define the following methods:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">setup</span></code></dt>
+<dd><ul class="first last simple">
+<li>Configures the Sous Chef before executing it. This method can be used for authenticating wtih APIs or setting custom properties of the Sous Chef.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">run</span></code></dt>
+<dd><ul class="first last simple">
+<li>Executes the Sous Chef.  If this method is designed to bring data into NewsLynx, it should return a list or generator of dictionaries.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">load</span></code></dt>
+<dd><ul class="first last simple">
+<li>Loads data output from <code class="docutils literal"><span class="pre">run</span></code> into NewsLynx.  If this SousChef yields more than one record, it should utilize the <a class="reference internal" href="events.html#events"><span>Bulk API</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">teardown</span></code></dt>
+<dd><ul class="first last simple">
+<li>Do something after the Sous Chef finishes loading data.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>You can see examples of our internal Sous Chefs <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py">here</a>.</p>
 </div>
-<div class="section" id="runners">
-<span id="sous-chefs-runners"></span><h2>Runners<a class="headerlink" href="#runners" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>All Sous Chefs are configured via a <code class="docutils literal"><span class="pre">yaml</span></code> or <code class="docutils literal"><span class="pre">json</span></code> file. These files follow a <a class="reference external" href="http://jsonschema.org/">JSON schema</a> which is defined <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/models/sous_chef.yaml">here</a>. Every Sous Chef consists of the following configurations:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">name</span></code></dt>
+<dd><ul class="first last simple">
+<li>The display name of the Sous Chef.</li>
+<li><strong>Required</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">slug</span></code></dt>
+<dd><ul class="first last simple">
+<li>A unique slug for the Sous Chef. This can double as it&#8217;s ID in API calls.  Must only contain letters and dashes. In <code class="docutils literal"><span class="pre">regex</span></code>, this means: <code class="docutils literal"><span class="pre">'^[a-z][a-z\-]+[a-z]$'</span></code>.</li>
+<li><strong>Required</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">description</span></code></dt>
+<dd><ul class="first last simple">
+<li>A description of what this Sous Chef does.</li>
+<li><strong>Required</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">runs</span></code></dt>
+<dd><ul class="first last simple">
+<li>The <code class="docutils literal"><span class="pre">python</span></code> import path for the Sous Chef. For instance, if you built a <code class="docutils literal"><span class="pre">python</span></code> module named <code class="docutils literal"><span class="pre">my_sous_chef</span></code>, this might take the value of <code class="docutils literal"><span class="pre">my_sous_chef.SousChef</span></code>.  The class at the end of the import path must inherit from the core <code class="docutils literal"><span class="pre">newslynx.sc.SousChef</span></code> class.  You can see the source code for this class <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py">here</a>. You can see an example of one of these modules <a class="reference external" href="https://github.com/newslynx/newslynx.sc">here</a> or below.</li>
+<li><strong>Required</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">creates</span></code></dt>
+<dd><ul class="first last">
+<li><p class="first">What type of collection does this Sous Chef create?</p>
+</li>
+<li><p class="first"><strong>Required</strong></p>
+</li>
+<li><dl class="first docutils">
+<dt>Can be one of:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">events</span></code></li>
+<li><code class="docutils literal"><span class="pre">content</span></code></li>
+<li><code class="docutils literal"><span class="pre">tags</span></code></li>
+<li><code class="docutils literal"><span class="pre">metrics</span></code></li>
+<li><code class="docutils literal"><span class="pre">report</span></code></li>
+<li><code class="docutils literal"><span class="pre">external</span></code></li>
+<li><code class="docutils literal"><span class="pre">internal</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">option_order</span></code></dt>
+<dd><ul class="first last simple">
+<li>The order in which <code class="docutils literal"><span class="pre">options</span></code> are rendered. This parameter should take a list of option names. This parameter primarily exists to aid in the dynamic rendering of Sous Chef input forms.</li>
+<li><em>Optional</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">includes</span></code></dt>
+<dd><ul class="first last simple">
+<li>A list of relative paths to other Sous Chef config files to inherit for this Sous Chef. This prevents rewriting option definitions for Sous Chefs with similar behaviors. If this file contains a partial Sous Chef config, it&#8217;s filename should begin with an underscore. You can see an example of such a file <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/events/_event_options.yaml">here</a> and it&#8217;s include statement <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/events/facebook_page_to_event.yaml">here</a>.</li>
+<li><em>Optional</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">requires_auths</span></code></dt>
+<dd><ul class="first last simple">
+<li>A list of <span class="xref std std-ref">&lt;endpoints-auths</span> <code class="docutils literal"><span class="pre">names</span></code> that must exist for an Organization before this Sous Chef can run.</li>
+<li><em>Optional</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">requires_settings</span></code></dt>
+<dd><ul class="first last simple">
+<li>A list of <span class="xref std std-ref">&lt;endpoints-settings</span> <code class="docutils literal"><span class="pre">names</span></code> that must exist for an Organization before this Sous Chef can run.</li>
+<li><em>Optional</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">options</span></code></dt>
+<dd><ul class="first last simple">
+<li>The options this Sous Chef takes.</li>
+<li><em>Optional</em> (if this Sous Chef&#8217;s behavior should not be modified).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">metrics</span></code></dt>
+<dd><ul class="first last simple">
+<li>The Metrics this Sous Chef creates.</li>
+<li><em>Optional</em> (unless the Sous Chef creates <span class="xref std std-ref">&lt;metrics&gt;</span>).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p>Sous Chefs can specify as many options as they require.  These options can be passed into the Sous Chef to change it&#8217;s behavior.  At their core, <a class="reference internal" href="recipes.html#recipes"><span>Recipes</span></a> are simply a populated list of these options. Each option follows the schema sepecified below:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">input_type</span></code></dt>
+<dd><ul class="first last">
+<li><p class="first">What type of input form should this option render?</p>
+</li>
+<li><p class="first">This options enables <code class="docutils literal"><span class="pre">newslynx-app</span></code> to dynamically render forms to populate Sous Chef options.</p>
+</li>
+<li><dl class="first docutils">
+<dt>This option can accept the following values</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">search</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render a search form to aid in populating the option&#8217;s value. In practice, this is used to add items to an option which can be searched for via the API.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">radio</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render a radio form.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">select</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render a drop-down form.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">checkbox</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render a checkbox form.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">checkbox-single</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render a single-checkbox. This would be used, for example, in the case that you want an non-required option to take a <code class="docutils literal"><span class="pre">default</span></code> value of <code class="docutils literal"><span class="pre">true</span></code> while enabling a user to override this default with a value of <code class="docutils literal"><span class="pre">false</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">number</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render a numeric form.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">datepicker</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render a form which enables a user to select a date.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">text</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render an open-ended text form.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">paragraph</span></code></dt>
+<dd><ul class="first last simple">
+<li>Render an open-ended text form with more room to fill in details. Primarily for use with <code class="docutils literal"><span class="pre">description</span></code> fields.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">input_options</span></code></dt>
+<dd><ul class="first last simple">
+<li>If the <code class="docutils literal"><span class="pre">input_type</span></code> is <code class="docutils literal"><span class="pre">radio</span></code>, <code class="docutils literal"><span class="pre">select</span></code>, <code class="docutils literal"><span class="pre">checkbox</span></code>, or <code class="docutils literal"><span class="pre">checkbox-single</span></code>, a list of possible options to populate the form.</li>
+<li>This parameter enables <code class="docutils literal"><span class="pre">newslynx-app</span></code> to dynamically render dropdowns, checkbox, or radio options.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">value_types</span></code></dt>
+<dd><ul class="first last">
+<li><p class="first">What value types does this option accept?</p>
+</li>
+<li><p class="first">This parameter enables <code class="docutils literal"><span class="pre">newslynx-core</span></code> to exhaustively validate options before executing Sous Chefs.</p>
+</li>
+<li><dl class="first docutils">
+<dt>This option can accept the following values:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">datetime</span></code></dt>
+<dd><ul class="first last simple">
+<li>An ISO-8601 date.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">crontab</span></code></dt>
+<dd><ul class="first last simple">
+<li>A cron string.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">json</span></code></dt>
+<dd><ul class="first last simple">
+<li>A complex option, usually a dictionary, which only needs to be json-serializable.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">regex</span></code></dt>
+<dd><ul class="first last simple">
+<li>Valid input to <code class="docutils literal"><span class="pre">re.compile()</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">boolean</span></code></dt>
+<dd><ul class="first last simple">
+<li>Truish (true, t, yes, y, 1, on) or Falsish Values (false, f, no, n, off).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">numeric</span></code></dt>
+<dd><ul class="first last simple">
+<li>Valid input to <code class="docutils literal"><span class="pre">float()</span></code> or <code class="docutils literal"><span class="pre">int()</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">string</span></code></dt>
+<dd><ul class="first last simple">
+<li>Valid input ot <code class="docutils literal"><span class="pre">str()</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">nulltype</span></code></dt>
+<dd><ul class="first last simple">
+<li>Any of (None, null, N/A, NaN)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">url</span></code></dt>
+<dd><ul class="first last simple">
+<li>A valid URL  (determined by regular expresion.).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">email</span></code></dt>
+<dd><ul class="first last simple">
+<li>A valid email address (determined by regular expresion.)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">searchstring</span></code></dt>
+<dd><ul class="first last simple">
+<li>A custom type which we use to provide basic search capabilities to Sous Chefs (explained below.)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">accepts_list</span></code></dt>
+<dd><ul class="first last simple">
+<li>Does this option accept a list of values?</li>
+<li>Defaults to <code class="docutils literal"><span class="pre">false</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">default</span></code></dt>
+<dd><ul class="first last simple">
+<li>What is the default value for this options?</li>
+<li>Defaults to <code class="docutils literal"><span class="pre">null</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">required</span></code></dt>
+<dd><ul class="first last simple">
+<li>Is this option required for the Sous Chef to properly run?</li>
+<li>Defaults to <code class="docutils literal"><span class="pre">false</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">help</span></code></dt>
+<dd><ul class="first last">
+<li><p class="first">Parameters to help users properly fill out options.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">help</span></code> is a dictionary of the following values:</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">placeholder</span></code></dt>
+<dd><ul class="first last simple">
+<li>The placeholder/example text for this option.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">link</span></code></dt>
+<dd><ul class="first last simple">
+<li>A link for more details about this option.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">description</span></code></dt>
+<dd><ul class="first last simple">
+<li>A description of this option to display on form hover.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="defaults">
+<h2>Defaults<a class="headerlink" href="#defaults" title="Permalink to this headline">¶</a></h2>
+<p>All Sous Chefs come with the following default options. These exist for aiding in the creation and scheduling of <a class="reference internal" href="recipes.html#recipes"><span>Recipes</span></a>.</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">text</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">string</span>
+    <span class="l-Scalar-Plain">required</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">The name of the Recipe.</span>
+
+<span class="l-Scalar-Plain">slug</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">text</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">string</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">placeholder</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">(optional)</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">The recipe slug. Lowercase and separated with &#39;-&#39;.</span>
+
+<span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">paragraph</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">string</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">nulltype</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">placeholder</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">(optional)</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">A description of what this recipe does.</span>
+
+<span class="l-Scalar-Plain">schedule_by</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">select</span>
+    <span class="l-Scalar-Plain">input_options</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">minutes</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">time_of_day</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">crontab</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">unscheduled</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">string</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">nulltype</span>
+    <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">null</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">placeholder</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">minutes</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">The method for scheduling the recipe.</span>
+
+<span class="l-Scalar-Plain">crontab</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">text</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">crontab</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">nulltype</span>
+    <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">null</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">placeholder</span><span class="p-Indicator">:</span> <span class="s">&quot;*/30</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*&quot;</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">A crontab string to use for scheduling this recipe.</span>
+        <span class="l-Scalar-Plain">link</span><span class="p-Indicator">:</span> <span class="s">&quot;https://en.wikipedia.org/wiki/Cron&quot;</span>
+
+<span class="l-Scalar-Plain">minutes</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">number</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">numeric</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">nulltype</span>
+    <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">null</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">placeholder</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">60</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">The frequency with which this Recipe should run (in minutes).</span>
+
+<span class="l-Scalar-Plain">time_of_day</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">select</span>
+    <span class="l-Scalar-Plain">input_options</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="s">&#39;12:00</span><span class="nv"> </span><span class="s">AM&#39;</span>
+        <span class="p-Indicator">-</span> <span class="s">&#39;12:30</span><span class="nv"> </span><span class="s">AM&#39;</span>
+        <span class="l-Scalar-Plain">...</span>
+        <span class="p-Indicator">-</span> <span class="s">&#39;11:30</span><span class="nv"> </span><span class="s">PM&#39;</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">string</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">nulltype</span>
+    <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">null</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">placeholder</span><span class="p-Indicator">:</span> <span class="s">&#39;4:30</span><span class="nv"> </span><span class="s">PM&#39;</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">The time of day at which this Recipe should run daily.</span>
+
+<span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">number</span>
+    <span class="l-Scalar-Plain">value_types</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">numeric</span>
+    <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">240</span>
+    <span class="l-Scalar-Plain">help</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">placeholder</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">240</span>
+        <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="p-Indicator">|</span>
+            <span class="no">The number of seconds after which this Recipe will time out.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search">
+<h2>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned above, Sous Chefs can accept options with a value type of <code class="docutils literal"><span class="pre">searchstring</span></code>. A search string is a built-in type that has the following capabilities (described through examples):</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">term</span></code></dt>
+<dd><ul class="first last simple">
+<li>match on a term</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">~term</span></code></dt>
+<dd><ul class="first last simple">
+<li>fuzzy match on a term using jaro-winkler distance</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">/.*term.*/</span></code></dt>
+<dd><ul class="first last simple">
+<li>apply a regex</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">&quot;term1</span> <span class="pre">term2&quot;</span></code></dt>
+<dd><ul class="first last simple">
+<li>match on a phrase</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">~&quot;term1</span> <span class="pre">term2&quot;</span></code></dt>
+<dd><ul class="first last simple">
+<li>fuzzy match on a phrase</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>You can chain two search strings together with the following operators:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">AND</span></code> =&gt; must match both searchstrings</li>
+<li><code class="docutils literal"><span class="pre">&amp;</span></code> =&gt; must match both searchstrings</li>
+<li><code class="docutils literal"><span class="pre">OR</span></code> =&gt; can match either term</li>
+<li><code class="docutils literal"><span class="pre">|</span></code> =&gt; can match either term</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">There is not yet support of parenthetical grouping of chained terms.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="configuring-metrics">
+<h2>Configuring Metrics<a class="headerlink" href="#configuring-metrics" title="Permalink to this headline">¶</a></h2>
+<p>Sous Chefs which create metrics must also specify the schema of the metrics they create. This schema is specified in the <span class="xref std std-ref">&lt;metrics&gt;</span> docs.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The best way to understand how Sous Chef&#8217;s work is to look at the Source Code for the built-in modules <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py">here</a>.  You can see an example of a custom Sous Chef module <a class="reference external" href="https://github.com/newslynx/newslynx.sc">here</a>. If you&#8217;re interested in writing your own Sous Chefs, please refer to the <a class="reference internal" href="writing-sous-chefs.html#writing-sous-chefs"><span>Writing your own Sous Chefs</span></a> docs.</p>
 </div>
 </div>
 
@@ -337,7 +937,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0',
+            VERSION:'1.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
