@@ -6692,12 +6692,14 @@ Via ``python``
     api.content.make_comparison(1, type="impact-tags")
 
 
+
 .. _endpoints-bulk:
 
 **Bulk Creation**
 ++++++++++++++++++
 
 The **Bulk Creation API** API enables efficient upsert of new Metrics, Content Items, and Events.  This endpoint is designed to help SousChefs effectively bring data into NewsLynx. All methods are executed within a Task queue and return references to the :ref: `endpoints-jobs` API.
+
 
 .. _endpoints-jobs:
 

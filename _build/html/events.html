@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Events &mdash; newslynx 1.0.2 documentation</title>
+  <title>Events &mdash; newslynx 1.0.3 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.2 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0.3 documentation" href="index.html"/>
         <link rel="next" title="NewsLynx API" href="api.html"/>
         <link rel="prev" title="Content Items" href="content-items.html"/> 
 
@@ -254,15 +254,34 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#content-metrics"><strong>Content Metrics</strong></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#put-content-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/summary</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#content-timeseries-metrics"><strong>Content Timeseries Metrics</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#content-timeseries-json"><strong>Content Timeseries JSON</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/timeseries</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#org-metrics"><strong>Org Metrics</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#content-summary-metrics"><strong>Content Summary Metrics</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-content-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-content-content-item-id-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/summary</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#comparisons"><strong>Comparisons</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#comparisons-json"><strong>Comparisons JSON</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-content-comparisons"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content-comparisons-comparison-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:comparison_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-content-comparisons-comparison-type"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:comparison-type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#make-comparisons"><strong>Make Comparisons</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#make-comparisons-json"><strong>Make Comparisons JSON</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id-comparisons-comparison-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:comparison-type</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#bulk-creation"><strong>Bulk Creation</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#jobs"><strong>Jobs</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#extract"><strong>Extract</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#compression"><strong>Compression</strong></a></li>
@@ -352,7 +371,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.2',
+            VERSION:'1.0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
