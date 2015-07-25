@@ -5845,6 +5845,7 @@ Via ``python``
     api = API()
     api.content.remove_tag(2, 15)
 
+
 .. _endpoints-content-timeseries
 **Content Timeseries Metrics**
 +++++++++++++++++++++++++++++++
@@ -5853,7 +5854,7 @@ The content timeseries API allows you to query for all metrics that have been se
 
 .. _endpoints-content-timeseries-json
 **Content Timeseries JSON**
-+++++++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 All endpoints unless otherwise will return the following ``json`` schema.  Note that all metrics will have been given the name specified in their accompying :ref:`schema <metrics-schema>`.
 
@@ -6276,7 +6277,7 @@ These comparisons power the App's article comparison view which allows a user to
 
 .. _endpoints-comparisons-json:
 **Comparisons JSON**
-++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Unless otherwise indicated, all comparison endpoints wil return the following ``json`` schema. Here, comparisons are broken out into ``types`` with the name of the type being the top-level key.  In the example below, the comparison type is ``all``.  Each element of the list represents an individual metrics.  Fields prefaced by ``per`` signify the value of this metric at it's Xth percentile.  So, for the below example, you would interpret ``per_95`` to mean "the 95th percentile of ``facebook_comments`` for this facet is ``8824.7``.
 
@@ -6566,7 +6567,7 @@ This API utilizes the :ref:`Comparison API <endpoints-content-comparisons>` to r
 
 .. _endpoints-make-comparisons-json:
 **Make Comparisons JSON**
-++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This endpoint mirrors the structure of :ref:`the Comparison API endpoints-comparisons-json`. However, instead of a list of distributions for all metrics, it leverages these distributions to return percentile rankings for an individual Content Item by all of its metrics. Here, we would interpret ``facebook_comment`` as meaning, "this Content Item ranks in the 90% for ``facebook_comments`` versus all Content Items with a Subject Tag of ``10``"
 
@@ -6692,12 +6693,14 @@ Via ``python``
     api.content.make_comparison(1, type="impact-tags")
 
 
+
 .. _endpoints-bulk:
 
 **Bulk Creation**
 ++++++++++++++++++
 
 The **Bulk Creation API** API enables efficient upsert of new Metrics, Content Items, and Events.  This endpoint is designed to help SousChefs effectively bring data into NewsLynx. All methods are executed within a Task queue and return references to the :ref: `endpoints-jobs` API.
+
 
 .. _endpoints-jobs:
 

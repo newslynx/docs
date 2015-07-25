@@ -254,8 +254,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#content-timeseries-metrics"><strong>Content Timeseries Metrics</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#content-timeseries-json"><strong>Content Timeseries JSON</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#content-timeseries-metrics"><strong>Content Timeseries Metrics</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#content-timeseries-json"><strong>Content Timeseries JSON</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-content-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-content-content-item-id-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/timeseries</span></code></a></li>
 </ul>
@@ -265,16 +265,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#put-content-content-item-id-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/summary</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#comparisons"><strong>Comparisons</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#comparisons-json"><strong>Comparisons JSON</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comparisons"><strong>Comparisons</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#comparisons-json"><strong>Comparisons JSON</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-content-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#put-content-comparisons"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-content-comparisons-comparison-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:comparison_type</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#put-content-comparisons-comparison-type"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:comparison-type</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#make-comparisons"><strong>Make Comparisons</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#make-comparisons-json"><strong>Make Comparisons JSON</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#make-comparisons"><strong>Make Comparisons</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#make-comparisons-json"><strong>Make Comparisons JSON</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-content-content-item-id-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-content-content-item-id-comparisons-comparison-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:comparison-type</span></code></a></li>
 </ul>
@@ -6679,9 +6679,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="content-timeseries-metrics">
 <h3><strong>Content Timeseries Metrics</strong><a class="headerlink" href="#content-timeseries-metrics" title="Permalink to this headline">¶</a></h3>
 <p>The content timeseries API allows you to query for all metrics that have been set with a <code class="docutils literal"><span class="pre">content_level</span></code> of <code class="docutils literal"><span class="pre">timeseries</span></code>. Please refer to the <a class="reference internal" href="metrics.html#metrics"><span>Metrics docs</span></a> for details on how this works.</p>
-</div>
 <div class="section" id="content-timeseries-json">
-<h3><strong>Content Timeseries JSON</strong><a class="headerlink" href="#content-timeseries-json" title="Permalink to this headline">¶</a></h3>
+<h4><strong>Content Timeseries JSON</strong><a class="headerlink" href="#content-timeseries-json" title="Permalink to this headline">¶</a></h4>
 <p>All endpoints unless otherwise will return the following <code class="docutils literal"><span class="pre">json</span></code> schema.  Note that all metrics will have been given the name specified in their accompying <a class="reference internal" href="metrics.html#metrics-schema"><span>schema</span></a>.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;content_item_id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -6694,6 +6693,7 @@ dates will be returned in UTC.</td>
   <span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
+</div>
 </div>
 <div class="section" id="get-content-timeseries">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code><a class="headerlink" href="#get-content-timeseries" title="Permalink to this headline">¶</a></h4>
@@ -7183,9 +7183,8 @@ wish to access.</td>
 <h3><strong>Comparisons</strong><a class="headerlink" href="#comparisons" title="Permalink to this headline">¶</a></h3>
 <p>The Comparison API enables the summarization of the Summary metrics for various facets at various levels -  <code class="docutils literal"><span class="pre">content</span></code>, <code class="docutils literal"><span class="pre">orgs</span></code>.
 These comparisons power the App&#8217;s article comparison view which allows a user to compare a metric for a single Content Item against the distribution of this Metrc for all Content Items or a particular subset of Content Items.  See the <a class="reference internal" href="metrics.html#metrics"><span>Metric docs</span></a> for more details on how these work.</p>
-</div>
 <div class="section" id="comparisons-json">
-<h3><strong>Comparisons JSON</strong><a class="headerlink" href="#comparisons-json" title="Permalink to this headline">¶</a></h3>
+<h4><strong>Comparisons JSON</strong><a class="headerlink" href="#comparisons-json" title="Permalink to this headline">¶</a></h4>
 <p>Unless otherwise indicated, all comparison endpoints wil return the following <code class="docutils literal"><span class="pre">json</span></code> schema. Here, comparisons are broken out into <code class="docutils literal"><span class="pre">types</span></code> with the name of the type being the top-level key.  In the example below, the comparison type is <code class="docutils literal"><span class="pre">all</span></code>.  Each element of the list represents an individual metrics.  Fields prefaced by <code class="docutils literal"><span class="pre">per</span></code> signify the value of this metric at it&#8217;s Xth percentile.  So, for the below example, you would interpret <code class="docutils literal"><span class="pre">per_95</span></code> to mean &#8220;the 95th percentile of <code class="docutils literal"><span class="pre">facebook_comments</span></code> for this facet is <code class="docutils literal"><span class="pre">8824.7</span></code>.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;all&quot;</span> <span class="o">:</span> <span class="p">[</span>
@@ -7241,6 +7240,7 @@ These comparisons power the App&#8217;s article comparison view which allows a u
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
 </div>
 <div class="section" id="get-content-comparisons">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code><a class="headerlink" href="#get-content-comparisons" title="Permalink to this headline">¶</a></h4>
@@ -7520,9 +7520,8 @@ wish to access.</td>
 <div class="section" id="make-comparisons">
 <h3><strong>Make Comparisons</strong><a class="headerlink" href="#make-comparisons" title="Permalink to this headline">¶</a></h3>
 <p>This API utilizes the <span class="xref std std-ref">Comparison API</span> to return percentile rankings of Content Items by each metric.</p>
-</div>
 <div class="section" id="make-comparisons-json">
-<h3><strong>Make Comparisons JSON</strong><a class="headerlink" href="#make-comparisons-json" title="Permalink to this headline">¶</a></h3>
+<h4><strong>Make Comparisons JSON</strong><a class="headerlink" href="#make-comparisons-json" title="Permalink to this headline">¶</a></h4>
 <p>This endpoint mirrors the structure of <span class="xref std std-ref">the Comparison API endpoints-comparisons-json</span>. However, instead of a list of distributions for all metrics, it leverages these distributions to return percentile rankings for an individual Content Item by all of its metrics. Here, we would interpret <code class="docutils literal"><span class="pre">facebook_comment</span></code> as meaning, &#8220;this Content Item ranks in the 90% for <code class="docutils literal"><span class="pre">facebook_comments</span></code> versus all Content Items with a Subject Tag of <code class="docutils literal"><span class="pre">10</span></code>&#8220;</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;content_item_id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -7540,6 +7539,7 @@ wish to access.</td>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
 </div>
 <div class="section" id="get-content-content-item-id-comparisons">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code><a class="headerlink" href="#get-content-content-item-id-comparisons" title="Permalink to this headline">¶</a></h4>
