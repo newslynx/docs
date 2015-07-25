@@ -5662,6 +5662,165 @@ Example
     
     $ curl -X DELETE http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
 
+.. _endpoints-content-timeseries
+**Content Timeseries Metrics**
++++++++++++++++++++++++++++++++
+
+.. _endpoints-content-get-timeseries:
+**GET** ``/content/timeseries``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Query the entire content timeseries store for an organization.
+
+.. _endpoints-content-item-get-timeseries:
+**GET** ``/content/:content_item_id/timeseries``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Query the content timeseries store for a single content item.
+
+.. _endpoints-content-summary
+**Content Summary Metrics**
++++++++++++++++++++++++++++++++
+
+.. _endpoints-content-refresh-summaries:
+**PUT** ``/content/summary``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Refresh summaries of content timeseries metrics. These will show up in  the :ref:`Content Search API <endpoints-content-items-search>` and when retrieving :ref:`individual Content Items <endpoints-content-items-get>`.
+
+.. _endpoints-content-comparisons:
+**Content Comparisons**
+++++++++++++++++++
+
+.. _endpoints-content-get-comparisons:
+**GET** ``/content/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Get all comparison metrics
+
+.. _endpoints-content-update-comparisons:
+**PUT** ``/content/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update all comparison metrics
+
+.. _endpoints-content-get-comparisons:
+**GET** ``/content/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Get just this comparison ``type``.
+
+.. _endpoints-content-update-comparisons:
+**PUT** ``/content/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update just this comparison ``type``.
+
+.. _endpoints-content-item-get-comparisons:
+**GET** ``/content/:content_item_id/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compare this Content Item by all types.
+
+.. _endpoints-content-item-update-comparisons:
+**PUT** ``/content/:content_item_id/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update all comparison metrics for this Content Item.
+
+.. _endpoints-content-item-get-comparisons:
+**GET** ``/content/:content_item_id/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update all comparison metrics for this Content Item.
+
+.. _endpoints-content-item-update-comparisons:
+**PUT** ``/content/:content_item_id/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update comparison metrics for this Content Item and this ``type``.
+
+.. _endpoints-org-metrics-timeseries:
+**Org Metrics Timeseries**
++++++++++++++++++++++++++++++
+Query timeseries metrics for an organization.
+
+.. _endpoints-orgs-list-timeseries:
+**GET** ``/orgs/timeseries``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Query the timeseries for all organizations.
+
+**NOTE**:
+  - Only accessible to Super Users.
+
+.. _endpoints-orgs-get-timeseries:
+**GET** ``/orgs/:org_id/timeseries``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Query the timeseries store for an organization.
+
+.. _endpoints-orgs-get-timeseries:
+**PUT** ``/orgs/:org_id/timeseries``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Refresh an org's timeseries metrics by rolling up it's :ref:`Content Timeseries Metrics `endpoints-content-timeseries>`.
+
+
+.. _endpoints-org-metrics-summary:
+**Org Metrics Summary**
++++++++++++++++++++++++++++++
+
+**GET** ``/orgs/summary``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+List the summary metrics for all organizations. :ref:`Org Timeseries Metrics `endpoints-orgs-get-timeseries>`.
+
+**NOTE**:
+  - Only accessible to Super Users.
+
+**GET** ``/orgs/:org_id/summary``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Get an org's summary metrics by rolling up it's :ref:`Org Timeseries Metrics `endpoints-orgs-get-timeseries>`.
+
+**PUT** ``/orgs/:org_id/summary``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Refresh an org's summary metrics by rolling up it's :ref:`Org Timeseries Metrics `endpoints-orgs-get-timeseries>`.
+
+.. _endpoints-org-metrics-summary:
+**Org Comparisons**
++++++++++++++++++++++++++++++
+
+.. _endpoints-content-get-comparisons:
+**GET** ``/orgs/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Get all comparison metrics
+
+.. _endpoints-content-update-comparisons:
+**PUT** ``/orgs/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update all comparison metrics
+
+.. _endpoints-content-get-comparisons:
+**GET** ``/orgs/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Get just this comparison ``type``.
+
+.. _endpoints-content-update-comparisons:
+**PUT** ``/orgs/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update just this comparison ``type`` for all orgs.
+
+.. _endpoints-content-item-get-comparisons:
+**GET** ``/orgs/:org_id/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compare this Org by all types.
+
+.. _endpoints-content-item-update-comparisons:
+**PUT** ``/orgs/:org_id/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update all comparison metrics for this Org.
+
+.. _endpoints-content-item-get-comparisons:
+**GET** ``/orgs/:org_id/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update all comparison metrics for this Org.
+
+.. _endpoints-content-item-update-comparisons:
+**PUT** ``/orgs/:org_id/comparisons/:type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update comparison metrics for this Org and this ``type``.
+
+
+
 .. _endpoints-bulk:
 
 **Bulk Creation**

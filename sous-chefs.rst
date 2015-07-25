@@ -20,7 +20,7 @@ All Sous Chefs must inherit from the core ``newslynx.sc.SousChef`` class.  You c
 * ``run``
     - Executes the Sous Chef.  If this method is designed to bring data into NewsLynx, it should return a list or generator of dictionaries.
 *  ``load``
-    - Loads data output from ``run`` into NewsLynx.  If this SousChef yields more than one record, it should utilize the :ref:`Bulk API <events>`
+    - Loads data output from ``run`` into NewsLynx.  If this SousChef yields more than one record, it should utilize the :ref:`Bulk API <endpoints-bulk>`
 * ``teardown``
     - Do something after the Sous Chef finishes loading data.
 

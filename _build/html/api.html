@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NewsLynx API &mdash; newslynx 1.0.1 documentation</title>
+  <title>NewsLynx API &mdash; newslynx 1.0.2 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.1 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0.2 documentation" href="index.html"/>
         <link rel="next" title="NewsLynx App Architecture" href="app.html"/>
         <link rel="prev" title="Events" href="events.html"/> 
 
@@ -98,15 +98,19 @@
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#default-options">Default Options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search">Search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-metrics">Configuring Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metrics.html#schema">Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html#creating-metrics">Creating Metrics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="metrics.html#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html#scheduling">Scheduling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
@@ -248,6 +252,49 @@
 <li class="toctree-l4"><a class="reference internal" href="#delete-content-content-item-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#put-content-content-item-id-tag-tag-id"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tag/:tag_id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content-timeseries-metrics"><strong>Content Timeseries Metrics</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-content-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-content-content-item-id-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/timeseries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content-summary-metrics"><strong>Content Summary Metrics</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#put-content-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/summary</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content-comparisons"><strong>Content Comparisons</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-content-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-content-comparisons"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-content-comparisons-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-content-comparisons-type"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-content-content-item-id-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-content-content-item-id-comparisons"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-content-content-item-id-comparisons-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-content-content-item-id-comparisons-type"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#org-metrics-timeseries"><strong>Org Metrics Timeseries</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/timeseries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-org-id-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/timeseries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-orgs-org-id-timeseries"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/timeseries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#org-metrics-summary"><strong>Org Metrics Summary</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-summary"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-org-id-summary"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-orgs-org-id-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/summary</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#org-comparisons"><strong>Org Comparisons</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-orgs-comparisons"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-comparisons-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons/:type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-orgs-comparisons-type"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons/:type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-org-id-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-orgs-org-id-comparisons"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-orgs-org-id-comparisons-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons/:type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#put-orgs-org-id-comparisons-type"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons/:type</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bulk-creation"><strong>Bulk Creation</strong></a></li>
@@ -6517,6 +6564,139 @@ dates will be returned in UTC.</td>
 </div>
 </div>
 </div>
+<div class="section" id="content-timeseries-metrics">
+<h3><strong>Content Timeseries Metrics</strong><a class="headerlink" href="#content-timeseries-metrics" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-content-timeseries">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code><a class="headerlink" href="#get-content-timeseries" title="Permalink to this headline">¶</a></h4>
+<p>Query the entire content timeseries store for an organization.</p>
+</div>
+<div class="section" id="get-content-content-item-id-timeseries">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/timeseries</span></code><a class="headerlink" href="#get-content-content-item-id-timeseries" title="Permalink to this headline">¶</a></h4>
+<p>Query the content timeseries store for a single content item.</p>
+</div>
+</div>
+<div class="section" id="content-summary-metrics">
+<h3><strong>Content Summary Metrics</strong><a class="headerlink" href="#content-summary-metrics" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="put-content-summary">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/summary</span></code><a class="headerlink" href="#put-content-summary" title="Permalink to this headline">¶</a></h4>
+<p>Refresh summaries of content timeseries metrics. These will show up in  the <a class="reference internal" href="#endpoints-content-items-search"><span>Content Search API</span></a> and when retrieving <a class="reference internal" href="#endpoints-content-items-get"><span>individual Content Items</span></a>.</p>
+</div>
+</div>
+<div class="section" id="content-comparisons">
+<h3><strong>Content Comparisons</strong><a class="headerlink" href="#content-comparisons" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-content-comparisons">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code><a class="headerlink" href="#get-content-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Get all comparison metrics</p>
+</div>
+<div class="section" id="put-content-comparisons">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code><a class="headerlink" href="#put-content-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Update all comparison metrics</p>
+</div>
+<div class="section" id="get-content-comparisons-type">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:type</span></code><a class="headerlink" href="#get-content-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Get just this comparison <code class="docutils literal"><span class="pre">type</span></code>.</p>
+</div>
+<div class="section" id="put-content-comparisons-type">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:type</span></code><a class="headerlink" href="#put-content-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Update just this comparison <code class="docutils literal"><span class="pre">type</span></code>.</p>
+</div>
+<div class="section" id="get-content-content-item-id-comparisons">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code><a class="headerlink" href="#get-content-content-item-id-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Compare this Content Item by all types.</p>
+</div>
+<div class="section" id="put-content-content-item-id-comparisons">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code><a class="headerlink" href="#put-content-content-item-id-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Update all comparison metrics for this Content Item.</p>
+</div>
+<div class="section" id="get-content-content-item-id-comparisons-type">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:type</span></code><a class="headerlink" href="#get-content-content-item-id-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Update all comparison metrics for this Content Item.</p>
+</div>
+<div class="section" id="put-content-content-item-id-comparisons-type">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:type</span></code><a class="headerlink" href="#put-content-content-item-id-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Update comparison metrics for this Content Item and this <code class="docutils literal"><span class="pre">type</span></code>.</p>
+</div>
+</div>
+<div class="section" id="org-metrics-timeseries">
+<h3><strong>Org Metrics Timeseries</strong><a class="headerlink" href="#org-metrics-timeseries" title="Permalink to this headline">¶</a></h3>
+<p>Query timeseries metrics for an organization.</p>
+<div class="section" id="get-orgs-timeseries">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/timeseries</span></code><a class="headerlink" href="#get-orgs-timeseries" title="Permalink to this headline">¶</a></h4>
+<p>Query the timeseries for all organizations.</p>
+<dl class="docutils">
+<dt><strong>NOTE</strong>:</dt>
+<dd><ul class="first last simple">
+<li>Only accessible to Super Users.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="get-orgs-org-id-timeseries">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/timeseries</span></code><a class="headerlink" href="#get-orgs-org-id-timeseries" title="Permalink to this headline">¶</a></h4>
+<p>Query the timeseries store for an organization.</p>
+</div>
+<div class="section" id="put-orgs-org-id-timeseries">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/timeseries</span></code><a class="headerlink" href="#put-orgs-org-id-timeseries" title="Permalink to this headline">¶</a></h4>
+<p>Refresh an org&#8217;s timeseries metrics by rolling up it&#8217;s <span class="xref std std-ref">Content Timeseries Metrics `endpoints-content-timeseries&gt;</span>.</p>
+</div>
+</div>
+<div class="section" id="org-metrics-summary">
+<h3><strong>Org Metrics Summary</strong><a class="headerlink" href="#org-metrics-summary" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-orgs-summary">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/summary</span></code><a class="headerlink" href="#get-orgs-summary" title="Permalink to this headline">¶</a></h4>
+<p>List the summary metrics for all organizations. <span class="xref std std-ref">Org Timeseries Metrics `endpoints-orgs-get-timeseries&gt;</span>.</p>
+<dl class="docutils">
+<dt><strong>NOTE</strong>:</dt>
+<dd><ul class="first last simple">
+<li>Only accessible to Super Users.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="get-orgs-org-id-summary">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/summary</span></code><a class="headerlink" href="#get-orgs-org-id-summary" title="Permalink to this headline">¶</a></h4>
+<p>Get an org&#8217;s summary metrics by rolling up it&#8217;s <span class="xref std std-ref">Org Timeseries Metrics `endpoints-orgs-get-timeseries&gt;</span>.</p>
+</div>
+<div class="section" id="put-orgs-org-id-summary">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/summary</span></code><a class="headerlink" href="#put-orgs-org-id-summary" title="Permalink to this headline">¶</a></h4>
+<p>Refresh an org&#8217;s summary metrics by rolling up it&#8217;s <span class="xref std std-ref">Org Timeseries Metrics `endpoints-orgs-get-timeseries&gt;</span>.</p>
+</div>
+</div>
+<div class="section" id="org-comparisons">
+<h3><strong>Org Comparisons</strong><a class="headerlink" href="#org-comparisons" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="get-orgs-comparisons">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons</span></code><a class="headerlink" href="#get-orgs-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Get all comparison metrics</p>
+</div>
+<div class="section" id="put-orgs-comparisons">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons</span></code><a class="headerlink" href="#put-orgs-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Update all comparison metrics</p>
+</div>
+<div class="section" id="get-orgs-comparisons-type">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons/:type</span></code><a class="headerlink" href="#get-orgs-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Get just this comparison <code class="docutils literal"><span class="pre">type</span></code>.</p>
+</div>
+<div class="section" id="put-orgs-comparisons-type">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons/:type</span></code><a class="headerlink" href="#put-orgs-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Update just this comparison <code class="docutils literal"><span class="pre">type</span></code> for all orgs.</p>
+</div>
+<div class="section" id="get-orgs-org-id-comparisons">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons</span></code><a class="headerlink" href="#get-orgs-org-id-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Compare this Org by all types.</p>
+</div>
+<div class="section" id="put-orgs-org-id-comparisons">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons</span></code><a class="headerlink" href="#put-orgs-org-id-comparisons" title="Permalink to this headline">¶</a></h4>
+<p>Update all comparison metrics for this Org.</p>
+</div>
+<div class="section" id="get-orgs-org-id-comparisons-type">
+<h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons/:type</span></code><a class="headerlink" href="#get-orgs-org-id-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Update all comparison metrics for this Org.</p>
+</div>
+<div class="section" id="put-orgs-org-id-comparisons-type">
+<h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons/:type</span></code><a class="headerlink" href="#put-orgs-org-id-comparisons-type" title="Permalink to this headline">¶</a></h4>
+<p>Update comparison metrics for this Org and this <code class="docutils literal"><span class="pre">type</span></code>.</p>
+</div>
+</div>
 <div class="section" id="bulk-creation">
 <span id="endpoints-bulk"></span><h3><strong>Bulk Creation</strong><a class="headerlink" href="#bulk-creation" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>Bulk Creation API</strong> API enables efficient upsert of new Metrics, Content Items, and Events.  This endpoint is designed to help SousChefs effectively bring data into NewsLynx. All methods are executed within a Task queue and return references to the :ref: <cite>endpoints-jobs</cite> API.</p>
@@ -6527,7 +6707,7 @@ dates will be returned in UTC.</td>
 </div>
 </div>
 <div class="section" id="compression">
-<span id="id247"></span><h2><strong>Compression</strong><a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h2>
+<span id="id261"></span><h2><strong>Compression</strong><a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h2>
 <p>All endpoints can return responses with <code class="docutils literal"><span class="pre">gzip</span></code> compression so long as the <code class="docutils literal"><span class="pre">Accept-Encoding</span></code> header of the request is set to <code class="docutils literal"><span class="pre">gzip</span></code>.</p>
 </div>
 </div>
@@ -6571,7 +6751,7 @@ dates will be returned in UTC.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.1',
+            VERSION:'1.0.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

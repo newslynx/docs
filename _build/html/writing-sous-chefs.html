@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Writing your own Sous Chefs &mdash; newslynx 1.0.1 documentation</title>
+  <title>Writing your own Sous Chefs &mdash; newslynx 1.0.2 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.1 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0.2 documentation" href="index.html"/>
         <link rel="prev" title="Command Line Interface" href="cli.html"/> 
 
   
@@ -95,15 +95,21 @@
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-sous-chefs">Configuring Sous Chefs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#sous-chef-options">Sous Chef Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search-strings">Search Strings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#sous-chef-metrics">Sous Chef Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#default-options">Default Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#search">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuring-metrics">Configuring Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html#creating-metrics">Creating Metrics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="metrics.html#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html#scheduling">Scheduling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">Taxonomy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="taxonomy.html#tags">Tags</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="taxonomy.html#tag-type">Tag Type</a></li>
@@ -154,11 +160,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#settings"><strong>Settings</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#setting-json">Setting JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#post-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#get-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#delete-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-level-settings"><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#post-level-settings"><strong>POST</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-level-settings-setting-id"><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-patch-level-settings-setting-id"><strong>PUT</strong> | <strong>PATCH</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#delete-level-settings-setting-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/:level/settings/:setting_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#authorizations"><strong>Authorizations</strong></a><ul>
@@ -247,6 +253,13 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#content-metrics"><strong>Content Metrics</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#put-content-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/timeseries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#org-metrics"><strong>Org Metrics</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#bulk-creation"><strong>Bulk Creation</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#jobs"><strong>Jobs</strong></a></li>
 </ul>
@@ -336,7 +349,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.1',
+            VERSION:'1.0.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

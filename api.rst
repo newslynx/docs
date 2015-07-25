@@ -5376,27 +5376,100 @@ Examples
 
 List content items or type ``article`` by most recently created.
 
+Via ``CuRL``
+
 .. code-block:: bash
     
     $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&type\=article&sort=-created
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content search type=article sort=-created 
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.search(type='article', sort='-created')
+
 
 Search content items created manually.
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&provenance\=manual&q=foobar
-
-List content items that only have certain subject tags and have *not* been created by certain recipes.
+Via ``CuRL``
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipes=-1\&subject_tag_ids=1,2,3
+    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&provenance\=manual\&q\=uqbar
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content search provenance=manual q=uqbar
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.search(provenance='manual', q='uqbar')
+
+List content items that only have certain subject tags and have *not* been created by certain recipes.
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&recipe_ids=-1\&subject_tag_ids=1,2,3
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content search recipe_ids=-1 tag_ids=1,2,3
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.search(recipe_ids='-1', tag_ids='1,2,3')
+
 
 Sort content items by their number of Twitter Shares.
+
+Via ``CuRL``
 
 .. code-block:: bash
 
   $ curl http://localhost:5000/api/v1/content\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&sort=-metrics.twitter_shares
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content search sort=-metrics.twitter_shares
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.search(sort="-metrics.twitter_shares")
+
 
 Facet content items by the tag levels of associated events:
 
@@ -5471,12 +5544,34 @@ A newly-created :ref:`endpoint-content-items-json` object.
 Examples
 ********
 
-Run article extraction on a url to create a content item.
+Via ``CuRL``
 
 .. code-block:: bash
     
     $ curl --data "url=https://projects.propublica.org/killing-the-colorado/story/wasting-water-out-west-use-it-or-lose-it&type=article" \
       http://localhost:5000/api/v1/content\?apikey=$NEWSLYNX_APIKEY\&org=1\&extract=true
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content create \
+        url="https://projects.propublica.org/killing-the-colorado/story/wasting-water-out-west-use-it-or-lose-it" \
+        type=article 
+        extract=true
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.create(
+        url="https://projects.propublica.org/killing-the-colorado/story/wasting-water-out-west-use-it-or-lose-it",
+        type="article",
+        extract=True
+      )
 
 .. _endpoints-content-items-get:
 
@@ -5510,9 +5605,27 @@ An :ref:`endpoint-content-items-json` object with ``body``, ``img_url``, ``thumb
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+  $ curl http://localhost:5000/api/v1/content/1\?apikey=$NEWSLYNX_APIKEY\&org=1
+  
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content get id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.get(1)
 
 .. _endpoints-content-items-update:
 
@@ -5551,11 +5664,27 @@ Examples
 
 Update a content item's ``description``.
 
+Via ``CuRL``
+
 .. code-block:: bash
     
   $ curl -X PUT -d "description=This is what this story was about in a gist" \
   http://localhost:5000/api/v1/content/1\?apikey=$NEWSLYNX_APIKEY\&org=1
 
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content update id=1 description='This is what this story was about in a gist'
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.update(1, description='This is what this story was about in a gist')
 
 .. _endpoints-content-items-delete:
 
@@ -5585,9 +5714,27 @@ Status: ``204``
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
-    $ curl -X DELETE http://localhost:5000/api/v1/content/1\?org\=1\&force\=true\&apikey\=$NEWSLYNX_APIKEY
+    $ curl -X DELETE http://localhost:5000/api/v1/content/1\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content delete id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.delete(1)
+
 
 .. _endpoints-content-items-add-tag:
 
@@ -5621,9 +5768,28 @@ An updated :ref:`endpoint-content-items-json` object.
 Example
 ********
 
+Via ``CuRL``
 .. code-block:: bash
     
     $ curl -X PUT http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content add-tag id=2 tag_id=15
+
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.add_tag(2, 15)
+
 
 .. _endpoints-content-items-remove-tag:
 
@@ -5658,9 +5824,873 @@ An updated :ref:`endpoint-events-json` object.
 Example
 ********
 
+Via ``CuRL``
+
 .. code-block:: bash
     
     $ curl -X DELETE http://localhost:5000/api/v1/content/2/tags/15\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content remove-tag id=2 tag_id=15
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.remove_tag(2, 15)
+
+.. _endpoints-content-timeseries
+**Content Timeseries Metrics**
++++++++++++++++++++++++++++++++
+
+The content timeseries API allows you to query for all metrics that have been set with a ``content_level`` of ``timeseries``. Please refer to the :ref:`Metrics docs <metrics>` for details on how this works.
+
+.. _endpoints-content-timeseries-json
+**Content Timeseries JSON**
++++++++++++++++++++++++++++++++
+
+All endpoints unless otherwise will return the following ``json`` schema.  Note that all metrics will have been given the name specified in their accompying :ref:`schema <metrics-schema>`.
+
+
+.. code-block:: javascript
+
+    {
+      "content_item_id": 1,
+      "datetime": "2015-07-25T10:00:00+00:00",
+      "facebook_comments": 47,
+      "linkedin_shares": 90,
+      "ga_avg_time_on_page": 0.28,
+      "ga_total_time_on_page": 202,
+      "reddit_upvotes": 40,
+      ...
+    }
+
+
+.. _endpoints-content-get-timeseries:
+**GET** ``/content/timeseries``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Query the entire content timeseries store for an organization. This endpoint enables you to query content items by their associated Tags, Events, and Authors. It also allows you to aggregate at a specified date ``unit`` as well as by ``datetime`` so as to enable quick construction of aggregate timeseries for a Tag, Author, Event, or even an entire organization.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``localize``       | Return dates in the org's      | false            | false          |
+|                    | specified timezone. If `false` |                  |                |
+|                    | dates will be returned in UTC. |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``unit``           | The datetime ``unit`` to       | day              | false          |
+|                    | aggreate metrics by. Choose    |                  |                |
+|                    | from ``hour``, ``day``,        |                  |                |
+|                    | ``month``, or ``null`` to      |                  |                |
+|                    | return full aggregations. Note |                  |                |
+|                    | that metrics will be aggregated|                  |                |
+|                    | according to their specified   |                  |                |
+|                    | ``agg`` function.              |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``sparse``         | Do not fill in missing         | true             | false          |
+|                    | dates in the timeseries. If    |                  |                |
+|                    | ``false``, will                |                  |                |
+|                    | set the value for missing v    |                  |                |
+|                    | metrics to ``0```.             |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``group_by_id``    | Whether to aggregate by        | true             | false          |
+|                    | ``content_item_id``. If        |                  |                |
+|                    | ``false``, will return         |                  |                |
+|                    | aggregate for all content items|                  |                |
+|                    | by the specified date ``unit`` |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``rm_nulls``       | Whether to remove ``null``     | false            | false          |
+|                    | metrics from the timeseries.   |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``transform``      | Apply a transformation to the  | false            | false          |
+|                    | timeseries. Currently the only |                  |                |
+|                    | transformation is              |                  |                |
+|                    | ``cumulative``. This will turn |                  |                |
+|                    | all metrics with an ``agg`` of |                  |                |
+|                    | ``sum`` into cumulative sums.  |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``before``         | An ISO-8601 date to filter     |                  |                |
+|                    | results by.                    | null             | false          |
++--------------------+--------------------------------+------------------+----------------+
+| ``after``          | An ISO-8601 date to filter     |                  |                |
+|                    | results by.                    | 5 days ago       | false          |
++--------------------+--------------------------------+------------------+----------------+
+| ``author_ids``     | A comma-separated list of      | null             | false          |
+|                    | ``author_ids``to filter        |                  |                |
+|                    | results by. Preface any element|                  |                |
+|                    | with **!** or **-** to exclude |                  |                |
+|                    | it.                            |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``impact_tag_ids`` | A comma-separated list of      | null             | false          |
+|                    | ``impact_tag_ids`` to filter   |                  |                |
+|                    | results by. Preface any element|                  |                |
+|                    | with **!** or **-** to exclude |                  |                |
+|                    | it.                            |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``event_ids``      | A comma-separated list of      | null             | false          |
+|                    | ``event_ids`` to filter        |                  |                |
+|                    | results by. Preface any element|                  |                |
+|                    | with **!** or **-** to exclude |                  |                |
+|                    | it.                            |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``ids``            | A comma-separated list of      | null             | false          |
+|                    | ``content_item_ids`` to filter |                  |                |
+|                    | results by. Preface any element|                  |                |
+|                    | with **!** or **-** to exclude |                  |                |
+|                    | it.                            |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``select``         | A comma-separated list of      | *                | false          |
+|                    | Metrics to include in the to   |                  |                |
+|                    | response. If ``*`` will return |                  |                |  
+|                    | all availabled metrics.        |                  |                |
+|                    | Preface any element            |                  |                |
+|                    | with **!** or **-** to exclude |                  |                |
+|                    | it.                            |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+********
+
+An list of  :ref:`endpoint-content-timeseries-json` objects.
+
+Examples
+*********
+
+Get the totals for three content items.
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/content/timeseries\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&unit=null\&ids=1,2,3
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content list-timeseries unit=null ids=1,2,3
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.list_timeseries(unit='null', ids='1,2,3')
+
+Get the hourly timeseries for all of an Author's Content Items.
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/content/timeseries\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&unit=hour\&authors_ids=1\&group_by_id=false
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content list-timeseries unit=hour author_ids=1 group_by_id=f
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.list_timeseries(unit='hour', author_ids='1', group_by_id=False)
+
+Get the daily cumulative sums for an entire organization.
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/content/timeseries\?org\=1\&apikey\=$NEWSLYNX_APIKEY\&unit=day\&transform=cumulative&group_by_id=f
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content list-timeseries unit=null group_by_id=f transform=cumulative
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.list_timeseries(
+      unit='hour', author_ids='1', 
+      group_by_id=False, transform='cumulative'
+    )
+
+
+.. _endpoints-content-item-get-timeseries:
+**GET** ``/content/:content_item_id/timeseries``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Query timeseries metrics for a single content item.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``localize``       | Return dates in the org's      | false            | false          |
+|                    | specified timezone. If `false` |                  |                |
+|                    | dates will be returned in UTC. |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``unit``           | The datetime ``unit`` to       | hour             | false          |
+|                    | aggreate metrics by. Choose    |                  |                |
+|                    | from ``hour``, ``day``,        |                  |                |
+|                    | ``month``, or ``null`` to      |                  |                |
+|                    | return full aggregations. Note |                  |                |
+|                    | that metrics will be aggregated|                  |                |
+|                    | according to their specified   |                  |                |
+|                    | ``agg`` function.              |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``sparse``         | Do not fill in missing         | true             | false          |
+|                    | dates in the timeseries. If    |                  |                |
+|                    | ``false``, will                |                  |                |
+|                    | set the value for missing v    |                  |                |
+|                    | metrics to ``0```.             |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``group_by_id``    | Whether to aggregate by        | true             | false          |
+|                    | ``content_item_id``. If        |                  |                |
+|                    | ``false``, will return         |                  |                |
+|                    | aggregate for all content items|                  |                |
+|                    | by the specified date ``unit`` |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``rm_nulls``       | Whether to remove ``null``     | false            | false          |
+|                    | metrics from the timeseries.   |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``transform``      | Apply a transformation to the  | false            | false          |
+|                    | timeseries. Currently the only |                  |                |
+|                    | transformation is              |                  |                |
+|                    | ``cumulative``. This will turn |                  |                |
+|                    | all metrics with an ``agg`` of |                  |                |
+|                    | ``sum`` into cumulative sums.  |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``before``         | An ISO-8601 date to filter     |                  |                |
+|                    | results by.                    | null             | false          |
++--------------------+--------------------------------+------------------+----------------+
+| ``after``          | An ISO-8601 date to filter     |                  |                |
+|                    | results by.                    | 30 days ago      | false          |
++--------------------+--------------------------------+------------------+----------------+
+| ``select``         | A comma-separated list of      | *                | false          |
+|                    | Metrics to include in the to   |                  |                |
+|                    | response. If ``*`` will return |                  |                |  
+|                    | all availabled metrics.        |                  |                |
+|                    | Preface any element            |                  |                |
+|                    | with **!** or **-** to exclude |                  |                |
+|                    | it.                            |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+********
+
+An list of  :ref:`endpoint-content-timeseries-json` objects.
+
+
+Example
+********
+
+Get an individual timeseries.
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/content/1/timeseries\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content get-timeseries id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.get_timeseries(1)
+
+
+.. _endpoints-content-summary
+**Content Summary Metrics**
++++++++++++++++++++++++++++++++
+
+Utilities for rolling up content timeseries metrics.
+
+.. _endpoints-content-refresh-summaries:
+**PUT** ``/content/summary``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Refresh summaries of content timeseries metrics. These will show up in  the :ref:`Content Search API <endpoints-content-items-search>` and when retrieving :ref:`individual Content Items <endpoints-content-items-get>`.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``since``          | Refresh content items whose    | 24               | true           |
+|                    | timeseries have been updated   |                  |                |
+|                    | in the last X hours.           |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+********
+
+.. code-block:: javascript
+
+    {
+      "success": true,
+    }
+
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl -X PUT http://localhost:5000/api/v1/content/summary\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content refresh-summaries
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.refresh_summaries()
+
+
+
+.. _endpoints-content-refresh-summaries:
+**PUT** ``/content/:content_item_id/summary``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Refresh summaries of content timeseries metrics for an invidual content item. These will show up in  the :ref:`Content Search API <endpoints-content-items-search>` and when retrieving :ref:`individual Content Items <endpoints-content-items-get>`.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+Returns
+********
+
+.. code-block:: javascript
+
+    {
+      "success": true,
+    }
+
+
+Example
+********
+
+Get an individual timeseries.
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl -X PUT http://localhost:5000/api/v1/content/1/summary\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content refresh-summary id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.refresh_summary(1)
+
+
+.. _endpoints-comparisons:
+**Comparisons**
+++++++++++++++++++++++++
+
+The Comparison API enables the summarization of the Summary metrics for various facets at various levels -  ``content``, ``orgs``.
+These comparisons power the App's article comparison view which allows a user to compare a metric for a single Content Item against the distribution of this Metrc for all Content Items or a particular subset of Content Items.  See the :ref:`Metric docs <metrics>` for more details on how these work.
+
+
+.. _endpoints-comparisons-json:
+**Comparisons JSON**
+++++++++++++++++++++++++
+
+Unless otherwise indicated, all comparison endpoints wil return the following ``json`` schema. Here, comparisons are broken out into ``types`` with the name of the type being the top-level key.  In the example below, the comparison type is ``all``.  Each element of the list represents an individual metrics.  Fields prefaced by ``per`` signify the value of this metric at it's Xth percentile.  So, for the below example, you would interpret ``per_95`` to mean "the 95th percentile of ``facebook_comments`` for this facet is ``8824.7``.
+
+.. code-block:: javascript
+
+    {
+      "all" : [
+        {
+          "per_95": 8824.7,
+          "per_2_5": 7492.3,
+          "per_40": 8134.8,
+          "per_70": 8486.2,
+          "per_97_5": 8837.98,
+          "per_90": 8672.4,
+          "per_80": 8584.6,
+          "per_30": 8055.4,
+          "max": 8883,
+          "metric": "facebook_comments",
+          "min": 7438,
+          "median": 8254,
+          "per_60": 8387.8,
+          "per_20": 7827.6,
+          "per_5": 7524.35,
+          "per_10": 7580.4,
+          "mean": 8217.58
+        },
+        ...
+      ]
+    }
+
+In the case a comparison type returns multiple sub-facets, the structure will be as described below. In this case, you would interpret ``per_95`` to mean "the 95th percentile of ``facebook_comments`` for the Content Items with a Subject Tag of ID ``10`` is ``8540.5``.
+
+.. code-block:: javascript
+
+    {
+      "subject_tags" : {
+          "10": [
+            {
+              "per_95": 8540.5,
+              "per_2_5": 8119.25,
+              "per_40": 8222,
+              "per_70": 8422,
+              "per_97_5": 8559.25,
+              "per_90": 8503,
+              "per_80": 8428,
+              "per_30": 8217,
+              "max": 8578,
+              "metric": "facebook_comments",
+              "min": 8106,
+              "median": 8319,
+              "per_60": 8416,
+              "per_20": 8212,
+              "per_5": 8132.5,
+              "per_10": 8159,
+              "mean": 8327
+            },
+            ...
+          ]
+      }
+    }
+
+
+.. _endpoints-content-list-comparisons:
+**GET** ``/content/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+List all content comparison metrics.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``refresh``        | Whether to refresh the cache   | false            | false          |
++--------------------+--------------------------------+------------------+----------------+
+| ``cache_details``  | Return details about how long  | false            | false          |
+|                    | this comparison has been cached|                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns 
+********
+A :ref:`endpoint-comparisons-json` object.
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/content/comparisons\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content list-comparisons
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.list_comparisons()
+
+
+.. _endpoints-content-update-comparisons:
+**PUT** ``/content/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Update all comparison metrics.
+
+Params
+********
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+*********
+
+.. code-block:: javascript
+
+    {
+      "success": true,
+    }
+
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl -X PUT http://localhost:5000/api/v1/content/comparisons\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content refresh-summaries
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.refresh_summaries()
+
+
+.. _endpoints-content-get-comparisons:
+**GET** ``/content/comparisons/:comparison_type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Get just this ``comparison-type``.  Choose from:
+
+  - ``all``
+    - Compare against all content items 
+  - ``type``
+    - Compare against each Content Item ``type`` 
+  - ``impact-tags``
+    - Compare against Content Items with specific Impact Tags.
+  - ``subject-tags``
+    - Compare against Content Items with specific Subject Tags.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``refresh``        | Whether to refresh the cache.  | false            | false          |
++--------------------+--------------------------------+------------------+----------------+
+| ``cache_details``  | Return details about how long  | false            | false          |
+|                    | this comparison has been cached|                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns 
+********
+A :ref:`endpoint-comparisons-json` object.
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl http://localhost:5000/api/v1/content/comparisons/impact-tags\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content get-comparison type=impact-tags
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.get_comparison(type='impact-tags')
+
+
+.. _endpoints-content-update-comparisons:
+**PUT** ``/content/comparisons/:comparison-type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Refresh just this comparison ``type``.
+
+
+Params
+********
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+*********
+
+.. code-block:: javascript
+
+    {
+      "success": true,
+    }
+
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl -X PUT http://localhost:5000/api/v1/content/comparisons/impact-tags\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content refresh-comparison type=impact-tags
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.refresh_comparison(type='impact-tags')
+
+.. _endpoints-content-make-comparisons:
+**Make Comparisons**
+++++++++++++++++++++++++
+
+This API utilizes the :ref:`Comparison API <endpoints-content-comparisons>` to return percentile rankings of Content Items by each metric.  
+
+.. _endpoints-make-comparisons-json:
+**Make Comparisons JSON**
+++++++++++++++++++++++++
+
+This endpoint mirrors the structure of :ref:`the Comparison API endpoints-comparisons-json`. However, instead of a list of distributions for all metrics, it leverages these distributions to return percentile rankings for an individual Content Item by all of its metrics. Here, we would interpret ``facebook_comment`` as meaning, "this Content Item ranks in the 90% for ``facebook_comments`` versus all Content Items with a Subject Tag of ``10``"
+
+.. code-block:: javascript
+
+    {
+      "content_item_id": 1,
+      "comparisons": {
+        "subject_tags" : {
+            "10": {
+              "facebook_comments": 90,
+              "ga_pageviews": 40,
+              "twitter_shares": 10,
+              ...
+            },
+            ...
+        },
+        ...
+      }
+    }
+
+
+.. _endpoints-content-make-comparisons:
+**GET** ``/content/:content_item_id/comparisons``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compare this Content Item by all comparison-types.
+
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``refresh``        | Whether to refresh the         |                  |                |
+|                    | underlying comparison cache.   | false            | false          |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+*********
+
+A :ref:`endpoint-make-comparisons-json` object.
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl -X PUT http://localhost:5000/api/v1/content/1/comparisons\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content make-comparisons id=1
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.make_comparisons(1)
+
+
+.. _endpoints-content-item-get-comparisons:
+**GET** ``/content/:content_item_id/comparisons/:comparison-type``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compare this Content Item by a particular comparison-type.
+
+Params
+******
+
++--------------------+--------------------------------+------------------+----------------+
+| Parameter          |  Description                   |  Default         |  Required      |
++====================+================================+==================+================+
+| ``apikey``         | Your ``apikey``                | null             | true           |
++--------------------+--------------------------------+------------------+----------------+
+| ``org``            | The organization's             | null             | true           |
+|                    | ``id`` or ``slug`` you         |                  |                |
+|                    | wish to access.                |                  |                |
++--------------------+--------------------------------+------------------+----------------+
+| ``refresh``        | Whether to refresh the         |                  |                |
+|                    | underlying comparison cache.   | false            | false          |
++--------------------+--------------------------------+------------------+----------------+
+
+Returns
+*********
+
+A :ref:`endpoint-make-comparisons-json` object.
+
+Example
+********
+
+Via ``CuRL``
+
+.. code-block:: bash
+    
+    $ curl -X PUT http://localhost:5000/api/v1/content/1/comparisons/impact-tags\?org\=1\&apikey\=$NEWSLYNX_APIKEY
+
+Via ``newslynx``
+
+.. code-block:: bash
+    
+    $ newslynx api content make-comparison id=1 type=impact-tags
+
+Via ``python``
+
+.. code-block:: python
+    
+    from newslynx.client import API
+
+    api = API()
+    api.content.make_comparison(1, type="impact-tags")
+
 
 .. _endpoints-bulk:
 
@@ -5675,6 +6705,14 @@ The **Bulk Creation API** API enables efficient upsert of new Metrics, Content I
 ++++++++++++++++++
 
 The **Jobs** API enables the monitoring of processes executed in the Task Queue.
+
+
+.. _endpoints-extract:
+
+**Extract**
+++++++++++++++++++
+
+The **Extract** API...
 
 .. _compression:
 
