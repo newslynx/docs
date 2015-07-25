@@ -6031,7 +6031,7 @@ Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api content list-timeseries unit=null group_by_id=f transform=cumulative
+    $ newslynx api content list-timeseries unit=day group_by_id=f transform=cumulative
 
 Via ``python``
 
@@ -6041,8 +6041,8 @@ Via ``python``
 
     api = API()
     api.content.list_timeseries(
-      unit='hour', author_ids='1', 
-      group_by_id=False, transform='cumulative'
+      unit='day', group_by_id=False, 
+      transform='cumulative'
     )
 
 
