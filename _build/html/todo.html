@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; newslynx 1.0.2 documentation</title>
+  <title>Org Metrics Timeseries &mdash; newslynx 1.0.2 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
 
         
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -312,8 +312,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li><strong>Org Metrics Timeseries</strong></li>
       <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/todo.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -321,19 +325,87 @@
 </div>
           <div role="main" class="document">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="org-metrics-timeseries">
+<h1><strong>Org Metrics Timeseries</strong><a class="headerlink" href="#org-metrics-timeseries" title="Permalink to this headline">¶</a></h1>
+<p>Query timeseries metrics for an organization.</p>
+<div class="section" id="get-orgs-timeseries">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/timeseries</span></code><a class="headerlink" href="#get-orgs-timeseries" title="Permalink to this headline">¶</a></h2>
+<p>Query the timeseries for all organizations.</p>
+<dl class="docutils">
+<dt><strong>NOTE</strong>:</dt>
+<dd><ul class="first last simple">
+<li>Only accessible to Super Users.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="get-orgs-org-id-timeseries">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/timeseries</span></code><a class="headerlink" href="#get-orgs-org-id-timeseries" title="Permalink to this headline">¶</a></h2>
+<p>Query the timeseries store for an organization.</p>
+</div>
+<div class="section" id="put-orgs-org-id-timeseries">
+<h2><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/timeseries</span></code><a class="headerlink" href="#put-orgs-org-id-timeseries" title="Permalink to this headline">¶</a></h2>
+<p>Refresh an org&#8217;s timeseries metrics by rolling up it&#8217;s <span class="xref std std-ref">Content Timeseries Metrics `endpoints-content-timeseries&gt;</span>.</p>
+</div>
+</div>
+<div class="section" id="org-metrics-summary">
+<h1><strong>Org Metrics Summary</strong><a class="headerlink" href="#org-metrics-summary" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="get-orgs-summary">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/summary</span></code><a class="headerlink" href="#get-orgs-summary" title="Permalink to this headline">¶</a></h2>
+<p>List the summary metrics for all organizations. <span class="xref std std-ref">Org Timeseries Metrics `endpoints-orgs-get-timeseries&gt;</span>.</p>
+<dl class="docutils">
+<dt><strong>NOTE</strong>:</dt>
+<dd><ul class="first last simple">
+<li>Only accessible to Super Users.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="get-orgs-org-id-summary">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/summary</span></code><a class="headerlink" href="#get-orgs-org-id-summary" title="Permalink to this headline">¶</a></h2>
+<p>Get an org&#8217;s summary metrics by rolling up it&#8217;s <span class="xref std std-ref">Org Timeseries Metrics `endpoints-orgs-get-timeseries&gt;</span>.</p>
+</div>
+<div class="section" id="put-orgs-org-id-summary">
+<h2><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/summary</span></code><a class="headerlink" href="#put-orgs-org-id-summary" title="Permalink to this headline">¶</a></h2>
+<p>Refresh an org&#8217;s summary metrics by rolling up it&#8217;s <span class="xref std std-ref">Org Timeseries Metrics `endpoints-orgs-get-timeseries&gt;</span>.</p>
+</div>
+</div>
+<div class="section" id="org-comparisons">
+<h1><strong>Org Comparisons</strong><a class="headerlink" href="#org-comparisons" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="get-orgs-comparisons">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons</span></code><a class="headerlink" href="#get-orgs-comparisons" title="Permalink to this headline">¶</a></h2>
+<p>Get all comparison metrics</p>
+</div>
+<div class="section" id="put-orgs-comparisons">
+<h2><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons</span></code><a class="headerlink" href="#put-orgs-comparisons" title="Permalink to this headline">¶</a></h2>
+<p>Update all comparison metrics</p>
+</div>
+<div class="section" id="get-orgs-comparisons-type">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons/:type</span></code><a class="headerlink" href="#get-orgs-comparisons-type" title="Permalink to this headline">¶</a></h2>
+<p>Get just this comparison <code class="docutils literal"><span class="pre">type</span></code>.</p>
+</div>
+<div class="section" id="put-orgs-comparisons-type">
+<h2><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/comparisons/:type</span></code><a class="headerlink" href="#put-orgs-comparisons-type" title="Permalink to this headline">¶</a></h2>
+<p>Update just this comparison <code class="docutils literal"><span class="pre">type</span></code> for all orgs.</p>
+</div>
+<div class="section" id="get-orgs-org-id-comparisons">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons</span></code><a class="headerlink" href="#get-orgs-org-id-comparisons" title="Permalink to this headline">¶</a></h2>
+<p>Compare this Org by all types.</p>
+</div>
+<div class="section" id="put-orgs-org-id-comparisons">
+<h2><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons</span></code><a class="headerlink" href="#put-orgs-org-id-comparisons" title="Permalink to this headline">¶</a></h2>
+<p>Update all comparison metrics for this Org.</p>
+</div>
+<div class="section" id="get-orgs-org-id-comparisons-type">
+<h2><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons/:type</span></code><a class="headerlink" href="#get-orgs-org-id-comparisons-type" title="Permalink to this headline">¶</a></h2>
+<p>Update all comparison metrics for this Org.</p>
+</div>
+<div class="section" id="put-orgs-org-id-comparisons-type">
+<h2><strong>PUT</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/comparisons/:type</span></code><a class="headerlink" href="#put-orgs-org-id-comparisons-type" title="Permalink to this headline">¶</a></h2>
+<p>Update comparison metrics for this Org and this <code class="docutils literal"><span class="pre">type</span></code>.</p>
+</div>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
           </div>
           <footer>
@@ -373,7 +445,6 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -389,14 +460,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>
