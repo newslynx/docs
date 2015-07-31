@@ -3211,7 +3211,7 @@ Params
 Body
 *******
 
-A partial or complete :ref:`endpoints-recipes-json` object **with all required SousChef options filled out**. Optionally include the ``sous_chef`` if not provided as a query string.
+A partial or complete :ref:`endpoints-recipes-json` object **with all required SousChef options filled out**. Optionally include the ``sous_chef`` in the body if not provided as a query string.
 
 Returns
 *******
@@ -3647,7 +3647,7 @@ An partial or complete :ref:`endpoint-metrics-json` object.
 Returns
 ********
 
-A newly updates :ref:`endpoint-metrics-json` object.
+A newly updated :ref:`endpoint-metrics-json` object.
 
 Example
 ********
@@ -3683,7 +3683,7 @@ Delete a metric.
 
 **NOTE**
   - You can pass in a metric's ``name`` or ``id`` to this endpoint.
-  - This endpoint will delete all instances of metric from Timeseries and Summary tables.
+  - This endpoint will delete all instances of this metric from Timeseries and Summary tables (when applicable).
   - If you want to re-create a metric, you'll need to re-create the Recipe 
     which originally created it.
 
@@ -4165,7 +4165,7 @@ Via ``python``
 **PUT** ``/authors/:from_author_id/merge/:to_author_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Merges an Author with another Author. This method merges the `from_author` *into* the `to_author`, transferring all associated content items, and deleting the `from_author` in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.
+Merges an Author with another Author. This method merges the ``from_author`` *into* the ``to_author``, transferring all associated content items, and deleting the ``from_author`` in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.
 
 Params
 ******
@@ -4340,7 +4340,7 @@ Params
 |                    | ``manual`` or ``recipe``.      |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``ids``            | A comma-separated list of      | null             | false          |
-|                    | event ``ids`` to filter        |                  |                |
+|                    | Event ``ids`` to filter        |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |
