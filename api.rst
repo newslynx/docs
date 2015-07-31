@@ -561,9 +561,6 @@ Via ``python``
 
 Fetch an organization object.
 
-**NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
-
 Params
 ******
 
@@ -591,17 +588,14 @@ Via ``CuRL``
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/orgs/pro-palpatine\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/orgs/1\?apikey=$NEWSLYNX_APIKEY
 
 
 Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api orgs get id=pro-palpatine
-
-** NOTE **: While you can still pass either a ``slug`` or ``id`` to this method, the keyword 
-must always be ``id``. This applies here and in all similar instances.
+    $ newslynx api orgs get id=1
 
 Via ``python``
 
@@ -610,7 +604,7 @@ Via ``python``
     from newslynx.client import API 
 
     api = API()
-    api.orgs.get('pro-palpatine')
+    api.orgs.get(1)
 
 .. _endpoints-orgs-update:
 
@@ -621,7 +615,6 @@ Change an organization's ``name``, ``slug`` and/or ``timezone``.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's (current) ``slug`` to this endpoint.
 
 Params
 ******
@@ -678,7 +671,7 @@ Via ``python``
     from newslynx.client import API 
 
     api = API()
-    api.orgs.create(1, 
+    api.orgs.update(1, 
         name="ProPalpatine2", 
         timezone="US/Western", 
         slug="pro-palpatine-2")
@@ -692,7 +685,6 @@ Delete an organization and all of it's associated collections.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 **WARNING**:
     - This method will delete all data associated with this organization, except for users.
@@ -749,7 +741,6 @@ Via ``python``
 Fetch all users associated with an organization.
 
 **NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
 ******
@@ -805,7 +796,6 @@ Create a new user under an organization.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
 ******
@@ -879,7 +869,6 @@ Via ``python``
 Fetch a user that belongs to a given organization.
 
 **NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -938,7 +927,6 @@ Add an existing user to an organization.
 
 **NOTE**:
     - Requires admin privileges. 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -996,7 +984,6 @@ Remove a user from an organization.
 
 **NOTE**:
     - Requires admin privileges. 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
