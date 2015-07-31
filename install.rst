@@ -53,3 +53,11 @@ Download the git repository and install dependencies:
    $ git clone https://github.com/newslynx/newslynx-app && cd newslynx-app
    $ npm install
 
+
+NewsLynx Desktop
+------------
+
+We also have a beta desktop version of NewsLynx App, which brings all of the same functionality of the web interface to a native environment, which can be easier for people to use. You can download the latest release for Mac OS X on the `Releases <https://github.com/newslynx/newslynx-electron/releases>`_ page of the `project repo <https://github.com/newslynx/newslynx-electron>`_.
+
+Follow that project's `issue tracker <https://github.com/newslynx/newslynx-electron/issues>`_ for progess on the first 1.0 release. If you would like to try it in the mean time please do. If you would like a Windows or Linux version, let us know by filing an issue and we can bake one out.
+
