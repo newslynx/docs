@@ -236,7 +236,7 @@ Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api me get email=merlynne@newslynx.org password=a-secure-password
+    $ newslynx api me get
 
 Via ``python``
 
@@ -2804,7 +2804,7 @@ Create a file like this and save it as ``sous-chef.json``
     }
 
 
-Alternatively, you can create a ``yaml`` file called ``sous-chef.yaml`` for use with ``newslynx`` or ``python``:
+Alternatively, you can create a ``yaml`` file called ``sous-chef.yaml`` for use with ``newslynx`` or ``python``. (Note: you can use ``json`` as well with these tools):
 
 .. code-block:: yaml
 
@@ -2861,7 +2861,7 @@ Via ``python``
 Fetch an individual SousChef.
 
 **NOTE**
-  - This endpoint can accept either a sous-chef ``id`` or ``slug``.
+  - This endpoint can accept either a Sous Chef ``id`` or ``slug``.
 
 Params
 ******
@@ -2919,7 +2919,7 @@ Via ``python``
 Update an individual SousChef.
 
 **NOTE**
-  - This endpoint can accept either a sous-chef ``id`` or ``slug``.
+  - This endpoint can accept either a Sous Chef ``id`` or ``slug``.
 
 Params
 ******
@@ -3070,12 +3070,12 @@ Params
 | ``scheduled``      | Filter recipes by whether or   | null             |                |
 |                    | not they are scheduled         |                  | false          |
 +--------------------+--------------------------------+------------------+----------------+
-| ``sort``           | Sort results by a recipe field.| -created         |                |
+| ``sort``           | Sort results by a Recipe field.| -created         |                |
 |                    | preface with **-** to sort     |                  | false          |
 |                    | descending                     |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``recipes``        | A comma-separated list of      | null             |                |
-|                    | recipe ids or slugs to         |                  |                |
+|                    | Recipe ids or slugs to         |                  |                |
 |                    | query by.                      |                  | false          |
 |                    | Each element can be prefaced by|                  |                |
 |                    | with **-** or **!**            |                  |                |
@@ -3202,7 +3202,7 @@ Params
 |                    | specified timezone. If `false` |                  |                |
 |                    | dates will be returned in UTC. |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-| ``sous_chef``      | The SousChef this recipe runs. | null             |                |
+| ``sous_chef``      | The SousChef this Recipe runs. | null             |                |
 |                    | While not required as a param, |                  | false          |
 |                    | you must either pass this in   |                  |                |
 |                    | here or in the request body    |                  |                |
@@ -3274,7 +3274,7 @@ Via ``python``
 Fetch an individual Recipe.
 
 **NOTE**
-  - This endpoint can accept either a recipe ``id`` or ``slug``.
+  - This endpoint can accept either a Recipe ``id`` or ``slug``.
 
 Params
 ******
@@ -3331,7 +3331,7 @@ Via ``python``
 Update an individual Recipe.
 
 **NOTE**
-  - This endpoint can accept either a recipe ``id`` or ``slug``.
+  - This endpoint can accept either a Recipe ``id`` or ``slug``.
 
 Params
 ******
@@ -3349,7 +3349,7 @@ Params
 |                    | specified timezone. If `false` |                  |                |
 |                    | dates will be returned in UTC. |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-| ``sous_chef``      | The sous-chef this recipe runs.| null             |                |
+| ``sous_chef``      | The Sous Chef this Recipe runs.| null             |                |
 |                    | While not required as a param, |                  | false          |
 |                    | you must either pass this in   |                  |                |
 |                    | here or in the request body    |                  |                |
@@ -3684,7 +3684,7 @@ Delete a metric.
 **NOTE**
   - You can pass in a metric's ``name`` or ``id`` to this endpoint.
   - This endpoint will delete all instances of metric from Timeseries and Summary tables.
-  - If you want to re-create a metric, you'll need to re-create the recipe 
+  - If you want to re-create a metric, you'll need to re-create the Recipe 
     which originally created it.
 
 Params
@@ -4582,7 +4582,7 @@ Params
 |                    | contains links to one or more  |                  |                |
 |                    | Content Items.                 |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-| ``recipe_id``      | The recipe that retrieved this | false            | false          |
+| ``recipe_id``      | The Recipe that retrieved this | false            | false          |
 |                    | Event. If missing, we assume   |                  |                |
 |                    | the event is manually created  |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
@@ -4599,7 +4599,7 @@ A :ref:`endpoint-events-json` object, but the only required field is ``title``. 
 *Source IDs*
 
 If you're creating an event that's associated with a ``recipe_id``, it's also imperative that you pass in a ``source_id``. We use this field to ensure that no duplicate events are created and also 
-to make sure that Events that have been previously ``deleted`` are not re-created by a recipe which is continuously polling a data source. If you include a ``recipe_id`` as a query string, the ``source_id`` you pass in will be prefixed by the ``slug`` of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.
+to make sure that Events that have been previously ``deleted`` are not re-created by a Recipe which is continuously polling a data source. If you include a ``recipe_id`` as a query string, the ``source_id`` you pass in will be prefixed by the ``slug`` of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.
 
 *Dates*
 
@@ -6031,7 +6031,7 @@ Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api content list-timeseries unit=null group_by_id=f transform=cumulative
+    $ newslynx api content list-timeseries unit=day group_by_id=f transform=cumulative
 
 Via ``python``
 
@@ -6041,8 +6041,8 @@ Via ``python``
 
     api = API()
     api.content.list_timeseries(
-      unit='hour', author_ids='1', 
-      group_by_id=False, transform='cumulative'
+      unit='day', group_by_id=False, 
+      transform='cumulative'
     )
 
 

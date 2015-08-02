@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration &mdash; newslynx 1.0.3 documentation</title>
+  <title>Configuration &mdash; newslynx 1.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.3 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0 documentation" href="index.html"/>
         <link rel="next" title="Getting Started" href="getting-started.html"/>
         <link rel="prev" title="Installation Guide" href="install.html"/> 
 
@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-desktop">NewsLynx Desktop</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
@@ -85,6 +86,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#organizational-defaults">Organizational defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-super-user-org-settings">Optional Super User Org settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#intialization">Intialization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#starting-the-api">Starting the API.</a></li>
 </ul>
@@ -254,8 +256,8 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#delete-content-content-item-id-tags-tag-id"><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#content-timeseries-metrics"><strong>Content Timeseries Metrics</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#content-timeseries-json"><strong>Content Timeseries JSON</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#content-timeseries-metrics"><strong>Content Timeseries Metrics</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#content-timeseries-json"><strong>Content Timeseries JSON</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id-timeseries"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/timeseries</span></code></a></li>
 </ul>
@@ -265,16 +267,16 @@
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-content-content-item-id-summary"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/summary</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#comparisons"><strong>Comparisons</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#comparisons-json"><strong>Comparisons JSON</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#comparisons"><strong>Comparisons</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#comparisons-json"><strong>Comparisons JSON</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-content-comparisons"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-comparisons-comparison-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:comparison_type</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#put-content-comparisons-comparison-type"><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:comparison-type</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#make-comparisons"><strong>Make Comparisons</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#make-comparisons-json"><strong>Make Comparisons JSON</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#make-comparisons"><strong>Make Comparisons</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#make-comparisons-json"><strong>Make Comparisons JSON</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id-comparisons"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#get-content-content-item-id-comparisons-comparison-type"><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:comparison-type</span></code></a></li>
 </ul>
@@ -338,12 +340,10 @@
 <p>In this file, we require, at, minimum, the following fields:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">sqlalchemy_database_uri</span></code>:  This tells us where to create NewsLynx&#8217;s Postgres database. You can read more about how these work in the <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_1_0/core/engines.html">SQL Alchemy Docs</a>.</li>
-<li><code class="docutils literal"><span class="pre">super_user</span></code>: The name of the Super User for this NewsLynx install. / org settings.</li>
+<li><code class="docutils literal"><span class="pre">super_user</span></code>: The name of the Super User for this NewsLynx install. A Super User has access to all organizations running on this instance.</li>
 <li><code class="docutils literal"><span class="pre">super_user_email</span></code>: The Super User&#8217;s email (what you use to login with).</li>
 <li><code class="docutils literal"><span class="pre">super_user_password</span></code>: The Super User&#8217;s login password. This password will enable login to all other user profiles.</li>
 <li><code class="docutils literal"><span class="pre">super_user_apikey</span></code>: The Super User&#8217;s <code class="docutils literal"><span class="pre">apikey</span></code>.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.</li>
-<li><code class="docutils literal"><span class="pre">super_user_org</span></code>: OPTIONAL: The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>.</li>
-<li><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>: OPTIONAL: The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="api-credentials">
@@ -379,8 +379,15 @@
   <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">impact</span>
 </pre></div>
 </div>
-<p>If you would like to use the defaults for the Application, make sure to
-use the <code class="docutils literal"><span class="pre">--app-defaults</span></code> flag when you run <code class="docutils literal"><span class="pre">newslynx</span> <span class="pre">init</span></code> (more details on this below).</p>
+<p>If you would like to use the defaults for the Application, make sure to use the <code class="docutils literal"><span class="pre">--app-defaults</span></code> flag when you run <code class="docutils literal"><span class="pre">newslynx</span> <span class="pre">init</span></code> (more details on this below). <strong>This is essentialy a required flag since it creates recipes for tracking promotion and article ingestion.</strong></p>
+</div>
+<div class="section" id="optional-super-user-org-settings">
+<h3>Optional Super User Org settings<a class="headerlink" href="#optional-super-user-org-settings" title="Permalink to this headline">¶</a></h3>
+<p>The Super User belongs to a Super User Organization, which is for the added convenience that you don&#8217;t have to create your real organization before getting things working. You could also use it for testing purposes. Below are some settings that let you customize this organization.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">super_user_org</span></code>: The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>. You won&#8217;t need to change this for any real purpose unless you want a different name to appear.</li>
+<li><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>: The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
+</ul>
 </div>
 <div class="section" id="intialization">
 <h3>Intialization<a class="headerlink" href="#intialization" title="Permalink to this headline">¶</a></h3>
@@ -505,7 +512,7 @@ use the <code class="docutils literal"><span class="pre">--app-defaults</span></
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.3',
+            VERSION:'1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

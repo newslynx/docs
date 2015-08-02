@@ -5,7 +5,9 @@ NewsLynx Docs
 
 ## How to generate
 
-Make sure you have [Sphinx](http://sphinx-doc.org) installed. This project was built with Sphinx 1.3.1. Run the following
+This project requires Sphinx to build. Run `pip install -r requirements.txt`, preferably in a virtual environment, to install.
+
+Run the following
 
 ````shell
 make html

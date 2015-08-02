@@ -16,12 +16,10 @@ Required Settings
 In this file, we require, at, minimum, the following fields:
 
 * ``sqlalchemy_database_uri``:  This tells us where to create NewsLynx's Postgres database. You can read more about how these work in the `SQL Alchemy Docs <http://docs.sqlalchemy.org/en/rel_1_0/core/engines.html>`_.
-* ``super_user``: The name of the Super User for this NewsLynx install. / org settings.
+* ``super_user``: The name of the Super User for this NewsLynx install. A Super User has access to all organizations running on this instance.
 * ``super_user_email``: The Super User's email (what you use to login with).
 * ``super_user_password``: The Super User's login password. This password will enable login to all other user profiles.
 * ``super_user_apikey``: The Super User's ``apikey``.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.
-* ``super_user_org``: OPTIONAL: The Super User's Organization. The name of the organization to create on initialization. Will default to ``admin``.
-* ``super_user_org_timezone``: OPTIONAL: The timezone for the above organization. Will default to ``UTC``.
 
 API credentials
 +++++++++++++++++++
@@ -65,8 +63,15 @@ For example, ``~/.newslynx/defaults/tags.yaml`` specifies a list of tags to appl
 	  color: '#6699cc'
 	  type: impact 
 
-If you would like to use the defaults for the Application, make sure to 
-use the ``--app-defaults`` flag when you run ``newslynx init`` (more details on this below).
+If you would like to use the defaults for the Application, make sure to use the ``--app-defaults`` flag when you run ``newslynx init`` (more details on this below). **This is essentialy a required flag since it creates recipes for tracking promotion and article ingestion.** 
+
+Optional Super User Org settings
++++++++++++++++++
+
+The Super User belongs to a Super User Organization, which is for the added convenience that you don't have to create your real organization before getting things working. You could also use it for testing purposes. Below are some settings that let you customize this organization.
+
+* ``super_user_org``: The Super User's Organization. The name of the organization to create on initialization. Will default to ``admin``. You won't need to change this for any real purpose unless you want a different name to appear.
+* ``super_user_org_timezone``: The timezone for the above organization. Will default to ``UTC``. 
 
 
 Intialization

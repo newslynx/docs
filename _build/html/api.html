@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NewsLynx API &mdash; newslynx 1.0.3 documentation</title>
+  <title>NewsLynx API &mdash; newslynx 1.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0.3 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0 documentation" href="index.html"/>
         <link rel="next" title="NewsLynx App Architecture" href="app.html"/>
         <link rel="prev" title="Events" href="events.html"/> 
 
@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-desktop">NewsLynx Desktop</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
@@ -85,6 +86,7 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#optional-super-user-org-settings">Optional Super User Org settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
@@ -553,7 +555,7 @@ http://localhost:5000/api/v1/login
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api me get <span class="nv">email</span><span class="o">=</span>merlynne@newslynx.org <span class="nv">password</span><span class="o">=</span>a-secure-password
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api me get
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
@@ -3389,7 +3391,7 @@ dates will be returned in UTC.</td>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Alternatively, you can create a <code class="docutils literal"><span class="pre">yaml</span></code> file called <code class="docutils literal"><span class="pre">sous-chef.yaml</span></code> for use with <code class="docutils literal"><span class="pre">newslynx</span></code> or <code class="docutils literal"><span class="pre">python</span></code>:</p>
+<p>Alternatively, you can create a <code class="docutils literal"><span class="pre">yaml</span></code> file called <code class="docutils literal"><span class="pre">sous-chef.yaml</span></code> for use with <code class="docutils literal"><span class="pre">newslynx</span></code> or <code class="docutils literal"><span class="pre">python</span></code>. (Note: you can use <code class="docutils literal"><span class="pre">json</span></code> as well with these tools):</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span class="l-Scalar-Plain">slug</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">twitter-user-to-event-b</span>
 <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Event from twitter user 2</span>
 <span class="l-Scalar-Plain">runs</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">newslynx.sc.events.twitter.User</span>
@@ -3436,7 +3438,7 @@ dates will be returned in UTC.</td>
 <dl class="docutils">
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
-<li>This endpoint can accept either a sous-chef <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
+<li>This endpoint can accept either a Sous Chef <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
 </ul>
 </dd>
 </dl>
@@ -3508,7 +3510,7 @@ dates will be returned in UTC.</td>
 <dl class="docutils">
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
-<li>This endpoint can accept either a sous-chef <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
+<li>This endpoint can accept either a Sous Chef <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
 </ul>
 </dd>
 </dl>
@@ -3687,7 +3689,7 @@ not they are scheduled</td>
 <td>false</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">sort</span></code></td>
-<td>Sort results by a recipe field.
+<td>Sort results by a Recipe field.
 preface with <strong>-</strong> to sort
 descending</td>
 <td>-created</td>
@@ -3695,7 +3697,7 @@ descending</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">recipes</span></code></td>
 <td>A comma-separated list of
-recipe ids or slugs to
+Recipe ids or slugs to
 query by.
 Each element can be prefaced by
 with <strong>-</strong> or <strong>!</strong>
@@ -3835,7 +3837,7 @@ dates will be returned in UTC.</td>
 <td>false</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">sous_chef</span></code></td>
-<td>The SousChef this recipe runs.
+<td>The SousChef this Recipe runs.
 While not required as a param,
 you must either pass this in
 here or in the request body</td>
@@ -3896,7 +3898,7 @@ here or in the request body</td>
 <dl class="docutils">
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
-<li>This endpoint can accept either a recipe <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
+<li>This endpoint can accept either a Recipe <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
 </ul>
 </dd>
 </dl>
@@ -3968,7 +3970,7 @@ dates will be returned in UTC.</td>
 <dl class="docutils">
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
-<li>This endpoint can accept either a recipe <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
+<li>This endpoint can accept either a Recipe <code class="docutils literal"><span class="pre">id</span></code> or <code class="docutils literal"><span class="pre">slug</span></code>.</li>
 </ul>
 </dd>
 </dl>
@@ -4009,7 +4011,7 @@ dates will be returned in UTC.</td>
 <td>false</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">sous_chef</span></code></td>
-<td>The sous-chef this recipe runs.
+<td>The Sous Chef this Recipe runs.
 While not required as a param,
 you must either pass this in
 here or in the request body</td>
@@ -4386,7 +4388,7 @@ http://localhost:5000/api/v1/metrics/ga_entrances<span class="se">\?</span>org<s
 <dd><ul class="first last simple">
 <li>You can pass in a metric&#8217;s <code class="docutils literal"><span class="pre">name</span></code> or <code class="docutils literal"><span class="pre">id</span></code> to this endpoint.</li>
 <li>This endpoint will delete all instances of metric from Timeseries and Summary tables.</li>
-<li>If you want to re-create a metric, you&#8217;ll need to re-create the recipe
+<li>If you want to re-create a metric, you&#8217;ll need to re-create the Recipe
 which originally created it.</li>
 </ul>
 </dd>
@@ -5215,7 +5217,7 @@ Content Items.</td>
 <td>false</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">recipe_id</span></code></td>
-<td>The recipe that retrieved this
+<td>The Recipe that retrieved this
 Event. If missing, we assume
 the event is manually created</td>
 <td>false</td>
@@ -5234,7 +5236,7 @@ the event is manually created</td>
 </ul>
 <p><em>Source IDs</em></p>
 <p>If you&#8217;re creating an event that&#8217;s associated with a <code class="docutils literal"><span class="pre">recipe_id</span></code>, it&#8217;s also imperative that you pass in a <code class="docutils literal"><span class="pre">source_id</span></code>. We use this field to ensure that no duplicate events are created and also
-to make sure that Events that have been previously <code class="docutils literal"><span class="pre">deleted</span></code> are not re-created by a recipe which is continuously polling a data source. If you include a <code class="docutils literal"><span class="pre">recipe_id</span></code> as a query string, the <code class="docutils literal"><span class="pre">source_id</span></code> you pass in will be prefixed by the <code class="docutils literal"><span class="pre">slug</span></code> of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.</p>
+to make sure that Events that have been previously <code class="docutils literal"><span class="pre">deleted</span></code> are not re-created by a Recipe which is continuously polling a data source. If you include a <code class="docutils literal"><span class="pre">recipe_id</span></code> as a query string, the <code class="docutils literal"><span class="pre">source_id</span></code> you pass in will be prefixed by the <code class="docutils literal"><span class="pre">slug</span></code> of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.</p>
 <p><em>Dates</em></p>
 <p>If you wish to specify a <code class="docutils literal"><span class="pre">created</span></code> for an event, just pass it in as <a class="reference external" href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a> date string. If you include a UTC-Offset, it will be properly convered to UTC. Otherwise it will be assumed to be UTC. If you don&#8217;t pass in a <code class="docutils literal"><span class="pre">created</span></code> field, it will be set as the time the Event was ingested.</p>
 <p><em>Provenance</em></p>
@@ -6889,7 +6891,7 @@ it.</td>
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api content list-timeseries <span class="nv">unit</span><span class="o">=</span>null <span class="nv">group_by_id</span><span class="o">=</span>f <span class="nv">transform</span><span class="o">=</span>cumulative
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api content list-timeseries <span class="nv">unit</span><span class="o">=</span>day <span class="nv">group_by_id</span><span class="o">=</span>f <span class="nv">transform</span><span class="o">=</span>cumulative
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
@@ -6897,8 +6899,8 @@ it.</td>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">list_timeseries</span><span class="p">(</span>
-  <span class="n">unit</span><span class="o">=</span><span class="s">&#39;hour&#39;</span><span class="p">,</span> <span class="n">author_ids</span><span class="o">=</span><span class="s">&#39;1&#39;</span><span class="p">,</span>
-  <span class="n">group_by_id</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s">&#39;cumulative&#39;</span>
+  <span class="n">unit</span><span class="o">=</span><span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="n">group_by_id</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+  <span class="n">transform</span><span class="o">=</span><span class="s">&#39;cumulative&#39;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -7728,7 +7730,7 @@ underlying comparison cache.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.3',
+            VERSION:'1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
