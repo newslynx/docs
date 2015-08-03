@@ -561,9 +561,6 @@ Via ``python``
 
 Fetch an organization object.
 
-**NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
-
 Params
 ******
 
@@ -591,17 +588,14 @@ Via ``CuRL``
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/orgs/pro-palpatine\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/orgs/1\?apikey=$NEWSLYNX_APIKEY
 
 
 Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api orgs get id=pro-palpatine
-
-** NOTE **: While you can still pass either a ``slug`` or ``id`` to this method, the keyword 
-must always be ``id``. This applies here and in all similar instances.
+    $ newslynx api orgs get id=1
 
 Via ``python``
 
@@ -610,7 +604,7 @@ Via ``python``
     from newslynx.client import API 
 
     api = API()
-    api.orgs.get('pro-palpatine')
+    api.orgs.get(1)
 
 .. _endpoints-orgs-update:
 
@@ -621,7 +615,6 @@ Change an organization's ``name``, ``slug`` and/or ``timezone``.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's (current) ``slug`` to this endpoint.
 
 Params
 ******
@@ -678,7 +671,7 @@ Via ``python``
     from newslynx.client import API 
 
     api = API()
-    api.orgs.create(1, 
+    api.orgs.update(1, 
         name="ProPalpatine2", 
         timezone="US/Western", 
         slug="pro-palpatine-2")
@@ -692,7 +685,6 @@ Delete an organization and all of it's associated collections.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 **WARNING**:
     - This method will delete all data associated with this organization, except for users.
@@ -749,7 +741,6 @@ Via ``python``
 Fetch all users associated with an organization.
 
 **NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
 ******
@@ -805,7 +796,6 @@ Create a new user under an organization.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
 ******
@@ -879,7 +869,6 @@ Via ``python``
 Fetch a user that belongs to a given organization.
 
 **NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -938,7 +927,6 @@ Add an existing user to an organization.
 
 **NOTE**:
     - Requires admin privileges. 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -996,7 +984,6 @@ Remove a user from an organization.
 
 **NOTE**:
     - Requires admin privileges. 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -3211,7 +3198,7 @@ Params
 Body
 *******
 
-A partial or complete :ref:`endpoints-recipes-json` object **with all required SousChef options filled out**. Optionally include the ``sous_chef`` if not provided as a query string.
+A partial or complete :ref:`endpoints-recipes-json` object **with all required SousChef options filled out**. Optionally include the ``sous_chef`` in the body if not provided as a query string.
 
 Returns
 *******
@@ -3647,7 +3634,7 @@ An partial or complete :ref:`endpoint-metrics-json` object.
 Returns
 ********
 
-A newly updates :ref:`endpoint-metrics-json` object.
+A newly updated :ref:`endpoint-metrics-json` object.
 
 Example
 ********
@@ -3683,7 +3670,7 @@ Delete a metric.
 
 **NOTE**
   - You can pass in a metric's ``name`` or ``id`` to this endpoint.
-  - This endpoint will delete all instances of metric from Timeseries and Summary tables.
+  - This endpoint will delete all instances of this metric from Timeseries and Summary tables (when applicable).
   - If you want to re-create a metric, you'll need to re-create the Recipe 
     which originally created it.
 
@@ -4165,7 +4152,7 @@ Via ``python``
 **PUT** ``/authors/:from_author_id/merge/:to_author_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Merges an Author with another Author. This method merges the `from_author` *into* the `to_author`, transferring all associated content items, and deleting the `from_author` in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.
+Merges an Author with another Author. This method merges the ``from_author`` *into* the ``to_author``, transferring all associated content items, and deleting the ``from_author`` in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.
 
 Params
 ******
@@ -4340,7 +4327,7 @@ Params
 |                    | ``manual`` or ``recipe``.      |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``ids``            | A comma-separated list of      | null             | false          |
-|                    | event ``ids`` to filter        |                  |                |
+|                    | Event ``ids`` to filter        |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |

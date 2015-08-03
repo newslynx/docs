@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NewsLynx API &mdash; newslynx 1.0 documentation</title>
+  <title>NewsLynx API &mdash; newslynx 1.0.3 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="newslynx 1.0 documentation" href="index.html"/>
+    <link rel="top" title="newslynx 1.0.3 documentation" href="index.html"/>
         <link rel="next" title="NewsLynx App Architecture" href="app.html"/>
         <link rel="prev" title="Events" href="events.html"/> 
 
@@ -880,13 +880,6 @@ http://localhost:5000/api/v1/orgs<span class="se">\?</span><span class="nv">apik
 <div class="section" id="get-orgs-org-id">
 <span id="endpoints-orgs-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id</span></code><a class="headerlink" href="#get-orgs-org-id" title="Permalink to this headline">¶</a></h4>
 <p>Fetch an organization object.</p>
-<dl class="docutils">
-<dt><strong>NOTE</strong></dt>
-<dd><ul class="first last simple">
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
-</ul>
-</dd>
-</dl>
 <div class="section" id="id19">
 <h5>Params<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
@@ -928,20 +921,18 @@ in UTC.</td>
 <div class="section" id="id21">
 <h5>Example<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/pro-palpatine<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
 </div>
 <p>Via <code class="docutils literal"><span class="pre">newslynx</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api orgs get <span class="nv">id</span><span class="o">=</span>pro-palpatine
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx api orgs get <span class="nv">id</span><span class="o">=</span>1
 </pre></div>
 </div>
-<p>** NOTE <a href="#id22"><span class="problematic" id="id23">**</span></a>: While you can still pass either a <code class="docutils literal"><span class="pre">slug</span></code> or <code class="docutils literal"><span class="pre">id</span></code> to this method, the keyword
-must always be <code class="docutils literal"><span class="pre">id</span></code>. This applies here and in all similar instances.</p>
 <p>Via <code class="docutils literal"><span class="pre">python</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">orgs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;pro-palpatine&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orgs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -953,12 +944,11 @@ must always be <code class="docutils literal"><span class="pre">id</span></code>
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s (current) <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id24">
-<h5>Params<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id22">
+<h5>Params<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -991,12 +981,12 @@ in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id25">
-<h5>Returns<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id23">
+<h5>Returns<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoints-orgs-json"><span>Organization JSON</span></a> object.</p>
 </div>
-<div class="section" id="id26">
-<h5>Body<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id24">
+<h5>Body<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ProPalpatine2&quot;</span><span class="p">,</span>
   <span class="s2">&quot;slug&quot;</span><span class="o">:</span> <span class="s2">&quot;pro-palpatine-2&quot;</span><span class="p">,</span>
@@ -1005,8 +995,8 @@ in UTC.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id27">
-<h5>Example<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id25">
+<h5>Example<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="nv">name</span><span class="o">=</span>ProPalpatine2 -d <span class="nv">name</span><span class="o">=</span>pro-palpatine-2 -d <span class="nv">timezone</span><span class="o">=</span>US/Western <span class="se">\</span>
 http://localhost:5000/api/v1/orgs/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -1020,7 +1010,7 @@ http://localhost:5000/api/v1/orgs/1<span class="se">\?</span><span class="nv">ap
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">newslynx.client</span> <span class="kn">import</span> <span class="n">API</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">orgs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orgs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="s">&quot;ProPalpatine2&quot;</span><span class="p">,</span>
     <span class="n">timezone</span><span class="o">=</span><span class="s">&quot;US/Western&quot;</span><span class="p">,</span>
     <span class="n">slug</span><span class="o">=</span><span class="s">&quot;pro-palpatine-2&quot;</span><span class="p">)</span>
@@ -1035,7 +1025,6 @@ http://localhost:5000/api/v1/orgs/1<span class="se">\?</span><span class="nv">ap
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 </ul>
 </dd>
 <dt><strong>WARNING</strong>:</dt>
@@ -1044,8 +1033,8 @@ http://localhost:5000/api/v1/orgs/1<span class="se">\?</span><span class="nv">ap
 </ul>
 </dd>
 </dl>
-<div class="section" id="id28">
-<h5>Params<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id26">
+<h5>Params<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1078,12 +1067,12 @@ in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id29">
-<h5>Returns<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id27">
+<h5>Returns<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h5>
 <p><code class="docutils literal"><span class="pre">STATUS_CODE</span></code>: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id30">
-<h5>Example<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id28">
+<h5>Example<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/orgs/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
 </div>
@@ -1103,15 +1092,9 @@ in UTC.</td>
 <div class="section" id="get-orgs-org-id-users">
 <span id="endpoints-orgs-users-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/orgs/:org_id/users</span></code><a class="headerlink" href="#get-orgs-org-id-users" title="Permalink to this headline">¶</a></h4>
 <p>Fetch all users associated with an organization.</p>
-<dl class="docutils">
-<dt><strong>NOTE</strong></dt>
-<dd><ul class="first last simple">
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
-</ul>
-</dd>
-</dl>
-<div class="section" id="id31">
-<h5>Params<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h5>
+<p><strong>NOTE</strong></p>
+<div class="section" id="id29">
+<h5>Params<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1144,12 +1127,12 @@ in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id32">
-<h5>Returns<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id30">
+<h5>Returns<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h5>
 <p>A list of <a class="reference internal" href="#endpoints-user-json"><span>User JSON</span></a> object.</p>
 </div>
-<div class="section" id="id33">
-<h5>Example<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id31">
+<h5>Example<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/1/users<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -1174,12 +1157,11 @@ in UTC.</td>
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id34">
-<h5>Params<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id32">
+<h5>Params<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1212,8 +1194,8 @@ in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id35">
-<h5>Body<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id33">
+<h5>Body<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Brian Abelson&quot;</span><span class="p">,</span>
   <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;b@nytimes.cat&quot;</span><span class="p">,</span>
@@ -1223,12 +1205,12 @@ in UTC.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id36">
-<h5>Returns<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id34">
+<h5>Returns<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-user-json"><span>User JSON</span></a> object.</p>
 </div>
-<div class="section" id="id37">
-<h5>Example<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id35">
+<h5>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h5>
 <p>via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;name=Brian Abelson&amp;email=b@nytimes.cat&amp;password=l0l4k4t&amp;admin=false&quot;</span> <span class="se">\</span>
 http://localhost:5000/api/v1/orgs/1/users<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -1257,13 +1239,12 @@ http://localhost:5000/api/v1/orgs/1/users<span class="se">\?</span><span class="
 <dl class="docutils">
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 <li>You can pass in either an user&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or his/her <code class="docutils literal"><span class="pre">email</span></code> to this endpoint.</li>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id38">
-<h5>Params<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id36">
+<h5>Params<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1296,12 +1277,12 @@ in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id39">
-<h5>Returns<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id37">
+<h5>Returns<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-user-json"><span>User JSON</span></a> object.</p>
 </div>
-<div class="section" id="id40">
-<h5>Example<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id38">
+<h5>Example<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h5>
 <p>via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/1/users/b@nytimes.cat<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -1326,13 +1307,12 @@ in UTC.</td>
 <dt><strong>NOTE</strong>:</dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 <li>You can pass in either an user&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or his/her <code class="docutils literal"><span class="pre">email</span></code> to this endpoint.</li>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id41">
-<h5>Params<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id39">
+<h5>Params<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1365,12 +1345,12 @@ in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id42">
-<h5>Returns<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id40">
+<h5>Returns<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-user-json"><span>User JSON</span></a> object with a new organization affiliation.</p>
 </div>
-<div class="section" id="id43">
-<h5>Example<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id41">
+<h5>Example<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/orgs/1/users/m@nytimes.cat<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -1395,13 +1375,12 @@ in UTC.</td>
 <dt><strong>NOTE</strong>:</dt>
 <dd><ul class="first last simple">
 <li>Requires admin privileges.</li>
-<li>You can pass in either an organization&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or it&#8217;s <code class="docutils literal"><span class="pre">slug</span></code> to this endpoint.</li>
 <li>You can pass in either an user&#8217;s <code class="docutils literal"><span class="pre">id</span></code> or his/her <code class="docutils literal"><span class="pre">email</span></code> to this endpoint.</li>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id44">
-<h5>Params<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id42">
+<h5>Params<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="25%" />
@@ -1437,12 +1416,12 @@ affiliations.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id45">
-<h5>Returns<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id43">
+<h5>Returns<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id46">
-<h5>Example<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id44">
+<h5>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/orgs/1/users/m@nytimes.cat<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -1495,8 +1474,8 @@ affiliations.</td>
 <div class="section" id="get-level-settings">
 <span id="endpoints-settings-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code><a class="headerlink" href="#get-level-settings" title="Permalink to this headline">¶</a></h4>
 <p>Get a list of an user / organziation settings.</p>
-<div class="section" id="id47">
-<h5>Params<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id45">
+<h5>Params<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -1534,12 +1513,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id48">
-<h5>Returns<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id46">
+<h5>Returns<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h5>
 <p>A list of <a class="reference internal" href="#endpoints-settings-json"><span>Setting JSON</span></a> objects.</p>
 </div>
-<div class="section" id="id49">
-<h5>Example<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id47">
+<h5>Example<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/settings<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -1560,8 +1539,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="post-level-settings">
 <span id="endpoints-settings-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/:level/settings</span></code><a class="headerlink" href="#post-level-settings" title="Permalink to this headline">¶</a></h4>
 <p>Add a setting to an organization.</p>
-<div class="section" id="id50">
-<h5>Params<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id48">
+<h5>Params<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -1599,16 +1578,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id51">
-<h5>Body<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id49">
+<h5>Body<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-settings-json"><span>Setting JSON</span></a> object without an <code class="docutils literal"><span class="pre">id</span></code>.</p>
 </div>
-<div class="section" id="id52">
-<h5>Returns<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id50">
+<h5>Returns<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h5>
 <p>A newly-created <a class="reference internal" href="#endpoints-settings-json"><span>Setting JSON</span></a> object with an <code class="docutils literal"><span class="pre">id</span></code>.</p>
 </div>
-<div class="section" id="id53">
-<h5>Examples<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id51">
+<h5>Examples<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h5>
 <p>Create a simple setting.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;name=icon&amp;value=http://example.com/mylogo.png&quot;</span> <span class="se">\</span>
@@ -1655,8 +1634,8 @@ http://localhost:5000/api/v1/orgs/settings<span class="se">\?</span><span class=
 </ul>
 </dd>
 </dl>
-<div class="section" id="id54">
-<h5>Params<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id52">
+<h5>Params<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -1694,12 +1673,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id55">
-<h5>Returns<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id53">
+<h5>Returns<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-settings-json"><span>Setting JSON</span></a> object.</p>
 </div>
-<div class="section" id="id56">
-<h5>Example<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id54">
+<h5>Example<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/orgs/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -1727,8 +1706,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id57">
-<h5>Params<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id55">
+<h5>Params<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -1766,16 +1745,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id58">
-<h5>Body<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id56">
+<h5>Body<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h5>
 <p>A partial or complete <a class="reference internal" href="#endpoints-settings-json"><span>Setting JSON</span></a> object.</p>
 </div>
-<div class="section" id="id59">
-<h5>Returns<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id57">
+<h5>Returns<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h5>
 <p>A modified <a class="reference internal" href="#endpoints-settings-json"><span>Setting JSON</span></a> object.</p>
 </div>
-<div class="section" id="id60">
-<h5>Examples<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id58">
+<h5>Examples<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h5>
 <p>Update a setting.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;value=[\&quot;zzzz.in\&quot;]&quot;</span> -d <span class="s2">&quot;json_value=true&quot;</span> <span class="se">\</span>
@@ -1805,8 +1784,8 @@ http://localhost:5000/api/v1/orgs/settings/short_urls<span class="se">\?</span><
 </ul>
 </dd>
 </dl>
-<div class="section" id="id61">
-<h5>Params<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id59">
+<h5>Params<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -1837,12 +1816,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id62">
-<h5>Returns<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id60">
+<h5>Returns<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id63">
-<h5>Example<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id61">
+<h5>Example<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/orgs/settings/short_urls<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
 </div>
@@ -1885,8 +1864,8 @@ wish to access.</td>
 <div class="section" id="get-auths">
 <span id="endpoints-auth-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths</span></code><a class="headerlink" href="#get-auths" title="Permalink to this headline">¶</a></h4>
 <p>Fetches a list of an organization&#8217;s authorizations.</p>
-<div class="section" id="id64">
-<h5>Params<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id62">
+<h5>Params<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -1924,12 +1903,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id65">
-<h5>Returns<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id63">
+<h5>Returns<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h5>
 <p>A list of <a class="reference internal" href="#endpoints-auth-json"><span>Authorization JSON</span></a> objects.</p>
 </div>
-<div class="section" id="id66">
-<h5>Example<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id64">
+<h5>Example<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -1950,8 +1929,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-auths-google-analytics">
 <span id="endpoints-auth-google-analytics-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/google-analytics</span></code><a class="headerlink" href="#get-auths-google-analytics" title="Permalink to this headline">¶</a></h4>
 <p>Fetches an organization&#8217;s Google Analytics authorization.</p>
-<div class="section" id="id67">
-<h5>Params<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id65">
+<h5>Params<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -1989,12 +1968,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id68">
-<h5>Returns<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id66">
+<h5>Returns<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoints-auth-json"><span>Authorization JSON</span></a> object</p>
 </div>
-<div class="section" id="id69">
-<h5>Example<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id67">
+<h5>Example<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/google-analytics<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2020,8 +1999,8 @@ dates will be returned in UTC.</td>
 it will direct them to a form which they can use to select which properties and profiles they would like
 to grant NewsLynx access to. If at any point a user would like to change these properties, he/she simply
 needs to access this method again - it&#8217;s not necessary to revoke access first.</p>
-<div class="section" id="id70">
-<h5>Params<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id68">
+<h5>Params<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2066,13 +2045,13 @@ authentication attempt</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id71">
-<h5>Returns<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id69">
+<h5>Returns<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoints-auth-json"><span>Authorization JSON</span></a> object or, if a <code class="docutils literal"><span class="pre">redirect_uri</span></code> is provided, a redirection to that
 location with the added query string parameter <code class="docutils literal"><span class="pre">auth_success</span></code> to indicate whether or not the authorization request was successful.</p>
 </div>
-<div class="section" id="id72">
-<h5>Example<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id70">
+<h5>Example<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/google-analytics/grant<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2095,8 +2074,8 @@ location with the added query string parameter <code class="docutils literal"><s
 <div class="section" id="get-auths-google-analytics-revoke">
 <span id="endpoints-auth-google-analytics-revoke"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/google-analytics/revoke</span></code><a class="headerlink" href="#get-auths-google-analytics-revoke" title="Permalink to this headline">¶</a></h4>
 <p>Revokes an organization&#8217;s Google Analytics authorization.</p>
-<div class="section" id="id73">
-<h5>Params<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id71">
+<h5>Params<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2127,12 +2106,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id74">
-<h5>Returns<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id72">
+<h5>Returns<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id75">
-<h5>Example<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id73">
+<h5>Example<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/google-analytics/revoke<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2153,8 +2132,8 @@ wish to access.</td>
 <div class="section" id="get-auths-twitter">
 <span id="endpoints-auth-twitter-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/twitter</span></code><a class="headerlink" href="#get-auths-twitter" title="Permalink to this headline">¶</a></h4>
 <p>Fetches an organization&#8217;s Twitter authorization.</p>
-<div class="section" id="id76">
-<h5>Params<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id74">
+<h5>Params<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2192,12 +2171,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id77">
-<h5>Returns<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id75">
+<h5>Returns<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoints-auth-json"><span>Authorization JSON</span></a> object</p>
 </div>
-<div class="section" id="id78">
-<h5>Example<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id76">
+<h5>Example<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/twitter<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2218,8 +2197,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-auths-twitter-grant">
 <span id="endpoints-auth-twitter-grant"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/twitter/grant</span></code><a class="headerlink" href="#get-auths-twitter-grant" title="Permalink to this headline">¶</a></h4>
 <p>Authorizes NewsLynx to access an organization&#8217;s Twitter profile.</p>
-<div class="section" id="id79">
-<h5>Params<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id77">
+<h5>Params<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2264,13 +2243,13 @@ authentication attempt</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id80">
-<h5>Returns<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id78">
+<h5>Returns<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoints-auth-json"><span>Authorization JSON</span></a> object or, if a <code class="docutils literal"><span class="pre">redirect_uri</span></code> is provided, a redirection to that
 location with the added query string parameter <code class="docutils literal"><span class="pre">auth_success</span></code> to indicate whether or not the authorization request was successful.</p>
 </div>
-<div class="section" id="id81">
-<h5>Example<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id79">
+<h5>Example<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/twitter/grant<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2293,8 +2272,8 @@ location with the added query string parameter <code class="docutils literal"><s
 <div class="section" id="get-auths-twitter-revoke">
 <span id="endpoints-auth-twitter-revoke"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/twitter/revoke</span></code><a class="headerlink" href="#get-auths-twitter-revoke" title="Permalink to this headline">¶</a></h4>
 <p>Revokes an organization&#8217;s Twitter authorization.</p>
-<div class="section" id="id82">
-<h5>Params<a class="headerlink" href="#id82" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id80">
+<h5>Params<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2325,12 +2304,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id83">
-<h5>Returns<a class="headerlink" href="#id83" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id81">
+<h5>Returns<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id84">
-<h5>Example<a class="headerlink" href="#id84" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id82">
+<h5>Example<a class="headerlink" href="#id82" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/twitter/revoke<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2351,8 +2330,8 @@ wish to access.</td>
 <div class="section" id="get-auths-facebook">
 <span id="endpoints-auth-facebook-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/facebook</span></code><a class="headerlink" href="#get-auths-facebook" title="Permalink to this headline">¶</a></h4>
 <p>Fetches an organization&#8217;s Facebook authorization.</p>
-<div class="section" id="id85">
-<h5>Params<a class="headerlink" href="#id85" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id83">
+<h5>Params<a class="headerlink" href="#id83" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2390,12 +2369,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id86">
-<h5>Returns<a class="headerlink" href="#id86" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id84">
+<h5>Returns<a class="headerlink" href="#id84" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoints-auth-json"><span>Authorization JSON</span></a> object</p>
 </div>
 <div class="section" id="endpoints-auth-facebook-grant">
-<span id="id87"></span><h5>Example<a class="headerlink" href="#endpoints-auth-facebook-grant" title="Permalink to this headline">¶</a></h5>
+<span id="id85"></span><h5>Example<a class="headerlink" href="#endpoints-auth-facebook-grant" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/facebook<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2416,8 +2395,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-auths-facebook-grant">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/facebook/grant</span></code><a class="headerlink" href="#get-auths-facebook-grant" title="Permalink to this headline">¶</a></h4>
 <p>Authorizes NewsLynx to access an organization&#8217;s Facebook profile.</p>
-<div class="section" id="id88">
-<h5>Params<a class="headerlink" href="#id88" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id86">
+<h5>Params<a class="headerlink" href="#id86" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2462,13 +2441,13 @@ authentication attempt</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id89">
-<h5>Returns<a class="headerlink" href="#id89" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id87">
+<h5>Returns<a class="headerlink" href="#id87" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoints-auth-json"><span>Authorization JSON</span></a> object or, if a <code class="docutils literal"><span class="pre">redirect_uri</span></code> is provided, a redirection to that
 location with the added query string parameter <code class="docutils literal"><span class="pre">auth_success</span></code> to indicate whether or not the authorization request was successful.</p>
 </div>
-<div class="section" id="id90">
-<h5>Example<a class="headerlink" href="#id90" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id88">
+<h5>Example<a class="headerlink" href="#id88" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/facebook/grant<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2491,8 +2470,8 @@ location with the added query string parameter <code class="docutils literal"><s
 <div class="section" id="get-auths-facebook-revoke">
 <span id="endpoints-auth-facebook-revoke"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/auths/facebook/revoke</span></code><a class="headerlink" href="#get-auths-facebook-revoke" title="Permalink to this headline">¶</a></h4>
 <p>Revokes an organization&#8217;s Facebook authorization.</p>
-<div class="section" id="id91">
-<h5>Params<a class="headerlink" href="#id91" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id89">
+<h5>Params<a class="headerlink" href="#id89" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2523,12 +2502,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id92">
-<h5>Returns<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id90">
+<h5>Returns<a class="headerlink" href="#id90" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id93">
-<h5>Example<a class="headerlink" href="#id93" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id91">
+<h5>Example<a class="headerlink" href="#id91" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/auths/facebook/revoke<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2581,8 +2560,8 @@ wish to access.</td>
 <div class="section" id="get-tags">
 <span id="endpoints-tags-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags</span></code><a class="headerlink" href="#get-tags" title="Permalink to this headline">¶</a></h4>
 <p>List all tags associated with an organization, as well as helpful faceted counts.</p>
-<div class="section" id="id94">
-<h5>Params<a class="headerlink" href="#id94" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id92">
+<h5>Params<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2645,8 +2624,8 @@ descending</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id95">
-<h5>Returns<a class="headerlink" href="#id95" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id93">
+<h5>Returns<a class="headerlink" href="#id93" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;facets&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;levels&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -2694,8 +2673,8 @@ descending</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id96">
-<h5>Example<a class="headerlink" href="#id96" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id94">
+<h5>Example<a class="headerlink" href="#id94" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/tags<span class="se">\?</span><span class="nv">sort</span><span class="o">=</span>-name<span class="se">\&amp;</span><span class="nb">type</span><span class="o">=</span>subject<span class="se">\&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2716,8 +2695,8 @@ descending</td>
 <div class="section" id="post-tags">
 <span id="endpoints-tags-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/tags</span></code><a class="headerlink" href="#post-tags" title="Permalink to this headline">¶</a></h4>
 <p>Create a tag.</p>
-<div class="section" id="id97">
-<h5>Params<a class="headerlink" href="#id97" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id95">
+<h5>Params<a class="headerlink" href="#id95" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2755,16 +2734,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id98">
-<h5>Body<a class="headerlink" href="#id98" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id96">
+<h5>Body<a class="headerlink" href="#id96" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-tags-json"><span>Tag JSON</span></a> object.</p>
 </div>
-<div class="section" id="id99">
-<h5>Returns<a class="headerlink" href="#id99" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id97">
+<h5>Returns<a class="headerlink" href="#id97" title="Permalink to this headline">¶</a></h5>
 <p>A newly-created <a class="reference internal" href="#endpoints-tags-json"><span>Tag JSON</span></a> object.</p>
 </div>
-<div class="section" id="id100">
-<h5>Example<a class="headerlink" href="#id100" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id98">
+<h5>Example<a class="headerlink" href="#id98" title="Permalink to this headline">¶</a></h5>
 <p>Create a subject tag.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;name=foo&amp;type=subject&amp;color=#fc0&quot;</span> <span class="se">\</span>
@@ -2811,8 +2790,8 @@ http://localhost:5000/api/v1/tags<span class="se">\?</span><span class="nv">apik
 </ul>
 </dd>
 </dl>
-<div class="section" id="id101">
-<h5>Params<a class="headerlink" href="#id101" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id99">
+<h5>Params<a class="headerlink" href="#id99" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2850,12 +2829,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id102">
-<h5>Returns<a class="headerlink" href="#id102" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id100">
+<h5>Returns<a class="headerlink" href="#id100" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-tags-json"><span>Tag JSON</span></a> object.</p>
 </div>
-<div class="section" id="id103">
-<h5>Example<a class="headerlink" href="#id103" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id101">
+<h5>Example<a class="headerlink" href="#id101" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/tags/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -2883,8 +2862,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id104">
-<h5>Params<a class="headerlink" href="#id104" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id102">
+<h5>Params<a class="headerlink" href="#id102" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2922,16 +2901,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id105">
-<h5>Body<a class="headerlink" href="#id105" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id103">
+<h5>Body<a class="headerlink" href="#id103" title="Permalink to this headline">¶</a></h5>
 <p>A complete or partial <a class="reference internal" href="#endpoints-tags-json"><span>Tag JSON</span></a> object.</p>
 </div>
-<div class="section" id="id106">
-<h5>Returns<a class="headerlink" href="#id106" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id104">
+<h5>Returns<a class="headerlink" href="#id104" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoints-tags-json"><span>Tag JSON</span></a> object.</p>
 </div>
-<div class="section" id="id107">
-<h5>Example<a class="headerlink" href="#id107" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id105">
+<h5>Example<a class="headerlink" href="#id105" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;color=#fc0aaa&quot;</span> <span class="se">\</span>
   http://localhost:5000/api/v1/tags/21<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
@@ -2960,8 +2939,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id108">
-<h5>Params<a class="headerlink" href="#id108" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id106">
+<h5>Params<a class="headerlink" href="#id106" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2992,12 +2971,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id109">
-<h5>Returns<a class="headerlink" href="#id109" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id107">
+<h5>Returns<a class="headerlink" href="#id107" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id110">
-<h5>Example<a class="headerlink" href="#id110" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id108">
+<h5>Example<a class="headerlink" href="#id108" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/tags/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -3026,8 +3005,8 @@ re-associate, depending on the type, all of it&#8217;s Events or Content Items w
 </ul>
 </dd>
 </dl>
-<div class="section" id="id111">
-<h5>Params<a class="headerlink" href="#id111" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id109">
+<h5>Params<a class="headerlink" href="#id109" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3065,12 +3044,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id112">
-<h5>Returns<a class="headerlink" href="#id112" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id110">
+<h5>Returns<a class="headerlink" href="#id110" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoints-tags-json"><span>Tag JSON</span></a> object for the <code class="docutils literal"><span class="pre">to_tag_id</span></code>.</p>
 </div>
-<div class="section" id="id113">
-<h5>Example<a class="headerlink" href="#id113" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id111">
+<h5>Example<a class="headerlink" href="#id111" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/tags/1/merge/2<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -3091,12 +3070,12 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-tags-categories">
 <span id="endpoints-tags-categories"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/categories</span></code><a class="headerlink" href="#get-tags-categories" title="Permalink to this headline">¶</a></h4>
 <p>Get a list of every <a class="reference internal" href="taxonomy.html#taxonomy-tag-cat"><span>Impact Tag Category</span></a>. This endpoint exists to aid in creating dynamic UIs.</p>
-<div class="section" id="id114">
-<h5>Returns<a class="headerlink" href="#id114" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id112">
+<h5>Returns<a class="headerlink" href="#id112" title="Permalink to this headline">¶</a></h5>
 <p>A list of every <a class="reference internal" href="taxonomy.html#taxonomy-tag-cat"><span>Impact Tag Category</span></a>.</p>
 </div>
-<div class="section" id="id115">
-<h5>Example<a class="headerlink" href="#id115" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id113">
+<h5>Example<a class="headerlink" href="#id113" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/tags/categories
 </pre></div>
@@ -3117,12 +3096,12 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-tags-levels">
 <span id="endpoints-tags-levels"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/tags/levels</span></code><a class="headerlink" href="#get-tags-levels" title="Permalink to this headline">¶</a></h4>
 <p>Get a list of every <a class="reference internal" href="taxonomy.html#taxonomy-tag-level"><span>Impact Tag Level</span></a>. This endpoint exists to aid in creating dynamic UIs.</p>
-<div class="section" id="id116">
-<h5>Returns<a class="headerlink" href="#id116" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id114">
+<h5>Returns<a class="headerlink" href="#id114" title="Permalink to this headline">¶</a></h5>
 <p>A list of every <a class="reference internal" href="taxonomy.html#taxonomy-tag-level"><span>Impact Tag Level</span></a>.</p>
 </div>
-<div class="section" id="id117">
-<h5>Example<a class="headerlink" href="#id117" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id115">
+<h5>Example<a class="headerlink" href="#id115" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/tags/levels
 </pre></div>
@@ -3199,8 +3178,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-sous-chefs">
 <span id="endpoints-sous-chefs-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/sous-chefs</span></code><a class="headerlink" href="#get-sous-chefs" title="Permalink to this headline">¶</a></h4>
 <p>List all SousChefs, as well as helpful faceted counts.</p>
-<div class="section" id="id118">
-<h5>Params<a class="headerlink" href="#id118" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id116">
+<h5>Params<a class="headerlink" href="#id116" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3264,8 +3243,8 @@ to exclude it.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id119">
-<h5>Returns<a class="headerlink" href="#id119" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id117">
+<h5>Returns<a class="headerlink" href="#id117" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;facets&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;creates&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -3283,8 +3262,8 @@ to exclude it.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id120">
-<h5>Example<a class="headerlink" href="#id120" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id118">
+<h5>Example<a class="headerlink" href="#id118" title="Permalink to this headline">¶</a></h5>
 <p>Fetch all SousChefs:</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/sous-chefs<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
@@ -3322,8 +3301,8 @@ to exclude it.</td>
 <div class="section" id="post-sous-chefs">
 <span id="endpoints-sous-chefs-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/sous-chefs</span></code><a class="headerlink" href="#post-sous-chefs" title="Permalink to this headline">¶</a></h4>
 <p>Create a SousChef.</p>
-<div class="section" id="id121">
-<h5>Params<a class="headerlink" href="#id121" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id119">
+<h5>Params<a class="headerlink" href="#id119" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3361,16 +3340,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id122">
-<h5>Body<a class="headerlink" href="#id122" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id120">
+<h5>Body<a class="headerlink" href="#id120" title="Permalink to this headline">¶</a></h5>
 <p>A valid <a class="reference internal" href="#endpoints-sous-chefs-json"><span>Sous Chef JSON</span></a> object.</p>
 </div>
-<div class="section" id="id123">
-<h5>Returns<a class="headerlink" href="#id123" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id121">
+<h5>Returns<a class="headerlink" href="#id121" title="Permalink to this headline">¶</a></h5>
 <p>A newly-created <a class="reference internal" href="#endpoints-sous-chefs-json"><span>Sous Chef JSON</span></a> object.</p>
 </div>
-<div class="section" id="id124">
-<h5>Example<a class="headerlink" href="#id124" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id122">
+<h5>Example<a class="headerlink" href="#id122" title="Permalink to this headline">¶</a></h5>
 <p>Create a file like this and save it as <code class="docutils literal"><span class="pre">sous-chef.json</span></code></p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;slug&quot;</span><span class="o">:</span> <span class="s2">&quot;event-twitter-user-z&quot;</span><span class="p">,</span>
@@ -3442,8 +3421,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id125">
-<h5>Params<a class="headerlink" href="#id125" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id123">
+<h5>Params<a class="headerlink" href="#id123" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3481,12 +3460,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id126">
-<h5>Returns<a class="headerlink" href="#id126" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id124">
+<h5>Returns<a class="headerlink" href="#id124" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-sous-chefs-json"><span>Sous Chef JSON</span></a> object.</p>
 </div>
-<div class="section" id="id127">
-<h5>Example<a class="headerlink" href="#id127" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id125">
+<h5>Example<a class="headerlink" href="#id125" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d http://localhost:5000/api/v1/sous-chefs/twitter-user-to-event<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -3514,8 +3493,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id128">
-<h5>Params<a class="headerlink" href="#id128" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id126">
+<h5>Params<a class="headerlink" href="#id126" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3553,16 +3532,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id129">
-<h5>Body<a class="headerlink" href="#id129" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id127">
+<h5>Body<a class="headerlink" href="#id127" title="Permalink to this headline">¶</a></h5>
 <p>A complete or parial <a class="reference internal" href="#endpoints-sous-chefs-json"><span>Sous Chef JSON</span></a> object.</p>
 </div>
-<div class="section" id="id130">
-<h5>Returns<a class="headerlink" href="#id130" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id128">
+<h5>Returns<a class="headerlink" href="#id128" title="Permalink to this headline">¶</a></h5>
 <p>A newly-updated <a class="reference internal" href="#endpoints-sous-chefs-json"><span>Sous Chef JSON</span></a> object.</p>
 </div>
-<div class="section" id="id131">
-<h5>Example<a class="headerlink" href="#id131" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id129">
+<h5>Example<a class="headerlink" href="#id129" title="Permalink to this headline">¶</a></h5>
 <p>Add another option to a Sous Chef:</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT <span class="nv">screen_name</span><span class="o">=</span><span class="s1">&#39;newslynx&#39;</span> http://localhost:5000/api/v1/sous-chefs/twitter-user-to-event<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
@@ -3639,8 +3618,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-recipes">
 <span id="endpoints-recipes-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/recipes</span></code><a class="headerlink" href="#get-recipes" title="Permalink to this headline">¶</a></h4>
 <p>List all Recipes, as well as helpful faceted counts.</p>
-<div class="section" id="id132">
-<h5>Params<a class="headerlink" href="#id132" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id130">
+<h5>Params<a class="headerlink" href="#id130" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3720,8 +3699,8 @@ to exclude it.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id133">
-<h5>Returns<a class="headerlink" href="#id133" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id131">
+<h5>Returns<a class="headerlink" href="#id131" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;facets&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;creates&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -3751,8 +3730,8 @@ to exclude it.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id134">
-<h5>Example<a class="headerlink" href="#id134" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id132">
+<h5>Example<a class="headerlink" href="#id132" title="Permalink to this headline">¶</a></h5>
 <p>Fetch all Recipes:</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/recipes<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
@@ -3800,8 +3779,8 @@ them properly.</div></blockquote>
 will inherit these fields from it&#8217;s associated SousChef. In the case of <code class="docutils literal"><span class="pre">slug</span></code>, a short random hash
 will be added to ensure uniqueness.</li>
 </ul>
-<div class="section" id="id135">
-<h5>Params<a class="headerlink" href="#id135" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id133">
+<h5>Params<a class="headerlink" href="#id133" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3847,16 +3826,16 @@ here or in the request body</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id136">
-<h5>Body<a class="headerlink" href="#id136" title="Permalink to this headline">¶</a></h5>
-<p>A partial or complete <a class="reference internal" href="#endpoints-recipes-json"><span>Recipe JSON</span></a> object <strong>with all required SousChef options filled out</strong>. Optionally include the <code class="docutils literal"><span class="pre">sous_chef</span></code> if not provided as a query string.</p>
+<div class="section" id="id134">
+<h5>Body<a class="headerlink" href="#id134" title="Permalink to this headline">¶</a></h5>
+<p>A partial or complete <a class="reference internal" href="#endpoints-recipes-json"><span>Recipe JSON</span></a> object <strong>with all required SousChef options filled out</strong>. Optionally include the <code class="docutils literal"><span class="pre">sous_chef</span></code> in the body if not provided as a query string.</p>
 </div>
-<div class="section" id="id137">
-<h5>Returns<a class="headerlink" href="#id137" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id135">
+<h5>Returns<a class="headerlink" href="#id135" title="Permalink to this headline">¶</a></h5>
 <p>A newly-created <a class="reference internal" href="#endpoints-recipes-json"><span>Recipe JSON</span></a> object.</p>
 </div>
-<div class="section" id="id138">
-<h5>Example<a class="headerlink" href="#id138" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id136">
+<h5>Example<a class="headerlink" href="#id136" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <p>Create a file like this and save it as <code class="docutils literal"><span class="pre">recipe.json</span></code>:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
@@ -3902,8 +3881,8 @@ here or in the request body</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id139">
-<h5>Params<a class="headerlink" href="#id139" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id137">
+<h5>Params<a class="headerlink" href="#id137" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -3941,12 +3920,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id140">
-<h5>Returns<a class="headerlink" href="#id140" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id138">
+<h5>Returns<a class="headerlink" href="#id138" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoints-recipes-json"><span>Recipe JSON</span></a> object.</p>
 </div>
-<div class="section" id="id141">
-<h5>Example<a class="headerlink" href="#id141" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id139">
+<h5>Example<a class="headerlink" href="#id139" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/recipes/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -3974,8 +3953,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id142">
-<h5>Params<a class="headerlink" href="#id142" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id140">
+<h5>Params<a class="headerlink" href="#id140" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4021,16 +4000,16 @@ here or in the request body</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id143">
-<h5>Body<a class="headerlink" href="#id143" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id141">
+<h5>Body<a class="headerlink" href="#id141" title="Permalink to this headline">¶</a></h5>
 <p>A complete or partial <a class="reference internal" href="#endpoints-recipes-json"><span>Recipe JSON</span></a> object.</p>
 </div>
-<div class="section" id="id144">
-<h5>Returns<a class="headerlink" href="#id144" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id142">
+<h5>Returns<a class="headerlink" href="#id142" title="Permalink to this headline">¶</a></h5>
 <p>A newly-updated <a class="reference internal" href="#endpoints-recipes-json"><span>Recipe JSON</span></a> object.</p>
 </div>
-<div class="section" id="id145">
-<h5>Example<a class="headerlink" href="#id145" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id143">
+<h5>Example<a class="headerlink" href="#id143" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT <span class="se">\</span>
      -d <span class="s2">&quot;feed_url=http://newslynx.org/feed.xml&quot;</span> <span class="se">\</span>
@@ -4084,8 +4063,8 @@ here or in the request body</td>
 <div class="section" id="get-metrics">
 <span id="endpoints-metrics-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/metrics</span></code><a class="headerlink" href="#get-metrics" title="Permalink to this headline">¶</a></h4>
 <p>Filter all metrics.</p>
-<div class="section" id="id146">
-<h5>Params<a class="headerlink" href="#id146" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id144">
+<h5>Params<a class="headerlink" href="#id144" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4140,7 +4119,7 @@ it.</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">recipes</span></code></td>
 <td><p class="first">A comma-separated list of
-Recipe <a href="#id147"><span class="problematic" id="id148">``</span></a>id``s or <a href="#id149"><span class="problematic" id="id150">``</span></a>slug``s</p>
+Recipe <a href="#id145"><span class="problematic" id="id146">``</span></a>id``s or <a href="#id147"><span class="problematic" id="id148">``</span></a>slug``s</p>
 <blockquote>
 <div>to filter</div></blockquote>
 <p class="last">results by. Preface any element
@@ -4152,7 +4131,7 @@ it.</p>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">sous_chefs</span></code></td>
 <td>A comma-separated list of
-Sous Chef <a href="#id151"><span class="problematic" id="id152">``</span></a>slug``s to filter
+Sous Chef <a href="#id149"><span class="problematic" id="id150">``</span></a>slug``s to filter
 results by. Preface any element
 with <strong>!</strong> or <strong>-</strong> to exclude
 it.</td>
@@ -4176,8 +4155,8 @@ are computed.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id153">
-<h5>Returns<a class="headerlink" href="#id153" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id151">
+<h5>Returns<a class="headerlink" href="#id151" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;facets&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;computed&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
@@ -4211,8 +4190,8 @@ are computed.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id154">
-<h5>Example<a class="headerlink" href="#id154" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id152">
+<h5>Example<a class="headerlink" href="#id152" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/metrics<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -4240,8 +4219,8 @@ are computed.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id155">
-<h5>Params<a class="headerlink" href="#id155" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id153">
+<h5>Params<a class="headerlink" href="#id153" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4279,12 +4258,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id156">
-<h5>Returns<a class="headerlink" href="#id156" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id154">
+<h5>Returns<a class="headerlink" href="#id154" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoint-metrics-json"><span>Metric JSON</span></a> object.</p>
 </div>
-<div class="section" id="id157">
-<h5>Example<a class="headerlink" href="#id157" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id155">
+<h5>Example<a class="headerlink" href="#id155" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/metrics/ga_pageviews<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -4313,8 +4292,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id158">
-<h5>Params<a class="headerlink" href="#id158" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id156">
+<h5>Params<a class="headerlink" href="#id156" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4352,16 +4331,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id159">
-<h5>Body<a class="headerlink" href="#id159" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id157">
+<h5>Body<a class="headerlink" href="#id157" title="Permalink to this headline">¶</a></h5>
 <p>An partial or complete <a class="reference internal" href="#endpoint-metrics-json"><span>Metric JSON</span></a> object.</p>
 </div>
-<div class="section" id="id160">
-<h5>Returns<a class="headerlink" href="#id160" title="Permalink to this headline">¶</a></h5>
-<p>A newly updates <a class="reference internal" href="#endpoint-metrics-json"><span>Metric JSON</span></a> object.</p>
+<div class="section" id="id158">
+<h5>Returns<a class="headerlink" href="#id158" title="Permalink to this headline">¶</a></h5>
+<p>A newly updated <a class="reference internal" href="#endpoint-metrics-json"><span>Metric JSON</span></a> object.</p>
 </div>
-<div class="section" id="id161">
-<h5>Example<a class="headerlink" href="#id161" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id159">
+<h5>Example<a class="headerlink" href="#id159" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s1">&#39;display_name=Google Analytics Entrances&#39;</span> <span class="se">\</span>
 http://localhost:5000/api/v1/metrics/ga_entrances<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -4387,14 +4366,14 @@ http://localhost:5000/api/v1/metrics/ga_entrances<span class="se">\?</span>org<s
 <dt><strong>NOTE</strong></dt>
 <dd><ul class="first last simple">
 <li>You can pass in a metric&#8217;s <code class="docutils literal"><span class="pre">name</span></code> or <code class="docutils literal"><span class="pre">id</span></code> to this endpoint.</li>
-<li>This endpoint will delete all instances of metric from Timeseries and Summary tables.</li>
+<li>This endpoint will delete all instances of this metric from Timeseries and Summary tables (when applicable).</li>
 <li>If you want to re-create a metric, you&#8217;ll need to re-create the Recipe
 which originally created it.</li>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id162">
-<h5>Params<a class="headerlink" href="#id162" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id160">
+<h5>Params<a class="headerlink" href="#id160" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4425,12 +4404,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id163">
-<h5>Returns<a class="headerlink" href="#id163" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id161">
+<h5>Returns<a class="headerlink" href="#id161" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id164">
-<h5>Example<a class="headerlink" href="#id164" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id162">
+<h5>Example<a class="headerlink" href="#id162" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE -d <span class="se">\</span>
 http://localhost:5000/api/v1/metrics/ga_entrances<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -4469,13 +4448,13 @@ http://localhost:5000/api/v1/metrics/ga_entrances<span class="se">\?</span>org<s
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>NOTE</strong> All Author <a href="#id165"><span class="problematic" id="id166">``</span></a>name``s are stored in ALL CAPS to help prevent duplication.</p>
+<p><strong>NOTE</strong> All Author <a href="#id163"><span class="problematic" id="id164">``</span></a>name``s are stored in ALL CAPS to help prevent duplication.</p>
 </div>
 <div class="section" id="get-authors">
 <span id="endpoints-authors-list"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors</span></code><a class="headerlink" href="#get-authors" title="Permalink to this headline">¶</a></h4>
 <p>Fetch all authors for an organization.</p>
-<div class="section" id="id167">
-<h5>Params<a class="headerlink" href="#id167" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id165">
+<h5>Params<a class="headerlink" href="#id165" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4525,12 +4504,12 @@ the authors.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id168">
-<h5>Returns<a class="headerlink" href="#id168" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id166">
+<h5>Returns<a class="headerlink" href="#id166" title="Permalink to this headline">¶</a></h5>
 <p>A list of <span class="xref std std-ref">endpoint-authors-json</span> objects.</p>
 </div>
-<div class="section" id="id169">
-<h5>Example<a class="headerlink" href="#id169" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id167">
+<h5>Example<a class="headerlink" href="#id167" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/authors<span class="se">\?</span><span class="nv">q</span><span class="o">=</span>merlynne<span class="p">&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -4551,8 +4530,8 @@ the authors.</td>
 <div class="section" id="post-authors">
 <span id="endpoints-authors-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/authors</span></code><a class="headerlink" href="#post-authors" title="Permalink to this headline">¶</a></h4>
 <p>Create an Author.</p>
-<div class="section" id="id170">
-<h5>Params<a class="headerlink" href="#id170" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id168">
+<h5>Params<a class="headerlink" href="#id168" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4590,16 +4569,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id171">
-<h5>Body<a class="headerlink" href="#id171" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id169">
+<h5>Body<a class="headerlink" href="#id169" title="Permalink to this headline">¶</a></h5>
 <p>An <span class="xref std std-ref">endpoint-authors-json</span> object with, at the very minimum, a unique <code class="docutils literal"><span class="pre">name</span></code>.</p>
 </div>
-<div class="section" id="id172">
-<h5>Returns<a class="headerlink" href="#id172" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id170">
+<h5>Returns<a class="headerlink" href="#id170" title="Permalink to this headline">¶</a></h5>
 <p>A newly-created <span class="xref std std-ref">endpoint-authors-json</span> object.</p>
 </div>
-<div class="section" id="id173">
-<h5>Example<a class="headerlink" href="#id173" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id171">
+<h5>Example<a class="headerlink" href="#id171" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X POST --data<span class="o">=</span><span class="s2">&quot;name=DARTH&quot;</span> <span class="se">\</span>
   http://localhost:5000/api/v1/authors<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
@@ -4621,8 +4600,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-authors-author-id">
 <span id="endpoints-authors-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code><a class="headerlink" href="#get-authors-author-id" title="Permalink to this headline">¶</a></h4>
 <p>Fetch an individual author.</p>
-<div class="section" id="id174">
-<h5>Params<a class="headerlink" href="#id174" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id172">
+<h5>Params<a class="headerlink" href="#id172" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4667,12 +4646,12 @@ the author.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id175">
-<h5>Returns<a class="headerlink" href="#id175" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id173">
+<h5>Returns<a class="headerlink" href="#id173" title="Permalink to this headline">¶</a></h5>
 <p>An <span class="xref std std-ref">endpoint-authors-json</span> object.</p>
 </div>
-<div class="section" id="id176">
-<h5>Example<a class="headerlink" href="#id176" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id174">
+<h5>Example<a class="headerlink" href="#id174" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/authors/1<span class="se">\?</span><span class="p">&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -4693,8 +4672,8 @@ the author.</td>
 <div class="section" id="put-patch-authors-author-id">
 <span id="endpoints-authors-update"></span><h4><strong>PUT | PATCH</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code><a class="headerlink" href="#put-patch-authors-author-id" title="Permalink to this headline">¶</a></h4>
 <p>Update an author.</p>
-<div class="section" id="id177">
-<h5>Params<a class="headerlink" href="#id177" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id175">
+<h5>Params<a class="headerlink" href="#id175" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4732,16 +4711,16 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id178">
-<h5>Body<a class="headerlink" href="#id178" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id176">
+<h5>Body<a class="headerlink" href="#id176" title="Permalink to this headline">¶</a></h5>
 <p>An partial or complete <span class="xref std std-ref">endpoint-authors-json</span> object.</p>
 </div>
-<div class="section" id="id179">
-<h5>Returns<a class="headerlink" href="#id179" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id177">
+<h5>Returns<a class="headerlink" href="#id177" title="Permalink to this headline">¶</a></h5>
 <p>A newly updated <span class="xref std std-ref">endpoint-authors-json</span> object.</p>
 </div>
-<div class="section" id="id180">
-<h5>Example<a class="headerlink" href="#id180" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id178">
+<h5>Example<a class="headerlink" href="#id178" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;name=ANNAKIN&quot;</span> <span class="se">\</span>
   http://localhost:5000/api/v1/authors/DARTH<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
@@ -4763,8 +4742,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="delete-authors-author-id">
 <span id="endpoints-authors-delete"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id</span></code><a class="headerlink" href="#delete-authors-author-id" title="Permalink to this headline">¶</a></h4>
 <p>Delete an author.</p>
-<div class="section" id="id181">
-<h5>Params<a class="headerlink" href="#id181" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id179">
+<h5>Params<a class="headerlink" href="#id179" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4795,12 +4774,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id182">
-<h5>Returns<a class="headerlink" href="#id182" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id180">
+<h5>Returns<a class="headerlink" href="#id180" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id183">
-<h5>Example<a class="headerlink" href="#id183" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id181">
+<h5>Example<a class="headerlink" href="#id181" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/authors/1<span class="se">\&amp;</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -4825,8 +4804,8 @@ wish to access.</td>
 <ul class="simple">
 <li>Will always return the modified list of content items associated with the author.</li>
 </ul>
-<div class="section" id="id184">
-<h5>Params<a class="headerlink" href="#id184" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id182">
+<h5>Params<a class="headerlink" href="#id182" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4864,12 +4843,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id185">
-<h5>Returns<a class="headerlink" href="#id185" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id183">
+<h5>Returns<a class="headerlink" href="#id183" title="Permalink to this headline">¶</a></h5>
 <p>A newly updated <span class="xref std std-ref">endpoint-authors-json</span> object with the newly-associated content item included.</p>
 </div>
-<div class="section" id="id186">
-<h5>Example<a class="headerlink" href="#id186" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id184">
+<h5>Example<a class="headerlink" href="#id184" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT <span class="se">\</span>
 http://localhost:5000/api/v1/authors/1/merge/2<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -4891,8 +4870,8 @@ http://localhost:5000/api/v1/authors/1/merge/2<span class="se">\?</span>org<span
 <div class="section" id="delete-authors-author-id-content-content-item-id">
 <h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/authors/:author_id/content/:content_item_id</span></code><a class="headerlink" href="#delete-authors-author-id-content-content-item-id" title="Permalink to this headline">¶</a></h4>
 <p>Remove an association between an author and a content item.</p>
-<div class="section" id="id187">
-<h5>Params<a class="headerlink" href="#id187" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id185">
+<h5>Params<a class="headerlink" href="#id185" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4923,12 +4902,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id188">
-<h5>Returns<a class="headerlink" href="#id188" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id186">
+<h5>Returns<a class="headerlink" href="#id186" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id189">
-<h5>Example<a class="headerlink" href="#id189" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id187">
+<h5>Example<a class="headerlink" href="#id187" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE <span class="se">\</span>
 http://localhost:5000/api/v1/authors/1/content/2<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -4948,9 +4927,9 @@ http://localhost:5000/api/v1/authors/1/content/2<span class="se">\?</span>org<sp
 </div>
 <div class="section" id="put-authors-from-author-id-merge-to-author-id">
 <h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/authors/:from_author_id/merge/:to_author_id</span></code><a class="headerlink" href="#put-authors-from-author-id-merge-to-author-id" title="Permalink to this headline">¶</a></h4>
-<p>Merges an Author with another Author. This method merges the <cite>from_author</cite> <em>into</em> the <cite>to_author</cite>, transferring all associated content items, and deleting the <cite>from_author</cite> in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.</p>
-<div class="section" id="id190">
-<h5>Params<a class="headerlink" href="#id190" title="Permalink to this headline">¶</a></h5>
+<p>Merges an Author with another Author. This method merges the <code class="docutils literal"><span class="pre">from_author</span></code> <em>into</em> the <code class="docutils literal"><span class="pre">to_author</span></code>, transferring all associated content items, and deleting the <code class="docutils literal"><span class="pre">from_author</span></code> in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.</p>
+<div class="section" id="id188">
+<h5>Params<a class="headerlink" href="#id188" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -4981,12 +4960,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id191">
-<h5>Returns<a class="headerlink" href="#id191" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id189">
+<h5>Returns<a class="headerlink" href="#id189" title="Permalink to this headline">¶</a></h5>
 <p>A newly updated <span class="xref std std-ref">endpoint-authors-json</span> object for the <cite>to_author</cite> with content items from the <cite>from_author</cite> included.</p>
 </div>
-<div class="section" id="id192">
-<h5>Example<a class="headerlink" href="#id192" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id190">
+<h5>Example<a class="headerlink" href="#id190" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT <span class="se">\</span>
 http://localhost:5000/api/v1/authors/2/merge/3<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -5053,11 +5032,11 @@ http://localhost:5000/api/v1/authors/2/merge/3<span class="se">\?</span>org<span
 <div class="section" id="get-events">
 <span id="endpoints-events-search"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/events</span></code><a class="headerlink" href="#get-events" title="Permalink to this headline">¶</a></h4>
 <p>Search and filter all events and return helpful faceted counts.</p>
-<div class="section" id="id193">
-<h5>Params<a class="headerlink" href="#id193" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id191">
+<h5>Params<a class="headerlink" href="#id191" title="Permalink to this headline">¶</a></h5>
 </div>
-<div class="section" id="id194">
-<h5>Returns<a class="headerlink" href="#id194" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id192">
+<h5>Returns<a class="headerlink" href="#id192" title="Permalink to this headline">¶</a></h5>
 <p>The Events search endpoint will always return helpful pagination information. Including</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">first</span></code> - The first page of the response as a URL.</li>
@@ -5092,8 +5071,8 @@ http://localhost:5000/api/v1/authors/2/merge/3<span class="se">\?</span>org<span
 </pre></div>
 </div>
 </div>
-<div class="section" id="id195">
-<h5>Examples<a class="headerlink" href="#id195" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id193">
+<h5>Examples<a class="headerlink" href="#id193" title="Permalink to this headline">¶</a></h5>
 <p>List <code class="docutils literal"><span class="pre">approved</span></code> events by most recently created.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span>status<span class="se">\=</span>approved<span class="p">&amp;</span><span class="nv">sort</span><span class="o">=</span>-created
@@ -5173,8 +5152,8 @@ http://localhost:5000/api/v1/authors/2/merge/3<span class="se">\?</span>org<span
 <div class="section" id="post-events">
 <span id="endpoints-events-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/events</span></code><a class="headerlink" href="#post-events" title="Permalink to this headline">¶</a></h4>
 <p>Create an event.</p>
-<div class="section" id="id196">
-<h5>Params<a class="headerlink" href="#id196" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id194">
+<h5>Params<a class="headerlink" href="#id194" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5226,8 +5205,8 @@ the event is manually created</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id197">
-<h5>Body<a class="headerlink" href="#id197" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id195">
+<h5>Body<a class="headerlink" href="#id195" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object, but the only required field is <code class="docutils literal"><span class="pre">title</span></code>. You can also include the following special fields:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">tag_ids</span></code> - An array of tags to assign to this event.</li>
@@ -5244,12 +5223,12 @@ to make sure that Events that have been previously <code class="docutils literal
 <p><em>Meta Fields</em></p>
 <p>All fields passed to this method that are not part of the <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object will be inserted into the <code class="docutils literal"><span class="pre">meta</span></code> field.</p>
 </div>
-<div class="section" id="id198">
-<h5>Returns<a class="headerlink" href="#id198" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id196">
+<h5>Returns<a class="headerlink" href="#id196" title="Permalink to this headline">¶</a></h5>
 <p>A newly-created <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object. If you specify <code class="docutils literal"><span class="pre">must_link=true</span></code> and there is no matching ContentItem in the request body, then this method will return <code class="docutils literal"><span class="pre">null</span></code>.</p>
 </div>
-<div class="section" id="id199">
-<h5>Examples<a class="headerlink" href="#id199" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id197">
+<h5>Examples<a class="headerlink" href="#id197" title="Permalink to this headline">¶</a></h5>
 <p>Create an <code class="docutils literal"><span class="pre">approved</span></code> event associated with specific <code class="docutils literal"><span class="pre">content_item_ids</span></code> and <code class="docutils literal"><span class="pre">tag_ids</span></code></p>
 <p>First, create a file like this and save it as <code class="docutils literal"><span class="pre">event.json</span></code></p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
@@ -5289,8 +5268,8 @@ to make sure that Events that have been previously <code class="docutils literal
 <div class="section" id="get-events-event-id">
 <span id="endpoints-events-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/events/:event_id</span></code><a class="headerlink" href="#get-events-event-id" title="Permalink to this headline">¶</a></h4>
 <p>Fetch an individual event.</p>
-<div class="section" id="id200">
-<h5>Params<a class="headerlink" href="#id200" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id198">
+<h5>Params<a class="headerlink" href="#id198" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5328,12 +5307,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id201">
-<h5>Returns<a class="headerlink" href="#id201" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id199">
+<h5>Returns<a class="headerlink" href="#id199" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object with the <code class="docutils literal"><span class="pre">body</span></code> included.</p>
 </div>
-<div class="section" id="id202">
-<h5>Example<a class="headerlink" href="#id202" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id200">
+<h5>Example<a class="headerlink" href="#id200" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/events/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -5361,8 +5340,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id203">
-<h5>Params<a class="headerlink" href="#id203" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id201">
+<h5>Params<a class="headerlink" href="#id201" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5400,12 +5379,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id204">
-<h5>Returns<a class="headerlink" href="#id204" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id202">
+<h5>Returns<a class="headerlink" href="#id202" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object.</p>
 </div>
-<div class="section" id="id205">
-<h5>Examples<a class="headerlink" href="#id205" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id203">
+<h5>Examples<a class="headerlink" href="#id203" title="Permalink to this headline">¶</a></h5>
 <p>Update an event&#8217;s <code class="docutils literal"><span class="pre">description</span></code></p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;description=This is what happened&quot;</span> <span class="se">\</span>
@@ -5459,8 +5438,8 @@ setting it&#8217;s status as <code class="docutils literal"><span class="pre">ap
 <div class="section" id="delete-events-event-id">
 <span id="endpoints-events-delete"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/events/:event_id</span></code><a class="headerlink" href="#delete-events-event-id" title="Permalink to this headline">¶</a></h4>
 <p>Set an Event&#8217;s <code class="docutils literal"><span class="pre">status</span></code> as deleted and remove it&#8217;s associations with Tags and Content Items. Permanently delete an <code class="docutils literal"><span class="pre">event</span></code> by adding the parameter <code class="docutils literal"><span class="pre">force=true</span></code>.</p>
-<div class="section" id="id206">
-<h5>Params<a class="headerlink" href="#id206" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id204">
+<h5>Params<a class="headerlink" href="#id204" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5498,12 +5477,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id207">
-<h5>Returns<a class="headerlink" href="#id207" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id205">
+<h5>Returns<a class="headerlink" href="#id205" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id208">
-<h5>Examples<a class="headerlink" href="#id208" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id206">
+<h5>Examples<a class="headerlink" href="#id206" title="Permalink to this headline">¶</a></h5>
 <p>Set an Event&#8217;s <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">deleted</span></code></p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -5548,8 +5527,8 @@ wish to access.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id209">
-<h5>Params<a class="headerlink" href="#id209" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id207">
+<h5>Params<a class="headerlink" href="#id207" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5587,12 +5566,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id210">
-<h5>Returns<a class="headerlink" href="#id210" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id208">
+<h5>Returns<a class="headerlink" href="#id208" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object.</p>
 </div>
-<div class="section" id="id211">
-<h5>Example<a class="headerlink" href="#id211" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id209">
+<h5>Example<a class="headerlink" href="#id209" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/events/2/tag/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -5620,8 +5599,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id212">
-<h5>Params<a class="headerlink" href="#id212" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id210">
+<h5>Params<a class="headerlink" href="#id210" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5659,12 +5638,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id213">
-<h5>Returns<a class="headerlink" href="#id213" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id211">
+<h5>Returns<a class="headerlink" href="#id211" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object.</p>
 </div>
-<div class="section" id="id214">
-<h5>Example<a class="headerlink" href="#id214" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id212">
+<h5>Example<a class="headerlink" href="#id212" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/2/tag/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -5692,8 +5671,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id215">
-<h5>Params<a class="headerlink" href="#id215" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id213">
+<h5>Params<a class="headerlink" href="#id213" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5731,12 +5710,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id216">
-<h5>Returns<a class="headerlink" href="#id216" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id214">
+<h5>Returns<a class="headerlink" href="#id214" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object.</p>
 </div>
-<div class="section" id="id217">
-<h5>Example<a class="headerlink" href="#id217" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id215">
+<h5>Example<a class="headerlink" href="#id215" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/events/2/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -5764,8 +5743,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id218">
-<h5>Params<a class="headerlink" href="#id218" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id216">
+<h5>Params<a class="headerlink" href="#id216" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -5803,12 +5782,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id219">
-<h5>Returns<a class="headerlink" href="#id219" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id217">
+<h5>Returns<a class="headerlink" href="#id217" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object.</p>
 </div>
-<div class="section" id="id220">
-<h5>Example<a class="headerlink" href="#id220" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id218">
+<h5>Example<a class="headerlink" href="#id218" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/events/2/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -5879,8 +5858,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-content">
 <span id="endpoints-content-items-search"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content</span></code><a class="headerlink" href="#get-content" title="Permalink to this headline">¶</a></h4>
 <p>Search and filter all content items and return helpful faceted counts.</p>
-<div class="section" id="id221">
-<h5>Params<a class="headerlink" href="#id221" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id219">
+<h5>Params<a class="headerlink" href="#id219" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6045,7 +6024,7 @@ results by.</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">author_ids</span></code></td>
 <td>A comma-separated list of
-<a href="#id222"><span class="problematic" id="id223">``</span></a>author_ids``to filter
+<a href="#id220"><span class="problematic" id="id221">``</span></a>author_ids``to filter
 results by. Preface any element
 with <strong>!</strong> or <strong>-</strong> to exclude
 it.</td>
@@ -6137,8 +6116,8 @@ in the response. Choose from
 </tbody>
 </table>
 </div>
-<div class="section" id="id224">
-<h5>Returns<a class="headerlink" href="#id224" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id222">
+<h5>Returns<a class="headerlink" href="#id222" title="Permalink to this headline">¶</a></h5>
 <p>The Content Items search endpoint will always return helpful pagination information. Including</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">first</span></code> - The first page of the response as a URL.</li>
@@ -6172,8 +6151,8 @@ in the response. Choose from
 </pre></div>
 </div>
 </div>
-<div class="section" id="id225">
-<h5>Examples<a class="headerlink" href="#id225" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id223">
+<h5>Examples<a class="headerlink" href="#id223" title="Permalink to this headline">¶</a></h5>
 <p>List content items or type <code class="docutils literal"><span class="pre">article</span></code> by most recently created.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/content<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nb">type</span><span class="se">\=</span>article<span class="p">&amp;</span><span class="nv">sort</span><span class="o">=</span>-created
@@ -6256,8 +6235,8 @@ in the response. Choose from
 <div class="section" id="post-content">
 <span id="endpoints-content-items-create"></span><h4><strong>POST</strong> <code class="docutils literal"><span class="pre">/content</span></code><a class="headerlink" href="#post-content" title="Permalink to this headline">¶</a></h4>
 <p>Create an content item.</p>
-<div class="section" id="id226">
-<h5>Params<a class="headerlink" href="#id226" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id224">
+<h5>Params<a class="headerlink" href="#id224" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6292,7 +6271,7 @@ dates will be returned in UTC.</td>
 <td>false</td>
 <td>false</td>
 </tr>
-<tr class="row-odd"><td><a href="#id227"><span class="problematic" id="id228">``</span></a>extract  ``</td>
+<tr class="row-odd"><td><a href="#id225"><span class="problematic" id="id226">``</span></a>extract  ``</td>
 <td>Use extract API to construct
 the content item. When <code class="docutils literal"><span class="pre">true</span></code>
 you only need to provide a
@@ -6306,8 +6285,8 @@ precedence over extracted ones.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id229">
-<h5>Body<a class="headerlink" href="#id229" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id227">
+<h5>Body<a class="headerlink" href="#id227" title="Permalink to this headline">¶</a></h5>
 <p>A <a class="reference internal" href="#endpoint-content-items-json"><span>Content Item JSON</span></a> object, but the only required field is <code class="docutils literal"><span class="pre">title</span></code>. You can also include the following special fields:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">tag_ids</span></code> - An array of tags to assign to this content item.</li>
@@ -6319,12 +6298,12 @@ precedence over extracted ones.</td>
 <p><em>Meta Fields</em></p>
 <p>All fields passed to this method that are not part of the <a class="reference internal" href="#endpoint-content-items-json"><span>Content Item JSON</span></a> object will be inserted into the <code class="docutils literal"><span class="pre">meta</span></code> field.</p>
 </div>
-<div class="section" id="id230">
-<h5>Returns<a class="headerlink" href="#id230" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id228">
+<h5>Returns<a class="headerlink" href="#id228" title="Permalink to this headline">¶</a></h5>
 <p>A newly-created <a class="reference internal" href="#endpoint-content-items-json"><span>Content Item JSON</span></a> object.</p>
 </div>
-<div class="section" id="id231">
-<h5>Examples<a class="headerlink" href="#id231" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id229">
+<h5>Examples<a class="headerlink" href="#id229" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl --data <span class="s2">&quot;url=https://projects.propublica.org/killing-the-colorado/story/wasting-water-out-west-use-it-or-lose-it&amp;type=article&quot;</span> <span class="se">\</span>
   http://localhost:5000/api/v1/content<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1<span class="se">\&amp;</span><span class="nv">extract</span><span class="o">=</span><span class="nb">true</span>
@@ -6353,8 +6332,8 @@ precedence over extracted ones.</td>
 <div class="section" id="get-content-content-item-id">
 <span id="endpoints-content-items-get"></span><h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id</span></code><a class="headerlink" href="#get-content-content-item-id" title="Permalink to this headline">¶</a></h4>
 <p>Fetch an individual content item.</p>
-<div class="section" id="id232">
-<h5>Params<a class="headerlink" href="#id232" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id230">
+<h5>Params<a class="headerlink" href="#id230" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6392,12 +6371,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id233">
-<h5>Returns<a class="headerlink" href="#id233" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id231">
+<h5>Returns<a class="headerlink" href="#id231" title="Permalink to this headline">¶</a></h5>
 <p>An <a class="reference internal" href="#endpoint-content-items-json"><span>Content Item JSON</span></a> object with <code class="docutils literal"><span class="pre">body</span></code>, <code class="docutils literal"><span class="pre">img_url</span></code>, <code class="docutils literal"><span class="pre">thumbnail</span></code>, <code class="docutils literal"><span class="pre">metrics</span></code> always included.</p>
 </div>
-<div class="section" id="id234">
-<h5>Example<a class="headerlink" href="#id234" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id232">
+<h5>Example<a class="headerlink" href="#id232" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/content/1<span class="se">\?</span><span class="nv">apikey</span><span class="o">=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">org</span><span class="o">=</span>1
 </pre></div>
@@ -6425,8 +6404,8 @@ dates will be returned in UTC.</td>
 </ul>
 </dd>
 </dl>
-<div class="section" id="id235">
-<h5>Params<a class="headerlink" href="#id235" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id233">
+<h5>Params<a class="headerlink" href="#id233" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6464,12 +6443,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id236">
-<h5>Returns<a class="headerlink" href="#id236" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id234">
+<h5>Returns<a class="headerlink" href="#id234" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-content-items-json"><span>Content Item JSON</span></a> object.</p>
 </div>
-<div class="section" id="id237">
-<h5>Examples<a class="headerlink" href="#id237" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id235">
+<h5>Examples<a class="headerlink" href="#id235" title="Permalink to this headline">¶</a></h5>
 <p>Update a content item&#8217;s <code class="docutils literal"><span class="pre">description</span></code>.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT -d <span class="s2">&quot;description=This is what this story was about in a gist&quot;</span> <span class="se">\</span>
@@ -6492,8 +6471,8 @@ http://localhost:5000/api/v1/content/1<span class="se">\?</span><span class="nv"
 <div class="section" id="delete-content-content-item-id">
 <span id="endpoints-content-items-delete"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id</span></code><a class="headerlink" href="#delete-content-content-item-id" title="Permalink to this headline">¶</a></h4>
 <p>Delete a content item and all of it&#8217;s associate metrics.</p>
-<div class="section" id="id238">
-<h5>Params<a class="headerlink" href="#id238" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id236">
+<h5>Params<a class="headerlink" href="#id236" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6524,12 +6503,12 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id239">
-<h5>Returns<a class="headerlink" href="#id239" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id237">
+<h5>Returns<a class="headerlink" href="#id237" title="Permalink to this headline">¶</a></h5>
 <p>Status: <code class="docutils literal"><span class="pre">204</span></code></p>
 </div>
-<div class="section" id="id240">
-<h5>Example<a class="headerlink" href="#id240" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id238">
+<h5>Example<a class="headerlink" href="#id238" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/content/1<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -6550,8 +6529,8 @@ wish to access.</td>
 <div class="section" id="put-content-content-item-id-tag-tag-id">
 <span id="endpoints-content-items-add-tag"></span><h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tag/:tag_id</span></code><a class="headerlink" href="#put-content-content-item-id-tag-tag-id" title="Permalink to this headline">¶</a></h4>
 <p>Add a subject tag to a content item.</p>
-<div class="section" id="id241">
-<h5>Params<a class="headerlink" href="#id241" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id239">
+<h5>Params<a class="headerlink" href="#id239" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6589,12 +6568,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id242">
-<h5>Returns<a class="headerlink" href="#id242" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id240">
+<h5>Returns<a class="headerlink" href="#id240" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-content-items-json"><span>Content Item JSON</span></a> object.</p>
 </div>
-<div class="section" id="id243">
-<h5>Example<a class="headerlink" href="#id243" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id241">
+<h5>Example<a class="headerlink" href="#id241" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code>
 .. code-block:: bash</p>
 <blockquote>
@@ -6615,8 +6594,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="delete-content-content-item-id-tags-tag-id">
 <span id="endpoints-content-items-remove-tag"></span><h4><strong>DELETE</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/tags/:tag_id</span></code><a class="headerlink" href="#delete-content-content-item-id-tags-tag-id" title="Permalink to this headline">¶</a></h4>
 <p>Remove a subject tag from a content item.</p>
-<div class="section" id="id244">
-<h5>Params<a class="headerlink" href="#id244" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id242">
+<h5>Params<a class="headerlink" href="#id242" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6654,12 +6633,12 @@ dates will be returned in UTC.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id245">
-<h5>Returns<a class="headerlink" href="#id245" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id243">
+<h5>Returns<a class="headerlink" href="#id243" title="Permalink to this headline">¶</a></h5>
 <p>An updated <a class="reference internal" href="#endpoint-events-json"><span>Event JSON</span></a> object.</p>
 </div>
-<div class="section" id="id246">
-<h5>Example<a class="headerlink" href="#id246" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id244">
+<h5>Example<a class="headerlink" href="#id244" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X DELETE http://localhost:5000/api/v1/content/2/tags/15<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -6700,8 +6679,8 @@ dates will be returned in UTC.</td>
 <div class="section" id="get-content-timeseries">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/timeseries</span></code><a class="headerlink" href="#get-content-timeseries" title="Permalink to this headline">¶</a></h4>
 <p>Query the entire content timeseries store for an organization. This endpoint enables you to query content items by their associated Tags, Events, and Authors. It also allows you to aggregate at a specified date <code class="docutils literal"><span class="pre">unit</span></code> as well as by <code class="docutils literal"><span class="pre">datetime</span></code> so as to enable quick construction of aggregate timeseries for a Tag, Author, Event, or even an entire organization.</p>
-<div class="section" id="id247">
-<h5>Params<a class="headerlink" href="#id247" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id245">
+<h5>Params<a class="headerlink" href="#id245" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -6796,7 +6775,7 @@ results by.</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">author_ids</span></code></td>
 <td>A comma-separated list of
-<a href="#id248"><span class="problematic" id="id249">``</span></a>author_ids``to filter
+<a href="#id246"><span class="problematic" id="id247">``</span></a>author_ids``to filter
 results by. Preface any element
 with <strong>!</strong> or <strong>-</strong> to exclude
 it.</td>
@@ -6847,12 +6826,12 @@ it.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id250">
-<h5>Returns<a class="headerlink" href="#id250" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id248">
+<h5>Returns<a class="headerlink" href="#id248" title="Permalink to this headline">¶</a></h5>
 <p>An list of  <span class="xref std std-ref">endpoint-content-timeseries-json</span> objects.</p>
 </div>
-<div class="section" id="id251">
-<h5>Examples<a class="headerlink" href="#id251" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id249">
+<h5>Examples<a class="headerlink" href="#id249" title="Permalink to this headline">¶</a></h5>
 <p>Get the totals for three content items.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/content/timeseries<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span><span class="se">\&amp;</span><span class="nv">unit</span><span class="o">=</span>null<span class="se">\&amp;</span><span class="nv">ids</span><span class="o">=</span>1,2,3
@@ -6909,8 +6888,8 @@ it.</td>
 <div class="section" id="get-content-content-item-id-timeseries">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/timeseries</span></code><a class="headerlink" href="#get-content-content-item-id-timeseries" title="Permalink to this headline">¶</a></h4>
 <p>Query timeseries metrics for a single content item.</p>
-<div class="section" id="id252">
-<h5>Params<a class="headerlink" href="#id252" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id250">
+<h5>Params<a class="headerlink" href="#id250" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7020,12 +6999,12 @@ it.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id253">
-<h5>Returns<a class="headerlink" href="#id253" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id251">
+<h5>Returns<a class="headerlink" href="#id251" title="Permalink to this headline">¶</a></h5>
 <p>An list of  <span class="xref std std-ref">endpoint-content-timeseries-json</span> objects.</p>
 </div>
-<div class="section" id="id254">
-<h5>Example<a class="headerlink" href="#id254" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id252">
+<h5>Example<a class="headerlink" href="#id252" title="Permalink to this headline">¶</a></h5>
 <p>Get an individual timeseries.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/content/1/timeseries<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -7051,8 +7030,8 @@ it.</td>
 <div class="section" id="put-content-summary">
 <h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/summary</span></code><a class="headerlink" href="#put-content-summary" title="Permalink to this headline">¶</a></h4>
 <p>Refresh summaries of content timeseries metrics. These will show up in  the <a class="reference internal" href="#endpoints-content-items-search"><span>Content Search API</span></a> and when retrieving <a class="reference internal" href="#endpoints-content-items-get"><span>individual Content Items</span></a>.</p>
-<div class="section" id="id255">
-<h5>Params<a class="headerlink" href="#id255" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id253">
+<h5>Params<a class="headerlink" href="#id253" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7090,16 +7069,16 @@ in the last X hours.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id256">
-<h5>Returns<a class="headerlink" href="#id256" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id254">
+<h5>Returns<a class="headerlink" href="#id254" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id257">
-<h5>Example<a class="headerlink" href="#id257" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id255">
+<h5>Example<a class="headerlink" href="#id255" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/content/summary<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -7120,8 +7099,8 @@ in the last X hours.</td>
 <div class="section" id="put-content-content-item-id-summary">
 <h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/summary</span></code><a class="headerlink" href="#put-content-content-item-id-summary" title="Permalink to this headline">¶</a></h4>
 <p>Refresh summaries of content timeseries metrics for an invidual content item. These will show up in  the <a class="reference internal" href="#endpoints-content-items-search"><span>Content Search API</span></a> and when retrieving <a class="reference internal" href="#endpoints-content-items-get"><span>individual Content Items</span></a>.</p>
-<div class="section" id="id259">
-<h5>Params<a class="headerlink" href="#id259" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id257">
+<h5>Params<a class="headerlink" href="#id257" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7152,16 +7131,16 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id260">
-<h5>Returns<a class="headerlink" href="#id260" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id258">
+<h5>Returns<a class="headerlink" href="#id258" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id261">
-<h5>Example<a class="headerlink" href="#id261" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id259">
+<h5>Example<a class="headerlink" href="#id259" title="Permalink to this headline">¶</a></h5>
 <p>Get an individual timeseries.</p>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/content/1/summary<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
@@ -7247,8 +7226,8 @@ These comparisons power the App&#8217;s article comparison view which allows a u
 <div class="section" id="get-content-comparisons">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code><a class="headerlink" href="#get-content-comparisons" title="Permalink to this headline">¶</a></h4>
 <p>List all content comparison metrics.</p>
-<div class="section" id="id262">
-<h5>Params<a class="headerlink" href="#id262" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id260">
+<h5>Params<a class="headerlink" href="#id260" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7290,12 +7269,12 @@ this comparison has been cached</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id263">
-<h5>Returns<a class="headerlink" href="#id263" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id261">
+<h5>Returns<a class="headerlink" href="#id261" title="Permalink to this headline">¶</a></h5>
 <p>A <span class="xref std std-ref">endpoint-comparisons-json</span> object.</p>
 </div>
-<div class="section" id="id264">
-<h5>Example<a class="headerlink" href="#id264" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id262">
+<h5>Example<a class="headerlink" href="#id262" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/content/comparisons<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -7316,8 +7295,8 @@ this comparison has been cached</td>
 <div class="section" id="put-content-comparisons">
 <h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons</span></code><a class="headerlink" href="#put-content-comparisons" title="Permalink to this headline">¶</a></h4>
 <p>Update all comparison metrics.</p>
-<div class="section" id="id265">
-<h5>Params<a class="headerlink" href="#id265" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id263">
+<h5>Params<a class="headerlink" href="#id263" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7348,16 +7327,16 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id266">
-<h5>Returns<a class="headerlink" href="#id266" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id264">
+<h5>Returns<a class="headerlink" href="#id264" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id267">
-<h5>Example<a class="headerlink" href="#id267" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id265">
+<h5>Example<a class="headerlink" href="#id265" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/content/comparisons<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -7390,8 +7369,8 @@ wish to access.</td>
 - Compare against Content Items with specific Subject Tags.</li>
 </ul>
 </div></blockquote>
-<div class="section" id="id268">
-<h5>Params<a class="headerlink" href="#id268" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id266">
+<h5>Params<a class="headerlink" href="#id266" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7433,12 +7412,12 @@ this comparison has been cached</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id269">
-<h5>Returns<a class="headerlink" href="#id269" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id267">
+<h5>Returns<a class="headerlink" href="#id267" title="Permalink to this headline">¶</a></h5>
 <p>A <span class="xref std std-ref">endpoint-comparisons-json</span> object.</p>
 </div>
-<div class="section" id="id270">
-<h5>Example<a class="headerlink" href="#id270" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id268">
+<h5>Example<a class="headerlink" href="#id268" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://localhost:5000/api/v1/content/comparisons/impact-tags<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -7459,8 +7438,8 @@ this comparison has been cached</td>
 <div class="section" id="put-content-comparisons-comparison-type">
 <h4><strong>PUT</strong> <code class="docutils literal"><span class="pre">/content/comparisons/:comparison-type</span></code><a class="headerlink" href="#put-content-comparisons-comparison-type" title="Permalink to this headline">¶</a></h4>
 <p>Refresh just this comparison <code class="docutils literal"><span class="pre">type</span></code>.</p>
-<div class="section" id="id272">
-<h5>Params<a class="headerlink" href="#id272" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id270">
+<h5>Params<a class="headerlink" href="#id270" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7491,16 +7470,16 @@ wish to access.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id273">
-<h5>Returns<a class="headerlink" href="#id273" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id271">
+<h5>Returns<a class="headerlink" href="#id271" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id274">
-<h5>Example<a class="headerlink" href="#id274" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id272">
+<h5>Example<a class="headerlink" href="#id272" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/content/comparisons/impact-tags<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -7546,8 +7525,8 @@ wish to access.</td>
 <div class="section" id="get-content-content-item-id-comparisons">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons</span></code><a class="headerlink" href="#get-content-content-item-id-comparisons" title="Permalink to this headline">¶</a></h4>
 <p>Compare this Content Item by all comparison-types.</p>
-<div class="section" id="id276">
-<h5>Params<a class="headerlink" href="#id276" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id274">
+<h5>Params<a class="headerlink" href="#id274" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7584,12 +7563,12 @@ underlying comparison cache.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id277">
-<h5>Returns<a class="headerlink" href="#id277" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id275">
+<h5>Returns<a class="headerlink" href="#id275" title="Permalink to this headline">¶</a></h5>
 <p>A <span class="xref std std-ref">endpoint-make-comparisons-json</span> object.</p>
 </div>
-<div class="section" id="id278">
-<h5>Example<a class="headerlink" href="#id278" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id276">
+<h5>Example<a class="headerlink" href="#id276" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/content/1/comparisons<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -7610,8 +7589,8 @@ underlying comparison cache.</td>
 <div class="section" id="get-content-content-item-id-comparisons-comparison-type">
 <h4><strong>GET</strong> <code class="docutils literal"><span class="pre">/content/:content_item_id/comparisons/:comparison-type</span></code><a class="headerlink" href="#get-content-content-item-id-comparisons-comparison-type" title="Permalink to this headline">¶</a></h4>
 <p>Compare this Content Item by a particular comparison-type.</p>
-<div class="section" id="id279">
-<h5>Params<a class="headerlink" href="#id279" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id277">
+<h5>Params<a class="headerlink" href="#id277" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -7648,12 +7627,12 @@ underlying comparison cache.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id280">
-<h5>Returns<a class="headerlink" href="#id280" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id278">
+<h5>Returns<a class="headerlink" href="#id278" title="Permalink to this headline">¶</a></h5>
 <p>A <span class="xref std std-ref">endpoint-make-comparisons-json</span> object.</p>
 </div>
-<div class="section" id="id281">
-<h5>Example<a class="headerlink" href="#id281" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id279">
+<h5>Example<a class="headerlink" href="#id279" title="Permalink to this headline">¶</a></h5>
 <p>Via <code class="docutils literal"><span class="pre">CuRL</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -X PUT http://localhost:5000/api/v1/content/1/comparisons/impact-tags<span class="se">\?</span>org<span class="se">\=</span>1<span class="se">\&amp;</span>apikey<span class="se">\=</span><span class="nv">$NEWSLYNX_APIKEY</span>
 </pre></div>
@@ -7686,7 +7665,7 @@ underlying comparison cache.</td>
 </div>
 </div>
 <div class="section" id="compression">
-<span id="id282"></span><h2><strong>Compression</strong><a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h2>
+<span id="id280"></span><h2><strong>Compression</strong><a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h2>
 <p>All endpoints can return responses with <code class="docutils literal"><span class="pre">gzip</span></code> compression so long as the <code class="docutils literal"><span class="pre">Accept-Encoding</span></code> header of the request is set to <code class="docutils literal"><span class="pre">gzip</span></code>.</p>
 </div>
 </div>
@@ -7730,7 +7709,7 @@ underlying comparison cache.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0',
+            VERSION:'1.0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
