@@ -236,7 +236,7 @@ Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api me get email=merlynne@newslynx.org password=a-secure-password
+    $ newslynx api me get
 
 Via ``python``
 
@@ -561,9 +561,6 @@ Via ``python``
 
 Fetch an organization object.
 
-**NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
-
 Params
 ******
 
@@ -591,17 +588,14 @@ Via ``CuRL``
 
 .. code-block:: bash
     
-    $ curl http://localhost:5000/api/v1/orgs/pro-palpatine\?apikey=$NEWSLYNX_APIKEY
+    $ curl http://localhost:5000/api/v1/orgs/1\?apikey=$NEWSLYNX_APIKEY
 
 
 Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api orgs get id=pro-palpatine
-
-** NOTE **: While you can still pass either a ``slug`` or ``id`` to this method, the keyword 
-must always be ``id``. This applies here and in all similar instances.
+    $ newslynx api orgs get id=1
 
 Via ``python``
 
@@ -610,7 +604,7 @@ Via ``python``
     from newslynx.client import API 
 
     api = API()
-    api.orgs.get('pro-palpatine')
+    api.orgs.get(1)
 
 .. _endpoints-orgs-update:
 
@@ -621,7 +615,6 @@ Change an organization's ``name``, ``slug`` and/or ``timezone``.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's (current) ``slug`` to this endpoint.
 
 Params
 ******
@@ -678,7 +671,7 @@ Via ``python``
     from newslynx.client import API 
 
     api = API()
-    api.orgs.create(1, 
+    api.orgs.update(1, 
         name="ProPalpatine2", 
         timezone="US/Western", 
         slug="pro-palpatine-2")
@@ -692,7 +685,6 @@ Delete an organization and all of it's associated collections.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 **WARNING**:
     - This method will delete all data associated with this organization, except for users.
@@ -749,7 +741,6 @@ Via ``python``
 Fetch all users associated with an organization.
 
 **NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
 ******
@@ -805,7 +796,6 @@ Create a new user under an organization.
 
 **NOTE** 
     - Requires admin privileges.
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
 
 Params
 ******
@@ -879,7 +869,6 @@ Via ``python``
 Fetch a user that belongs to a given organization.
 
 **NOTE** 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -938,7 +927,6 @@ Add an existing user to an organization.
 
 **NOTE**:
     - Requires admin privileges. 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -996,7 +984,6 @@ Remove a user from an organization.
 
 **NOTE**:
     - Requires admin privileges. 
-    - You can pass in either an organization's ``id`` or it's ``slug`` to this endpoint.
     - You can pass in either an user's ``id`` or his/her ``email`` to this endpoint.
 
 Params
@@ -2804,7 +2791,7 @@ Create a file like this and save it as ``sous-chef.json``
     }
 
 
-Alternatively, you can create a ``yaml`` file called ``sous-chef.yaml`` for use with ``newslynx`` or ``python``:
+Alternatively, you can create a ``yaml`` file called ``sous-chef.yaml`` for use with ``newslynx`` or ``python``. (Note: you can use ``json`` as well with these tools):
 
 .. code-block:: yaml
 
@@ -2861,7 +2848,7 @@ Via ``python``
 Fetch an individual SousChef.
 
 **NOTE**
-  - This endpoint can accept either a sous-chef ``id`` or ``slug``.
+  - This endpoint can accept either a Sous Chef ``id`` or ``slug``.
 
 Params
 ******
@@ -2919,7 +2906,7 @@ Via ``python``
 Update an individual SousChef.
 
 **NOTE**
-  - This endpoint can accept either a sous-chef ``id`` or ``slug``.
+  - This endpoint can accept either a Sous Chef ``id`` or ``slug``.
 
 Params
 ******
@@ -3070,12 +3057,12 @@ Params
 | ``scheduled``      | Filter recipes by whether or   | null             |                |
 |                    | not they are scheduled         |                  | false          |
 +--------------------+--------------------------------+------------------+----------------+
-| ``sort``           | Sort results by a recipe field.| -created         |                |
+| ``sort``           | Sort results by a Recipe field.| -created         |                |
 |                    | preface with **-** to sort     |                  | false          |
 |                    | descending                     |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``recipes``        | A comma-separated list of      | null             |                |
-|                    | recipe ids or slugs to         |                  |                |
+|                    | Recipe ids or slugs to         |                  |                |
 |                    | query by.                      |                  | false          |
 |                    | Each element can be prefaced by|                  |                |
 |                    | with **-** or **!**            |                  |                |
@@ -3202,7 +3189,7 @@ Params
 |                    | specified timezone. If `false` |                  |                |
 |                    | dates will be returned in UTC. |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-| ``sous_chef``      | The SousChef this recipe runs. | null             |                |
+| ``sous_chef``      | The SousChef this Recipe runs. | null             |                |
 |                    | While not required as a param, |                  | false          |
 |                    | you must either pass this in   |                  |                |
 |                    | here or in the request body    |                  |                |
@@ -3211,7 +3198,7 @@ Params
 Body
 *******
 
-A partial or complete :ref:`endpoints-recipes-json` object **with all required SousChef options filled out**. Optionally include the ``sous_chef`` if not provided as a query string.
+A partial or complete :ref:`endpoints-recipes-json` object **with all required SousChef options filled out**. Optionally include the ``sous_chef`` in the body if not provided as a query string.
 
 Returns
 *******
@@ -3274,7 +3261,7 @@ Via ``python``
 Fetch an individual Recipe.
 
 **NOTE**
-  - This endpoint can accept either a recipe ``id`` or ``slug``.
+  - This endpoint can accept either a Recipe ``id`` or ``slug``.
 
 Params
 ******
@@ -3331,7 +3318,7 @@ Via ``python``
 Update an individual Recipe.
 
 **NOTE**
-  - This endpoint can accept either a recipe ``id`` or ``slug``.
+  - This endpoint can accept either a Recipe ``id`` or ``slug``.
 
 Params
 ******
@@ -3349,7 +3336,7 @@ Params
 |                    | specified timezone. If `false` |                  |                |
 |                    | dates will be returned in UTC. |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-| ``sous_chef``      | The sous-chef this recipe runs.| null             |                |
+| ``sous_chef``      | The Sous Chef this Recipe runs.| null             |                |
 |                    | While not required as a param, |                  | false          |
 |                    | you must either pass this in   |                  |                |
 |                    | here or in the request body    |                  |                |
@@ -3647,7 +3634,7 @@ An partial or complete :ref:`endpoint-metrics-json` object.
 Returns
 ********
 
-A newly updates :ref:`endpoint-metrics-json` object.
+A newly updated :ref:`endpoint-metrics-json` object.
 
 Example
 ********
@@ -3683,8 +3670,8 @@ Delete a metric.
 
 **NOTE**
   - You can pass in a metric's ``name`` or ``id`` to this endpoint.
-  - This endpoint will delete all instances of metric from Timeseries and Summary tables.
-  - If you want to re-create a metric, you'll need to re-create the recipe 
+  - This endpoint will delete all instances of this metric from Timeseries and Summary tables (when applicable).
+  - If you want to re-create a metric, you'll need to re-create the Recipe 
     which originally created it.
 
 Params
@@ -4165,7 +4152,7 @@ Via ``python``
 **PUT** ``/authors/:from_author_id/merge/:to_author_id``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Merges an Author with another Author. This method merges the `from_author` *into* the `to_author`, transferring all associated content items, and deleting the `from_author` in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.
+Merges an Author with another Author. This method merges the ``from_author`` *into* the ``to_author``, transferring all associated content items, and deleting the ``from_author`` in the process. This API exists to aid in dealing with duplicate Authors produced by the author extraction process.
 
 Params
 ******
@@ -4340,7 +4327,7 @@ Params
 |                    | ``manual`` or ``recipe``.      |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
 | ``ids``            | A comma-separated list of      | null             | false          |
-|                    | event ``ids`` to filter        |                  |                |
+|                    | Event ``ids`` to filter        |                  |                |
 |                    | results by. Preface any element|                  |                |
 |                    | with **!** or **-** to exclude |                  |                |
 |                    | it.                            |                  |                |
@@ -4582,7 +4569,7 @@ Params
 |                    | contains links to one or more  |                  |                |
 |                    | Content Items.                 |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
-| ``recipe_id``      | The recipe that retrieved this | false            | false          |
+| ``recipe_id``      | The Recipe that retrieved this | false            | false          |
 |                    | Event. If missing, we assume   |                  |                |
 |                    | the event is manually created  |                  |                |
 +--------------------+--------------------------------+------------------+----------------+
@@ -4599,7 +4586,7 @@ A :ref:`endpoint-events-json` object, but the only required field is ``title``. 
 *Source IDs*
 
 If you're creating an event that's associated with a ``recipe_id``, it's also imperative that you pass in a ``source_id``. We use this field to ensure that no duplicate events are created and also 
-to make sure that Events that have been previously ``deleted`` are not re-created by a recipe which is continuously polling a data source. If you include a ``recipe_id`` as a query string, the ``source_id`` you pass in will be prefixed by the ``slug`` of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.
+to make sure that Events that have been previously ``deleted`` are not re-created by a Recipe which is continuously polling a data source. If you include a ``recipe_id`` as a query string, the ``source_id`` you pass in will be prefixed by the ``slug`` of this Recipe to ensure that events created by recipes which generate similar source_ids do not conflict.
 
 *Dates*
 
@@ -6031,7 +6018,7 @@ Via ``newslynx``
 
 .. code-block:: bash
     
-    $ newslynx api content list-timeseries unit=null group_by_id=f transform=cumulative
+    $ newslynx api content list-timeseries unit=day group_by_id=f transform=cumulative
 
 Via ``python``
 
@@ -6041,8 +6028,8 @@ Via ``python``
 
     api = API()
     api.content.list_timeseries(
-      unit='hour', author_ids='1', 
-      group_by_id=False, transform='cumulative'
+      unit='day', group_by_id=False, 
+      transform='cumulative'
     )
 
 

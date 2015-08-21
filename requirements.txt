@@ -1,1 +1,2 @@
 newslynx
+Sphinx==1.3.1

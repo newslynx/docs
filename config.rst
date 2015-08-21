@@ -67,6 +67,117 @@ For example, ``~/.newslynx/defaults/tags.yaml`` specifies a list of tags to appl
 If you would like to use the defaults for the Application, make sure to 
 use the ``--app-defaults`` flag when you run ``newslynx init`` (more details on this below).
 
+Additional options
++++++++++++++++++++++++
+
+In addition, there are numerous optional configurations you can tweak to modify the performance of NewsLynx. These are as follows:
+
+Postgres
+~~~~~~~~~~
+* sqlalchemy_pool_size 
+	- the maximum number of concurrent database connecitons
+	- default = ``1000``
+* sqlalchemy_pool_max_overflow
+	- the maximum number of concurrent database connections over sqlalchemy_pool_size before an error is thrown.
+	- default = ``100``
+* sqlalchemy_pool_timeout
+	- the number of seconds to wait on a database transaction before throwing an error.
+	- default = ``60``
+* sqlalchemy_echo 
+	- whether or not to log all sql queries. Recommended only for debugging purposes.
+	- default = ``false``
+
+Redis 
+~~~~~~
+* redis_url
+	- the URL of the redis connection
+	- default = ``redis://localhost:6379/0``
+
+Cache
+~~~~~~~~~~~
+* url_cache_prefix
+	- The key prefix of the Redis cache for URL extraction (the process of reconciling raw URLs to their canonical form)
+	- default = ``newslynx-url-cache``
+* url_cache_ttl
+	- The number of seconds before an extracted URL expires.
+	- default = ``1209600`` _14 days_
+* url_cache_pool_size
+	- the number of URLs to extract conccurrently when ingesting Events 
+	- default = ``5`` 
+* extract_cache_prefix
+	- The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)
+	- default = ``newslynx-extract-cache``
+* extract_cache_ttl 
+	- The number of seconds before metadata extracted from a URL expires.
+	- default = ``259200`` _3 days_
+* thumbnail_cache_prefix
+	- The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)
+	- default = ``newslynx-thumbnail-cache``
+* thumbnail_cache_ttl 
+	- The number of seconds before metadata extracted from a URL expires.
+	- default = ``259200`` _3 days_
+* thumbnail_size
+	- The size of thumbnails to generate. (These are stored on Events and Articles when an Image URL is present.)
+	- default = ``[150, 150]``
+* thumbnail_default_format
+	- The default format to render Thumbnails as. When we can identify the proper original format, we will render it as that format.
+	- default = ``png`` 
+* comparison_cache_prefix
+	- The key prefix of the Redis cache for Comparison metrics
+	- default = ``newslynx-comparison-cache``
+* comparison_cache_ttl 
+	- The number of seconds before metadata extracted from a URL expires.
+	- default = ``86400`` _1 day_
+* comparison_percentiles
+	- The percentiles to return in the Comparison API.
+	- default = ``[2.5, 5.0, 10.0, 20.0, 30.0, 40.0, 60.0, 70.0, 80.0, 90.0, 95.0, 97.5]``
+
+Recipe Queue
+~~~~~~~~~~~~
+* merlynne_kwargs_prefix 
+	- The key prefix for recipe configuraion we pass into Sous Chefs.
+	- default = ``newslynx-merlynne-kwargs``
+* merlynne_kwargs_ttl
+	- The number of seconds we'll keep these configuration in redis before they expire.
+	- default = ``60``
+* merlynne_results_ttl
+	- The number of seconds we'll keep the outputs of SousChefs in Redis before they expire.
+	- default = ``60`` 
+
+Recipe Scheduler
+~~~~~~~~~~~~~~~~~
+* scheduler_refresh_interval 
+	- The frequency in seconds with which we'll check for updates to recipe schedules.
+	- default = ``45``
+
+* scheduler_reset_pause_range
+	- The range in seconds within which we'll reset Recipes when their schedule / configurations have changed.
+	- default = ``[20, 200]``
+
+
+Network
+~~~~~~~~~~~~~~~~~~~~
+* browser_user_agent
+	- The User Agent to use in the header of all outgoing network requests.
+	- default = ``
+
+
+# browser
+browser_user_agent = ""
+browser_timeout = (7, 27)
+browser_wait = 0.8
+browser_backoff = 2
+browser_max_retries = 2
+
+# reddit
+reddit_user_agent = 'newslynx'
+
+# metrics timeseries granularity
+metrics_min_date_unit = 'hour'
+metrics_min_date_value = 1
+metrics_content_list_timeseries_days = 5
+metrics_content_get_timeseries_days = 30
+
 
 Intialization
 ++++++++++++++++++++++++
