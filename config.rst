@@ -15,29 +15,43 @@ Required Settings
 
 In this file, we require, at, minimum, the following fields:
 
-* ``super_user``: The name of the Super User for this NewsLynx install. / org settings.
-* ``super_user_email``: The Super User's email (what you use to login with).
-* ``super_user_password``: The Super User's login password. This password will enable login to all other user profiles.
-* ``super_user_apikey``: The Super User's ``apikey``.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.
-* ``super_user_org``: OPTIONAL: The Super User's Organization. The name of the organization to create on initialization. Will default to ``admin``.
-* ``super_user_org_timezone``: OPTIONAL: The timezone for the above organization. Will default to ``UTC``.
+* ``super_user``:
+	- The name of the Super User for this NewsLynx install. / org settings.
+* ``super_user_email``:
+	- The Super User's email (what you use to login with).
+* ``super_user_password``:
+	- The Super User's login password. This password will enable login to all other user profiles.
+* ``super_user_apikey``:
+	- The Super User's ``apikey``.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.
+* ``super_user_org``:
+	- OPTIONAL: The Super User's Organization. The name of the organization to create on initialization. Will default to ``admin``.
+* ``super_user_org_timezone``:
+	- OPTIONAL: The timezone for the above organization. Will default to ``UTC``.
 
 API credentials
 +++++++++++++++++++
 
 This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:
 
-* ``twitter_api_key``: See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application on Twitter and configure these credentials.
-* ``twitter_api_secret``: See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application with Google Analytics and configure these credentials.
+* ``twitter_api_key``:
+	- See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application on Twitter and configure these credentials.
+* ``twitter_api_secret``:
+	- See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application with Google Analytics and configure these credentials.
 
-* ``google_analytics_client_id``: See `Google's developer docs for <https://developers.google.com/analytics/>`_ for details on how to create an application with Google Analytics and configure these credentials.
-* ``google_analytics_client_secret``: See `Google's developer docs for <https://developers.google.com/analytics/>`_ for details on how to create an application  with Google Analytics and configure these credentials.
+* ``google_analytics_client_id``:
+	- See `Google's developer docs for <https://developers.google.com/analytics/>`_ for details on how to create an application with Google Analytics and configure these credentials.
+* ``google_analytics_client_secret``:
+	- See `Google's developer docs for <https://developers.google.com/analytics/>`_ for details on how to create an application  with Google Analytics and configure these credentials.
 
-* ``facebook_app_id``: See `Facebook's developer docs for <http://developers.facebook.com>`_ for details on how to create an application on facebook and configure these credentials.
-* ``facebook_app_secret``: See `Facebook's developer docs for <http://developers.facebook.com>`_ for details on how to create an application on facebook and configure these credentials.
-* ``reddit_user_agent``: A reddit-friendly User Agent.
+* ``facebook_app_id``:
+	- See `Facebook's developer docs for <http://developers.facebook.com>`_ for details on how to create an application on facebook and configure these credentials.
+* ``facebook_app_secret``:
+	- See `Facebook's developer docs for <http://developers.facebook.com>`_ for details on how to create an application on facebook and configure these credentials.
+* ``reddit_user_agent``:
+	- A reddit-friendly User Agent.
 
-* ``embedly_api_key``: An API key for using `Embedly <http://embed.ly/>`_ for content extraction. If not provided, we fall back on internal methods.
+* ``embedly_api_key``:
+	- An API key for using `Embedly <http://embed.ly/>`_ for content extraction. If not provided, we fall back on internal methods.
 
 There are many, many more configurations you can set. You can see the defaults for all of these in the `source code <https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py>`_.
 
@@ -93,7 +107,7 @@ Redis
 	- the URL of the redis connection
 	- default = ``redis://localhost:6379/0``
 
-Cache
+Caching
 ~~~~~~~~~~~
 * url_cache_prefix
 	- The key prefix of the Redis cache for URL extraction (the process of reconciling raw URLs to their canonical form)
@@ -104,12 +118,14 @@ Cache
 * url_cache_pool_size
 	- the number of URLs to extract conccurrently when ingesting Events 
 	- default = ``5`` 
+
 * extract_cache_prefix
 	- The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)
 	- default = ``newslynx-extract-cache``
 * extract_cache_ttl 
 	- The number of seconds before metadata extracted from a URL expires.
 	- default = ``259200`` _3 days_
+
 * thumbnail_cache_prefix
 	- The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)
 	- default = ``newslynx-thumbnail-cache``
@@ -122,6 +138,7 @@ Cache
 * thumbnail_default_format
 	- The default format to render Thumbnails as. When we can identify the proper original format, we will render it as that format.
 	- default = ``png`` 
+
 * comparison_cache_prefix
 	- The key prefix of the Redis cache for Comparison metrics
 	- default = ``newslynx-comparison-cache``
@@ -213,6 +230,7 @@ Once you've configured NewsLynx, you can start a debug server with the following
 	$ newslynx debug 
 
 If you'd like to start a multi-theaded production server (some Sous Chefs may not work without this), run this command inside the root directory of ``newslynx-core``:
+
 
 .. code-block:: bash
 	
