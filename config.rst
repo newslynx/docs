@@ -15,7 +15,6 @@ Required Settings
 
 In this file, we require, at, minimum, the following fields:
 
-* ``sqlalchemy_database_uri``:  This tells us where to create NewsLynx's Postgres database. You can read more about how these work in the `SQL Alchemy Docs <http://docs.sqlalchemy.org/en/rel_1_0/core/engines.html>`_.
 * ``super_user``: The name of the Super User for this NewsLynx install. / org settings.
 * ``super_user_email``: The Super User's email (what you use to login with).
 * ``super_user_password``: The Super User's login password. This password will enable login to all other user profiles.
