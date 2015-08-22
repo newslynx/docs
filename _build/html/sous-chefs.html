@@ -86,7 +86,15 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#optional-super-user-org-settings">Optional Super User Org settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#additional-options">Additional options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="config.html#postgres">Postgres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="config.html#redis">Redis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="config.html#caching">Caching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="config.html#recipe-queue">Recipe Queue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="config.html#recipe-scheduler">Recipe Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="config.html#network">Network</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
@@ -291,7 +299,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="app.html">NewsLynx App Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="writing-sous-chefs.html">Writing your own Sous Chefs</a></li>
 </ul>
 
           
@@ -927,7 +934,7 @@ For more information on how these options affect when a Sous Chef is executed, r
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>The best way to understand how Sous Chef&#8217;s work is to look at the Source Code for the built-in modules <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py">here</a>.  You can see an example of a custom Sous Chef module <a class="reference external" href="https://github.com/newslynx/newslynx.sc">here</a>. If you&#8217;re interested in writing your own Sous Chefs, please refer to the <a class="reference internal" href="writing-sous-chefs.html#writing-sous-chefs"><span>Writing your own Sous Chefs</span></a> docs.</p>
+<p>The best way to understand how Sous Chef&#8217;s work is to look at the Source Code for the built-in modules <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/__init__.py">here</a>.  You can see an example of a custom Sous Chef module <a class="reference external" href="https://github.com/newslynx/example-sous-chef">here</a>. If you&#8217;re interested in writing your own Sous Chefs, please refer to the <span class="xref std std-ref">writing-sous-chefs</span> docs.</p>
 </div>
 </div>
 
@@ -949,7 +956,7 @@ For more information on how these options affect when a Sous Chef is executed, r
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Brian Abelson, Michael Keller.
+        &copy; Copyright 2015, Brian Abelson &amp; Michael Keller.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

@@ -86,7 +86,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#api-credentials">API credentials</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#organizational-defaults">Organizational defaults</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#optional-super-user-org-settings">Optional Super User Org settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-options">Additional options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#postgres">Postgres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis">Redis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#caching">Caching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recipe-queue">Recipe Queue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recipe-scheduler">Recipe Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#network">Network</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#intialization">Intialization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#starting-the-api">Starting the API.</a></li>
 </ul>
@@ -291,7 +299,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="app.html">NewsLynx App Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="writing-sous-chefs.html">Writing your own Sous Chefs</a></li>
 </ul>
 
           
@@ -338,26 +345,125 @@
 <h3>Required Settings<a class="headerlink" href="#required-settings" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">config.yaml</span></code> contains all the information we need to run NewsLynx.  As you&#8217;ll see below, the App also utilizes this file for it&#8217;s configurations.</p>
 <p>In this file, we require, at, minimum, the following fields:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">sqlalchemy_database_uri</span></code>:  This tells us where to create NewsLynx&#8217;s Postgres database. You can read more about how these work in the <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_1_0/core/engines.html">SQL Alchemy Docs</a>.</li>
-<li><code class="docutils literal"><span class="pre">super_user</span></code>: The name of the Super User for this NewsLynx install. A Super User has access to all organizations running on this instance.</li>
-<li><code class="docutils literal"><span class="pre">super_user_email</span></code>: The Super User&#8217;s email (what you use to login with).</li>
-<li><code class="docutils literal"><span class="pre">super_user_password</span></code>: The Super User&#8217;s login password. This password will enable login to all other user profiles.</li>
-<li><code class="docutils literal"><span class="pre">super_user_apikey</span></code>: The Super User&#8217;s <code class="docutils literal"><span class="pre">apikey</span></code>.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.</li>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>The name of the Super User for this NewsLynx install. / org settings.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user_email</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>The Super User&#8217;s email (what you use to login with).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user_password</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>The Super User&#8217;s login password. This password will enable login to all other user profiles.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user_apikey</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>The Super User&#8217;s <code class="docutils literal"><span class="pre">apikey</span></code>.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user_org</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>OPTIONAL: The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>OPTIONAL: The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 <div class="section" id="api-credentials">
 <h3>API credentials<a class="headerlink" href="#api-credentials" title="Permalink to this headline">¶</a></h3>
 <p>This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">twitter_api_key</span></code>: See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application on Twitter and configure these credentials.</li>
-<li><code class="docutils literal"><span class="pre">twitter_api_secret</span></code>: See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
-<li><code class="docutils literal"><span class="pre">google_analytics_client_id</span></code>: See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
-<li><code class="docutils literal"><span class="pre">google_analytics_client_secret</span></code>: See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application  with Google Analytics and configure these credentials.</li>
-<li><code class="docutils literal"><span class="pre">facebook_app_id</span></code>: See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
-<li><code class="docutils literal"><span class="pre">facebook_app_secret</span></code>: See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
-<li><code class="docutils literal"><span class="pre">reddit_user_agent</span></code>: A reddit-friendly User Agent.</li>
-<li><code class="docutils literal"><span class="pre">embedly_api_key</span></code>: An API key for using <a class="reference external" href="http://embed.ly/">Embedly</a> for content extraction. If not provided, we fall back on internal methods.</li>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">twitter_api_key</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application on Twitter and configure these credentials.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">twitter_api_secret</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">google_analytics_client_id</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">google_analytics_client_secret</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application  with Google Analytics and configure these credentials.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">facebook_app_id</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">facebook_app_secret</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">reddit_user_agent</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>A reddit-friendly User Agent.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">embedly_api_key</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>An API key for using <a class="reference external" href="http://embed.ly/">Embedly</a> for content extraction. If not provided, we fall back on internal methods.</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <p>There are many, many more configurations you can set. You can see the defaults for all of these in the <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py">source code</a>.</p>
 </div>
@@ -379,15 +485,262 @@
   <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">impact</span>
 </pre></div>
 </div>
-<p>If you would like to use the defaults for the Application, make sure to use the <code class="docutils literal"><span class="pre">--app-defaults</span></code> flag when you run <code class="docutils literal"><span class="pre">newslynx</span> <span class="pre">init</span></code> (more details on this below). <strong>This is essentialy a required flag since it creates recipes for tracking promotion and article ingestion.</strong></p>
+<p>If you would like to use the defaults for the Application, make sure to
+use the <code class="docutils literal"><span class="pre">--app-defaults</span></code> flag when you run <code class="docutils literal"><span class="pre">newslynx</span> <span class="pre">init</span></code> (more details on this below).</p>
 </div>
-<div class="section" id="optional-super-user-org-settings">
-<h3>Optional Super User Org settings<a class="headerlink" href="#optional-super-user-org-settings" title="Permalink to this headline">¶</a></h3>
-<p>The Super User belongs to a Super User Organization, which is for the added convenience that you don&#8217;t have to create your real organization before getting things working. You could also use it for testing purposes. Below are some settings that let you customize this organization.</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">super_user_org</span></code>: The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>. You won&#8217;t need to change this for any real purpose unless you want a different name to appear.</li>
-<li><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>: The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
+<div class="section" id="additional-options">
+<h3>Additional options<a class="headerlink" href="#additional-options" title="Permalink to this headline">¶</a></h3>
+<p>In addition, there are numerous optional configurations you can tweak to modify the performance of NewsLynx. These are as follows:</p>
+<div class="section" id="postgres">
+<h4>Postgres<a class="headerlink" href="#postgres" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>sqlalchemy_pool_size</dt>
+<dd><ul class="first last simple">
+<li>the maximum number of concurrent database connecitons</li>
+<li>default = <code class="docutils literal"><span class="pre">1000</span></code></li>
 </ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sqlalchemy_pool_max_overflow</dt>
+<dd><ul class="first last simple">
+<li>the maximum number of concurrent database connections over sqlalchemy_pool_size before an error is thrown.</li>
+<li>default = <code class="docutils literal"><span class="pre">100</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sqlalchemy_pool_timeout</dt>
+<dd><ul class="first last simple">
+<li>the number of seconds to wait on a database transaction before throwing an error.</li>
+<li>default = <code class="docutils literal"><span class="pre">60</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sqlalchemy_echo</dt>
+<dd><ul class="first last simple">
+<li>whether or not to log all sql queries. Recommended only for debugging purposes.</li>
+<li>default = <code class="docutils literal"><span class="pre">false</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="redis">
+<h4>Redis<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>redis_url</dt>
+<dd><ul class="first last simple">
+<li>the URL of the redis connection</li>
+<li>default = <code class="docutils literal"><span class="pre">redis://localhost:6379/0</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="caching">
+<h4>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>url_cache_prefix</dt>
+<dd><ul class="first last simple">
+<li>The key prefix of the Redis cache for URL extraction (the process of reconciling raw URLs to their canonical form)</li>
+<li>default = <code class="docutils literal"><span class="pre">newslynx-url-cache</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>url_cache_ttl</dt>
+<dd><ul class="first last simple">
+<li>The number of seconds before an extracted URL expires.</li>
+<li>default = <code class="docutils literal"><span class="pre">1209600</span></code> _14 <a href="#id4"><span class="problematic" id="id5">days_</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>url_cache_pool_size</dt>
+<dd><ul class="first last simple">
+<li>the number of URLs to extract conccurrently when ingesting Events</li>
+<li>default = <code class="docutils literal"><span class="pre">5</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>extract_cache_prefix</dt>
+<dd><ul class="first last simple">
+<li>The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)</li>
+<li>default = <code class="docutils literal"><span class="pre">newslynx-extract-cache</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>extract_cache_ttl</dt>
+<dd><ul class="first last simple">
+<li>The number of seconds before metadata extracted from a URL expires.</li>
+<li>default = <code class="docutils literal"><span class="pre">259200</span></code> _3 <a href="#id6"><span class="problematic" id="id7">days_</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>thumbnail_cache_prefix</dt>
+<dd><ul class="first last simple">
+<li>The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)</li>
+<li>default = <code class="docutils literal"><span class="pre">newslynx-thumbnail-cache</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>thumbnail_cache_ttl</dt>
+<dd><ul class="first last simple">
+<li>The number of seconds before metadata extracted from a URL expires.</li>
+<li>default = <code class="docutils literal"><span class="pre">259200</span></code> _3 <a href="#id8"><span class="problematic" id="id9">days_</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>thumbnail_size</dt>
+<dd><ul class="first last simple">
+<li>The size of thumbnails to generate. (These are stored on Events and Articles when an Image URL is present.)</li>
+<li>default = <code class="docutils literal"><span class="pre">[150,</span> <span class="pre">150]</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>thumbnail_default_format</dt>
+<dd><ul class="first last simple">
+<li>The default format to render Thumbnails as. When we can identify the proper original format, we will render it as that format.</li>
+<li>default = <code class="docutils literal"><span class="pre">png</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>comparison_cache_prefix</dt>
+<dd><ul class="first last simple">
+<li>The key prefix of the Redis cache for Comparison metrics</li>
+<li>default = <code class="docutils literal"><span class="pre">newslynx-comparison-cache</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>comparison_cache_ttl</dt>
+<dd><ul class="first last simple">
+<li>The number of seconds before metadata extracted from a URL expires.</li>
+<li>default = <code class="docutils literal"><span class="pre">86400</span></code> _1 <a href="#id10"><span class="problematic" id="id11">day_</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>comparison_percentiles</dt>
+<dd><ul class="first last simple">
+<li>The percentiles to return in the Comparison API.</li>
+<li>default = <code class="docutils literal"><span class="pre">[2.5,</span> <span class="pre">5.0,</span> <span class="pre">10.0,</span> <span class="pre">20.0,</span> <span class="pre">30.0,</span> <span class="pre">40.0,</span> <span class="pre">60.0,</span> <span class="pre">70.0,</span> <span class="pre">80.0,</span> <span class="pre">90.0,</span> <span class="pre">95.0,</span> <span class="pre">97.5]</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="recipe-queue">
+<h4>Recipe Queue<a class="headerlink" href="#recipe-queue" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>merlynne_kwargs_prefix</dt>
+<dd><ul class="first last simple">
+<li>The key prefix for recipe configuraion we pass into Sous Chefs.</li>
+<li>default = <code class="docutils literal"><span class="pre">newslynx-merlynne-kwargs</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>merlynne_kwargs_ttl</dt>
+<dd><ul class="first last simple">
+<li>The number of seconds we&#8217;ll keep these configuration in redis before they expire.</li>
+<li>default = <code class="docutils literal"><span class="pre">60</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>merlynne_results_ttl</dt>
+<dd><ul class="first last simple">
+<li>The number of seconds we&#8217;ll keep the outputs of SousChefs in Redis before they expire.</li>
+<li>default = <code class="docutils literal"><span class="pre">60</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="recipe-scheduler">
+<h4>Recipe Scheduler<a class="headerlink" href="#recipe-scheduler" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>scheduler_refresh_interval</dt>
+<dd><ul class="first last simple">
+<li>The frequency in seconds with which we&#8217;ll check for updates to recipe schedules.</li>
+<li>default = <code class="docutils literal"><span class="pre">45</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>scheduler_reset_pause_range</dt>
+<dd><ul class="first last simple">
+<li>The range in seconds within which we&#8217;ll reset Recipes when their schedule / configurations have changed.</li>
+<li>default = <code class="docutils literal"><span class="pre">[20,</span> <span class="pre">200]</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="network">
+<h4>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>browser_user_agent</dt>
+<dd><ul class="first last simple">
+<li>The User Agent to use in the header of all outgoing network requests.</li>
+<li>default = ``</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p># browser
+browser_user_agent = &#8220;&#8221;
+browser_timeout = (7, 27)
+browser_wait = 0.8
+browser_backoff = 2
+browser_max_retries = 2</p>
+<p># reddit
+reddit_user_agent = &#8216;newslynx&#8217;</p>
+<p># metrics timeseries granularity
+metrics_min_date_unit = &#8216;hour&#8217;
+metrics_min_date_value = 1
+metrics_content_list_timeseries_days = 5
+metrics_content_get_timeseries_days = 30</p>
+</div>
 </div>
 <div class="section" id="intialization">
 <h3>Intialization<a class="headerlink" href="#intialization" title="Permalink to this headline">¶</a></h3>
@@ -491,7 +844,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Brian Abelson, Michael Keller.
+        &copy; Copyright 2015, Brian Abelson &amp; Michael Keller.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
