@@ -17,7 +17,7 @@ The system we devised adheres to the following standards:
 3. Metrics should be stored in the their rawest state but should be automatically summarized and compared.  The process from ingestion => summary => comparison should be both invisible to the user and effortlessly undone.
 
 .. _metrics-principle-4:
-4. While we should make no assumptions about the data source a user prefers, we should not have to constantly compromise the above standards to accomodate one source.  With that in mind, we should have a schema for Metrics which, while rigid, is flexible enough to handle most use cases.  In the cases which this schema does not proove adequate, we should consider whether this particular use case is general enough before modifying it.
+4. While we should make no assumptions about the data source a user prefers, we should not have to constantly compromise the above standards to accomodate one source.  With that in mind, we should have a schema for Metrics which, while rigid, is flexible enough to handle most use cases.  In the cases which this schema does not prove adequate, we should consider whether this particular use case is general enough before modifying it.
 
 .. _metrics-schema:
 
