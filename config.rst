@@ -197,7 +197,7 @@ Network
 Intialization
 ++++++++++++++++++++++++
 
-Once you have setup you configurations, you can initialize NewsLynx by running the following command:
+Once you have setup your configurations, you can initialize NewsLynx by running the following command:
 
 .. code-block:: bash
 
@@ -213,7 +213,7 @@ This command will perform the following tasks:
 6. Install all default recipes for this organization.
 7. Install all metrics associated with all default Sous Chefs for this organization.
 
-If you want to initialize NewsLynx in a bare version with only the Super User and Organization, use the following command
+If you want to initialize NewsLynx with only the Super User and Organization, use the following command
 
 .. code-block:: bash
 
