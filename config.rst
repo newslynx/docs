@@ -118,7 +118,7 @@ Caching
 	- default = ``newslynx-url-cache``
 * ``url_cache_ttl``
 	- The number of seconds before an extracted URL expires.
-	- default = ``1209600`` _14 days_
+	- default = ``1209600`` (14 days)
 * ``url_cache_pool_size``
 	- the number of URLs to extract conccurrently when ingesting Events 
 	- default = ``5`` 
@@ -128,14 +128,14 @@ Caching
 	- default = ``newslynx-extract-cache``
 * ``extract_cache_ttl ``
 	- The number of seconds before metadata extracted from a URL expires.
-	- default = ``259200`` _3 days_
+	- default = ``259200`` (3 days)
 
 * ``thumbnail_cache_prefix``
 	- The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)
 	- default = ``newslynx-thumbnail-cache``
 * ``thumbnail_cache_ttl``
 	- The number of seconds before metadata extracted from a URL expires.
-	- default = ``259200`` _3 days_
+	- default = ``259200`` (3 days)
 * ``thumbnail_size``
 	- The size of thumbnails to generate. (These are stored on Events and Articles when an Image URL is present.)
 	- default = ``[150, 150]``
@@ -148,7 +148,7 @@ Caching
 	- default = ``newslynx-comparison-cache``
 * ``comparison_cache_ttl``
 	- The number of seconds before metadata extracted from a URL expires.
-	- default = ``86400`` _1 day_
+	- default = ``86400`` (1 day)
 * ``comparison_percentiles``
 	- The percentiles to return in the Comparison API.
 	- default = ``[2.5, 5.0, 10.0, 20.0, 30.0, 40.0, 60.0, 70.0, 80.0, 90.0, 95.0, 97.5]``
