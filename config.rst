@@ -53,9 +53,34 @@ This file is also where you configure your credentials for Google Analytics, Twi
 * ``embedly_api_key``:
 	- An API key for using `Embedly <http://embed.ly/>`_ for content extraction. If not provided, we fall back on internal methods.
 
-There are many, many more configurations you can set. You can see the defaults for all of these in the `source code <https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py>`_.
 
-Organizational defaults
+Default Sous Chefs
++++++++++++++++++++++++
+
+If you'd like to specify a list of default Sous Chefs to install on initialization of NewsLynx, you can specify these by modifying ``default_sous_chefs``.  This should contain a list of git URLs. For instance:
+
+.. code-block:: yaml 
+
+	# List of sous chefs to install on initialization.
+	default_sous_chefs: 
+	- 'https://github.com/newslynx/newslynx-sc-twitter.git'
+	- 'https://github.com/newslynx/newslynx-sc-shares.git'
+	- 'https://github.com/newslynx/newslynx-sc-rss.git'
+	- 'https://github.com/newslynx/newslynx-sc-reddit.git'
+	- 'https://github.com/newslynx/newslynx-sc-google-analytics.git'
+	- 'https://github.com/newslynx/newslynx-sc-facebook.git'
+
+By default, NewsLynx Core installs the Sous Chefs needed to run the Application. If you'd like to install NewsLynx core without these defaults, make sure to use the ``--bare`` flat when you run ``newslynx init`` (more details on this below).
+
+
+These Sous Chef modules will be installed when you run ``newslynx init`` and stored in ``~/.newslynx/sous-chefs/``. If you'd like to modify where Sous Chefs are stored, change the following settings:
+
+* ``sous_chefs_dir``:
+	- A directory to install all Sous Chefs into.
+	- default = ``~/.newslynx/sous-chefs/``
+
+
+Default Tags and Recipes
 ++++++++++++++++++++++++
 
 In addition to these settings, you can also configure a list of default Tags and Recipes to create for every new Organization. This is useful for creating applications on top of the API which onboard new Organizations and Users without too much hassle.
@@ -78,13 +103,22 @@ For example, ``~/.newslynx/defaults/tags.yaml`` specifies a list of tags to appl
 	  color: '#6699cc'
 	  type: impact 
 
-If you would like to use the defaults for the Application, make sure to 
-use the ``--app-defaults`` flag when you run ``newslynx init`` (more details on this below).
+If you'd like to save these files elsewhere, you can modify the following configurations
 
-Additional options
+* ``default_tags``:
+	- A path to a ``yaml`` file with a list of default Tags.
+	- default = ``~/.newslynx/defaults/tags.yaml``
+* ``default_recipes``:
+	- A path to a ``yaml`` file with a list of default Recipes.
+	- default = ``~/.newslynx/defaults/recipes.yaml``
+
+
+By default, NewsLynx Core installs the default Tags and Recipes needed to run the Application. If you'd like to install NewsLynx core without these defaults, make sure to use the ``--bare`` flat when you run ``newslynx init`` (more details on this below).
+
+Additional Options
 +++++++++++++++++++++++
 
-In addition, there are numerous optional configurations you can tweak to modify the performance of NewsLynx. These are as follows:
+In addition, there are numerous optional configurations you can tweak to modify the performance of NewsLynx. You can also read through them in  the `source code <https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py>`_.
 
 Postgres
 ~~~~~~~~~~
