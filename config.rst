@@ -57,7 +57,7 @@ This file is also where you configure your credentials for Google Analytics, Twi
 Default Sous Chefs
 +++++++++++++++++++++++
 
-If you'd like to specify a list of default Sous Chefs to install on initialization of NewsLynx, you can specify these by modifying ``default_sous_chefs``.  This should contain a list of git URLs. For instance:
+If you'd like to specify a list of default Sous Chefs to install on initialization of NewsLynx, you can modify the setting ``default_sous_chefs``.  This should contain a list of git URLs. For example:
 
 .. code-block:: yaml 
 
