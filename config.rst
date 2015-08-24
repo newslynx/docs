@@ -177,19 +177,19 @@ Recipe Scheduler
 
 Network
 ~~~~~~~~~~~~~~~~~~~~
-* ``browser_user_agent``
+* ``network_user_agent``
 	- The User Agent to use in the header of all outgoing network requests.
 	- default = ``Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0``
-* ``browser_timeout``
+* ``network_timeout``
 	- The timout range for all network requests.
 	- default = ``[7, 27]``
-* ``browser_wait``
+* ``network_wait``
 	- How long to wait in between network retiries.
 	- default = ``0.8``
-* ``browser_backoff``
-	- The factor with which to multiply ``browser_wait`` on each subsequent retry.
+* ``network_backoff``
+	- The factor with which to multiply ``network_wait`` on each subsequent retry.
 	- default = ``2``
-* ``browser_max_retries``
+* ``network_max_retries``
 	- The maximum number of retries before failing.
 	- default = ``2``
 
