@@ -45,18 +45,19 @@ Installation
 
 Install ``newslynx``, initialize the database, super user, and install default sous chefs, tags, and recipes.
 
-```shell
-$ git clone https://github.com/newslynx/newslynx-core.git
-$ cd newslynx-core
-$ make app_install
-```
+.. code-block:: bash
+
+	$ git clone https://github.com/newslynx/newslynx-core.git
+	$ cd newslynx-core
+	$ make app_install
+
 **EXPERT MODE**  - Don't install the app's default sous chefs, tags, or recipes.
 
-```
-$ git clone https://github.com/newslynx/newslynx-core.git
-$ cd newslynx-core
-$ make bare_install 
-```
+.. code-block:: bash
+
+	$ git clone https://github.com/newslynx/newslynx-core.git
+	$ cd newslynx-core
+	$ make bare_install 
 
 For the next steps, refer to the `getting started docs <http://newslynx.readthedocs.org/en/latest/getting-started.html>`_.
 
