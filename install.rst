@@ -9,9 +9,7 @@ For all other applications, please refer to our `automation docs <https://github
 NewsLynx Core
 ---------------
 
-**NOTE** 
-
-For most applications, we reccommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
+**NOTE** - For most applications, we reccommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
 
 Install the dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,9 +41,7 @@ If ``redis`` does not automatically start, open another tab and run
 Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-**[OPTIONAL]**
-
-First set your `configurations <http://newslynx.readthedocs.org/en/latest/config.html>`_. If you don't do this, we will fallback on the app's `default configuration file <https://github.com/newslynx/newslynx-core/blob/master/newslynx/app/config.yaml>`_.
+**OPTIONAL** - First set your `configurations <http://newslynx.readthedocs.org/en/latest/config.html>`_. If you don't do this, we will fallback on the app's `default configuration file <https://github.com/newslynx/newslynx-core/blob/master/newslynx/app/config.yaml>`_.
 
 Install ``newslynx``, initialize the database, super user, and install default sous chefs, tags, and recipes.
 
@@ -54,9 +50,7 @@ $ git clone https://github.com/newslynx/newslynx-core.git
 $ cd newslynx-core
 $ make app_install
 ```
-**EXPERT MODE**  
-
-Don't install the app's default sous chefs, tags, or recipes.
+**EXPERT MODE**  - Don't install the app's default sous chefs, tags, or recipes.
 
 ```
 $ git clone https://github.com/newslynx/newslynx-core.git
@@ -69,9 +63,7 @@ For the next steps, refer to the `getting started docs <http://newslynx.readthed
 NewsLynx App
 ------------
 
-**NOTE** 
-
-For most applications, we reccommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
+**NOTE** - For most applications, we reccommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
 
 Download the git repository and install dependencies:
 
