@@ -74,7 +74,8 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-core">NewsLynx Core</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="install.html#additional-api-dependencies">Additional API Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#install-the-dependencies">Install the dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#initialize-newslynx">Initialize <code class="docutils literal"><span class="pre">newslynx</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
@@ -82,28 +83,28 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-core">NewsLynx Core</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#additional-options">Additional options</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="config.html#postgres">Postgres</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#redis">Redis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#caching">Caching</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#recipe-queue">Recipe Queue</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#recipe-scheduler">Recipe Scheduler</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#network">Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-tags-and-recipes">Default Tags and Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#additional-options">Additional Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="config.html#postgres">Postgres</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#redis">Redis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#caching">Caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#recipe-queue">Recipe Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#recipe-scheduler">Recipe Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#network">Network</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#other-app-start-up-commands">Other App start up commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-newslynx-core">Running Newslynx Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-newslynx-app">Running NewsLynx App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
@@ -338,6 +339,67 @@
             
   <div class="section" id="getting-started">
 <span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-newslynx-core">
+<h2>Running Newslynx Core<a class="headerlink" href="#running-newslynx-core" title="Permalink to this headline">¶</a></h2>
+<p>Once you&#8217;ve <a class="reference external" href="http://newslynx.readthedocs.org/en/latest/install.html">installed and initialized NewsLynx Core</a>, you can start a debug server with the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx debug
+</pre></div>
+</div>
+<p>If you&#8217;d like to start a multi-theaded production server (some Sous Chefs may not work without this), run this command inside the root directory of <code class="docutils literal"><span class="pre">newslynx-core</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bin/run
+</pre></div>
+</div>
+<p>To start the task queue, run this command inside the root directory of <code class="docutils literal"><span class="pre">newslynx-core</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bin/start_workers
+</pre></div>
+</div>
+<p>To stop the task queue, run this command inside the root directory of <code class="docutils literal"><span class="pre">newslynx-core</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bin/stop_workers
+</pre></div>
+</div>
+<p>To start the Recipe scheduler, run this command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx cron
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-newslynx-app">
+<h2>Running NewsLynx App<a class="headerlink" href="#running-newslynx-app" title="Permalink to this headline">¶</a></h2>
+<p>To start the server, in the <code class="docutils literal"><span class="pre">newslynx-app</span></code> folder, run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm start
+</pre></div>
+</div>
+<p>This compiles your CSS and JS and runs the server with <a class="reference external" href="https://github.com/foreverjs/forever">Forever</a>.</p>
+<p>When you see the following, it&#8217;s done and you can visit <a class="reference external" href="http://localhost:3000">http://localhost:3000</a>.</p>
+<p><strong>Note</strong>: If you are running this in production, you want to run it in behind https and tell the app you are doing so one of two ways:</p>
+<ol class="arabic simple">
+<li>Run it with the environment variable <code class="docutils literal"><span class="pre">NEWSLYNX_ENV=https</span></code></li>
+<li>Set <code class="docutils literal"><span class="pre">https:</span> <span class="pre">true</span></code> in your <code class="docutils literal"><span class="pre">~/.newslynx/config.yaml</span></code> file</li>
+</ol>
+<p>This will make sure your cookies are set securely.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#####################################</span>
+<span class="c"># HTTP listening on 0.0.0.0:3000... #</span>
+<span class="c">#####################################</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-app-start-up-commands">
+<h2>Other App start up commands<a class="headerlink" href="#other-app-start-up-commands" title="Permalink to this headline">¶</a></h2>
+<p>Alternate commands are in <a class="reference external" href="https://github.com/newslynx/newslynx-app/blob/master/package.json">package.json</a> under <a class="reference external" href="https://github.com/newslynx/newslynx-app/blob/master/package.json#L5">&#8220;scripts&#8221;</a>. These are for <strong>developing locally.</strong></p>
+<p>If you want to modify files and have the CSS and JS re-compiled automatically and the server restarted if necessary, do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run dev
+</pre></div>
+</div>
+<p>If you just want to watch the CSS and JS and re-compile when on change, do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run watch-files
+</pre></div>
+</div>
+<p>If you just want to watch the Express server and restart when its files change (templates, server js files), do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run watch-server
+</pre></div>
+</div>
+<p>These last two commands are best run in tandem in two separate shell windows. <cite>npm run dev</cite> does them both in one window for convenience.</p>
+<p>The final command listed is <code class="docutils literal"><span class="pre">npm</span> <span class="pre">test</span></code>, which will run a simple test to make sure the server can launch.</p>
+</div>
 </div>
 
 

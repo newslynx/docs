@@ -74,7 +74,8 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-core">NewsLynx Core</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="install.html#additional-api-dependencies">Additional API Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#install-the-dependencies">Install the dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#initialize-newslynx">Initialize <code class="docutils literal"><span class="pre">newslynx</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
@@ -82,28 +83,28 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="config.html#newslynx-core">NewsLynx Core</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#organizational-defaults">Organizational defaults</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#additional-options">Additional options</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="config.html#postgres">Postgres</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#redis">Redis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#caching">Caching</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#recipe-queue">Recipe Queue</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#recipe-scheduler">Recipe Scheduler</a></li>
-<li class="toctree-l4"><a class="reference internal" href="config.html#network">Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-tags-and-recipes">Default Tags and Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#additional-options">Additional Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="config.html#postgres">Postgres</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#redis">Redis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#caching">Caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#recipe-queue">Recipe Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#recipe-scheduler">Recipe Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#network">Network</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#running-newslynx-app">Running NewsLynx App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#other-app-start-up-commands">Other App start up commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-core">Running Newslynx Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-app">Running NewsLynx App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#writing-sous-chefs">Writing Sous Chefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sous-chefs.html#configuration">Configuration</a></li>
@@ -344,13 +345,13 @@
 <li>While NewsLynx is an analytics platform, it is not a service for tracking events on sites.  NewsLynx exists in between analytics providers and their audiences as a tool which enables the curation and customization of metrics.</li>
 </ol>
 <ol class="arabic simple" start="2">
-<li>For the reasons above, <strong>we do not store timeseries data more granular than hour</strong>. While this is configurable by setting <code class="docutils literal"><span class="pre">metrics_min_date_unit</span></code> and <code class="docutils literal"><span class="pre">metrics_min_date_value</span></code> in your <code class="docutils literal"><span class="pre">config.yaml</span></code>, its change is not encouraged.</li>
+<li>For the reasons above, <strong>we do not store timeseries data more granular than hour</strong>. While this is configurable by setting <code class="docutils literal"><span class="pre">metrics_min_date_unit</span></code> and <code class="docutils literal"><span class="pre">metrics_min_date_value</span></code> in your <code class="docutils literal"><span class="pre">config.yaml</span></code>, it&#8217;s not encouraged.</li>
 </ol>
 <ol class="arabic simple" start="3">
 <li>Metrics should be stored in the their rawest state but should be automatically summarized and compared.  The process from ingestion =&gt; summary =&gt; comparison should be both invisible to the user and effortlessly undone.</li>
 </ol>
 <ol class="arabic simple" start="4">
-<li>While we should make no assumptions about the data source a user prefers, we should not have to constantly compromise the above standards to accomodate one source.  With that in mind, we should have a schema for Metrics which, while rigid, is flexible enough to handle most use cases.  In the cases which this schema does not prove adequate, we should consider whether this particular use case is general enough before modifying it.</li>
+<li>While we should make no assumptions about the data source a user prefers, we should not have to constantly compromise the above standards to accomodate one source.  With that in mind, we should have a schema for Metrics which, while rigid, is flexible enough to handle most use cases.  In the cases which this schema does not prove adequate, we should consider whether this particular use case is general enough before modifying the schema.</li>
 </ol>
 </div>
 <div class="section" id="creating-metrics">
@@ -491,7 +492,7 @@ However, we also want to avoid alteration of the original source of the data.  A
 <li><dl class="first docutils">
 <dt><code class="docutils literal"><span class="pre">content_levels</span></code></dt>
 <dd><ul class="first last">
-<li><p class="first">This field lets us know that the metric is related to content items and should be stored at the specified. For more on what this means see <span class="xref std std-ref">metrics-how-does-this-work</span></p>
+<li><p class="first">This field lets us know that the metric is related to content items and should be stored at the specified level. For more on what this means see <span class="xref std std-ref">metrics-how-does-this-work</span></p>
 </li>
 <li><dl class="first docutils">
 <dt>Can be one of:</dt>
@@ -539,13 +540,15 @@ However, we also want to avoid alteration of the original source of the data.  A
 <li><dl class="first docutils">
 <dt><code class="docutils literal"><span class="pre">timeseries</span></code></dt>
 <dd><ul class="first last simple">
-<li>Accessible be <span class="xref std std-ref">endpoints-content-metrics-get-timeseries</span></li>
+<li>Accessible via <span class="xref std std-ref">endpoints-org-metrics-get-timeseries</span></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">summary</span></code></p>
-</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">summary</span></code></dt>
+<dd><ul class="first last simple">
+<li>Accessible via <span class="xref std std-ref">endpoints-org-metrics-get-summary</span></li>
 </ul>
 </dd>
 </dl>
@@ -555,7 +558,11 @@ However, we also want to avoid alteration of the original source of the data.  A
 </dl>
 </li>
 </ul>
-<p>For instance, this configuration for Sous Chef <code class="docutils literal"><span class="pre">google-analytics-to-content-timeseries</span></code> lists this metric configuration:</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For instance, the Sous Chef <code class="docutils literal"><span class="pre">google-analytics-to-content-timeseries</span></code> lists this metric configuration:</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span class="l-Scalar-Plain">metrics</span><span class="p-Indicator">:</span>
     <span class="l-Scalar-Plain">ga_pageviews</span><span class="p-Indicator">:</span>
         <span class="l-Scalar-Plain">display_name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Pageviews</span>

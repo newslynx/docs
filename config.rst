@@ -3,9 +3,6 @@
 Configuration
 =============
 
-NewsLynx Core
---------------
-
 NewsLynx requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  ``~/.newslynx``.  In this directory there should at least be one file named ``config.yaml``. This file can also be JSON. If you would like to configure another location for this file, set the environment variable ``NEWSLYNX_CONFIG_FILE``.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: ``NEWSLYNX_{SETTING_NAME}``, however you will still need to have a ``config.yaml`` file.
 
 Required Settings
@@ -52,32 +49,6 @@ This file is also where you configure your credentials for Google Analytics, Twi
 
 * ``embedly_api_key``:
 	- An API key for using `Embedly <http://embed.ly/>`_ for content extraction. If not provided, we fall back on internal methods.
-
-
-Default Sous Chefs
-+++++++++++++++++++++++
-
-If you'd like to specify a list of default Sous Chefs to install on initialization of NewsLynx, you can modify the setting ``default_sous_chefs``.  This should contain a list of git URLs. For example:
-
-.. code-block:: yaml 
-
-	# List of sous chefs to install on initialization.
-	default_sous_chefs: 
-	- 'https://github.com/newslynx/newslynx-sc-twitter.git'
-	- 'https://github.com/newslynx/newslynx-sc-shares.git'
-	- 'https://github.com/newslynx/newslynx-sc-rss.git'
-	- 'https://github.com/newslynx/newslynx-sc-reddit.git'
-	- 'https://github.com/newslynx/newslynx-sc-google-analytics.git'
-	- 'https://github.com/newslynx/newslynx-sc-facebook.git'
-
-By default, NewsLynx Core installs the Sous Chefs needed to run the Application. If you'd like to install NewsLynx core without these defaults, make sure to use the ``--bare`` flat when you run ``newslynx init`` (more details on this below).
-
-
-These Sous Chef modules will be installed when you run ``newslynx init`` and stored in ``~/.newslynx/sous-chefs/``. If you'd like to modify where Sous Chefs are stored, change the following settings:
-
-* ``sous_chefs_dir``:
-	- A directory to install all Sous Chefs into.
-	- default = ``~/.newslynx/sous-chefs/``
 
 
 Default Tags and Recipes
@@ -231,33 +202,12 @@ Network
 Intialization
 ++++++++++++++++++++++++
 
-Once you have setup your configurations, you can initialize NewsLynx by running the following command:
-
-.. code-block:: bash
-
-	$ newslynx init 
-
-This command will perform the following tasks:
-
-1. Initialize the Postgres database specified with ``sqlalchemy_database_uri``.
-2. Initialize the Super User and Organizaiton.
-3. Install all default SousChefs in the current environment.
-4. Add all Sous Chefs for this organization.
-5. Add all default tags for this organization.
-6. Install all default recipes for this organization.
-7. Install all metrics associated with all default Sous Chefs for this organization.
-
-If you want to initialize NewsLynx with only the Super User and Organization, use the following command
-
-.. code-block:: bash
-
-	$ newslynx init --bare
-
+Once you have setup your configurations, follow the `installation docs <http://newslynx.readthedocs.org/en/latest/install.html>`_.
 
 Starting the API.
 ++++++++++++++++++++++++
 
-Once you've configured NewsLynx, you can start a debug server with the following command:
+Once you've installed and initialized NewsLynx, you can start a debug server with the following command:
 
 .. code-block:: bash
 	
@@ -307,7 +257,7 @@ When you see the following, it's done and you can visit http://localhost:3000.
 **Note**: If you are running this in production, you want to run it in behind https and tell the app you are doing so one of two ways:
 
 1. Run it with the environment variable ``NEWSLYNX_ENV=https``
-2. Set ``newslynx_app_https: true`` in your ``~/.newslynx/config.yaml`` file
+2. Set ``https: true`` in your ``~/.newslynx/config.yaml`` file
 
 This will make sure your cookies are set securely.
 

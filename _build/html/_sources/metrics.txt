@@ -11,13 +11,13 @@ The system we devised adheres to the following standards:
 1. While NewsLynx is an analytics platform, it is not a service for tracking events on sites.  NewsLynx exists in between analytics providers and their audiences as a tool which enables the curation and customization of metrics.
 
 .. _metrics-principle-2:
-2. For the reasons above, **we do not store timeseries data more granular than hour**. While this is configurable by setting ``metrics_min_date_unit`` and ``metrics_min_date_value`` in your ``config.yaml``, its change is not encouraged.
+2. For the reasons above, **we do not store timeseries data more granular than hour**. While this is configurable by setting ``metrics_min_date_unit`` and ``metrics_min_date_value`` in your ``config.yaml``, it's not encouraged.
 
 .. _metrics-principle-3:
 3. Metrics should be stored in the their rawest state but should be automatically summarized and compared.  The process from ingestion => summary => comparison should be both invisible to the user and effortlessly undone.
 
 .. _metrics-principle-4:
-4. While we should make no assumptions about the data source a user prefers, we should not have to constantly compromise the above standards to accomodate one source.  With that in mind, we should have a schema for Metrics which, while rigid, is flexible enough to handle most use cases.  In the cases which this schema does not prove adequate, we should consider whether this particular use case is general enough before modifying it.
+4. While we should make no assumptions about the data source a user prefers, we should not have to constantly compromise the above standards to accomodate one source.  With that in mind, we should have a schema for Metrics which, while rigid, is flexible enough to handle most use cases.  In the cases which this schema does not prove adequate, we should consider whether this particular use case is general enough before modifying the schema.
 
 .. _metrics-schema:
 
@@ -92,7 +92,7 @@ All metrics have access to the following options:
         - ``min``
 
 * ``content_levels``
-    - This field lets us know that the metric is related to content items and should be stored at the specified. For more on what this means see :ref:`metrics-how-does-this-work`
+    - This field lets us know that the metric is related to content items and should be stored at the specified level. For more on what this means see :ref:`metrics-how-does-this-work`
     - Can be one of:
         - ``timeseries``
             - Accessible via the :ref:`Content Timeseries API <endpoints-content-metrics-get-timeseries>`.
@@ -106,12 +106,13 @@ All metrics have access to the following options:
 
     - Can be one of:
         - ``timeseries``
-            - Accessible be :ref:`endpoints-content-metrics-get-timeseries`
+            - Accessible via :ref:`endpoints-org-metrics-get-timeseries`
         - ``summary``
+            - Accessible via :ref:`endpoints-org-metrics-get-summary`
 
 
 
-For instance, this configuration for Sous Chef ``google-analytics-to-content-timeseries`` lists this metric configuration:
+For instance, the Sous Chef ``google-analytics-to-content-timeseries`` lists this metric configuration:
 
 .. code-block:: yaml
 
