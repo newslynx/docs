@@ -47,7 +47,7 @@ Initialize ``newslynx``
 
 First set your `configurations <http://newslynx.readthedocs.org/en/latest/config.html>`_. If you don't do this, we will fallback on the app's `default configuration file <https://github.com/newslynx/newslynx-core/blob/master/newslynx/app/config.yaml>`_.
 
-Install ``newslynx``, initialize the database, super user, and install default sous chefs, tags, and recipes:
+Install ``newslynx``, initialize the database, super user, and install default sous chefs, tags, and recipes.
 
 ```shell
 $ git clone https://github.com/newslynx/newslynx-core.git
@@ -56,7 +56,7 @@ $ make app_install
 ```
 **EXPERT MODE**  
 
-Don't install the app's default sous chefs, tags, or recipes:
+Don't install the app's default sous chefs, tags, or recipes.
 
 ```
 $ git clone https://github.com/newslynx/newslynx-core.git
