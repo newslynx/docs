@@ -40,7 +40,7 @@ If ``redis`` does not automatically start, open another tab and run
 
    $ redis-server
 
-Initialize ``newslynx``
+Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 **[OPTIONAL]**
