@@ -65,7 +65,7 @@ This will make sure your cookies are set securely.
   #####################################
 
 Other App start up commands 
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Alternate commands are in `package.json <https://github.com/newslynx/newslynx-app/blob/master/package.json>`_ under `"scripts" <https://github.com/newslynx/newslynx-app/blob/master/package.json#L5>`_. These are for **developing locally.**
 
