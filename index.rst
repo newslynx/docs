@@ -62,6 +62,7 @@ Contents
 
    install
    config
+   starting-the-api-and-app
    getting-started
    sous-chefs 
    metrics

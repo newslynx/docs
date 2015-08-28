@@ -1,6 +1,6 @@
-.. _getting-started:
+.. _starting-started:
 
-Admin Guide
+Starting the API and Application
 =================================
 
 Running Newslynx Core

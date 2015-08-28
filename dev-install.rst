@@ -1,7 +1,7 @@
 .. _installation:
 
-Installation Guide
-==================
+Development Installation Guide
+===============================
 
 The following installation guide is oriented towards people interested in running NewsLynx locally on a Mac OS X computer.
 For all other applications, please refer to our `automation docs <https://github.com/newslynx/automation>`_. At this time, NewsLynx is incapable of running on Windows.
