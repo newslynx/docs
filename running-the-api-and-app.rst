@@ -1,6 +1,6 @@
-.. _starting-started:
+.. _running:
 
-Starting the API and Application
+Running the API and Application
 =================================
 
 Running Newslynx Core

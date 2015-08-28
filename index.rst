@@ -62,7 +62,7 @@ Contents
 
    install
    config
-   starting-the-api-and-app
+   running-the-api-and-app
    getting-started
    sous-chefs 
    metrics
@@ -73,6 +73,5 @@ Contents
    api
    app
    cli
-   writing-sous-chefs
    
 
