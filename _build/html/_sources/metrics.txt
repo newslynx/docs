@@ -27,7 +27,7 @@ Creating Metrics
 As described in the :ref:`Sous Chef docs <sous_chefs>`, Metrics are exclusively defined by the Sous Chefs which create them. All Sous Chefs that create metrics must have the following section in their configuration:
 
 .. code-block:: yaml
-    ...
+
     metrics:
         metric_name:
             **options

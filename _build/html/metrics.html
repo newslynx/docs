@@ -72,16 +72,6 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-core">NewsLynx Core</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="install.html#install-the-dependencies">Install the dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install.html#initialize-newslynx">Initialize <code class="docutils literal"><span class="pre">newslynx</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-desktop">NewsLynx Desktop</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
@@ -96,13 +86,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="running-the-api-and-app.html">Running the API and Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-core">Running Newslynx Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-app">Running NewsLynx App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="running-the-api-and-app.html#other-app-start-up-commands">Other App start up commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Admin Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-core">Running Newslynx Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-app">Running NewsLynx App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#other-app-start-up-commands">Other App start up commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-app">Running NewsLynx App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#other-app-start-up-commands">Other App start up commands</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
@@ -357,6 +356,14 @@
 <div class="section" id="creating-metrics">
 <span id="metrics-schema"></span><h1>Creating Metrics<a class="headerlink" href="#creating-metrics" title="Permalink to this headline">¶</a></h1>
 <p>As described in the <span class="xref std std-ref">Sous Chef docs</span>, Metrics are exclusively defined by the Sous Chefs which create them. All Sous Chefs that create metrics must have the following section in their configuration:</p>
+<div class="highlight-yaml"><div class="highlight"><pre>metrics:
+    metric_name:
+        **options
+    anoter_metric_name:
+        **options
+    ...
+</pre></div>
+</div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <p>All metrics have access to the following options:</p>

@@ -61,10 +61,10 @@ All Sous Chefs are configured via a ``yaml`` or ``json`` file. These files follo
     - A list of relative paths to other Sous Chef config files to inherit for this Sous Chef. This prevents rewriting option definitions for Sous Chefs with similar behaviors. If this file contains a partial Sous Chef config, it's filename should begin with an underscore. You can see an example of such a file `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/events/_event_options.yaml>`_ and it's include statement `here <https://github.com/newslynx/newslynx-core/blob/master/newslynx/sc/events/facebook_page_to_event.yaml>`_.
     - *Optional*
 * ``requires_auths``
-    - A list of :ref:`<endpoints-auths` ``names`` that must exist for an Organization before this Sous Chef can run.
+    - A list of :ref:`<endpoints-auths>` ``names`` that must exist for an Organization before this Sous Chef can run.
     - *Optional*
 * ``requires_settings``
-    - A list of :ref:`<endpoints-settings` ``names`` that must exist for an Organization before this Sous Chef can run. 
+    - A list of :ref:`<endpoints-settings>` ``names`` that must exist for an Organization before this Sous Chef can run. 
     - *Optional*
 * ``options``
     - The options this Sous Chef takes. 

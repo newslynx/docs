@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration &mdash; newslynx  documentation</title>
+  <title>Running the API and Application &mdash; newslynx  documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="newslynx  documentation" href="index.html"/>
-        <link rel="next" title="Running the API and Application" href="running-the-api-and-app.html"/>
-        <link rel="prev" title="NewsLynx: own your analytics" href="index.html"/> 
+        <link rel="next" title="Admin Guide" href="getting-started.html"/>
+        <link rel="prev" title="Configuration" href="config.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -72,26 +72,26 @@
           
           
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#required-settings">Required Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#api-credentials">API credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#default-tags-and-recipes">Default Tags and Recipes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#additional-options">Additional Options</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#postgres">Postgres</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#redis">Redis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#caching">Caching</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#recipe-queue">Recipe Queue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#recipe-scheduler">Recipe Scheduler</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#network">Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#default-tags-and-recipes">Default Tags and Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#additional-options">Additional Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="config.html#postgres">Postgres</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#redis">Redis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#caching">Caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#recipe-queue">Recipe Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#recipe-scheduler">Recipe Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html#network">Network</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#intialization">Intialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="running-the-api-and-app.html">Running the API and Application</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-core">Running Newslynx Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-app">Running NewsLynx App</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="running-the-api-and-app.html#other-app-start-up-commands">Other App start up commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Running the API and Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-newslynx-core">Running Newslynx Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-newslynx-app">Running NewsLynx App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
 </li>
 </ul>
@@ -323,11 +323,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Configuration</li>
+    <li>Running the API and Application</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/config.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/running-the-api-and-app.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -336,465 +336,68 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="configuration">
-<span id="config"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
-<p>NewsLynx requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  <code class="docutils literal"><span class="pre">~/.newslynx</span></code>.  In this directory there should at least be one file named <code class="docutils literal"><span class="pre">config.yaml</span></code>. This file can also be JSON. If you would like to configure another location for this file, set the environment variable <code class="docutils literal"><span class="pre">NEWSLYNX_CONFIG_FILE</span></code>.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: <code class="docutils literal"><span class="pre">NEWSLYNX_{SETTING_NAME}</span></code>, however you will still need to have a <code class="docutils literal"><span class="pre">config.yaml</span></code> file.</p>
-<div class="section" id="required-settings">
-<h2>Required Settings<a class="headerlink" href="#required-settings" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">config.yaml</span></code> contains all the information we need to run NewsLynx.  As you&#8217;ll see below, the App also utilizes this file for it&#8217;s configurations.</p>
-<p>In this file, we require, at, minimum, the following fields:</p>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>The name of the Super User for this NewsLynx install. / org settings.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user_email</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>The Super User&#8217;s email (what you use to login with).</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user_password</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>The Super User&#8217;s login password. This password will enable login to all other user profiles.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user_apikey</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>The Super User&#8217;s <code class="docutils literal"><span class="pre">apikey</span></code>.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user_org</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>OPTIONAL: The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>OPTIONAL: The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="api-credentials">
-<h2>API credentials<a class="headerlink" href="#api-credentials" title="Permalink to this headline">¶</a></h2>
-<p>This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:</p>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">twitter_api_key</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application on Twitter and configure these credentials.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">twitter_api_secret</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>See <a class="reference external" href="http://dev.twitter.com">Twitter&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">google_analytics_client_id</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application with Google Analytics and configure these credentials.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">google_analytics_client_secret</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>See <a class="reference external" href="https://developers.google.com/analytics/">Google&#8217;s developer docs for</a> for details on how to create an application  with Google Analytics and configure these credentials.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">facebook_app_id</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">facebook_app_secret</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>See <a class="reference external" href="http://developers.facebook.com">Facebook&#8217;s developer docs for</a> for details on how to create an application on facebook and configure these credentials.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">reddit_user_agent</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>A reddit-friendly User Agent.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">embedly_api_key</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>An API key for using <a class="reference external" href="http://embed.ly/">Embedly</a> for content extraction. If not provided, we fall back on internal methods.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="default-tags-and-recipes">
-<h2>Default Tags and Recipes<a class="headerlink" href="#default-tags-and-recipes" title="Permalink to this headline">¶</a></h2>
-<p>In addition to these settings, you can also configure a list of default Tags and Recipes to create for every new Organization. This is useful for creating applications on top of the API which onboard new Organizations and Users without too much hassle.</p>
-<p>These files live, by default, in <code class="docutils literal"><span class="pre">~/.newslynx/defaults</span></code>.  Each file should have the name of the items it contains and consist of a list of objects:</p>
-<p>For example, <code class="docutils literal"><span class="pre">~/.newslynx/defaults/tags.yaml</span></code> specifies a list of tags to apply to every new organization.</p>
-<div class="highlight-yaml"><div class="highlight"><pre><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Politics</span>
-  <span class="l-Scalar-Plain">slug</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">politics</span>
-  <span class="l-Scalar-Plain">color</span><span class="p-Indicator">:</span> <span class="s">&#39;#a6cee3&#39;</span>
-  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">subject</span>
-
-<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Reprint / pickup</span>
-  <span class="l-Scalar-Plain">slug</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">reprint-pickup</span>
-  <span class="l-Scalar-Plain">category</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">citation</span>
-  <span class="l-Scalar-Plain">level</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">media</span>
-  <span class="l-Scalar-Plain">color</span><span class="p-Indicator">:</span> <span class="s">&#39;#6699cc&#39;</span>
-  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">impact</span>
+  <div class="section" id="running-the-api-and-application">
+<span id="running"></span><h1>Running the API and Application<a class="headerlink" href="#running-the-api-and-application" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-newslynx-core">
+<h2>Running Newslynx Core<a class="headerlink" href="#running-newslynx-core" title="Permalink to this headline">¶</a></h2>
+<p>Once you&#8217;ve <a class="reference external" href="http://newslynx.readthedocs.org/en/latest/install.html">installed and initialized NewsLynx Core</a>, you can start a debug server with the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx debug
 </pre></div>
 </div>
-<p>If you&#8217;d like to save these files elsewhere, you can modify the following configurations</p>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">default_tags</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>A path to a <code class="docutils literal"><span class="pre">yaml</span></code> file with a list of default Tags.</li>
-<li>default = <code class="docutils literal"><span class="pre">~/.newslynx/defaults/tags.yaml</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">default_recipes</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>A path to a <code class="docutils literal"><span class="pre">yaml</span></code> file with a list of default Recipes.</li>
-<li>default = <code class="docutils literal"><span class="pre">~/.newslynx/defaults/recipes.yaml</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>By default, NewsLynx Core installs the default Tags and Recipes needed to run the Application. If you&#8217;d like to install NewsLynx core without these defaults, make sure to use the <code class="docutils literal"><span class="pre">--bare</span></code> flat when you run <code class="docutils literal"><span class="pre">newslynx</span> <span class="pre">init</span></code> (more details on this below).</p>
+<p>If you&#8217;d like to start a multi-theaded production server (some Sous Chefs may not work without this), run this command inside the root directory of <code class="docutils literal"><span class="pre">newslynx-core</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bin/run
+</pre></div>
 </div>
-<div class="section" id="additional-options">
-<h2>Additional Options<a class="headerlink" href="#additional-options" title="Permalink to this headline">¶</a></h2>
-<p>In addition, there are numerous optional configurations you can tweak to modify the performance of NewsLynx. You can also read through them in  the <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py">source code</a>.</p>
-<div class="section" id="postgres">
-<h3>Postgres<a class="headerlink" href="#postgres" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">sqlalchemy_database_uri</span></code></dt>
-<dd><ul class="first last simple">
-<li>A valid <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_1_0/core/engines.html#database-urls">SQLAlchemy Database URI</a>.</li>
-<li><strong>NOTE</strong> This configuration is required when installing <code class="docutils literal"><span class="pre">newslynx-core</span></code> locally.</li>
-<li>default = <code class="docutils literal"><span class="pre">postgresql://localhost:5432/newslynx</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">sqlalchemy_pool_size</span></code></dt>
-<dd><ul class="first last simple">
-<li>the maximum number of concurrent database connecitons</li>
-<li>default = <code class="docutils literal"><span class="pre">1000</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">sqlalchemy_pool_max_overflow</span></code></dt>
-<dd><ul class="first last simple">
-<li>the maximum number of concurrent database connections over sqlalchemy_pool_size before an error is thrown.</li>
-<li>default = <code class="docutils literal"><span class="pre">100</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">sqlalchemy_pool_timeout</span></code></dt>
-<dd><ul class="first last simple">
-<li>the number of seconds to wait on a database transaction before throwing an error.</li>
-<li>default = <code class="docutils literal"><span class="pre">60</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">sqlalchemy_echo</span></code></dt>
-<dd><ul class="first last simple">
-<li>whether or not to log all sql queries. Recommended only for debugging purposes.</li>
-<li>default = <code class="docutils literal"><span class="pre">false</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
+<p>To start the task queue, run this command inside the root directory of <code class="docutils literal"><span class="pre">newslynx-core</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bin/start_workers
+</pre></div>
 </div>
-<div class="section" id="redis">
-<h3>Redis<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">redis_url</span></code></dt>
-<dd><ul class="first last simple">
-<li>the URL of the redis connection</li>
-<li>default = <code class="docutils literal"><span class="pre">redis://localhost:6379/0</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
+<p>To stop the task queue, run this command inside the root directory of <code class="docutils literal"><span class="pre">newslynx-core</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bin/stop_workers
+</pre></div>
 </div>
-<div class="section" id="caching">
-<h3>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">url_cache_prefix</span></code></dt>
-<dd><ul class="first last simple">
-<li>The key prefix of the Redis cache for URL extraction (the process of reconciling raw URLs to their canonical form)</li>
-<li>default = <code class="docutils literal"><span class="pre">newslynx-url-cache</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">url_cache_ttl</span></code></dt>
-<dd><ul class="first last simple">
-<li>The number of seconds before an extracted URL expires.</li>
-<li>default = <code class="docutils literal"><span class="pre">1209600</span></code> (14 days)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">url_cache_pool_size</span></code></dt>
-<dd><ul class="first last simple">
-<li>the number of URLs to extract conccurrently when ingesting Events</li>
-<li>default = <code class="docutils literal"><span class="pre">5</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">extract_cache_prefix</span></code></dt>
-<dd><ul class="first last simple">
-<li>The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)</li>
-<li>default = <code class="docutils literal"><span class="pre">newslynx-extract-cache</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><a href="#id4"><span class="problematic" id="id5">``</span></a>extract_cache_ttl ``</dt>
-<dd><ul class="first last simple">
-<li>The number of seconds before metadata extracted from a URL expires.</li>
-<li>default = <code class="docutils literal"><span class="pre">259200</span></code> (3 days)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">thumbnail_cache_prefix</span></code></dt>
-<dd><ul class="first last simple">
-<li>The key prefix of the Redis cache for Article extraction (the process of extracting metadata from URLs)</li>
-<li>default = <code class="docutils literal"><span class="pre">newslynx-thumbnail-cache</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">thumbnail_cache_ttl</span></code></dt>
-<dd><ul class="first last simple">
-<li>The number of seconds before metadata extracted from a URL expires.</li>
-<li>default = <code class="docutils literal"><span class="pre">259200</span></code> (3 days)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">thumbnail_size</span></code></dt>
-<dd><ul class="first last simple">
-<li>The size of thumbnails to generate. (These are stored on Events and Articles when an Image URL is present.)</li>
-<li>default = <code class="docutils literal"><span class="pre">[150,</span> <span class="pre">150]</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">thumbnail_default_format</span></code></dt>
-<dd><ul class="first last simple">
-<li>The default format to render Thumbnails as. When we can identify the proper original format, we will render it as that format.</li>
-<li>default = <code class="docutils literal"><span class="pre">png</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">comparison_cache_prefix</span></code></dt>
-<dd><ul class="first last simple">
-<li>The key prefix of the Redis cache for Comparison metrics</li>
-<li>default = <code class="docutils literal"><span class="pre">newslynx-comparison-cache</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">comparison_cache_ttl</span></code></dt>
-<dd><ul class="first last simple">
-<li>The number of seconds before metadata extracted from a URL expires.</li>
-<li>default = <code class="docutils literal"><span class="pre">86400</span></code> (1 day)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">comparison_percentiles</span></code></dt>
-<dd><ul class="first last simple">
-<li>The percentiles to return in the Comparison API.</li>
-<li>default = <code class="docutils literal"><span class="pre">[2.5,</span> <span class="pre">5.0,</span> <span class="pre">10.0,</span> <span class="pre">20.0,</span> <span class="pre">30.0,</span> <span class="pre">40.0,</span> <span class="pre">60.0,</span> <span class="pre">70.0,</span> <span class="pre">80.0,</span> <span class="pre">90.0,</span> <span class="pre">95.0,</span> <span class="pre">97.5]</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="recipe-queue">
-<h3>Recipe Queue<a class="headerlink" href="#recipe-queue" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">merlynne_kwargs_prefix</span></code></dt>
-<dd><ul class="first last simple">
-<li>The key prefix for recipe configuraion we pass into Sous Chefs.</li>
-<li>default = <code class="docutils literal"><span class="pre">newslynx-merlynne-kwargs</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">merlynne_kwargs_ttl</span></code></dt>
-<dd><ul class="first last simple">
-<li>The number of seconds we&#8217;ll keep these configuration in redis before they expire.</li>
-<li>default = <code class="docutils literal"><span class="pre">60</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">merlynne_results_ttl</span></code></dt>
-<dd><ul class="first last simple">
-<li>The number of seconds we&#8217;ll keep the outputs of SousChefs in Redis before they expire.</li>
-<li>default = <code class="docutils literal"><span class="pre">60</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="recipe-scheduler">
-<h3>Recipe Scheduler<a class="headerlink" href="#recipe-scheduler" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">scheduler_refresh_interval</span></code></dt>
-<dd><ul class="first last simple">
-<li>The frequency in seconds with which we&#8217;ll check for updates to recipe schedules.</li>
-<li>default = <code class="docutils literal"><span class="pre">45</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">scheduler_reset_pause_range</span></code></dt>
-<dd><ul class="first last simple">
-<li>The range in seconds within which we&#8217;ll reset Recipes when their schedule / configurations have changed.</li>
-<li>default = <code class="docutils literal"><span class="pre">[20,</span> <span class="pre">200]</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="network">
-<h3>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">network_user_agent</span></code></dt>
-<dd><ul class="first last simple">
-<li>The User Agent to use in the header of all outgoing network requests.</li>
-<li>default = <code class="docutils literal"><span class="pre">Mozilla/5.0</span> <span class="pre">(Macintosh;</span> <span class="pre">Intel</span> <span class="pre">Mac</span> <span class="pre">OS</span> <span class="pre">X</span> <span class="pre">10_10;</span> <span class="pre">rv:33.0)</span> <span class="pre">Gecko/20100101</span> <span class="pre">Firefox/33.0</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">network_timeout</span></code></dt>
-<dd><ul class="first last simple">
-<li>The timout range for all network requests.</li>
-<li>default = <code class="docutils literal"><span class="pre">[7,</span> <span class="pre">27]</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">network_wait</span></code></dt>
-<dd><ul class="first last simple">
-<li>How long to wait in between network retiries.</li>
-<li>default = <code class="docutils literal"><span class="pre">0.8</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">network_backoff</span></code></dt>
-<dd><ul class="first last simple">
-<li>The factor with which to multiply <code class="docutils literal"><span class="pre">network_wait</span></code> on each subsequent retry.</li>
-<li>default = <code class="docutils literal"><span class="pre">2</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">network_max_retries</span></code></dt>
-<dd><ul class="first last simple">
-<li>The maximum number of retries before failing.</li>
-<li>default = <code class="docutils literal"><span class="pre">2</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
+<p>To start the Recipe scheduler, run this command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>newslynx cron
+</pre></div>
 </div>
 </div>
-<div class="section" id="intialization">
-<h2>Intialization<a class="headerlink" href="#intialization" title="Permalink to this headline">¶</a></h2>
-<p>Once you have setup your configurations, follow the <a class="reference external" href="http://newslynx.readthedocs.org/en/latest/install.html">installation docs</a>.</p>
+<div class="section" id="running-newslynx-app">
+<h2>Running NewsLynx App<a class="headerlink" href="#running-newslynx-app" title="Permalink to this headline">¶</a></h2>
+<p>To start the server, in the <code class="docutils literal"><span class="pre">newslynx-app</span></code> folder, run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm start
+</pre></div>
+</div>
+<p>This compiles your CSS and JS and runs the server with <a class="reference external" href="https://github.com/foreverjs/forever">Forever</a>.</p>
+<p>When you see the following, it&#8217;s done and you can visit <a class="reference external" href="http://localhost:3000">http://localhost:3000</a>.</p>
+<p><strong>Note</strong>: If you are running this in production, you want to run it in behind https and tell the app you are doing so one of two ways:</p>
+<ol class="arabic simple">
+<li>Run it with the environment variable <code class="docutils literal"><span class="pre">NEWSLYNX_ENV=https</span></code></li>
+<li>Set <code class="docutils literal"><span class="pre">https:</span> <span class="pre">true</span></code> in your <code class="docutils literal"><span class="pre">~/.newslynx/config.yaml</span></code> file</li>
+</ol>
+<p>This will make sure your cookies are set securely.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#####################################</span>
+<span class="c"># HTTP listening on 0.0.0.0:3000... #</span>
+<span class="c">#####################################</span>
+</pre></div>
+</div>
+<div class="section" id="other-app-start-up-commands">
+<h3>Other App start up commands<a class="headerlink" href="#other-app-start-up-commands" title="Permalink to this headline">¶</a></h3>
+<p>Alternate commands are in <a class="reference external" href="https://github.com/newslynx/newslynx-app/blob/master/package.json">package.json</a> under <a class="reference external" href="https://github.com/newslynx/newslynx-app/blob/master/package.json#L5">&#8220;scripts&#8221;</a>. These are for <strong>developing locally.</strong></p>
+<p>If you want to modify files and have the CSS and JS re-compiled automatically and the server restarted if necessary, do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run dev
+</pre></div>
+</div>
+<p>If you just want to watch the CSS and JS and re-compile when on change, do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run watch-files
+</pre></div>
+</div>
+<p>If you just want to watch the Express server and restart when its files change (templates, server js files), do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm run watch-server
+</pre></div>
+</div>
+<p>These last two commands are best run in tandem in two separate shell windows. <cite>npm run dev</cite> does them both in one window for convenience.</p>
+<p>The final command listed is <code class="docutils literal"><span class="pre">npm</span> <span class="pre">test</span></code>, which will run a simple test to make sure the server can launch.</p>
+</div>
 </div>
 </div>
 
@@ -804,10 +407,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="running-the-api-and-app.html" class="btn btn-neutral float-right" title="Running the API and Application" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Admin Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="NewsLynx: own your analytics" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="config.html" class="btn btn-neutral" title="Configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
