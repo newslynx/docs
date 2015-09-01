@@ -9,8 +9,6 @@ NewsLynx onboarding checklist
 
 ## Part 1, Organization details
 
-These details can be filled out on the Settings page of the interface.
-
 ##### Authentication
 
 The user will need credentials for the following accounts in order to authorize NewsLynx to access its data
