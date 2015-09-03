@@ -31,14 +31,14 @@ API credentials
 This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:
 
 * ``twitter_api_key``:
-	- See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application on Twitter and configure these credentials.
+	- See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application on Twitter and configure these credentials. The option you want is to create an app. Set the callback url to ``http://<app-url>/settings``. If you're running it on a port other than 80, put that in the url.
 * ``twitter_api_secret``:
 	- See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application with Google Analytics and configure these credentials.
 
 * ``google_analytics_client_id``:
-	- See `Google's developer docs for <https://developers.google.com/analytics/>`_ for details on how to create an application with Google Analytics and configure these credentials.
+	- See `Google's developer docs for <https://console.developers.google.com/>`_ for details on how to create an application with Google Analytics and configure these credentials. You'll want to create an application and enable the Analytics API. Then click on "Credentials" on the left and create an oAuth 2.0 for a "web application." Set the callback URI to ``http://<api-url>:5000/api/v1/auths/google-analytics/grant``.
 * ``google_analytics_client_secret``:
-	- See `Google's developer docs for <https://developers.google.com/analytics/>`_ for details on how to create an application  with Google Analytics and configure these credentials.
+	- See `Google's developer docs for <https://console.developers.google.com/>`_ for details on how to create an application  with Google Analytics and configure these credentials. You'll want to create an application and enable the Analytics API. Then click on "Credentials" on the left and create an oAuth 2.0 for a "web application." Set the callback URI to ``http://<api-url>:5000/api/v1/auths/google-analytics/grant``.
 
 * ``facebook_app_id``:
 	- See `Facebook's developer docs for <http://developers.facebook.com>`_ for details on how to create an application on facebook and configure these credentials.
