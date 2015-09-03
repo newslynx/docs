@@ -36,9 +36,9 @@ This file is also where you configure your credentials for Google Analytics, Twi
 	- See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application with Google Analytics and configure these credentials.
 
 * ``google_analytics_client_id``:
-	- See `Google's developer docs for <https://console.developers.google.com/>`_ for details on how to create an application with Google Analytics and configure these credentials. You'll want to create an application and enable the Analytics API. Then click on "Credentials" on the left and create an oAuth 2.0 for a "web application." Set the callback URI to ``http://<api-url>:5000/api/v1/auths/google-analytics/grant``.
+	- See `Google's developer docs for <https://console.developers.google.com/>`_ for details on how to create an application with Google Analytics and configure these credentials. You'll want to create an application and enable the Analytics API. Then click on "Credentials" on the left and create an oAuth 2.0 for a "web application." Set the callback URI to ``http://<api-url>:5000/api/v1/auths/google-analytics/callback``
 * ``google_analytics_client_secret``:
-	- See `Google's developer docs for <https://console.developers.google.com/>`_ for details on how to create an application  with Google Analytics and configure these credentials. You'll want to create an application and enable the Analytics API. Then click on "Credentials" on the left and create an oAuth 2.0 for a "web application." Set the callback URI to ``http://<api-url>:5000/api/v1/auths/google-analytics/grant``.
+	- See `Google's developer docs for <https://console.developers.google.com/>`_ for details on how to create an application  with Google Analytics and configure these credentials. You'll want to create an application and enable the Analytics API. Then click on "Credentials" on the left and create an oAuth 2.0 for a "web application." Set the callback URI to ``http://<api-url>:5000/api/v1/auths/google-analytics/callback``.
 
 * ``facebook_app_id``:
 	- See `Facebook's developer docs for <http://developers.facebook.com>`_ for details on how to create an application on facebook and configure these credentials.
