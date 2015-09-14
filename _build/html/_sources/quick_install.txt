@@ -8,7 +8,7 @@ The following installation guide is oriented towards people interested in instal
 NewsLynx Core
 ---------------
 
-**NOTE** - For most applications, we reccommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
+**NOTE** - For most applications, we recommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
 
 Install the dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,7 +63,7 @@ For the next steps, refer to the `getting started docs <http://newslynx.readthed
 NewsLynx App
 ------------
 
-**NOTE** - For most applications, we reccommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
+**NOTE** - For most applications, we recommend following our `automation guide <https://github.com/newslynx/automation>`_.  If you'd like to setup a development environment, following the instructions below for MacOS X.
 
 Download the git repository and install dependencies:
 

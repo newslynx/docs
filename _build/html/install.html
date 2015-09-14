@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation Guide &mdash; newslynx  documentation</title>
+  <title>Development Installation Guide &mdash; newslynx  documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="newslynx  documentation" href="index.html"/>
-        <link rel="next" title="Configuration" href="config.html"/>
-        <link rel="prev" title="NewsLynx: own your analytics" href="index.html"/> 
+        <link rel="next" title="Running the API and Application" href="running-the-api-and-app.html"/>
+        <link rel="prev" title="Configuration" href="config.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -72,16 +72,6 @@
           
           
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Installation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#newslynx-core">NewsLynx Core</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#install-the-dependencies">Install the dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#initialize-newslynx">Initialize <code class="docutils literal"><span class="pre">newslynx</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#newslynx-app">NewsLynx App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#newslynx-desktop">NewsLynx Desktop</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="config.html#required-settings">Required Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#api-credentials">API credentials</a></li>
@@ -96,13 +86,32 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html#intialization">Intialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config.html#starting-the-api">Starting the API.</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Development Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-core">NewsLynx Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-the-dependencies">Install the dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-app">NewsLynx App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newslynx-desktop">NewsLynx Desktop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running-the-api-and-app.html">Running the API and Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-core">Running Newslynx Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-app">Running NewsLynx App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="running-the-api-and-app.html#other-app-start-up-commands">Other App start up commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Admin Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-core">Running Newslynx Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-app">Running NewsLynx App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#other-app-start-up-commands">Other App start up commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-app">Running NewsLynx App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#other-app-start-up-commands">Other App start up commands</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sous-chefs.html">Sous Chefs</a><ul>
@@ -324,7 +333,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Installation Guide</li>
+    <li>Development Installation Guide</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -337,22 +346,21 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="installation-guide">
-<span id="installation"></span><h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="development-installation-guide">
+<span id="installation"></span><h1>Development Installation Guide<a class="headerlink" href="#development-installation-guide" title="Permalink to this headline">¶</a></h1>
 <p>The following installation guide is oriented towards people interested in running NewsLynx locally on a Mac OS X computer.
-For all other applications, please refer to our <a class="reference external" href="https://github.com/newslynx/automation">automation docs</a>. At this time, NewsLynx is incapable of running on Windows.</p>
+For deploying the software, please refer to our <a class="reference external" href="https://github.com/newslynx/automation">automation docs</a>.</p>
 <div class="section" id="newslynx-core">
 <h2>NewsLynx Core<a class="headerlink" href="#newslynx-core" title="Permalink to this headline">¶</a></h2>
-<p><strong>NOTE</strong></p>
-<p>For most applications, we reccommend following our <a class="reference external" href="https://github.com/newslynx/automation">automation guide</a>.  If you&#8217;d like to setup a development environment, following the instructions below for MacOS X.</p>
+<p><strong>NOTE</strong> - For most applications, we recommend following our <a class="reference external" href="https://github.com/newslynx/automation">automation guide</a>.  If you&#8217;d like to setup a development environment, following the instructions below for MacOS X. At this time, NewsLynx Core is not supported on Windows.</p>
 <div class="section" id="install-the-dependencies">
 <h3>Install the dependencies<a class="headerlink" href="#install-the-dependencies" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">newslynx</span></code> depends on <a class="reference external" href="http://www.postgresql.org/">Postgres</a> and <a class="reference external" href="http://www.redis.io">Redis</a>. If you&#8217;re on Mac OS X, the easiest way to run Postgres is with the <a class="reference external" href="http://www.http://postgresapp.com/.org/">Postgres.app</a>. However, if you prefer the <a class="reference external" href="http://www.brew.sh/">Homebrew</a> distribution, make sure to install it with plpythonu.</p>
+<p><code class="docutils literal"><span class="pre">newslynx</span></code> depends on <a class="reference external" href="http://www.postgresql.org/">Postgres</a> and <a class="reference external" href="http://www.redis.io">Redis</a>. If you&#8217;re on Mac OS X, the easiest way to run Postgres is with the <a class="reference external" href="http://www.http://postgresapp.com/.org/">Postgres.app</a>. However, if you prefer the <a class="reference external" href="http://www.brew.sh/">Homebrew</a> distribution, make sure to install it with plpython.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew install postgresql --build-from-source --with-python
 </pre></div>
 </div>
 <p>If you already have the Hombrew version installed, run this command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew renstall postgresql --build-from-source --with-python
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew reinstall postgresql --build-from-source --with-python
 </pre></div>
 </div>
 <p>Finally, install <code class="docutils literal"><span class="pre">redis</span></code> via Homebrew</p>
@@ -364,29 +372,27 @@ For all other applications, please refer to our <a class="reference external" hr
 </pre></div>
 </div>
 </div>
-<div class="section" id="initialize-newslynx">
-<h3>Initialize <code class="docutils literal"><span class="pre">newslynx</span></code><a class="headerlink" href="#initialize-newslynx" title="Permalink to this headline">¶</a></h3>
-<p><strong>[OPTIONAL]</strong></p>
-<p>First set your <a class="reference external" href="http://newslynx.readthedocs.org/en/latest/config.html">configurations</a>. If you don&#8217;t do this, we will fallback on the app&#8217;s <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/app/config.yaml">default configuration file</a>.</p>
-<p>Install <code class="docutils literal"><span class="pre">newslynx</span></code>, initialize the database, super user, and install default sous chefs, tags, and recipes:</p>
-<p><code class="docutils literal"><span class="pre">`shell</span>
-<span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/newslynx/newslynx-core.git</span>
-<span class="pre">$</span> <span class="pre">cd</span> <span class="pre">newslynx-core</span>
-<span class="pre">$</span> <span class="pre">make</span> <span class="pre">app_install</span>
-<span class="pre">`</span></code>
-<strong>EXPERT MODE</strong></p>
-<p>Don&#8217;t install the app&#8217;s default sous chefs, tags, or recipes:</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/newslynx/newslynx-core.git</span>
-<span class="pre">$</span> <span class="pre">cd</span> <span class="pre">newslynx-core</span>
-<span class="pre">$</span> <span class="pre">make</span> <span class="pre">bare_install</span>
-<span class="pre">`</span></code></p>
+<div class="section" id="id1">
+<h3>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><strong>OPTIONAL</strong> - First set your <a class="reference external" href="http://newslynx.readthedocs.org/en/latest/config.html">configurations</a>. If you don&#8217;t do this, we will fallback on the app&#8217;s <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/app/config.yaml">default configuration file</a>.</p>
+<p>Install <code class="docutils literal"><span class="pre">newslynx</span></code>, initialize the database, super user, and install default sous chefs, tags, and recipes.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/newslynx/newslynx-core.git
+<span class="nv">$ </span><span class="nb">cd </span>newslynx-core
+<span class="nv">$ </span>make app_install
+</pre></div>
+</div>
+<p><strong>EXPERT MODE</strong>  - Don&#8217;t install the app&#8217;s default sous chefs, tags, or recipes.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/newslynx/newslynx-core.git
+<span class="nv">$ </span><span class="nb">cd </span>newslynx-core
+<span class="nv">$ </span>make bare_install
+</pre></div>
+</div>
+<p>For the next steps, refer to the <a class="reference external" href="http://newslynx.readthedocs.org/en/latest/getting-started.html">getting started docs</a>.</p>
 </div>
 </div>
 <div class="section" id="newslynx-app">
 <h2>NewsLynx App<a class="headerlink" href="#newslynx-app" title="Permalink to this headline">¶</a></h2>
-<p><strong>NOTE</strong></p>
-<p>For most applications, we reccommend following our <a class="reference external" href="https://github.com/newslynx/automation">automation guide</a>.  If you&#8217;d like to setup a development environment, following the instructions below for MacOS X.</p>
+<p><strong>NOTE</strong> - For most applications, we recommend following our <a class="reference external" href="https://github.com/newslynx/automation">automation guide</a>.  If you&#8217;d like to setup a development environment, following the instructions below for MacOS X.</p>
 <p>Download the git repository and install dependencies:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/newslynx/newslynx-app <span class="o">&amp;&amp;</span> <span class="nb">cd </span>newslynx-app
 <span class="nv">$ </span>npm install
@@ -396,7 +402,7 @@ For all other applications, please refer to our <a class="reference external" hr
 <div class="section" id="newslynx-desktop">
 <h2>NewsLynx Desktop<a class="headerlink" href="#newslynx-desktop" title="Permalink to this headline">¶</a></h2>
 <p>We also have a beta desktop version of NewsLynx App, which brings all of the same functionality of the web interface to a native environment, which can be easier for people to use. You can download the latest release for Mac OS X on the <a class="reference external" href="https://github.com/newslynx/newslynx-electron/releases">Releases</a> page of the <a class="reference external" href="https://github.com/newslynx/newslynx-electron">project repo</a>.</p>
-<p>Follow that project&#8217;s <a class="reference external" href="https://github.com/newslynx/newslynx-electron/issues">issue tracker</a> for progess on the first 1.0 release. If you would like to try it in the mean time please do. If you would like a Windows or Linux version, let us know by filing an issue and we can bake one out.</p>
+<p>Follow that project&#8217;s <a class="reference external" href="https://github.com/newslynx/newslynx-electron/issues">issue tracker</a> for progress on the first 1.0 release. If you would like to try it in the mean time please do. If you would like a Windows or Linux version, let us know by filing an issue and we can bake one out.</p>
 </div>
 </div>
 
@@ -406,10 +412,10 @@ For all other applications, please refer to our <a class="reference external" hr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="config.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="running-the-api-and-app.html" class="btn btn-neutral float-right" title="Running the API and Application" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="NewsLynx: own your analytics" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="config.html" class="btn btn-neutral" title="Configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
