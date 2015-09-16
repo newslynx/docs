@@ -63,7 +63,6 @@ Contents
    config
    install
    running-the-api-and-app
-   getting-started
    sous-chefs 
    metrics
    recipes
