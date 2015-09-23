@@ -28,7 +28,7 @@ In this file, we require, at, minimum, the following fields:
 API credentials
 +++++++++++++++++++
 
-This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:
+This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services. These aren't credentials for the news organization(s), rather, your instance of NewsLynx needs an "app" with each of these services that each news organization gives its tokens **to**. For example, it's the app that you will see in your Google account under apps that have access to the news organization's account tokens. You can give that application the `NewsLynx logo <https://raw.githubusercontent.com/newslynx/newslynx-app/master/lib/public/images/gifs/merlynne-ears.png>`_ if you like, which will be presented to users when they authenticate with these different services from within the NewsLynx interface.
 
 * ``twitter_api_key``:
 	- See `Twitter's developer docs for <http://dev.twitter.com>`_ for details on how to create an application on Twitter and configure these credentials. The option you want is to create an app. Set the callback url to ``http://<app-url>/settings``. If you're running it on a port other than 80, put that in the url.

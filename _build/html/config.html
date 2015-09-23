@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="newslynx  documentation" href="index.html"/>
-        <link rel="next" title="Running the API and Application" href="running-the-api-and-app.html"/>
+        <link rel="next" title="Development Installation Guide" href="install.html"/>
         <link rel="prev" title="NewsLynx: own your analytics" href="index.html"/> 
 
   
@@ -88,18 +88,20 @@
 <li class="toctree-l2"><a class="reference internal" href="#intialization">Intialization</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Development Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-core">NewsLynx Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#install-the-dependencies">Install the dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#id1">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-app">NewsLynx App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#newslynx-desktop">NewsLynx Desktop</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="running-the-api-and-app.html">Running the API and Application</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-core">Running Newslynx Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="running-the-api-and-app.html#running-newslynx-app">Running NewsLynx App</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="running-the-api-and-app.html#other-app-start-up-commands">Other App start up commands</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Admin Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-core">Running Newslynx Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-newslynx-app">Running NewsLynx App</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting-started.html#other-app-start-up-commands">Other App start up commands</a></li>
 </ul>
 </li>
 </ul>
@@ -396,7 +398,7 @@
 </div>
 <div class="section" id="api-credentials">
 <h2>API credentials<a class="headerlink" href="#api-credentials" title="Permalink to this headline">¶</a></h2>
-<p>This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services:</p>
+<p>This file is also where you configure your credentials for Google Analytics, Twitter, Facebook, and other services. These aren&#8217;t credentials for the news organization(s), rather, your instance of NewsLynx needs an &#8220;app&#8221; with each of these services that each news organization gives its tokens <strong>to</strong>. For example, it&#8217;s the app that you will see in your Google account under apps that have access to the news organization&#8217;s account tokens. You can give that application the <a class="reference external" href="https://raw.githubusercontent.com/newslynx/newslynx-app/master/lib/public/images/gifs/merlynne-ears.png">NewsLynx logo</a> if you like, which will be presented to users when they authenticate with these different services from within the NewsLynx interface.</p>
 <ul>
 <li><dl class="first docutils">
 <dt><code class="docutils literal"><span class="pre">twitter_api_key</span></code>:</dt>
@@ -804,7 +806,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="running-the-api-and-app.html" class="btn btn-neutral float-right" title="Running the API and Application" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="install.html" class="btn btn-neutral float-right" title="Development Installation Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="NewsLynx: own your analytics" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
