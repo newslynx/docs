@@ -3018,6 +3018,11 @@ All methods, unless otherwise specified, will return one or many Recipe objects 
       "last_job": {
         "max_date_last_run": "2015-07-14T16:04:14+00:00"
       },
+      "event_counts": {
+        "pending": 2,
+        "total": 5,
+        "deleted": 3
+      },
       "schedule_by": "unscheduled",
       "id": 1,
       "minutes": 30,
