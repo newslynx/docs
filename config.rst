@@ -198,6 +198,45 @@ Network
 	- The maximum number of retries before failing.
 	- default = ``2``
 
+Notifications
+~~~~~~~~~~~~~~~~~~~~
+* ``notify_methods``
+	- A list of notification methods to utilize. Currently ``email`` and ``slack``.
+	- default = ``[]``
+* ``notify_email_recipients``
+	- A list of emaill addresses to send notifications to.
+	- default = ``[]``
+* ``notify_email_subject_prefix``
+	- The prefix to insert into the subject of all email notifications.
+	- default = ``[ Merlynne ]``
+* ``notify_slack_webhook``
+	- A slack webhook url for posting notifications to.
+	- see: https://api.slack.com/incoming-webhooks
+* ``notify_slack_channel``
+	- The slack channel to post to.
+	- default = ``#general``
+* ``notify_slack_username``
+	- The slack username to post as.
+	- default = ``Merlynne``
+* ``notify_slack_emoji``
+	- The slack emoji to post with.
+	- default = ``:-1:``
+
+Email 
+~~~~~~~~~~~~~~~~~~~~
+These configurations are only currenly required for installs where ``notify_methods`` includes ``email``.
+In the future, there will be more email integrations and these configurations will stay the same.
+
+* ``mail_username``
+	- The username of the account to use for sending and recieving emails.
+* ``mail_password``
+	- The password of the account to use for sending and recieving emails.
+* ``mail_server``
+	- The domain of the account's server (e.g. mail.google.come)
+* ``mail_smtp_port``
+	- The server's smtp port for sending messages
+* ``mail_imap_port``
+	- The server's imap port for receiving messages
 
 Intialization
 ++++++++++++++++++++++++
