@@ -199,6 +199,31 @@ Network
 	- default = ``2``
 
 
+Notifications
+~~~~~~~~~~~~~~~~~~~~
+* ``notify_methods``
+	- A list of notification methods to utilize. Currently ``email`` and ``slack``.
+	- default = ``[]``
+* ``notify_email_recipients``
+	- A list of emaill addresses to send notifications to.
+	- default = ``[]``
+* ``notify_email_subject_prefix``
+	- The prefix to insert into the subject of all email notifications.
+	- default = ``[ Merlynne ]``
+* ``notify_slack_webhook``
+	- A slack webhook url for posting notifications to.
+	- see: https://api.slack.com/incoming-webhooks
+* ``notify_slack_channel``
+	- The slack channel to post to.
+	- default = ``#general``
+* ``notify_slack_username``
+	- The slack username to post as.
+	- default = ``Merlynne``
+* ``notify_slack_emoji``
+	- The slack emoji to post with.
+	- default = ``:-1:``
+
+
 Intialization
 ++++++++++++++++++++++++
 
