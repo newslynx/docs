@@ -83,6 +83,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#recipe-queue">Recipe Queue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#recipe-scheduler">Recipe Scheduler</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#network">Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notifications">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#email">Email</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#intialization">Intialization</a></li>
@@ -787,6 +789,121 @@
 <dd><ul class="first last simple">
 <li>The maximum number of retries before failing.</li>
 <li>default = <code class="docutils literal"><span class="pre">2</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="notifications">
+<h3>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">notify_methods</span></code></dt>
+<dd><ul class="first last simple">
+<li>A list of notification methods to utilize. Currently <code class="docutils literal"><span class="pre">email</span></code> and <code class="docutils literal"><span class="pre">slack</span></code>.</li>
+<li>default = <code class="docutils literal"><span class="pre">[]</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">notify_email_recipients</span></code></dt>
+<dd><ul class="first last simple">
+<li>A list of emaill addresses to send notifications to.</li>
+<li>default = <code class="docutils literal"><span class="pre">[]</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">notify_email_subject_prefix</span></code></dt>
+<dd><ul class="first last simple">
+<li>The prefix to insert into the subject of all email notifications.</li>
+<li>default = <code class="docutils literal"><span class="pre">[</span> <span class="pre">Merlynne</span> <span class="pre">]</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">notify_slack_webhook</span></code></dt>
+<dd><ul class="first last simple">
+<li>A slack webhook url for posting notifications to.</li>
+<li>see: <a class="reference external" href="https://api.slack.com/incoming-webhooks">https://api.slack.com/incoming-webhooks</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">notify_slack_channel</span></code></dt>
+<dd><ul class="first last simple">
+<li>The slack channel to post to.</li>
+<li>default = <code class="docutils literal"><span class="pre">#general</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">notify_slack_username</span></code></dt>
+<dd><ul class="first last simple">
+<li>The slack username to post as.</li>
+<li>default = <code class="docutils literal"><span class="pre">Merlynne</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">notify_slack_emoji</span></code></dt>
+<dd><ul class="first last simple">
+<li>The slack emoji to post with.</li>
+<li>default = <code class="docutils literal"><span class="pre">:-1:</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="email">
+<h3>Email<a class="headerlink" href="#email" title="Permalink to this headline">¶</a></h3>
+<p>These configurations are only currenly required for installs where <code class="docutils literal"><span class="pre">notify_methods</span></code> includes <code class="docutils literal"><span class="pre">email</span></code>.
+In the future, there will be more email integrations and these configurations will stay the same.</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">mail_username</span></code></dt>
+<dd><ul class="first last simple">
+<li>The username of the account to use for sending and recieving emails.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">mail_password</span></code></dt>
+<dd><ul class="first last simple">
+<li>The password of the account to use for sending and recieving emails.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">mail_server</span></code></dt>
+<dd><ul class="first last simple">
+<li>The domain of the account&#8217;s server (e.g. mail.google.come)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">mail_smtp_port</span></code></dt>
+<dd><ul class="first last simple">
+<li>The server&#8217;s smtp port for sending messages</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">mail_imap_port</span></code></dt>
+<dd><ul class="first last simple">
+<li>The server&#8217;s imap port for receiving messages</li>
 </ul>
 </dd>
 </dl>
