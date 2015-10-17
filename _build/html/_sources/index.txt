@@ -10,7 +10,7 @@
 **NewsLynx**: measuring the qualitative and quantitative impact of your journalism
 ==================================================================================
 
-NewsLynx is a research project from the Tow Center for Digital Journalism at Columbia University by Brian Abelson & Michael Keller that has been open-sourced to use. To get a general sense of the project, the ` user manual <https://github.com/newslynx/user-manual>`_ is a great place to start.
+NewsLynx is a research project from the Tow Center for Digital Journalism at Columbia University by Brian Abelson & Michael Keller that has been open-sourced to use. To get a general sense of the project, the `user manual <https://github.com/newslynx/user-manual>`_ is a great place to start.
 
 For a deeper explanation of the project, our `white paper <http://towcenter.org/wp-content/uploads/2015/06/Tow_Center_NewsLynx_Full_Report.pdf>`_ (PDF, released June 2015) or the `Executive Summary <http://towcenter.org/research/the-newslynx-impact-tracker-produced-these-key-ideas/>`_ contain more detail. If you want more, you can read our project update posts that look at `the problem of scraping the whole internet <http://towcenter.org/hyper-compensation-ted-nelson-and-the-impact-of-journalism/>`_, why `taxonomies are like Jorge Luis Borges <http://towcenter.org/tow-fellows-brian-abelson-and-michael-keller-to-study-the-impact-of-journalism/>`_ or read `a walkthrough of our initial prototype <http://towcenter.org/the-newslynx-tool-for-impact-tracking-a-walkthrough/>`_. 
 
