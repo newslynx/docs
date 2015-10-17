@@ -246,7 +246,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'newslynx', u'newslynx Documentation',
-     u'Brian Abelson', 'Michael Keller', 'newslynx', 'Own your analytics.',
+     u'Brian Abelson', 'Michael Keller', 'newslynx', 'Measuring the qualitative and quantitative impact of your journalism.',
      'Miscellaneous'),
 ]
 
