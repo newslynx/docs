@@ -7,12 +7,12 @@
    :align:   left
    :width:   125px
 
-**NewsLynx**: own your analytics
-================================
+**NewsLynx**: measuring the qualitative and quantitative impact of your journalism
+==================================================================================
 
-NewsLynx is a research project from the Tow Center for Digital Journalism at Columbia University by Brian Abelson & Michael Keller. 
+NewsLynx is a research project from the Tow Center for Digital Journalism at Columbia University by Brian Abelson & Michael Keller that has been open-sourced to use. To get a general sense of the project, the ` user manual <https://github.com/newslynx/user-manual>`_ is a great place to start.
 
-Read our `white paper <http://towcenter.org/wp-content/uploads/2015/06/Tow_Center_NewsLynx_Full_Report.pdf>`_ (PDF, released June 2015) or the `Executive Summary <http://towcenter.org/research/the-newslynx-impact-tracker-produced-these-key-ideas/>`_ if you're in a hurry. If you want more, you can read our project update posts that look at `the problem of scraping the whole internet <http://towcenter.org/hyper-compensation-ted-nelson-and-the-impact-of-journalism/>`_, why `taxonomies are like Jorge Luis Borges <http://towcenter.org/tow-fellows-brian-abelson-and-michael-keller-to-study-the-impact-of-journalism/>`_ or read `a walkthrough of our initial prototype <http://towcenter.org/the-newslynx-tool-for-impact-tracking-a-walkthrough/>`_. 
+For a deeper explanation of the project, our `white paper <http://towcenter.org/wp-content/uploads/2015/06/Tow_Center_NewsLynx_Full_Report.pdf>`_ (PDF, released June 2015) or the `Executive Summary <http://towcenter.org/research/the-newslynx-impact-tracker-produced-these-key-ideas/>`_ contain more detail. If you want more, you can read our project update posts that look at `the problem of scraping the whole internet <http://towcenter.org/hyper-compensation-ted-nelson-and-the-impact-of-journalism/>`_, why `taxonomies are like Jorge Luis Borges <http://towcenter.org/tow-fellows-brian-abelson-and-michael-keller-to-study-the-impact-of-journalism/>`_ or read `a walkthrough of our initial prototype <http://towcenter.org/the-newslynx-tool-for-impact-tracking-a-walkthrough/>`_. 
 
 All of our code is open source and `on GitHub <http://github.com/newslynx>`_. Please read license information before using or `contact us <mailto:contact@newslynx.org>`_ if you have questions. Happy Lynxing!
 
