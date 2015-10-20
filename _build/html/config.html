@@ -77,6 +77,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#api-credentials">API credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#default-tags-and-recipes">Default Tags and Recipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#additional-options">Additional Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#super-user">Super user</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#postgres">Postgres</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#redis">Redis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#caching">Caching</a></li>
@@ -342,7 +343,7 @@
             
   <div class="section" id="configuration">
 <span id="config"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
-<p>NewsLynx requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  <code class="docutils literal"><span class="pre">~/.newslynx</span></code>.  In this directory there should at least be one file named <code class="docutils literal"><span class="pre">config.yaml</span></code>. This file can also be JSON. If you would like to configure another location for this file, set the environment variable <code class="docutils literal"><span class="pre">NEWSLYNX_CONFIG_FILE</span></code>.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: <code class="docutils literal"><span class="pre">NEWSLYNX_{SETTING_NAME}</span></code>, however you will still need to have a <code class="docutils literal"><span class="pre">config.yaml</span></code> file.</p>
+<p>NewsLynx requires specific configurations to run. By default, these should all be stored in a file in your home directory named  <code class="docutils literal"><span class="pre">~/.newslynx</span></code>.  In this directory there should at least be one file named <code class="docutils literal"><span class="pre">config.yaml</span></code>. This file can also be JSON. If you would like to configure another location for this file, set the environment variable <code class="docutils literal"><span class="pre">NEWSLYNX_CONFIG_FILE</span></code>.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: <code class="docutils literal"><span class="pre">NEWSLYNX_{SETTING_NAME}</span></code>, however you will still need to have a <code class="docutils literal"><span class="pre">config.yaml</span></code> file.</p>
 <div class="section" id="required-settings">
 <h2>Required Settings<a class="headerlink" href="#required-settings" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">config.yaml</span></code> contains all the information we need to run NewsLynx.  As you&#8217;ll see below, the App also utilizes this file for it&#8217;s configurations.</p>
@@ -381,17 +382,9 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user_org</span></code>:</dt>
+<dt><code class="docutils literal"><span class="pre">api_dns</span></code>:</dt>
 <dd><ul class="first last simple">
-<li>OPTIONAL: The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>:</dt>
-<dd><ul class="first last simple">
-<li>OPTIONAL: The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
+<li>The URL of the final app. This is used when you authenticate with services to redirect you back to where you came from. This field isn&#8217;t required if you aren&#8217;t using the app at all.</li>
 </ul>
 </dd>
 </dl>
@@ -512,6 +505,27 @@
 <div class="section" id="additional-options">
 <h2>Additional Options<a class="headerlink" href="#additional-options" title="Permalink to this headline">¶</a></h2>
 <p>In addition, there are numerous optional configurations you can tweak to modify the performance of NewsLynx. You can also read through them in  the <a class="reference external" href="https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py">source code</a>.</p>
+<div class="section" id="super-user">
+<h3>Super user<a class="headerlink" href="#super-user" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user_org</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>The Super User&#8217;s Organization. The name of the organization to create on initialization. Will default to <code class="docutils literal"><span class="pre">admin</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">super_user_org_timezone</span></code>:</dt>
+<dd><ul class="first last simple">
+<li>The timezone for the above organization. Will default to <code class="docutils literal"><span class="pre">UTC</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 <div class="section" id="postgres">
 <h3>Postgres<a class="headerlink" href="#postgres" title="Permalink to this headline">¶</a></h3>
 <ul>

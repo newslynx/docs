@@ -3,7 +3,7 @@
 Configuration
 =============
 
-NewsLynx requires specific configurations to run.  By default, these should all be stored in a file in your home directory named  ``~/.newslynx``.  In this directory there should at least be one file named ``config.yaml``. This file can also be JSON. If you would like to configure another location for this file, set the environment variable ``NEWSLYNX_CONFIG_FILE``.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: ``NEWSLYNX_{SETTING_NAME}``, however you will still need to have a ``config.yaml`` file.
+NewsLynx requires specific configurations to run. By default, these should all be stored in a file in your home directory named  ``~/.newslynx``.  In this directory there should at least be one file named ``config.yaml``. This file can also be JSON. If you would like to configure another location for this file, set the environment variable ``NEWSLYNX_CONFIG_FILE``.  Finally, we should note that all configurations described below can also be stored as environment variables, with the naming convention: ``NEWSLYNX_{SETTING_NAME}``, however you will still need to have a ``config.yaml`` file.
 
 Required Settings
 +++++++++++++++++++
@@ -20,10 +20,8 @@ In this file, we require, at, minimum, the following fields:
 	- The Super User's login password. This password will enable login to all other user profiles.
 * ``super_user_apikey``:
 	- The Super User's ``apikey``.  Principally here for development ease. Enables the regeneration of the datbase without resetting credentials.
-* ``super_user_org``:
-	- OPTIONAL: The Super User's Organization. The name of the organization to create on initialization. Will default to ``admin``.
-* ``super_user_org_timezone``:
-	- OPTIONAL: The timezone for the above organization. Will default to ``UTC``.
+* ``api_dns``:
+	- The URL of the final app. This is used when you authenticate with services to redirect you back to where you came from. This field isn't required if you aren't using the app at all.
 
 API credentials
 +++++++++++++++++++
@@ -90,6 +88,13 @@ Additional Options
 +++++++++++++++++++++++
 
 In addition, there are numerous optional configurations you can tweak to modify the performance of NewsLynx. You can also read through them in  the `source code <https://github.com/newslynx/newslynx-core/blob/master/newslynx/defaults.py>`_.
+
+Super user
+~~~~~~~~~~
+* ``super_user_org``:
+	- The Super User's Organization. The name of the organization to create on initialization. Will default to ``admin``.
+* ``super_user_org_timezone``:
+	- The timezone for the above organization. Will default to ``UTC``.
 
 Postgres
 ~~~~~~~~~~
